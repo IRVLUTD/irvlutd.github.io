@@ -11,6 +11,6 @@
     - `mkdir <project-alias>; cd <project-alias>`
 - Place all the necessary files in <project-alias>
 - Commit and push to the <project-alias> branch
-- Create a pull request
+- Create a pull request to the main branch
 
-#### After merging with the main branch, the project page should be live at https://irvlutd.github.io/<project-alias\>
+#### Upon pull request approval, the project page should be live at https://irvlutd.github.io/<project-alias\>
