@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>NeuralGrasps</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+  h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    margin-bottom: 1rem;
+  }
+  h4 {
+    margin-bottom: 1rem;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  code {
+    background-color: #f5f5f5;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+  }
+  .container {
+    padding: 40px 15px;
+  }
+  .center {
+    text-align: center;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .authors {
+    line-height: 2;
+    font-size: 18px;
+  }
+  .section {
+    padding: 10px 0 30px;
+  }
+  .content {
+    padding: 10px 0;
+  }
+  .video {
+    padding: 20px 0 20px;
+  }
+  .image{
+    padding: 0 30px;
+  }
+  .image-doc{
+    padding: 0 25px;
+  }
+  .embedded-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 10px !important;
+  }
+  .embedded-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .red{
+      color: red;
+  }
+
+  .jp-email{
+      height: 18px;
+  }
+</style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1065.0" data-gr-ext-installed="">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="content">
+        <h2 class="center content">NeuralGrasps: Learning Implicit Representations for Grasps of Multiple Robotic Hands</h2>
+        <div class="center content authors">
+          <a href="https://kninad.github.io/" target="_blank">
+            <span class="nowrap">Ninad Khargonkar<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Neil Song<sup>2</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Zesheng Xu<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Balakrishnan Prabhakaran<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://yuxng.github.io/" target="_blank">
+            <span class="nowrap">Yu Xiang<sup>1</sup></span>
+          </a>
+        </div>
+        <div class="center content authors">
+            <span>
+              <sup>1</sup>The University of Texas at Dallas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <sup>2</sup>St. Mark's School of Texas</span>
+          </div>
+        <div class="center authors">
+          <!-- <span>TODO: Fill with any conference info</span> -->
+        </div>
+      </div>
+
+      <div class="video">
+        <iframe width="100%" height="425px" src="https://www.youtube.com/embed/E-SqYIr4VLo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="section">
+        <h3>Abstract</h3>
+        <p>We introduce a neural implicit representation for grasps of objects from multiple robotic hands. Different 
+          grasps across multiple robotic hands are encoded into a shared latent space. Each latent vector is learned to 
+          decode to the 3D shape of an object and the 3D shape of a robotic hand in a grasping pose in terms of the 
+          signed distance functions of the two 3D shapes. In addition, the distance metric in the latent space is 
+          learned to preserve the similarity between grasps across different robotic hands, where the similarity of 
+          grasps is defined according to contact regions of the robotic hands. This property enables our method to 
+          transfer grasps between different grippers including a human hand, and grasp transfer has the potential to 
+          share grasping skills between robots and enable robots to learn grasping skills from humans. Furthermore, 
+          the encoded signed distance functions of objects and grasps in our implicit representation can be used for 
+          6D object pose estimation with grasping contact optimization from partial point clouds, which enables 
+          robotic grasping in the real world.
+        </p>
+      </div>
+
+      <!-- -------------------- TODO ------------------------------------------- -->
+      <!-- <div class="section">
+        <h3>TODO</h3>
+        <ul>
+          <li>If accepted, conference info</li>
+          <li>Paper, supp and arxiv links</li>
+          <li>dataset: license, links, folder structure</li>
+          <li>Code repo links: dataset-generation, model training</li>
+        </ul>
+      </div> -->
+      <!-- --------------------------------------------------------------- -->
+
+      <div class="section">
+        <h3>Paper &amp; Document</h3>
+        <div class="row content">
+        <div class="center image-doc">
+            <a href="arxiv link" target="_blank">
+                <img src="./assets/thumbnail_arxiv.png" height="176px" width="136px">
+                <br>
+                <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
+                <span>arXiv</span>
+            </a>
+        </div>
+          <div class="center image-doc">
+            <a href="./assets/NeuralGrasps_Supplementary.pdf" target="_blank">
+              <img src="./assets/thumbnail_supp.png" height="176px" width="136px">
+              <br>
+              <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
+              <span>Supplementary</span>
+            </a>
+          </div>
+        </div>
+        <br>
+        <div class="content">
+          <h4>Citing NeuralGrasps</h4>
+          <p>Please consider citing the paper if it helps in your research:</p>
+          <pre><code>TODO: ADD citation</code></pre>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Data</h3>
+        <p>NeuralGrasps dataset is licensed under <span class="underline red">TODO: Decide the License</a></span>.</p>
+        <p>We provide [num] options for downloading the dataset:</p>
+        <p>Once you successfully download and extract the dataset, you should have a folder with the following structure:</p>
+        <pre><code>TODO: Place the folder structure here</code></pre>
+        <p>Please see the associated code repository for modifying and using the dataset for
+          your own models.</p>
+      </div>
+
+      <div class="section">
+        <h3>Code</h3>
+        <div class="row content">
+          <div class="center image">
+            <a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">
+              <img src="./assets/GitHub-Mark-64px.png">
+            </a>
+          </div>
+          <div>
+            <span><a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">Model & Training</a></span>
+            <br/>
+            <span><a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">Dataset Generation</a></span>
+            <br/>
+            <span class="red">TODO: ADD description from README</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="section">
+        <h3>Video</h3>
+          <div class="embedded-video">
+            <iframe src="./index_files/Q4wyBaZeBw0.html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+          </div>
+      </div> -->
+
+      <div class="section">
+        <h3>Contact</h3>
+        <p>Send any comments or questions to Ninad Khargonkar: <img class="ninad-email"" src="assets/ninadk_email.png" alt="ninad's UT Dallas email id" height=20px></p>
+      </div>
+
+      <hr>
+      <p>Last updated on 2022/06/30 | Template adapted from: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>
