@@ -7,10 +7,10 @@
     - `git clone https://github.com/IRVLUTD/irvlutd.github.io`
 - Create a new branch with project alias. E.g. [FewSOL](https://irvlutd.github.io/FewSOL)
     - `git checkout -b <project-alias>`
-- Create a new folder named \<project-alias>
+- Create a new folder named <project-alias\>
     - `mkdir <project-alias>; cd <project-alias>`
-- Place all the necessary files in <project-alias>
-- Commit and push to the <project-alias> branch
+- Place all the necessary files in <project-alias\>. See [FewSOL](https://github.com/IRVLUTD/irvlutd.github.io/tree/main/FewSOL) to get started.
+- Commit and push to the <project-alias\> branch
 - Create a pull request to the main branch
 
 #### Upon pull request approval, the project page should be live at https://irvlutd.github.io/<project-alias\>
