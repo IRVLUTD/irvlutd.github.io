@@ -13,4 +13,4 @@
 - Commit and push to the <project-alias> branch
 - Create a pull request
 
-#### After merging with the main branch, the project page should be live at https://irvlutd.github.io/\<project-alias>
+#### After merging with the main branch, the project page should be live at https://irvlutd.github.io/<project-alias\>
