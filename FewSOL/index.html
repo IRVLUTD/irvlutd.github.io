@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)https://dex-ycb.github.io/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+h2 {
+  font-family: 'Rubik', sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  letter-spacing: -1px;
+  margin-bottom: 1rem;
+}
+h3 {
+  margin-bottom: 1rem;
+}
+h4 {
+  margin-bottom: 1rem;
+}
+video {
+  width: 100%;
+  height: 100%;
+}
+code {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 20px;
+  white-space: pre-wrap;
+}
+.container {
+  padding: 40px 15px;
+}
+.center {
+  text-align: center;
+}
+.underline {
+  text-decoration: underline;
+}
+.nowrap {
+  white-space: nowrap;
+}
+.authors {
+  line-height: 2;
+  font-size: 18px;
+}
+.section {
+  padding: 10px 0 30px;
+}
+.content {
+  padding: 10px 0;
+}
+.video {
+  padding: 20px 0 20px;
+}
+.image{
+  padding: 0 30px;
+}
+.image-doc{
+  padding: 0 25px;
+}
+.embedded-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+.embedded-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.red{
+    color: red;
+}
+
+.jp-email{
+    height: 18px;
+}
+
+</style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1065.0" data-gr-ext-installed="">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="content">
+        <h2 class="center content">FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</h2>
+        <div class="center content authors">
+          <a href="https://jishnujayakumar.github.io/" target="_blank">
+            <span class="nowrap">Jishnu Jaykumar P<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#" target="_blank">
+            <span class="nowrap">Yu-Wei Chao<sup>2</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://yuxng.github.io/" target="_blank">
+            <span class="nowrap">Yu Xiang<sup>1</sup></span>
+          </a>
+        </div>
+        <div class="center content authors">
+            <span><sup>1</sup>The University of Texas at Dallas, <sup>2</sup>NVIDIA</span>
+          </div>
+        <div class="center authors">
+          <!-- <span>IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2021</span> -->
+        </div>
+      </div>
+
+      <div class="video">
+        <video autoplay="autoplay" muted="muted" loop="loop">
+          <source src="assets/FewSOL_video.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="section">
+        <h3>Abstract</h3>
+        <p>We introduce the Few-Shot Object Learning (FewSOL) dataset for object recognition with a few images per object. We captured 336 real-world objects with 9 RGB-D images per object from different views. Object segmentation masks, object poses and object attributes are provided. In addition, synthetic images generated using 330 3D object models are used to augment the dataset. We investigated few-shot object classification and joint object segmentation and few-shot classification with the state-of-the-art methods for few-shot learning and meta-learning using our dataset. The evaluation results show that there is still a large margin to be improved for few-shot object classification in robotic environments. Our dataset can be used to study a set of few-shot object recognition problems such as classification, detection and segmentation, shape reconstruction, pose estimation, keypoint correspondences and attribute recognition.</p>
+      </div>
+
+      <div class="section">
+        <h3>Paper &amp; Document</h3>
+        <div class="row content">
+        <div class="center image-doc">
+            <a href="arxiv link" target="_blank">
+                <img src="assets/FewSOL_arxiv.png" height="176px" width="136px">
+                <br>
+                <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
+                <span>arXiv</span>
+            </a>
+        </div>
+          <div class="center image-doc">
+            <a href="assets/FewSOL_supp.pdf" target="_blank">
+              <img src="assets/supp.png" height="176px" width="136px">
+              <br>
+              <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
+              <span>Supplementary</span>
+            </a>
+          </div>
+        </div>
+        <br>
+        <div class="content">
+          <h4>Citing FewSOL</h4>
+          <p>Please cite FewSOL if it helps your research:</p>
+          <pre><code>TODO: ADD citation</code></pre>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Data</h3>
+        <p>FewSOL is licensed under <span class="underline red">TODO: Decide the License</a></span>.</p>
+        <p>We provide [num] options for downloading the dataset:</p>
+        <p>Once you successfully download and extract the dataset, you should have a folder with the following structure:</p>
+        <pre><code>TODO: Place the folder structure here</code></pre>
+        <p>For instructions about using the dataset please see <span><a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">irvlutd-meta-dataset</a></span>.</p>
+      </div>
+
+      <div class="section">
+        <h3>Code</h3>
+        <div class="row content">
+          <div class="center image">
+            <a href="https://github.com/NVlabs/dex-ycb-toolkit" target="_blank">
+              <img src="./assets/GitHub-Mark-64px.png">
+            </a>
+          </div>
+          <div>
+            <span><a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">FewSOL</a></span>
+            <br>
+            <span class="red">TODO: ADD description from README</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="section">
+        <h3>Video</h3>
+          <div class="embedded-video">
+            <iframe src="./index_files/Q4wyBaZeBw0.html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+          </div>
+      </div> -->
+
+      <div class="section">
+        <h3>Contact</h3>
+        <p>Send any comments or questions to Jishnu Jaykumar P: <img class="jp-email"" src="assets/jp_email.png" alt="jishnu's utd email">.</p>
+      </div>
+
+      <hr>
+      <p>Last updated on 2022/06/29 | Template: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
+    </div>
+  </div>
+</div>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
