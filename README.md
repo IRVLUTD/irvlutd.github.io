@@ -1,6 +1,6 @@
-## irvlutd.github.io
+### irvlutd.github.io redirects to [https://labs.utdallas.edu/irvl](https://labs.utdallas.edu/irvl/).
 
-### TODO: Add link to <a href="https://labs.utdallas.edu/irvl">IRVL</a>'s website.
+#### **NOTE**: Please don't override the `index.html` in the root folder.
 
 ### To create a new project page
 - Git clone
@@ -9,7 +9,7 @@
     - `git checkout -b <project-alias>`
 - Create a new folder named <project-alias\>
     - `mkdir <project-alias>; cd <project-alias>`
-- Place all the necessary files in <project-alias\>. See [FewSOL](https://github.com/IRVLUTD/irvlutd.github.io/tree/main/FewSOL) to get started.
+- Place all the necessary files in <project-alias\>. See [FewSOL](https://github.com/IRVLUTD/irvlutd.github.io/tree/main/FewSOL) to get started. `index.html` file used for rendering the project page.
 - Commit and push to the <project-alias\> branch
 - Create a pull request to the main branch
 
