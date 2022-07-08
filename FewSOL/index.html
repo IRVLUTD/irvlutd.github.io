@@ -17,7 +17,7 @@
     <div class="col-12">
       <div class="content">
         <h2 class="center content">FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</h2>
-        <div class="center content authors">
+        <div id="auhtors" class="center content authors">
           <a href="https://jishnujayakumar.github.io/" target="_blank">
             <span class="nowrap">Jishnu Jaykumar P</span>
           </a><sup>1</sup>
@@ -31,7 +31,7 @@
             <span class="nowrap">Yu Xiang</span>
           </a><sup>1</sup>
         </div>
-        <div class="center content authors">
+        <div id="affiliations" class="center content authors">
           <sup>1</sup><span><a href="https://labs.utdallas.edu/irvl/" target="_blank">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup><a href="https://www.nvidia.com/en-us" target="_blank">NVIDIA</a></span>
           </div>
         <div class="center authors">
@@ -39,11 +39,11 @@
         </div>
       </div>
 
-      <div class="video">
+      <div id="video" class="video">
         <iframe width="100%" height="425px" src="https://www.youtube.com/embed/SeWjT_MIfiE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
-      <div class="section">
+      <div id="abstract" class="section">
         <h3>Abstract</h3>
         <p>We introduce the Few-Shot Object Learning (FewSOL) dataset for object recognition with a few images per object. We captured 336 real-world objects with 9 RGB-D images per object from different views. Object segmentation
           masks, object poses and object attributes are provided. In addition, synthetic images generated using 330 3D object models are used to augment the dataset. We
@@ -54,14 +54,14 @@
           problems such as classification, detection and segmentation, shape reconstruction,
           pose estimation, keypoint correspondences and attribute recognition.</p>
         <p>
-          <strong>Keywords</strong>: Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real
+          <strong id="keywords">Keywords</strong>: Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real
         </p>
       </div>
 
-      <div class="section">
+      <div id="paper-and-document" class="section">
         <h3>Paper &amp; Document</h3>
         <div class="row content">
-        <div class="center image-doc">
+        <div id="paper-and-document-arxiv" class="center image-doc">
             <a href="https://arxiv.org/pdf/2207.03333.pdf" target="_blank">
                 <img src="assets/FewSOL_arxiv.png" height="176px" width="136px">
                 <br>
@@ -69,7 +69,7 @@
                 <span>arXiv</span>
             </a>
         </div>
-          <div class="center image-doc">
+          <div id="paper-and-document-supp" class="center image-doc">
             <a href="assets/FewSOL_supp.pdf" target="_blank">
               <img src="assets/supp.png" height="176px" width="136px">
               <br>
@@ -79,8 +79,12 @@
           </div>
         </div>
         <br>
+        <p class="italic">
+          <span class="bold">Note</span>: PDFs might take longer to load due to the large file size.
+        </p>
+        <br>
         
-        <div class="content">
+        <div id="citation" class="content">
           <h4>Citing FewSOL</h4>
           <span>Please cite FewSOL if it helps your research:</span>
           <pre>
@@ -95,12 +99,11 @@
   copyright = {Creative Commons Attribution 4.0 International}
 }</code>
           </pre>
-        <!-- </div> -->
-
+      </div>
+      <div id="data" class="section">
         <h3>Data</h3>
         <p>FewSOL is licensed under <span class="underline"><a href="https://utdallas.box.com/v/FewSOL-LICENSE" target="_blank">MIT license</a></span>.</p>
         <p><b>Download links</b>: <a href="https://utdallas.box.com/v/FewSOL-dataset" target="_blank">FewSOL-Dataset</a></p>  
-        <!-- <span style="color: red">TODO: DESCRIBE in more details <code>wget -L download_url</code></span-->
         <p>Once you successfully download and extract the dataset, you should have a folder with the following structure:</p>
         <pre><code>├── FewSOL-Dataset/
           ├── synthetic_objects.zip
@@ -112,11 +115,13 @@
           └── <span class="red bold">README.txt</span></code></pre>
         <p>More information can be found in the <a class="red bold" href="https://utdallas.box.com/v/FewSOL-Dataset-README" target="_blank">README.txt</a>. For instructions about using the dataset please see <span><a href="https://github.com/IRVLUTD/few-shot-dataset" target="_blank">fewsol-toolkit</a></span>.</p>
         <p class="italic">
-          <span class="bold">NOTE</span>: Use <a href="https://utdallas.box.com/v/FewSOL-experiment-datasets">FewSOL-experiment-datasets</a> for experiments mentioned in the paper. <a href="https://github.com/IRVLUTD/meta-dataset/blob/main/README.md#data-and-pretrained-models" target="_blank">README</a> provides more details.</p>
+          <span class="bold">Note</span>: Use <a href="https://utdallas.box.com/v/FewSOL-experiment-datasets">FewSOL-experiment-datasets</a> for experiments mentioned in the paper. <a href="https://github.com/IRVLUTD/meta-dataset/blob/main/README.md#data-and-pretrained-models" target="_blank">README</a> provides more details.
+        </p>
       </div>
-
+    </div>
+    <div id="code" class="section">
       <div class="section">
-        <h3>Code: <span>Coming Soon...</span></h3>
+        <h3>Code</h3><span>Coming Soon...</span>
         <!-- <div class="row content"> -->
           <!-- <div class="center image">
             <a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">
@@ -130,24 +135,15 @@
           </div> -->
         <!-- </div> -->
       </div>
-
-      <!-- <div class="section">
-        <h3>Video</h3>
-          <div class="embedded-video">
-            <iframe src="./index_files/Q4wyBaZeBw0.html" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-          </div>
-      </div> -->
-      <!-- </div> -->
-
-      <div class="section">
+    </div>
+      <div id="contact" class="section">
         <h3>Contact</h3>
         <p>Send any comments or questions to Jishnu Jaykumar P: <img class="primary-contact-email" src="assets/jp_email.png" alt="jishnu's utd email">.</p>
       </div>
 
       <hr>
     <div>
-      <p>Last updated on 2022/07/08 | Theme: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
+      <p id="last-updated-and-theme">Last updated on 2022/07/08 | Theme: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
     </div>
-    <!-- </div> -->
   </div>
 </div>
