@@ -1,175 +1,340 @@
 <!DOCTYPE html>
-<!-- saved from url=(0026)https://dex-ycb.github.io/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="keywords" content="FewSOL, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real">
-<meta name="description" content="FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments">
-<meta name="author" content="Jishnu Jaykumar P, Yu-Wei Chao, Yu Xiang">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<link rel="stylesheet" href="assets/styles.css">
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="FewSOL, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real">
+  <meta name="description" content="FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments">
+  <meta name="author" content="Jishnu Jaykumar P, Yu-Wei Chao, Yu Xiang">
+  <title>FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <!-- <link rel="icon" href="./assets/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <script src="./assets/js/bulma-slider.min.js"></script>
+  <script src="./assets/js/index.js"></script>
 </head>
+<body>
 
-<body data-new-gr-c-s-check-loaded="14.1065.0" data-gr-ext-installed="">
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="content">
-        <h2 class="center content">FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</h2>
-        <div id="auhtors" class="center content authors">
-          <a href="https://jishnujayakumar.github.io/" target="_blank">
-            <span class="nowrap">Jishnu Jaykumar P</span>
-          </a><sup>1</sup>
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title"> <span class="small-caps">FewSOL</span>: A Dataset for Few-Shot Object Learning in Robotic Environments</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block">
+              <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">Yu-Wei Chao</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block">
+              <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
+            </span>
+          </div>
 
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en" target="_blank">
-            <span class="nowrap">Yu-Wei Chao</span>
-          </a><sup>2</sup>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://yuxng.github.io/" target="_blank">
-            <span class="nowrap">Yu Xiang</span>
-          </a><sup>1</sup>
-        </div>
-        <div id="affiliations" class="center content authors">
-          <sup>1</sup><span><a href="https://labs.utdallas.edu/irvl/" target="_blank">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup><a href="https://www.nvidia.com/en-us" target="_blank">NVIDIA</a></span>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup><a target="_blank" href="https://www.nvidia.com/en-us">NVIDIA</a></span>
+            <!-- <span class="create-a-new-class-on-acceptance"><br>Conference</span> -->
           </div>
-        <div class="center authors">
-          <!-- <span>TODO: Fill with any conference info</span> -->
-        </div>
-      </div>
 
-      <div id="video" class="video">
-        <iframe width="100%" height="425px" src="https://www.youtube.com/embed/SeWjT_MIfiE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
 
-      <div id="abstract" class="section">
-        <h3>Abstract</h3>
-        <p>We introduce the Few-Shot Object Learning (FewSOL) dataset for object recognition with a few images per object. We captured 336 real-world objects with 9 RGB-D images per object from different views. Object segmentation
-          masks, object poses and object attributes are provided. In addition, synthetic images generated using 330 3D object models are used to augment the dataset. We
-          investigated (i) few-shot object classification and (ii) joint object segmentation
-          and few-shot classification with the state-of-the-art methods for few-shot learning
-          and meta-learning using our dataset. The evaluation results show that there is still
-          a large margin to be improved for few-shot object classification in robotic environments. Our dataset can be used to study a set of few-shot object recognition
-          problems such as classification, detection and segmentation, shape reconstruction,
-          pose estimation, keypoint correspondences and attribute recognition.</p>
-        <p>
-          <strong id="keywords">Keywords</strong>: Robot Perception, Object Recognition, Few-Shot Learning, Meta-Learning, Dataset Construction, Sim-to-Real
-        </p>
-      </div>
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2207.03333?context=cs.RO"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> 
 
-      <div id="paper-and-document" class="section no-padding">
-        <h3>Paper &amp; Document</h3>
-        <div class="row content">
-        <div id="paper-and-document-arxiv" class="center image-doc">
-            <a href="https://arxiv.org/pdf/2207.03333.pdf" target="_blank">
-                <img src="assets/FewSOL_paper_thumbnail.png" height="176px" width="136px">
-                <br>
-                <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
-                <span>arXiv</span>
-            </a>
-        </div>
-          <div id="paper-and-document-supp" class="center image-doc">
-            <a href="assets/FewSOL_supp.pdf" target="_blank">
-              <img src="assets/supp.png" height="176px" width="136px">
-              <br>
-              <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
-              <span>Supplementary</span>
-            </a>
-          </div>
-        </div>
-        <br>
-        <p class="italic">
-          <span class="bold">Note</span>: PDFs might take longer to load due to the large file size.
-        </p>
-        <br>
-        
-        <div id="citation" class="content">
-          <h4>Citing FewSOL</h4>
-          <span>Please cite FewSOL if it helps your research:</span>
-          <pre>
-            <code>@misc{https://doi.org/10.48550/arxiv.2207.03333,
-  doi = {10.48550/ARXIV.2207.03333},
-  url = {https://arxiv.org/abs/2207.03333},
-  author = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
-  keywords = {Computer Vision and Pattern Recognition (cs.CV), Artificial Intelligence (cs.AI), Machine Learning (cs.LG), Robotics (cs.RO), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {Creative Commons Attribution 4.0 International}
-}</code>
-          </pre>
-      </div>
-    </div>
+              <!-- Supplementary Link. -->
+              <span class="link-block">
+                <a target="_blank" href="assets/pdf/FewSOL_supp.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary</span>
+                </a>
+              </span> 
 
-      <div id="data" class="section">
-        <h3>Data</h3>
-        <p>FewSOL is licensed under <span class="underline"><a href="https://utdallas.box.com/v/FewSOL-LICENSE" target="_blank">MIT license</a></span>.</p>
-        <p><b>Download link</b>: <a href="https://utdallas.box.com/v/FewSOL-dataset" target="_blank">FewSOL-Dataset</a></p>  
-        <p>Once you successfully download and extract the dataset, you should have a folder with the following structure:</p>
-        <pre><code>├── FewSOL-Dataset/
-          ├── synthetic_objects.zip
-          ├── google_scenes.zip
-          ├── google_scan_selected.zip
-          ├── real_objects.zip
-          ├── OCID_objects.zip
-          ├── LICENSE
-          └── <span class="red bold">README.txt</span></code></pre>
-        <p>More information can be found in the <a class="red bold" href="https://utdallas.box.com/v/FewSOL-Dataset-README" target="_blank">README.txt</a>. For instructions about using the dataset please see <span><a href="https://github.com/IRVLUTD/fewsol-toolkit" target="_blank">fewsol-toolkit</a></span>.</p>
-        <p class="italic">
-          <span class="bold">Note</span>: Use <a href="https://utdallas.box.com/v/FewSOL-experiment-datasets">FewSOL-experiment-datasets</a> for experiments mentioned in the paper. <a href="https://github.com/IRVLUTD/meta-dataset/blob/main/README.md#data-and-pretrained-models" target="_blank">README.md</a> provides more details.
-        </p>
-      </div>
-    
-    <div id="code" class="section">
-      <div class="section">
-        <h3>Code & Links</h3> 
-        <div class="row content">
-          <div class="center image col-1">
-            <a href="https://paperswithcode.com/dataset/fewsol" target="_blank">
-              <img class="github-code-logo" src="./assets/paperswithcode-logo.png">
-            </a>
-          </div>
-          <div class="col-11">
-            <span><a href="https://paperswithcode.com/dataset/fewsol" target="_blank">FewSOL</a></span>
-            <br>
-            <span>FewSOL is listed on <a href="https://paperswithcode.com" target="_blank">PapersWithCode</a>.</span>
-          </div>
-        </div>
-        <div class="row content">
-          <div class="center image col-1">
-            <a href="https://github.com/IRVLUTD/fewsol-toolkit" target="_blank">
-              <img class="github-code-logo" src="./assets/GitHub-Mark-64px.png">
-            </a>
-          </div>
-          <div class="col-11">
-            <span><a href="https://github.com/IRVLUTD/fewsol-toolkit" target="_blank">IRVLUTD/fewsol-toolkit</a></span>
-            <br>
-            <span>A toolkit for the FewSOL dataset.</span>
-          </div>
-        </div>
-        <div class="row content">
-          <div class="center image col-1">
-            <a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">
-              <img class="github-code-logo" src="./assets/GitHub-Mark-64px.png">
-            </a>
-          </div>
-          <div class="col-11">
-            <span><a href="https://github.com/IRVLUTD/meta-dataset" target="_blank">IRVLUTD/meta-dataset</a></span>
-            <br>
-            <span>The code for (i) few shot classification, (ii) joint object segmentation and few shot classification and (iii) real world experiments conducted by ingesting <strong>FewSOL</strong> dataset into <a href="https://github.com/google-research/meta-dataset" target="_blank">Meta-Dataset</a> benchmark.</span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#code"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+
+              <!-- PapersWithCode Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://paperswithcode.com/dataset/fewsol"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="assets/images/paperswithcode-logo.png">
+                  </span>
+                  <span>paperswithcode</span>
+                  </a>
+              </span>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-      <div id="contact" class="section">
-        <h3>Contact</h3>
-        <p>Send any comments or questions to Jishnu Jaykumar P: <img class="primary-contact-email" src="data:image/png;base64,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" alt="jishnu's utd email">.</p>
-      </div>
-
-      <hr>
-    <div>
-      <p id="last-updated-and-theme">Last updated on 2022/07/14 | Theme: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
     </div>
   </div>
-</div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/SeWjT_MIfiE?rel=0&amp;showinfo=0"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+        
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce the Few-Shot Object Learning <span class="small-caps">(FewSOL)</span> dataset for object recognition with a few images per object. We captured 336 real-world objects with 9 RGB-D images per object from different views. Object segmentation
+          masks, object poses and object attributes are provided. In addition, synthetic images generated using 330 3D object models are used to augment the dataset.
+          </p>
+          <p>
+            We investigated (i) few-shot object classification and (ii) joint object segmentation
+            and few-shot classification with the state-of-the-art methods for few-shot learning
+            and meta-learning using our dataset. The evaluation results show that there is still
+            a large margin to be improved for few-shot object classification in robotic environments. 
+          </p>
+          <p>
+            Our dataset can be used to study a set of few-shot object recognition
+            problems such as classification, detection and segmentation, shape reconstruction,
+            pose estimation, keypoint correspondences and attribute recognition.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Data. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="data" class="title is-3">Data</h2>
+
+            <!-- FewSOL-MD Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://utdallas.box.com/v/FewSOL-dataset"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fa fa-images"></i>
+                    </span>
+                    <span> <span class="small-caps">FewSOL</span>-Dataset</span>
+                    </a>
+                </span>
+                <span class="link-block">
+                  <a target="_blank" href="https://utdallas.box.com/v/FewSOL-experiment-datasets"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fa fa-images"></i>
+                    </span>
+                    <span> <span class="small-caps">FewSOL</span>-Experiment-Datasets</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                <p>FewSOL is licensed under <span class="underline"><a target="_blank" href="https://utdallas.box.com/v/FewSOL-LICENSE" target="_blank">MIT license</a></span>.</p>
+
+                Once you successfully download and extract the dataset, you should have a folder with the following structure:
+
+                <pre><code>├── FewSOL-Dataset/
+                  ├── synthetic_objects.zip
+                  ├── google_scenes.zip
+                  ├── google_scan_selected.zip
+                  ├── real_objects.zip
+                  ├── OCID_objects.zip
+                  ├── LICENSE
+                  └── <span class="red bold">README.txt</span></code></pre>
+              </p>
+
+              <p>More information can be found in the <a class="red bold" href="https://utdallas.box.com/v/FewSOL-Dataset-README" target="_blank">README.txt</a>. For instructions about using the dataset please see <span><a target="_blank" href="https://github.com/IRVLUTD/fewsol-toolkit" target="_blank">fewsol-toolkit</a></span>.</p>
+              <p class="italic">
+                <span class="bold">Note</span>: Use <a target="_blank" href="https://utdallas.box.com/v/FewSOL-experiment-datasets">FewSOL-experiment-datasets</a> for experiments mentioned in the paper. <a target="_blank" href="https://github.com/IRVLUTD/meta-dataset/blob/main/README.md#data-and-pretrained-models" target="_blank">README.md</a> provides more details.
+              </p>
+            </div>
+            <!--/ FewSOL-MD Code. -->
+          </div>
+        </div>
+        <!--/ Data. -->
+      </section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/fewsol-toolkit"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">FewSOL</span> Toolkit</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                A toolkit for the <span class="small-caps">FewSOL</span> dataset.
+              </p>
+            </div>
+            <!--/ Toolkit Code. -->
+
+            <!-- FewSOL-MD Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/meta-dataset"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">FewSOL-Meta-Dataset</span></span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The code for (i) few shot classification, (ii) joint object segmentation and few shot classification and (iii) real world experiments conducted by ingesting <span class="small-caps black-font">FewSOL</span> dataset into <a target="_blank" href="https://github.com/google-research/meta-dataset" target="_blank"><span class="small-caps black-font">Meta-Dataset</span></a> benchmark.
+              </p>
+            </div>
+            <!--/ FewSOL-MD Code. -->
+          </div>
+        </div>
+        <!--/ Code. -->
+
+
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <span>Please cite <span class="small-caps">FewSOL</span> if it helps your research:</span>
+    <pre><code>@misc{https://doi.org/10.48550/arxiv.2207.03333,
+      title        = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
+      author       = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
+      year         = 2022,
+      publisher    = {arXiv},
+      doi          = {10.48550/ARXIV.2207.03333},
+      url          = {https://arxiv.org/abs/2207.03333},
+      copyright    = {Creative Commons Attribution 4.0 International}
+    }    
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Jishnu: <a target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
+        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+      </a>
+      <br>
+      <p>Last updated on 20-July-2022 | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a>.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
