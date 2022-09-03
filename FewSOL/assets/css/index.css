@@ -19,6 +19,10 @@ font-weight: bold;
 font-style: italic;
 }
 
+.footer {
+  padding: 3rem 1.5rem 3rem !important;
+}
+
 .footer .icon-link {
     font-size: 25px;
     color: #000;
