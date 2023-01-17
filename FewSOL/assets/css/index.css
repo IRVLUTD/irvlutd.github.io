@@ -2,6 +2,11 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
+.text-dec-none{
+  text-decoration: none !important;
+  border-bottom-style: none;
+}
+
 .red{
   color: rgb(252, 14, 14);
 }
