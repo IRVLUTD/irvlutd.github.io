@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SelfSupervisedSegmentation</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+  h2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    margin-bottom: 1rem;
+  }
+  h4 {
+    margin-bottom: 1rem;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+  }
+  code {
+    background-color: #f5f5f5;
+    display: block;
+    padding: 20px;
+    white-space: pre-wrap;
+  }
+  .container {
+    padding: 40px 15px;
+  }
+  .center {
+    text-align: center;
+  }
+  .underline {
+    text-decoration: underline;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .authors {
+    line-height: 2;
+    font-size: 18px;
+  }
+  .section {
+    padding: 10px 0 30px;
+  }
+  .content {
+    padding: 10px 0;
+  }
+  .video {
+    padding: 20px 0 20px;
+  }
+  .image{
+    padding: 0 30px;
+  }
+  .image-doc{
+    padding: 0 25px;
+  }
+  .embedded-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 10px !important;
+  }
+  .embedded-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .red{
+      color: red;
+  }
+
+  .jp-email{
+      height: 18px;
+  }
+</style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1065.0" data-gr-ext-installed="">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="content">
+        <h2 class="center content">Self-Supervised Unseen Object Instance Segmentation via Long-Term Robot Interaction</h2>
+        <div class="center content authors">
+          <a href="#" target="_blank">
+            <span class="nowrap">Yangxiao Lu<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://kninad.github.io/" target="_blank">
+            <span class="nowrap">Ninad Khargonkar<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Zesheng Xu<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://charlesaverill.github.io/">
+            <span class="nowrap">Charles Averill<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Kamalesh Palanisamy<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+            <span class="nowrap">Kaiyu Hang<sup>2</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://yunhuiguo.github.io/">
+            <span class="nowrap">Yunhui Guo<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://personal.utdallas.edu/~nicholas.ruozzi/">
+            <span class="nowrap">Nicholas Ruozzi<sup>1</sup></span>
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://yuxng.github.io/" target="_blank">
+            <span class="nowrap">Yu Xiang<sup>1</sup></span>
+          </a>
+        </div>
+        <div class="center content authors">
+            <span>
+              <sup>1</sup>The University of Texas at Dallas&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <sup>2</sup>Rice University</span>
+          </div>
+        <div class="center authors">
+          <!-- <span>TODO: Fill with any conference info</span> -->
+        </div>
+      </div>
+
+      <!-- VIDEO LINK!!!!! -->
+      <div class="video">
+        <iframe width="100%" height="425px" src="https://www.youtube.com/embed/_ykvsRAXRT0 " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <div class="section">
+        <h3>Abstract</h3>
+        <p>We introduce a novel robotic system for improving unseen object instance segmentation in the real world by leveraging long-term robot interaction with objects. 
+          Previous approaches either grasp or push an object and then obtain the segmentation mask of the grasped or pushed object after one action. 
+          Instead, our system defers the decision on segmenting objects after a sequence of robot pushing actions. 
+          By applying multi-object tracking and video object segmentation on the images collected via robot pushing, our system can generate segmentation masks of all the objects in these images in a self-supervised way. 
+          These include images where objects are very close to each other, and segmentation errors usually occur on these images for existing object segmentation networks. 
+          We demonstrate the usefulness of our system by fine-tuning segmentation networks trained on synthetic data with real-world data collected by our system. 
+          We show that, after fine-tuning, the segmentation accuracy of the networks is significantly improved both in the same domain and across different domains. 
+          In addition, we verify that the fine-tuned networks improve top-down robotic grasping of unseen objects in the real world.
+        </p>
+      </div>
+
+
+      <div class="section">
+        <h3>Paper</h3>
+        <div class="row content">
+        <div class="center image-doc">
+            <a href="https://arxiv.org/abs/2302.03793" target="_blank">
+                <img src="./assets/thumbnail_arxiv.png" height="176px" width="136px">
+                <br>
+                <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
+                <span>arXiv</span>
+            </a>
+        </div>
+      </div>
+
+      <br>
+      
+      <div class="content">
+          <h4>Citing our work</h4>
+          <p>Please consider citing the paper if it helps in your research.</p>
+          <pre>
+<code>@misc{https://doi.org/10.48550/arxiv.2302.03793,
+  doi = {10.48550/ARXIV.2302.03793},            
+  url = {https://arxiv.org/abs/2302.03793},              
+  author = {Lu, Yangxiao and Khargonkar, Ninad and Xu, Zesheng and Averill, Charles and Palanisamy, Kamalesh and Hang, Kaiyu and Guo, Yunhui and Ruozzi, Nicholas and Xiang, Yu},              
+  title = {Self-Supervised Unseen Object Instance Segmentation via Long-Term Robot Interaction},             
+  publisher = {arXiv},              
+  year = {2023},              
+  copyright = {Creative Commons Attribution 4.0 International}
+}</code>
+          </pre>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Dataset</h3>               
+        <p>Feel free to check out the data at using the <a href="https://utdallas.box.com/s/yipcemru6qsbw0wj1nsdxq1dw5mjbtiq" target="_blank">Download Link</a> (UT Dallas Box, no login required).
+           The dataset download is a zip file containing the train and test folders. 
+           Both of them have data for multiple pushing trials as sub-folders,
+           with the data for rgb image, depth, initial segmentation, refined 
+           segmentation, meta-data etc.</p>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+      </div>
+
+      <div class="section">
+        <h3>Code</h3>
+        <div class="row content">
+          <div class="center image">
+            <a href="#" target="_blank">
+              <img src="./assets/GitHub-Mark-64px.png">
+            </a>
+          </div>
+          <div>
+            <span>
+              Coming Soon....
+              <!-- <a href="https://github.com/IRVLUTD/neuralgrasps-model" target="_blank">Model & Training</a> -->
+            </span>            
+            <br/>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Contact</h3>
+        <p>Send any comments or questions to Yangxiao Lu: <img class="yangxiao-email"" src="assets/yangxiao_email.png" alt="Yangxiao's UT Dallas email id" height=25px></p>
+      </div>
+
+      <hr>
+      <p>Last updated on 07-February-2023 | Template adapted from: <a href="https://dex-ycb.github.io" target="_blank">dex-ycb.github.io</a></p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>
