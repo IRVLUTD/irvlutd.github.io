@@ -2,7 +2,7 @@ body {
   font-family: 'Noto Sans', sans-serif;
 }
 
-.text-dec-none{
+.text-dec-none{ /* TODO: remove this */
   text-decoration: none !important;
   border-bottom-style: none;
 }
