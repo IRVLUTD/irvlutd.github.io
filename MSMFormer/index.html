@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="MSMFormer, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Mean Shift Mask Transformer, Uneen Object Instance Segmentation,Sim-to-Real">
+  <meta name="description" content="Mean Shift Mask Transformer for Unseen Object Instance Segmentation">
+  <meta name="author" content="Yangxiao Lu, Yuqiao Chen, Nicholas Ruozzi, Yu Xiang">
+  <title>MSMFormer</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WH3FF1FQ2K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-WH3FF1FQ2K');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <script src="./assets/js/bulma-slider.min.js"></script>
+  <script src="./assets/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title"> <span class="small-caps">Mean Shift Mask Transformer for Unseen Object Instance Segmentation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://github.com/YoungSean">Yangxiao Lu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block">
+              <a target="_blank" href="https://scholar.google.com/citations?user=LAiKPvIAAAAJ&hl=en">Yuqiao Chen</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://personal.utdallas.edu/~nicholas.ruozzi/">Nicholas Ruozzi</a><sup>1</sup>
+              </span>
+              <span class="author-block">
+              <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup><a target="_blank" href="https://about.meta.com/">Meta</a></span>
+            <!-- <span id="accepted-conference" class="author-block"><br>In arXiv</span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/pdf/2211.11679.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> 
+
+              <!-- Supplementary Link. -->
+              <!-- <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/src/2207.03333v2/anc/FewSOL_supp.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary</span>
+                </a>
+              </span>  -->
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/YoungSean/UnseenObjectsWithMeanShift.git"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="#data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+
+              <!-- PapersWithCode Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://paperswithcode.com/paper/mean-shift-mask-transformer-for-unseen-object"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <img src="assets/images/paperswithcode-logo.png" width="18px" height="18px">
+                  </span>
+                  <span>paperswithcode</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/aFTrF7NIihI"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!--            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+        
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Segmenting unseen objects from images is a critical perception skill that a robot needs to acquire. In robot manipulation, it can facilitate a robot to grasp and manipulate unseen objects. Mean shift clustering is a widely used method for object segmentation tasks. However, the traditional mean shift clustering algorithm is not easily integrated into an end-to-end neural network training pipeline, which causes representation learning and the clustering algorithm separated. In this work, we propose the Mean Shift Mask Transformer (MSMFormer), a new transformer architecture that simulates the von Mises-Fisher (vMF) mean shift clustering algorithm, allowing for the joint training and inference of both the feature extractor and the clustering. Its central component is a hypersphere attention mechanism, which updates object queries on a hypersphere. To illustrate the effectiveness of our method, we apply MSMFormer to unseen object instance segmentation. Our experiments show that MSMFormer improves over the mean shift clustering baseline that uses deep feature representations, and achieves competitive performance compared to the state-of-the-art methods on unseen object instance segmentation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+  </div>
+</section>
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift.git"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">MSMFormer</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The code for Mean Shift Mask Transformer.
+              </p>
+            </div>
+            <!--/ Toolkit Code. -->
+
+          </div>
+        </div>
+        <!--/ Code. -->
+
+
+  </div>
+</section>
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 class="title">BibTeX</h2>
+    <span>Please cite <span class="small-caps">FewSOL</span> if it helps your research:</span>
+    <pre><code>@article{lu2022mean,
+      title={Mean Shift Mask Transformer for Unseen Object Instance Segmentation},
+      author={Lu, Yangxiao and Chen, Yuqiao and Ruozzi, Nicholas and Xiang, Yu},
+      journal={arXiv preprint arXiv:2211.11679},
+      year={2022}
+    }
+}</code></pre>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Yangxiao Lu: <a target="_blank" href="mailto:yangxiao.lu@utdallas.edu">yangxiao.lu@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a target="_blank" href="https://arxiv.org/pdf/2211.11679.pdf" class="large-font bottom_buttons black-font">
+        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+      </a>
+      <br>
+      <p>Last updated on 16-Jan-2023 | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a>.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
