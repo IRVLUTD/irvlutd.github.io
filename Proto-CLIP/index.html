@@ -3,26 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="FewSOL, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real">
-  <meta name="description" content="FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments">
-  <meta name="author" content="Jishnu Jaykumar P, Yu-Wei Chao, Yu Xiang">
-  <title id="fewsol">FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments</title>
+  <meta name="keywords" content="Proto-CLIP, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Prototypical Networks, Multi-modal, Vision-Language">
+  <meta name="description" content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta name="author" content="Jishnu Jaykumar P, Kamalesh Palanisamy, Yu-Wei Chao, Xinya Du, Yu Xiang">
+  <title>Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WH3FF1FQ2K"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CH1HFQB6X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('js', new Date());
+  gtag('config', 'G-8CH1HFQB6X');
+</script>
 
-    gtag('config', 'G-WH3FF1FQ2K');
-  </script>
-
-  <script src="../scripts/few-shot-research.js"></script>
+  
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -65,8 +62,8 @@
             More Research
           </a>
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="../Proto-CLIP/index.html">
-              <center>Proto-CLIP</center>
+            <a class="navbar-item" href="../FewSOL/index.html">
+              <center>FewSOL</center>
             </a>
           </div>
         </div>
@@ -80,12 +77,16 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title"> <span class="small-caps">FewSOL</span>: A Dataset for Few-Shot Object Learning in Robotic Environments</h1>
+          <h1 class="title is-2 publication-title"> <span class="small-caps">Proto-CLIP</span>: Vision-Language Prototypical Network for Few-Shot Learning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="author-block">
+              <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ">Kamalesh Palanisamy</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block">
               <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">Yu-Wei Chao</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="author-block">
+              <a target="_blank" href="https://xinyadu.github.io">Xinya Du</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="author-block">
               <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
             </span>
@@ -94,7 +95,7 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <span class="author-block"><sup>2</sup><a target="_blank" href="https://www.nvidia.com/en-us">NVIDIA</a></span>
-            <span id="accepted-conference" class="author-block"><br>IEEE International Conference on Robotics and Automation (ICRA), 2023</span>
+            <!-- <span id="accepted-conference" class="author-block"><br>Conference Details</span> -->
           </div>
 
           <div class="column has-text-centered">
@@ -102,7 +103,7 @@
 
               <!-- Arxiv Link. -->
               <span class="link-block">
-                <a target="_blank" href="https://arxiv.org/abs/2207.03333?context=cs.RO"
+                <a target="_blank" href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -193,154 +194,21 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce the Few-Shot Object Learning <span class="small-caps">(FewSOL)</span> dataset for object recognition with a few images per object. We captured 336 real-world objects with 9 RGB-D images per object from different views. Object segmentation
-          masks, object poses and object attributes are provided. In addition, synthetic images generated using 330 3D object models are used to augment the dataset.
-          </p>
-          <p>
-            We investigated (i) few-shot object classification and (ii) joint object segmentation
-            and few-shot classification with the state-of-the-art methods for few-shot learning
-            and meta-learning using our dataset. The evaluation results show that there is still
-            a large margin to be improved for few-shot object classification in robotic environments. 
-          </p>
-          <p>
-            Our dataset can be used to study a set of few-shot object recognition
-            problems such as classification, detection and segmentation, shape reconstruction,
-            pose estimation, keypoint correspondences and attribute recognition.
+            We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such as CLIP. Motivated by the unimodal prototypical networks for few-shot learning, we introduce <span class="small-caps">Proto-CLIP</span> that utilizes image prototypes and text prototypes for few-shot learning. Specifically, <span class="small-caps">Proto-CLIP</span> adapts the image encoder and text encoder in CLIP in a joint fashion using few-shot examples. The two encoders are used to compute prototypes of image classes for classification. During adaptation, we propose aligning the image and text prototypes of corresponding classes. Such a proposed alignment is beneficial for few-shot classification due to the contributions from both types of prototypes. We demonstrate the effectiveness of our method by conducting experiments on benchmark datasets for few-shot learning as well as in the real world for robot perception.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
-
-
   </div>
 </section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-        <!-- Data. -->
-        <div class="columns is-centered has-text-justified">
-          <div class="column">
-            <h2 id="data" class="title is-3">Data</h2>
-
-            <!-- FewSOL-MD Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
-                <span class="link-block">
-                  <a target="_blank" href="https://utdallas.box.com/v/FewSOL-dataset"
-                     class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <i class="fa fa-images"></i>
-                    </span>
-                    <span> <span class="small-caps">FewSOL</span>-Dataset</span>
-                    </a>
-                </span>
-                <span class="link-block">
-                  <a target="_blank" href="https://utdallas.box.com/v/FewSOL-experiment-datasets"
-                     class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <i class="fa fa-images"></i>
-                    </span>
-                    <span> <span class="small-caps">FewSOL</span>-Experiment-Datasets</span>
-                    </a>
-                </span>
-              </h2>
-              <p>
-                <p><span class="small-caps">FewSOL</span> is licensed under <span class="underline"><a target="_blank" href="https://utdallas.box.com/v/FewSOL-LICENSE" target="_blank">MIT license</a></span>.</p>
-
-                Once you successfully download and extract the dataset, you should have a folder with the following structure:
-
-                <pre><code>├── <span class="small-caps">FewSOL</span>-Dataset/
-                  ├── synthetic_objects.zip
-                  ├── google_scenes.zip
-                  ├── google_scan_selected.zip
-                  ├── real_objects.zip
-                  ├── OCID_objects.zip
-                  ├── LICENSE
-                  └── <span class="red bold">README.txt</span></code></pre>
-              </p>
-
-              <p>More information can be found in the <a class="red bold" href="https://utdallas.box.com/v/FewSOL-Dataset-README" target="_blank">README.txt</a>. For instructions about using the dataset please see <span><a target="_blank" href="https://github.com/IRVLUTD/fewsol-toolkit" target="_blank"><span class="small-caps">FewSOL</span>-Toolkit</a></span>.</p>
-              <p class="italic">
-                <span class="bold">Note</span>: Use <a target="_blank" href="https://utdallas.box.com/v/FewSOL-experiment-datasets"><span class="small-caps">FewSOL</span>-experiment-datasets</a> for experiments mentioned in the paper. <a target="_blank" href="https://github.com/IRVLUTD/meta-dataset/blob/main/README.md#data-and-pretrained-models" target="_blank">README.md</a> provides more details.
-              </p>
-            </div>
-            <!--/ FewSOL-MD Code. -->
-          </div>
-        </div>
-        <!--/ Data. -->
-      </section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-        <!-- Code. -->
-        <div class="columns is-centered has-text-justified">
-          <div class="column">
-            <h2 id="code" class="title is-3">Code</h2>
-            <!-- Toolkit Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
-                <span class="link-block">
-                  <a target="_blank" href="https://github.com/IRVLUTD/fewsol-toolkit"
-                     class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <i class="fab fa-github"></i>
-                    </span>
-                    <span> <span class="small-caps">FewSOL</span> Toolkit</span>
-                    </a>
-                </span>
-              </h2>
-              <p>
-                A toolkit for the <span class="small-caps">FewSOL</span> dataset.
-              </p>
-            </div>
-            <!--/ Toolkit Code. -->
-
-            <!-- FewSOL-MD Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
-                <span class="link-block">
-                  <a target="_blank" href="https://github.com/IRVLUTD/meta-dataset"
-                     class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <i class="fab fa-github"></i>
-                    </span>
-                    <span> <span class="small-caps">FewSOL-Meta-Dataset</span></span>
-                    </a>
-                </span>
-              </h2>
-              <p>
-                The code for (i) few shot classification, (ii) joint object segmentation and few shot classification and (iii) real world experiments conducted by ingesting <span class="small-caps black-font">FewSOL</span> dataset into <a target="_blank" href="https://github.com/google-research/meta-dataset" target="_blank"><span class="small-caps black-font">Meta-Dataset</span></a> benchmark.
-              </p>
-            </div>
-            <!--/ FewSOL-MD Code. -->
-          </div>
-        </div>
-        <!--/ Code. -->
-
-
-  </div>
-</section>
-
 
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop">
     <h2 class="title">BibTeX</h2>
-    <span>Please cite <span class="small-caps">FewSOL</span> if it helps your research:</span>
-    <pre><code>@misc{https://doi.org/10.48550/arxiv.2207.03333,
-      title        = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-      author       = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
-      year         = 2022,
-      publisher    = {arXiv},
-      doi          = {10.48550/ARXIV.2207.03333},
-      url          = {https://arxiv.org/abs/2207.03333},
-      copyright    = {Creative Commons Attribution 4.0 International}
-    }    
-}</code></pre>
+    <span>Please cite <span class="small-caps"><Strong>Proto-CLIP</Strong></span> if it helps your research:</span>
+    <pre><code>Coming Soon...</code></pre>
   </div>
 </section>
 
@@ -359,7 +227,7 @@
   <div class="is-vcentered interpolation-panel">
     <div class="container content">
       <p style="font-size: 16px">
-        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005.
+        Coming Soon...
       </p>
     </div>
   </div>
@@ -370,11 +238,15 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
+      <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
         <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
-      </a>
+      </a> -->
       <br>
-      <p>Last updated on 23-Mar-2023 | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a>.</p>
+      <p>
+        Last updated on 10-Jun-2023 | Page template borrowed from 
+        <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a> -> 
+        <a target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps black-font">FewSOL</span></a>.
+      </p>
     </div>
   </div>
 </footer>
