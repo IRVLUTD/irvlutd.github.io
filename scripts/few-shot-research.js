@@ -31,6 +31,5 @@ $(document).ready(function() {
       var commitDate = new Date(data[0].commit.committer.date);
       var formattedDate = commitDate.toDateString();
       $('#last-updated').html(formattedDate);
-      console.log(formattedDate)
     });
   });
