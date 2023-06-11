@@ -1,7 +1,7 @@
 // project title alias: [project_href, project_git_branch]
 var projects = {
-    "FewSOL" : ["../FewSOL/index.html", "FewSOL"],
-    "Proto-CLIP" : ["../Proto-CLIP/index.html", "proto-clip"],
+    "FewSOL" : ["../FewSOL", "FewSOL"],
+    "Proto-CLIP" : ["../Proto-CLIP", "proto-clip"],
 }
 
 const current_project_name = document.getElementById("title").getAttribute("project-name");
