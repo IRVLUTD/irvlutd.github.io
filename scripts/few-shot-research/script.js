@@ -15,7 +15,7 @@ $(document).ready(function() {
     related_research.innerHTML = "Related Research"
     for (const [project_name, project_info] of Object.entries(projects)) {
         if (project_name != current_project_name){
-            related_research_dropdown.innerHTML += "&nbsp;<a class='navbar-item' href='" + project_info[0] + "'><center>" + project_name + "</center></a>"
+            related_research_dropdown.innerHTML += "<a class='navbar-item' href='" + project_info[0] + "'><center>" + project_name + "</center></a>"
         }
     }
 
