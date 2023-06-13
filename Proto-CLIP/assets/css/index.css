@@ -272,3 +272,8 @@ body {
 .rn-scene-set-fig{
   height: auto !important;
 }
+
+
+.center {
+  text-align: center !important;
+}
