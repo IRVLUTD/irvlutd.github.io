@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description" content="Web home for SceneReplica Benchmark for Robotics">
+  <meta id="meta-author" name="author" content="Ninad Khargonkar, Sai Haneesh Allu, Yangxiao Lu, Jishnu Jaykumar P, Balakrishnan Prabhakaran, Yu Xiang">
+  <meta id="meta-keywords" name="keywords" content="Robot Manipulation, Benchmarking, Real Scene Replication, UTD, IRVL, IRVLUTD, Robotics">
+  <title id="title"></title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title"></h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://kninad.github.io">Ninad Khargonkar</a><sup class="eq-contri">*</sup><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://www.linkedin.com/in/sai-haneesh-allu">Sai Haneesh Allu</a><sup class="eq-contri">*</sup><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://labs.utdallas.edu/irvl/people/">Yangxiao Lu</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://personal.utdallas.edu/~praba/">Balakrishnan Prabhakaran</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
+              </span>
+            </div>
+            
+            <div class="is-size-6 publication-authors">
+              <span class="author-block eq-contri"><sup>*</sup> Equal Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <!-- <br><span id="accepted-conference" class="author-block">Conference Details</span> -->
+            </div>
+            
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <!-- <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+
+                <!-- Code Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://github.com" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span> -->
+
+
+                <!-- Scene Link. -->
+                <span class="link-block">
+                  <a href="#scenes" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-image"></i>
+                    </span>
+                    <span>Scenes</span>
+                  </a>
+                </span>
+
+                <!-- Scene Replication. -->
+                <span class="link-block">
+                  <a href="#scene-replication" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Scene Replication</span>
+                  </a>
+                </span>
+
+                <!-- Grasping. -->
+                <span class="link-block">
+                  <a href="#grasping" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-hand-lizard"></i>
+                    </span>
+                    <span>Grasping</span>
+                  </a>
+                </span>
+
+                <!-- Leaserboard. -->
+                <span class="link-block">
+                  <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-trophy"></i>
+                    </span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span>
+ 
+                <!-- Purchase Link. -->
+                <span class="link-block">
+                  <a href="purchase-links/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-link"></i>
+                    </span>
+                    <span>Purchase Link</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present a new reproducible benchmark for evaluating robot manipulation in the real world, specifically
+              focusing on the task of pick-and-place. Our benchmark uses the YCB objects, a commonly used dataset in the
+              robotics community, to ensure that our results are comparable to other studies.
+              Additionally, the benchmark is designed to be easily reproducible in the real world, making it accessible
+              for researchers and practitioners. We also provide our experimental results and analyses for model-based
+              and model-free 6D robotic grasping on the benchmark, where representative algorithms for object
+              perception, grasping planning and motion planning are evaluated. We believe that our benchmark will be a
+              valuable tool for advancing the field of robot manipulation.
+              By providing a standardized evaluation framework, researchers can more easily compare different techniques
+              and algorithms, leading to faster progress in developing robot manipulation methods.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <section id="scenes" class="section">
+    <div class="container is-max-desktop">
+      <!-- 20xScenes. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Scenes</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/scene-replica-scenes.png" alt="20 scenes in our SceneReplica benchmark with 5 YCB objects in each scene">
+            <p class="center">20 scenes in our <span class="small-caps">SceneReplica</span> benchmark with 5 YCB objects in each scene</p>
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>
+
+<section id="scene-replication" class="section">
+    <div class="container is-max-desktop">
+      <!-- Scene Replication. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Scene Replication</h2>
+          <div class="content has-text-justified">
+            <div class="column">
+              <div class="publication-video">
+                <iframe src="https://www.youtube.com/embed/6IkSk0D3GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <p class="center">The process of replicating a scene in the real world. The reference scene image is overlaid
+                to the real camera image to guide how to place objects into the real-world scene.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Scene Replication. -->
+    </div>
+  </section>
+
+  <section id="grasping" class="section">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Grasping</h2>
+      </div></div>
+      <div class="container is-max-desktop">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div id="slider" style="max-width:100%">
+              <div class="card">
+                  <div class="card-image">
+                      <figure class="image irn-scene-set-fig is-covered">
+                          <img class="carousel-img" src="./assets/images/modelbased-grasping.png" alt="model-based-grasping" />
+                      </figure>
+                  </div>
+                  <div class="card-content slider-text">
+                      <div class="is-size-10 box carousel-caption">
+                          Model Based Grasping Pipeline
+                      </div>
+                  </div>
+              </div>
+              <div class="card">
+                <div class="card-image">
+                    <figure class="image irn-scene-set-fig is-covered">
+                        <img class="carousel-img" src="./assets/images/modelfree-grapsing.png" alt="model-based-grasping" />
+                    </figure>
+                </div>
+                <div class="card-content slider-text">
+                    <div class="is-size-10 box carousel-caption">
+                        Model Free Grasping Pipeline
+                    </div>
+                </div>
+            </div>
+        </div>  
+      </div>
+    </div>
+  </section>
+
+
+  <section id="leaderboard" class="section">
+    <div class="container is-max-desktop">
+      <!-- LeaderBoard. -->
+      <div class="columns">
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"><img
+                  src="./assets/images/winner-icon.png" alt="medal"></span>&nbsp;LeaderBoard</h2>
+            <div class="content has-text-justified"></div>
+            <div class="table-container">
+            <table id="leaderboard-table" class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Click to Sort | Method#">#</abbr></th>
+                  <th><abbr title="Click to Sort">Perception</abbr></th>
+                  <th><abbr title="Click to Sort">Grasp Planning</abbr></th>
+                  <th><abbr title="Click to Sort">Motion Planning</abbr></th>
+                  <th><abbr title="Click to Sort">Control</abbr></th>
+                  <th><abbr title="Click to Sort">Ordering</abbr></th>
+                  <th><abbr title="Click to Sort">Grasping Type</abbr></th>
+                  <th><abbr title="Click to Sort">Pick & Place Success&nbsp;<span id="leader-board-metric-icon"
+                        class="icon"><img src="./assets/images/medal.png" alt="medal"></span></abbr></th>
+                  <th><abbr title="Click to Sort">Grasping Success</abbr></th>
+                  <th><abbr title="Click to Sort">Videos</abbr></th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body"></tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+        <!--/ LeaderBoard. -->
+      </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- References. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">References</h2>
+          <div class="content has-text-justified">
+            <ol id="references"></ol>
+          </div>
+        </div>
+      </div>
+      <!--/ References. -->
+    </div>
+  </section>
+
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">BibTeX</h2>
+      <span>Please cite <span class="small-caps"><b>SceneReplica</b></span> if it helps your research:</span>
+      <pre><code>Coming Soon. Thanks for your patience.</code></pre>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+      
+      <h2 class="title">Contact</h2>
+        <p>Send any comments or questions to Ninad | Sai: <br><a target="_blank" href="mailto:ninadarun.khargonkar@utdallas.edu">ninadarun.khargonkar@utdallas.edu</a> | <a target="_blank" href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="title">Acknowledgements</h2>
+    <div class="is-vcentered interpolation-panel">
+      <div class="container content">
+        <p style="font-size: 16px">
+          This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005.
+        </p>
+      </div>
+    </div>
+    </div>  
+  </section>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<script src="./assets/js/leaderboard-info.js"></script>
+<script src="./assets/js/index.js"></script>
+</html>
