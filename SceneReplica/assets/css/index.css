@@ -1,0 +1,317 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.text-dec-none{ /* TODO: remove this */
+  text-decoration: none !important;
+  border-bottom-style: none;
+}
+
+.red{
+  color: rgb(252, 14, 14);
+}
+
+.eq-contri{
+  color: rgb(203, 157, 29);
+  /* rgb(17, 152, 114); */
+}
+
+.primary-contact-email{
+  padding-top: 4px;
+  height: 20px;
+}
+
+.bold{
+font-weight: bold;
+}
+
+.italic{
+font-style: italic;
+}
+
+.footer {
+  padding: 3rem 1.5rem 3rem !important;
+}
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.small-caps {
+  font-variant: small-caps;
+}
+
+.black-font {
+  color: #000;
+}
+
+.pad-zero {
+  padding-bottom: 0 !important;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* .interpolation-video-column {
+
+} */
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.center {
+  text-align: center !important;
+}
+
+#leaderboard-trophy-icon{
+  position: relative;
+  top: 7px;
+  width: 2.5rem;
+  height: 2rem;
+}
+
+#leader-board-metric-icon{
+  position: relative;
+  top: 1px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.scene-video-link{
+  color: #3273dc;
+}
+
+.scene-video-link:hover{
+  cursor: pointer;
+}
+
+/* carousel slider */
+.slider-text {
+  position: relative;
+  /* left: 50%; */
+  bottom: 50%;
+  text-align: center !important;
+}
+
+.carousel-caption {
+  font-weight: bold;
+}
+
+#slider .card-content {
+  max-width: 100%;
+  padding: 0 !important;
+}
+
+#slider {
+  overflow: hidden;
+  height: auto;
+}
+
+.slider-page{
+  background-color: #4a4a4a !important;
+}
+
+@media screen and (max-width: 1023px) {
+  #slider .card-content {
+    font-size: 8px;
+  }
+  /* .card, .carousel-img{
+    overflow: hidden !important;
+  } */
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: rgb(243, 6, 192) !important;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+
+.numbertext {
+  color: #16f1e6 !important;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.item-slide img {
+  max-width: 100%;
+}
+
+.caption-container {
+  color: rgb(255, 255, 255) !important;
+}
+
+.carousel-img {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto !important;
+  object-fit: cover;
+  justify-content: center;
+  overflow: hidden !important;
+}
+
+.rn-scene-set-fig{
+  height: auto !important;
+}
+
+
+.center {
+  text-align: center !important;
+}
