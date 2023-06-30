@@ -277,3 +277,31 @@ body {
 .center {
   text-align: center !important;
 }
+
+
+.iframe-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Adjust this value based on the aspect ratio of your iframe content */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  /* Apply specific styles for screens smaller than 600px wide */
+  .iframe-container {
+    padding-bottom: 75%;
+  }
+}
