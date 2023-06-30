@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/iv-viewer.css" />
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="icon" href="#">
 </head>
@@ -150,6 +151,16 @@
                     <span>paperswithcode</span>
                   </a>
                 </span> -->
+
+                <!-- Real World Demo Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="#demo" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-globe"></i>
+                    </span>
+                    <span>Real World Demo</span>
+                  </a>
+                </span>
               </div>
 
             </div>
@@ -195,23 +206,24 @@
   </section>
 
 
-  <section class="">
+  <section id="demo">
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">Demo</h2>
           <span>
-            User commmand oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the real world. <strong>[ 4 Scenes ]</strong>
-        </span>
+            User command oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the
+            real world. <strong>[ 4 Scenes ]</strong>
+          </span>
         </div>
-        
+
       </div>
       <div class="container is-max-desktop">
         <div id="results-carousel" class="carousel results-carousel">
           <div id="slider" style="max-width:95%">
             <div class="iframe-container">
-              <iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0"
-                allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+              <iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0" allow="autoplay; encrypted-media"
+                allowfullscreen=""></iframe>
             </div>
 
             <div class="iframe-container">
@@ -356,11 +368,12 @@
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title">t-SNE</h2>
       <div id="image-container">
-          <img id="t-sne-image" src="assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.png" alt="">
+        <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.png"
+          alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
       </div>
   </section>
 
-  
+
 
 
   <section class="section" id="BibTeX">
@@ -415,7 +428,7 @@
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
 <script src="./assets/js/index.js"></script>
-<!-- <script src="./assets/js/iv-viewer.js" type="module"></script> -->
+<script src="./assets/js/iv-viewer.js"></script>
 <script src="../scripts/few-shot-research/script.js"></script>
 <script>
   // carousel
@@ -447,48 +460,28 @@
     }
   }
 
-// import ImageViewer from "iv-viewer";
-// import "iv-viewer/dist/iv-viewer.css";
+  const image = document.querySelector('.t-sne');
 
-// const images = [
-//   {
-//     small: "./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.png",
-//     // big: "../images/1_big.jpg"
-//   },
-// ];
+  const options = {
 
-// let curImageIdx = 1;
+    // the initial zoom value of an image
+    zoomValue: 50,
 
-// const total = images.length;
-// const wrapper = document.querySelector("#image-gallery");
+    // show/hide snap view
+    snapView: true,
 
-// const curSpan = wrapper.querySelector(".current");
-// const viewer = new ImageViewer(wrapper.querySelector(".image-container"));
-// window.viewer = viewer;
-// // display total count
-// wrapper.querySelector(".total").innerHTML = total;
+    // maximum percentage you can zoom an image
+    maxZoom: 5000,
 
-// function showImage() {
-//   const imgObj = images[curImageIdx - 1];
-//   viewer.load(imgObj.small, imgObj.big);
-//   curSpan.innerHTML = curImageIdx;
-// }
+    // wether to refresh the viewer on resize of window
+    refreshOnResize: true,
 
-// wrapper.querySelector(".next").addEventListener("click", function(evt) {
-//   curImageIdx++;
-//   if (curImageIdx > total) curImageIdx = 1;
-//   showImage();
-// });
+    // wether to zoom in / out an image with mouse wheel
+    zoomOnMouseWheel: true
+  };
 
-// wrapper.querySelector(".prev").addEventListener("click", function(evt) {
-//   curImageIdx--;
-//   if (curImageIdx < 0) curImageIdx = total;
-//   showImage();
-// });
-
-// // initially show image
-// showImage();
-
+  // const viewer = new ImageViewer(container, options);
+  const viewer = new ImageViewer(image, options);
 
 </script>
 
