@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="Proto-CLIP, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Prototypical Networks, Multi-modal, Vision-Language">
+  <meta name="keywords"
+    content="Proto-CLIP, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Prototypical Networks, Multi-modal, Vision-Language">
   <meta name="description" content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
   <meta name="author" content="Jishnu Jaykumar P, Kamalesh Palanisamy, Yu-Wei Chao, Xinya Du, Yu Xiang">
-  <title id="title" project-name="Proto-CLIP">Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning</title>
+  <title id="title" project-name="Proto-CLIP">Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning
+  </title>
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8CH1HFQB6X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CH1HFQB6X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-8CH1HFQB6X');
-</script>
+    gtag('config', 'G-8CH1HFQB6X');
+  </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
@@ -25,9 +28,11 @@
   <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/iv-viewer.css" />
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="icon" href="#">
 </head>
+
 <body>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -41,62 +46,73 @@
     <div style="text-align: center;" class="navbar-menu">
       <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
         <a id="related-research-home" class="navbar-item" href="" target="_blank">
-        <span class="icon" style="text-align: center;">
-            <svg class="svg-inline--fa fa-home fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="home" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"></path></svg><!-- <i class="fas fa-home"></i> Font Awesome fontawesome.com -->
-        </span>
+          <span class="icon" style="text-align: center;">
+            <svg class="svg-inline--fa fa-home fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas"
+              data-icon="home" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
+              </path>
+            </svg><!-- <i class="fas fa-home"></i> Font Awesome fontawesome.com -->
+          </span>
         </a>
-  
+
         <div class="navbar-item has-dropdown is-hoverable">
           <a id="related-research" class="navbar-link"></a>
           <div id="related-research-dropdown" class="navbar-dropdown"></div>
         </div>
       </div>
-  
+
     </div>
   </nav>
 
-<section class="hero">
-  <div class="hero-body pad-zero">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title"> <span class="small-caps">Proto-CLIP</span>: Vision-Language Prototypical Network for Few-Shot Learning</h1>
-          <div class="is-size-10 publication-authors">
-            <span class="author-block">
-              <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ">Kamalesh Palanisamy</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">Yu-Wei Chao</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a target="_blank" href="https://xinyadu.github.io">Xinya Du</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
-            </span>
-          </div>
-
-          <div class="is-size-10 publication-authors">
-            <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block"><sup>2</sup><a target="_blank" href="https://www.nvidia.com/en-us">NVIDIA</a></span>
-            <!-- <span id="accepted-conference" class="author-block"><br>Conference Details</span> -->
-          </div>
-
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
           <div class="column has-text-centered">
-            <div class="publication-links">
+            <h1 class="title is-2 publication-title"> <span class="small-caps">Proto-CLIP</span>: Vision-Language
+              Prototypical Network for Few-Shot Learning</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar
+                  P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ">Kamalesh
+                  Palanisamy</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">Yu-Wei
+                  Chao</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://xinyadu.github.io">Xinya
+                  Du</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block">
+                <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
+              </span>
+            </div>
 
-              <!-- Arxiv Link. -->
-              <span class="link-block">
-                <a target="_blank" href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The
+                  University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><sup>2</sup><a target="_blank"
+                  href="https://www.nvidia.com/en-us">NVIDIA</a></span>
+              <!-- <span id="accepted-conference" class="author-block"><br>Conference Details</span> -->
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span> 
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
 
-              <!-- Ar5iv Link. -->
-              <!-- <span class="link-block">
+                <!-- Ar5iv Link. -->
+                <!-- <span class="link-block">
                 <a target="_blank" href="https://ar5iv.labs.arxiv.org/html/2207.03333"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -106,227 +122,376 @@
                 </a>
               </span>  -->
 
-              <!-- Supplementary Link. -->
-              <span class="link-block">
-                <a target="_blank" href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+                <!-- Supplementary Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Supplementary</span>
-                </a>
-              </span> 
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
+                </span>
 
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="#"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
+                    </span>
+                    <span>Code</span>
                   </a>
-              </span>
+                </span>
 
-              <!-- PapersWithCode Link. -->
-              <span class="link-block">
-                <a target="_blank" href="#"
-                    class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
+                <!-- PapersWithCode Link. -->
+                <!-- <span class="link-block">
+                  <a target="_blank" href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
                       <img src="assets/images/paperswithcode-logo.png" width="18px" height="18px">
-                  </span>
-                  <span>paperswithcode</span>
+                    </span>
+                    <span>paperswithcode</span>
                   </a>
-              </span>
-            </div>
+                </span> -->
 
+
+                <!-- Real World Demo Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="#demo" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-globe"></i>
+                    </span>
+                    <span>Real World Demo</span>
+                  </a>
+                </span>
+
+                <!-- FAQs. -->
+                <span class="link-block">
+                  <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-question"></i>
+                    </span>
+                    <span>FAQs</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <div class="container is-max-desktop">
 
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Video Coming Soon...</h2>
-          <!-- <div class="publication-video"></div> -->
+          <h2 class="title is-3">Abstract</h2>
+          
+          <div class="content has-text-justified">
+            <div class="hero-body has-text-centered" style="padding: 1em;">
+              <img src="./assets/images/proto-clip/eagle-eye-proto-clip.webp" alt="abstract-image-for-proto-clip">
+            </div>
+            <span>
+              We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such
+              as CLIP. Motivated by the unimodal prototypical networks for few-shot learning, we introduce <span
+                class="small-caps">Proto-CLIP</span> that utilizes image prototypes and text prototypes for few-shot
+              learning. Specifically, <span class="small-caps">Proto-CLIP</span> adapts the image encoder and text
+              encoder in CLIP in a joint fashion using few-shot examples. The two encoders are used to compute
+              prototypes of image classes for classification. During adaptation, we propose aligning the image and text
+              prototypes of corresponding classes. Such a proposed alignment is beneficial for few-shot classification
+              due to the contributions from both types of prototypes. We demonstrate the effectiveness of our method by
+              conducting experiments on benchmark datasets for few-shot learning as well as in the real world for robot
+              perception.
+            </span>
+
+          </div>
+
+          <div class="hero-body has-text-centered">
+            <h1 class="title">Model Overview</h1>
+            <img class="center" src="./assets/images/proto-clip/proto_clip.webp" alt="">
+            <p>
+              The CLIP image encoder and text encoder are frozen during training. The image memory, the text memory and the adapter network are learned.
+    <span>Given a class name, &tau;<sub>i</sub> returns the i<sup>th</sup> out of <span class="tilde">K</span> predefined text prompts.</span>
+            </p>
+          </div>
+
         </div>
       </div>
-      <!--/ Paper video. -->
-        
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
+      <!--/ Abstract. -->
+    </div>
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such as CLIP. Motivated by the unimodal prototypical networks for few-shot learning, we introduce <span class="small-caps">Proto-CLIP</span> that utilizes image prototypes and text prototypes for few-shot learning. Specifically, <span class="small-caps">Proto-CLIP</span> adapts the image encoder and text encoder in CLIP in a joint fashion using few-shot examples. The two encoders are used to compute prototypes of image classes for classification. During adaptation, we propose aligning the image and text prototypes of corresponding classes. Such a proposed alignment is beneficial for few-shot classification due to the contributions from both types of prototypes. We demonstrate the effectiveness of our method by conducting experiments on benchmark datasets for few-shot learning as well as in the real world for robot perception.
+        <h2 class="title is-3">Video Coming Soon...</h2>
+        <div class="publication-video"></div>
+      </div>
+    </div> -->
+    <!-- / Paper video. -->
+
+  </section>
+
+
+  <section class="" id="demo">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Demo</h2>
+          <p>User command oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the
+            real world. <strong>[ 4 Scenes ]</strong></p>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <div class="tabs is-centered">
+          <ul>
+            <li id="scene-1" class="is-active demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-1</span>
+              </a>
+            </li>
+            <li id="scene-2" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-2</span>
+              </a>
+            </li>
+            <li id="scene-3" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-3</span>
+              </a>
+            </li>
+            <li>
+            <li id="scene-4" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-4</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      
+      <div id="demo-vid-iframe" class="hero-body">
+        <div class="iframe-container"><iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+      </div>
+  </section>
+
+
+
+  <section class="section" id="jos-fsc">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Joint Object Segmentation and Few-Shot Classification <br> in the Real World</h2>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div id="slider">
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-1.png" alt="real-world-fewsol-set-1" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #1
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-2.png" alt="real-world-fewsol-set-2" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #2
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-3.png" alt="real-world-fewsol-set-3" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #3
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-4.png" alt="real-world-fewsol-set-4" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #4
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-5.png" alt="real-world-fewsol-set-5" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #5
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-6.png" alt="real-world-fewsol-set-6" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #6
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-7.png" alt="real-world-fewsol-set-7" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #7
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-image">
+                <figure class="image rn-scene-set-fig is-covered">
+                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-8.png" alt="real-world-fewsol-set-8" />
+                </figure>
+              </div>
+              <div class="card-content slider-text ">
+                <div class="is-size-10 box carousel-caption">
+                  Scene #8
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+    <!-- CLIP vs Proto-CLIP -->
+    <section class="">
+      <div class="container is-max-desktop has-text-centered">
+        <h2 class="title">CLIP vs <span class="small-caps">Proto-CLIP</span></h2>
+        <div class="image-container clip-vs-t-sne">
+          <img id="t-sne-image" src="./assets/images/proto-clip/clip-vs-proto-clip-t-sne.webp"
+            alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks">
+        </div>
+        <p><span class="red bold"> Image and text
+          prototypes from zero-shot CLIP, which are not aligned.</span> <br><span class="green bold">Aligned image and text prototypes from
+          fine-tuned <span class="small-caps">Proto-CLIP</span>.</span></p>
+    </section>
+
+
+  <!-- t-SNE -->
+  <section class="section" id="t-sne">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title">t-SNE</h2>
+      <p class="is-size-8">Barnes-Hut t-SNE visualization using fine-tuned <span class="small-caps">Proto-CLIP</span> trained on <a href="https://irvlutd.github.io/FewSOL" target="_blank" rel="noopener noreferrer"><span class="small-caps"><strong>FewSOL</strong></span></a> [198 classes] dataset. Here, image and text prototypes are aligned closer to each other. Objects with similar shapes are closer. Semantics are captured as well, e.g. vegetables/fruits are closer to each other.<br>
+      <div class="image-container t-sne-zoom-canvas">
+        <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.webp"
+          alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
+      </div>
+  </section>
+
+
+  <!-- FAQs -->
+  <section class="section" id="FAQs">
+    <div class="container is-max-desktop">
+      <h2 class="title has-text-centered">FAQs</h2>
+
+      <div class="qa-container">
+        <div class="question has-text-black bold">Why has <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a> been used for real world experiments?</div>
+        <div class="answer">For a robot to work in human environments like kitchen, living room etc., it has to interact with various daily objects. <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a> comes in handy when thinking of learning good representations of daily objects for manipulation tasks. Hence, we chose to experiments with <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>.</div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          Any specific observations during inference?
+        </div>
+        <div class="answer">
+          Object segmentation and orientation matters. Segmentation is more important as in clutter scenes a bad segmentation can cause problems in classification. Moreover, lighting conditions also play a key role as it impacts classification of shiny objects.
+        </div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          In the real world demo, why do you invoke the ASR after running <span class="small-caps">Proto-CLIP</span> inference?
+        </div>
+        <div class="answer">
+          The ASR package is designed to be a simple function that can be placed after the <span class="small-caps">Proto-CLIP</span> predictions or could be placed in a separate file to create a ROS node to publish the ASR output. For our demo, we invoked the ASR immediately after obtaining the <span class="small-caps">Proto-CLIP</span> predictions because this prevents the issue of our <span class="small-caps">Proto-CLIP</span> node waiting for a trigger.
+        </div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          Can the real world system handle changes to the scene during inference?
+        </div>
+        <div class="answer">
+          The system is currently designed based on the assumption that the scene does not change during <span class="small-caps">Proto-CLIP</span> inference. Detecting changes to the scene and running inference again will require several modifications to the existing system.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+
+      <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Jishnu: <a target="_blank"
+          href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="title">Acknowledgements</h2>
+      <div class="is-vcentered interpolation-panel">
+        <div class="container content">
+          <p style="font-size: 16px">
+            This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract
+            number HR00112220005.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
-  </div>
-</section>
+  </section>
 
 
-<section class="">
-  <div class="hero-body">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Joint Object Segmentation and Few-Shot Classification <br> in the Real World</h2>
-    </div></div>
-    <div class="container is-max-desktop">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div id="slider" style="max-width:95%">
-            <div class="card">
-                <div class="card-image">
-                    <figure class="image irn-scene-set-fig is-covered">
-                        <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-1.png" alt="real-world-fewsol-set-1" />
-                    </figure>
-                </div>
-                <div class="card-content slider-text ">
-                    <div class="is-size-10 box carousel-caption">
-                        Scene #1
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-              <div class="card-image">
-                  <figure class="image irn-scene-set-fig is-covered">
-                      <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-2.png" alt="real-world-fewsol-set-2" />
-                  </figure>
-              </div>
-              <div class="card-content slider-text ">
-                  <div class="is-size-10 box carousel-caption">
-                      Scene #2
-                  </div>
-              </div>
-          </div>
-          <div class="card">
-            <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
-                    <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-3.png" alt="real-world-fewsol-set-3" />
-                </figure>
-            </div>
-            <div class="card-content slider-text ">
-                <div class="is-size-10 box carousel-caption">
-                    Scene #3
-                </div>
-            </div>
-        </div>
-        <div class="card">
-          <div class="card-image">
-              <figure class="image irn-scene-set-fig is-covered">
-                  <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-4.png" alt="real-world-fewsol-set-4" />
-              </figure>
-          </div>
-          <div class="card-content slider-text ">
-              <div class="is-size-10 box carousel-caption">
-                  Scene #4
-              </div>
-          </div>
-      </div>
-      <div class="card">
-        <div class="card-image">
-            <figure class="image irn-scene-set-fig is-covered">
-                <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-5.png" alt="real-world-fewsol-set-5" />
-            </figure>
-        </div>
-        <div class="card-content slider-text ">
-            <div class="is-size-10 box carousel-caption">
-              Scene #5
-            </div>
-        </div>
-    </div>
-    <div class="card">
-      <div class="card-image">
-          <figure class="image irn-scene-set-fig is-covered">
-              <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-6.png" alt="real-world-fewsol-set-6" />
-          </figure>
-      </div>
-      <div class="card-content slider-text ">
-          <div class="is-size-10 box carousel-caption">
-            Scene #6
-          </div>
-      </div>
-  </div>
-  <div class="card">
-    <div class="card-image">
-        <figure class="image irn-scene-set-fig is-covered">
-            <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-7.png" alt="real-world-fewsol-set-7" />
-        </figure>
-    </div>
-    <div class="card-content slider-text ">
-        <div class="is-size-10 box carousel-caption">
-          Scene #7
-        </div>
-    </div>
-</div>
-<div class="card">
-  <div class="card-image">
-      <figure class="image irn-scene-set-fig is-covered">
-          <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-8.png" alt="real-world-fewsol-set-8" />
-      </figure>
-  </div>
-  <div class="card-content slider-text ">
-      <div class="is-size-10 box carousel-caption">
-        Scene #8
-      </div>
-  </div>
-</div>
-      </div>  
-    </div>
-  </div>
-</section>
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop">
-    <h2 class="title">BibTeX</h2>
-    <span>Please cite <span class="small-caps"><Strong>Proto-CLIP</Strong></span> if it helps your research:</span>
-    <pre><code>Coming Soon...</code></pre>
-  </div>
-</section>
-
-<section class="section" id="contact">
-  <div class="container is-max-desktop">
-    
-    <h2 class="title">Contact</h2>
-      <p>Send any comments or questions to Jishnu: <a target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a> </p>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop content">
-    <h2 class="title">Acknowledgements</h2>
-  <div class="is-vcentered interpolation-panel">
-    <div class="container content">
-      <p style="font-size: 16px">
-        Coming Soon...
-      </p>
-    </div>
-  </div>
-</div>  
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
         <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
       </a> -->
-      <br>
-      <p id="website-template-credits">
-        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+        <!-- <br> -->
+        <p id="website-template-credits">
+          Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -334,35 +499,61 @@
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
 <script src="./assets/js/index.js"></script>
+<script src="./assets/js/iv-viewer.js"></script>
 <script src="../scripts/few-shot-research/script.js"></script>
 <script>
   // carousel
   bulmaCarousel.attach('#slider', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      infinite: true,
-      autoplay: true,
+    slidesToScroll: 1,
+    slidesToShow: 1,
+    infinite: true,
+    autoplay: true,
   });
   var slideIndex = 1;
-    showSlides(slideIndex);
+  showSlides(slideIndex);
 
-    function plusSlides(n) {
-      showSlides(slideIndex += n);
-    }
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
 
-    function currentSlide(n) {
-      showSlides(slideIndex = n);
-    }
+  function currentSlide(n) {
+    showSlides(slideIndex = n);
+  }
 
-    function showSlides(n) {
-      var i;
-      var slides = document.getElementsByClassName("item-slide");
-      var captionText = document.getElementById("caption");
-      if (n > slides.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = slides.length}
-      for (i = 0; i < slides.length; i++) {
-          slides[i].style.display = "none";
-      }
+  function showSlides(n) {
+    var i;
+    var slides = document.getElementsByClassName("item-slide");
+    var captionText = document.getElementById("caption");
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
     }
+  }
+
+  const image = document.querySelector('.t-sne');
+
+  const options = {
+
+    // the initial zoom value of an image
+    zoomValue: 50,
+
+    // show/hide snap view
+    snapView: true,
+
+    // maximum percentage you can zoom an image
+    maxZoom: 300,
+
+    // wether to refresh the viewer on resize of window
+    refreshOnResize: true,
+
+    // wether to zoom in / out an image with mouse wheel
+    zoomOnMouseWheel: true
+  };
+
+  // const viewer = new ImageViewer(container, options);
+  const viewer = new ImageViewer(image, options);
+
 </script>
+
 </html>

@@ -150,10 +150,6 @@ body {
   font-size: 0;
 }
 
-.results-carousel video {
-  margin: 0;
-}
-
 
 .interpolation-panel {
   background: #ffffff;
@@ -215,6 +211,7 @@ body {
   }
   .card, .carousel-img{
     overflow: hidden !important;
+    width: 100% !important;
   }
 }
 
@@ -271,9 +268,112 @@ body {
 
 .rn-scene-set-fig{
   height: auto !important;
+  width: 100% !important;
 }
 
 
 .center {
   text-align: center !important;
+}
+
+
+.iframe-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Adjust this value based on the aspect ratio of your iframe content */
+  height: 0;
+  overflow: hidden;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  /* Apply specific styles for screens smaller than 600px wide */
+  .iframe-container {
+    padding-bottom: 75%;
+  }
+}
+
+.tilde {
+  position: relative;
+}
+
+.tilde::after {
+  content: "~";
+  position: absolute;
+  top: -0.7em; /* Adjust this value as needed */
+  left: 0;
+}
+
+
+#t-sne, #jos-fsc{
+  margin-top: 3em !important;
+}
+
+.t-sne-zoom-canvas{
+  border: 2px dashed rgb(202, 201, 201) !important;
+  margin: 1em !important;
+}
+
+.t-sne-zoom-canvas:hover{
+  cursor: zoom-in;
+}
+
+
+#demo-vid-iframe{
+  padding: 0 !important;
+}
+
+.cyan{
+  color: rgb(42, 165, 165);
+  font-weight: 900;
+}
+
+.green {
+  color: rgb(50, 167, 50) !important;
+}
+
+.clip-vs-t-sne{
+  border: 2px dashed transparent;
+  transition: border-color 0.3s ease-in-out;
+  padding: 1em;
+}
+
+.clip-vs-t-sne:hover {
+  border-color: rgb(202, 214, 214); /* Replace with the desired border color */
+}
+
+.qa-container {
+  margin-bottom: 20px;
+}
+
+.question {
+  font-weight: bold;
+}
+
+.question::before {
+  content: "Q. ";
+}
+
+.answer {
+  margin-top: 5px;
+}
+
+
+.answer::before {
+  content: "A. ";
+}
+
+.slider-pagination{
+  background-color: white !important;
 }
