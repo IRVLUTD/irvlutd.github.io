@@ -102,14 +102,14 @@
               <div class="publication-links">
 
                 <!-- Arxiv Link. -->
-                <!-- <span class="link-block">
+                <span class="link-block">
                   <a target="_blank" href="#" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
                     <span>arXiv</span>
                   </a>
-                </span> -->
+                </span>
 
                 <!-- Ar5iv Link. -->
                 <!-- <span class="link-block">
@@ -123,24 +123,24 @@
               </span>  -->
 
                 <!-- Supplementary Link. -->
-                <!-- <span class="link-block">
+                <span class="link-block">
                   <a target="_blank" href="#" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
                     <span>Supplementary</span>
                   </a>
-                </span> -->
+                </span>
 
                 <!-- Code Link. -->
-                <!-- <span class="link-block">
+                <span class="link-block">
                   <a href="#" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code</span>
                   </a>
-                </span> -->
+                </span>
 
                 <!-- PapersWithCode Link. -->
                 <!-- <span class="link-block">
@@ -152,6 +152,7 @@
                   </a>
                 </span> -->
 
+
                 <!-- Real World Demo Link. -->
                 <span class="link-block">
                   <a target="_blank" href="#demo" class="external-link button is-normal is-rounded is-dark">
@@ -159,6 +160,16 @@
                       <i class="fas fa-globe"></i>
                     </span>
                     <span>Real World Demo</span>
+                  </a>
+                </span>
+
+                <!-- FAQs. -->
+                <span class="link-block">
+                  <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-question"></i>
+                    </span>
+                    <span>FAQs</span>
                   </a>
                 </span>
               </div>
@@ -170,6 +181,7 @@
     </div>
   </section>
 
+
   <section class="section">
     <div class="container is-max-desktop">
 
@@ -177,8 +189,12 @@
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">Abstract</h2>
+          
           <div class="content has-text-justified">
-            <p>
+            <div class="hero-body has-text-centered" style="padding: 1em;">
+              <img src="./assets/images/proto-clip/eagle-eye-proto-clip.webp" alt="abstract-image-for-proto-clip">
+            </div>
+            <span>
               We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such
               as CLIP. Motivated by the unimodal prototypical networks for few-shot learning, we introduce <span
                 class="small-caps">Proto-CLIP</span> that utilizes image prototypes and text prototypes for few-shot
@@ -189,8 +205,19 @@
               due to the contributions from both types of prototypes. We demonstrate the effectiveness of our method by
               conducting experiments on benchmark datasets for few-shot learning as well as in the real world for robot
               perception.
+            </span>
+
+          </div>
+
+          <div class="hero-body has-text-centered">
+            <h1 class="title">Model Overview</h1>
+            <img class="center" src="./assets/images/proto-clip/proto_clip.webp" alt="">
+            <p>
+              The CLIP image encoder and text encoder are frozen during training. The image memory, the text memory and the adapter network are learned.
+    <span>Given a class name, &tau;<sub>i</sub> returns the i<sup>th</sup> out of <span class="tilde">K</span> predefined text prompts.</span>
             </p>
           </div>
+
         </div>
       </div>
       <!--/ Abstract. -->
@@ -206,51 +233,53 @@
   </section>
 
 
-  <section id="demo">
-    <div class="hero-body">
+  <section class="" id="demo">
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">Demo</h2>
-          <span>
-            User command oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the
-            real world. <strong>[ 4 Scenes ]</strong>
-          </span>
+          <p>User command oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the
+            real world. <strong>[ 4 Scenes ]</strong></p>
         </div>
-
       </div>
       <div class="container is-max-desktop">
-        <div id="results-carousel" class="carousel results-carousel">
-          <div id="slider" style="max-width:95%">
-            <div class="iframe-container">
-              <iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0" allow="autoplay; encrypted-media"
-                allowfullscreen=""></iframe>
-            </div>
-
-            <div class="iframe-container">
-              <iframe src="https://www.youtube.com/embed/hRJBUbLn1Sw" title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-
-            <div class="iframe-container">
-              <iframe src="https://www.youtube.com/embed/f-rX-itnQQU" title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-
-            <div class="iframe-container">
-              <iframe src="https://www.youtube.com/embed/OlF9yAlCVwo" title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-          </div>
+        <div class="tabs is-centered">
+          <ul>
+            <li id="scene-1" class="is-active demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-1</span>
+              </a>
+            </li>
+            <li id="scene-2" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-2</span>
+              </a>
+            </li>
+            <li id="scene-3" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-3</span>
+              </a>
+            </li>
+            <li>
+            <li id="scene-4" class="demo-video-iframe">
+              <a>
+                <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
+                <span>Scene-4</span>
+              </a>
+            </li>
+          </ul>
         </div>
+      
+      <div id="demo-vid-iframe" class="hero-body">
+        <div class="iframe-container"><iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
       </div>
-    </div>
   </section>
 
 
-  <section class="">
+
+  <section class="section" id="jos-fsc">
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
         <div class="column">
@@ -259,10 +288,10 @@
       </div>
       <div class="container is-max-desktop">
         <div id="results-carousel" class="carousel results-carousel">
-          <div id="slider" style="max-width:95%">
+          <div id="slider">
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-1.png" alt="real-world-fewsol-set-1" />
                 </figure>
               </div>
@@ -274,7 +303,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-2.png" alt="real-world-fewsol-set-2" />
                 </figure>
               </div>
@@ -286,7 +315,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-3.png" alt="real-world-fewsol-set-3" />
                 </figure>
               </div>
@@ -298,7 +327,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-4.png" alt="real-world-fewsol-set-4" />
                 </figure>
               </div>
@@ -310,7 +339,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-5.png" alt="real-world-fewsol-set-5" />
                 </figure>
               </div>
@@ -322,7 +351,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-6.png" alt="real-world-fewsol-set-6" />
                 </figure>
               </div>
@@ -334,7 +363,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-7.png" alt="real-world-fewsol-set-7" />
                 </figure>
               </div>
@@ -346,7 +375,7 @@
             </div>
             <div class="card">
               <div class="card-image">
-                <figure class="image irn-scene-set-fig is-covered">
+                <figure class="image rn-scene-set-fig is-covered">
                   <img class="carousel-img" src="./assets/pdf/rw/fewsol-198/set-8.png" alt="real-world-fewsol-set-8" />
                 </figure>
               </div>
@@ -361,26 +390,68 @@
       </div>
   </section>
 
+    <!-- CLIP vs Proto-CLIP -->
+    <section class="">
+      <div class="container is-max-desktop has-text-centered">
+        <h2 class="title">CLIP vs <span class="small-caps">Proto-CLIP</span></h2>
+        <div class="image-container clip-vs-t-sne">
+          <img id="t-sne-image" src="./assets/images/proto-clip/clip-vs-proto-clip-t-sne.webp"
+            alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks">
+        </div>
+        <p><span class="red bold"> Image and text
+          prototypes from zero-shot CLIP, which are not aligned.</span> <br><span class="green bold">Aligned image and text prototypes from
+          fine-tuned <span class="small-caps">Proto-CLIP</span>.</span></p>
+    </section>
 
 
   <!-- t-SNE -->
   <section class="section" id="t-sne">
     <div class="container is-max-desktop has-text-centered">
       <h2 class="title">t-SNE</h2>
-      <div id="image-container">
-        <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.png"
+      <p class="is-size-8">Barnes-Hut t-SNE visualization using fine-tuned <span class="small-caps">Proto-CLIP</span> trained on <a href="https://irvlutd.github.io/FewSOL" target="_blank" rel="noopener noreferrer"><span class="small-caps"><strong>FewSOL</strong></span></a> [198 classes] dataset. Here, image and text prototypes are aligned closer to each other. Objects with similar shapes are closer. Semantics are captured as well, e.g. vegetables/fruits are closer to each other.<br>
+      <div class="image-container t-sne-zoom-canvas">
+        <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.webp"
           alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
       </div>
   </section>
 
 
-
-
-  <section class="section" id="BibTeX">
+  <!-- FAQs -->
+  <section class="section" id="FAQs">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">BibTeX</h2>
-      <span>Please cite <span class="small-caps"><Strong>Proto-CLIP</Strong></span> if it helps your research:</span>
-      <pre><code>Coming Soon...</code></pre>
+      <h2 class="title has-text-centered">FAQs</h2>
+
+      <div class="qa-container">
+        <div class="question has-text-black bold">Why has <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a> been used for real world experiments?</div>
+        <div class="answer">For a robot to work in human environments like kitchen, living room etc., it has to interact with various daily objects. <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a> comes in handy when thinking of learning good representations of daily objects for manipulation tasks. Hence, we chose to experiments with <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>.</div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          Any specific observations during inference?
+        </div>
+        <div class="answer">
+          Object segmentation and orientation matters. Segmentation is more important as in clutter scenes a bad segmentation can cause problems in classification. Moreover, lighting conditions also play a key role as it impacts classification of shiny objects.
+        </div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          In the real world demo, why do you invoke the ASR after running <span class="small-caps">Proto-CLIP</span> inference?
+        </div>
+        <div class="answer">
+          The ASR package is designed to be a simple function that can be placed after the <span class="small-caps">Proto-CLIP</span> predictions or could be placed in a separate file to create a ROS node to publish the ASR output. For our demo, we invoked the ASR immediately after obtaining the <span class="small-caps">Proto-CLIP</span> predictions because this prevents the issue of our <span class="small-caps">Proto-CLIP</span> node waiting for a trigger.
+        </div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          Can the real world system handle changes to the scene during inference?
+        </div>
+        <div class="answer">
+          The system is currently designed based on the assumption that the scene does not change during <span class="small-caps">Proto-CLIP</span> inference. Detecting changes to the scene and running inference again will require several modifications to the existing system.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -415,7 +486,7 @@
         <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
         <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
       </a> -->
-        <br>
+        <!-- <br> -->
         <p id="website-template-credits">
           Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
       </div>
@@ -471,7 +542,7 @@
     snapView: true,
 
     // maximum percentage you can zoom an image
-    maxZoom: 5000,
+    maxZoom: 300,
 
     // wether to refresh the viewer on resize of window
     refreshOnResize: true,
