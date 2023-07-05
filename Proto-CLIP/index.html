@@ -176,7 +176,11 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/IRVLUTD/Proto-CLIP"
+<<<<<<< HEAD
+                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+=======
                     class="external-link button is-normal is-rounded is-dark">
+>>>>>>> e750437e74a0bf2274fa8be14dfd5fb55b57a42a
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -499,11 +503,13 @@
           inference?
         </div>
         <div class="answer">
-          The ASR package is designed to be a simple function that can be placed after the <span
-            class="small-caps">Proto-CLIP</span> predictions or could be placed in a separate file to create a ROS node
-          to publish the ASR output. For our demo, we invoked the ASR immediately after obtaining the <span
-            class="small-caps">Proto-CLIP</span> predictions because this prevents the issue of our <span
-            class="small-caps">Proto-CLIP</span> node waiting for a trigger.
+
+          The ASR package has been designed as a streamlined function that can be seamlessly integrated following <span
+            class="small-caps">Proto-CLIP</span> predictions or alternatively incorporated into a distinct file, thereby
+          enabling the creation of a ROS node to publish the ASR output. During our demonstration, we opted to invoke
+          the ASR promptly after acquiring the <span class="small-caps">Proto-CLIP</span> predictions, mitigating any
+          concerns related to the <span class="small-caps">Proto-CLIP</span> node awaiting a trigger event.
+
         </div>
       </div>
 
@@ -512,9 +518,10 @@
           Can the real world system handle changes to the scene during inference?
         </div>
         <div class="answer">
-          The system is currently designed based on the assumption that the scene does not change during <span
-            class="small-caps">Proto-CLIP</span> inference. Detecting changes to the scene and running inference again
-          will require several modifications to the existing system.
+
+          The current system architecture is predicated on the premise that the scene remains constant throughout
+          <span class="small-caps">Proto-CLIP</span> inference. Should there arise a need to identify scene alterations and perform subsequent
+          inference, it would necessitate significant modifications to the existing system.
         </div>
       </div>
     </div>
