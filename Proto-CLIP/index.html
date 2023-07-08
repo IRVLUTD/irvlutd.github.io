@@ -449,7 +449,8 @@
           alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks">
       </div>
       <p> <strong>(a)</strong> <span class="red bold"> Image and text
-          prototypes from zero-shot CLIP, which are not aligned</span> <br>  <strong>(b)</strong> <span class="green bold">Aligned image and
+          prototypes from zero-shot CLIP, which are not aligned</span> <br> <strong>(b)</strong> <span
+          class="green bold">Aligned image and
           text prototypes from
           fine-tuned <span class="small-caps">Proto-CLIP</span></span></p>
   </section>
@@ -525,6 +526,34 @@
           inference, it would necessitate significant modifications to the existing system.
         </div>
       </div>
+
+      <div class="qa-container">
+        <div class="question">
+          What is <span class="small-caps">Proto-CLIP</span>-Toolkit?
+        </div>
+        <div class="answer">
+          <span class="small-caps">Proto-CLIP</span>-Toolkit is a python package which contains the functionalities
+          for the <a href="#demo">real world demo</a> such as <a
+            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#part-of-speech-taggingpos">POS</a>
+          tagging and
+          <a
+            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#automatic-speech-recognitionasr">ASR</a>,
+          <a href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#tsne">t-SNE</a> plots, and <a
+            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#out-of-distribution-ood-datasets-test">OOD</a>
+          test for <a href="https://www.image-net.org/">ImageNet</a> dataset. To use it, please check the <a
+            href="https://pypi.org/project/proto-clip-toolkit/" target="_blank">pypi</a> and <a href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md">sample codes</a>.
+        </div>
+      </div>
+
+      <div class="qa-container">
+        <div class="question">
+          How many text prompts have been used in the experiments?
+        </div>
+        <div class="answer">
+          Apart from the <b>ImageNet</b> dataset, all datasets have a single text prompt template. <b>ImageNet</b> uses 7. For comparison purpose, this setting has been borrowed from <a href="https://arxiv.org/pdf/2207.09519.pdf" target="_blank">Tip-Adapter</a>.
+        </div>
+      </div>
+
     </div>
   </section>
 
