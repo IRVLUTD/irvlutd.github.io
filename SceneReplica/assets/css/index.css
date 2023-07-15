@@ -315,3 +315,7 @@ font-style: italic;
 .center {
   text-align: center !important;
 }
+
+.author-meta-info{
+  padding-top: 10px;
+}
