@@ -185,6 +185,14 @@ font-style: italic;
 #interpolation-image-wrapper {
   width: 100%;
 }
+
 #interpolation-image-wrapper img {
   border-radius: 5px;
+}
+
+@media screen and (min-width: 600px) {
+  /* Apply specific styles for screens bigger than 600px wide */
+  #author-content{
+    padding: 0 125px 0 125px !important;
+  }  
 }

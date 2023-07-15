@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./assets/css/iv-viewer.css" />
+  <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="icon" href="#">
 </head>
@@ -79,7 +80,7 @@
                     <div>
                       <a target="_blank" href="https://jishnujayakumar.github.io">
                         <img class="display-image author-image center"
-                          src="./assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar
+                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar
                         P</a><sup>1</sup></span>
                     </div>
                   </div>
@@ -90,7 +91,7 @@
 
                     <div>
                       <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ"><img
-                          class="author-image center" src="./assets/images/authors/kamalesh_palanisamy.webp">
+                          class="author-image center" src="../assets/images/authors/kamalesh_palanisamy.webp">
                         <br>Kamalesh
                         Palanisamy</a><sup>1</sup></span>
                     </div>
@@ -102,7 +103,7 @@
 
                     <div>
                       <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en"><img
-                          class="author-image center" src="./assets/images/authors/yu-wei_chao.webp"><br>Yu-Wei
+                          class="author-image center" src="../assets/images/authors/yu-wei_chao.webp"><br>Yu-Wei
                         Chao</a><sup>2</sup></span>
                     </div>
                   </div>
@@ -113,7 +114,7 @@
 
                     <div>
                       <a target="_blank" href="https://xinyadu.github.io"><img class="author-image center"
-                          src="./assets/images/authors/xinya_du.webp"> <br>Xinya
+                          src="../assets/images/authors/xinya_du.webp"> <br>Xinya
                         Du</a><sup>1</sup></span>
                     </div>
                   </div>
@@ -124,7 +125,7 @@
 
                     <div>
                       <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
-                          src="./assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a><sup>1</sup>
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a><sup>1</sup>
                     </div>
                   </div>
                 </div>
@@ -462,9 +463,9 @@
       <h2 class="title">t-SNE</h2>
       <p class="is-size-8">Barnes-Hut t-SNE visualization using fine-tuned <span class="small-caps">Proto-CLIP</span>
         trained on <a href="https://irvlutd.github.io/FewSOL" target="_blank" rel="noopener noreferrer"><span
-            class="small-caps"><strong>FewSOL</strong></span></a> [198 classes] dataset. Here, image and text prototypes
-        are aligned closer to each other. Objects with similar shapes are closer. Semantics are captured as well, e.g.
-        vegetables/fruits are closer to each other.<br>
+            class="small-caps"><strong>FewSOL</strong></span></a> [198 classes] dataset.<br>Here, image and text prototypes
+        are aligned closer to each other. Objects with similar shapes are closer.<br>Semantics are captured as well, e.g.
+        vegetables/fruits are closer to each other.<br><span class="highlight-red-shade"><b>Zoom-In</b></span> to take a closer look.
       <div class="image-container t-sne-zoom-canvas">
         <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.webp"
           alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
@@ -483,7 +484,7 @@
         <div class="answer">For a robot to work in human environments like kitchen, living room etc., it has to interact
           with various daily objects. <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span
               class="small-caps">FewSOL</span></a> comes in handy when thinking of learning good representations of
-          daily objects for manipulation tasks. Hence, we chose to experiments with <a
+          daily objects for manipulation tasks. Hence, we chose to experiment with <a
             href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>.</div>
       </div>
 
@@ -562,14 +563,16 @@
     <div class="container is-max-desktop">
       <h2 class="title has-text-centered">BibTeX</h2>
       <span>Please cite <span class="small-caps"><b>Proto-CLIP</b></span> if it helps your research:</span>
-      <pre><code>@article{padalunkal2023protoclip,
-    title={Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning}, 
-    author={Jishnu Jaykumar P and Kamalesh Palanisamy and Yu-Wei Chao and Xinya Du and Yu Xiang},
-    archivePrefix={arXiv},
-    eprint={2307.03073},
-    year={2023}
+      <div class="bib-container">
+      <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@article{padalunkal2023protoclip,
+  title={Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning}, 
+  author={Jishnu Jaykumar P and Kamalesh Palanisamy and Yu-Wei Chao and Xinya Du and Yu Xiang},
+  archivePrefix={arXiv},
+  eprint={2307.03073},
+  year={2023}
 }</code></pre>
-    </div>
+      </div>
+  </div>
   </section>
 
   <section class="section" id="contact">
@@ -628,7 +631,8 @@
 <script src="./assets/js/bulma-slider.min.js"></script>
 <script src="./assets/js/index.js"></script>
 <script src="./assets/js/iv-viewer.js"></script>
-<script src="../scripts/few-shot-research/script.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
 <script>
   // carousel
   bulmaCarousel.attach('#slider', {
