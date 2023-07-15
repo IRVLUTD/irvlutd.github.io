@@ -25,6 +25,13 @@ $(document).ready(function() {
       $(this).toggleClass('is-active');
       let vid_html = get_vid_html($(this).attr('id'));
       $('#demo-vid-iframe').html(vid_html);
-    }); 
+    });
 
+    // Last updated
+    var apiUrl = "https://api.github.com/repos/irvlutd/irvlutd.github.io/commits?sha=fewsol&per_page=1";
+    $.getJSON(apiUrl, function(data) {
+    var commitDate = new Date(data[0].commit.committer.date);
+    var formattedDate = commitDate.toDateString();
+    $('#last-updated').html(formattedDate);
+    });
 })
