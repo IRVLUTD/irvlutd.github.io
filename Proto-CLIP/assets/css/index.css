@@ -347,6 +347,7 @@ body {
   border: 2px dashed transparent;
   transition: border-color 0.3s ease-in-out;
   padding: 1em;
+  padding-bottom: 0 !important;
 }
 
 .clip-vs-t-sne:hover {
