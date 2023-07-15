@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="icon" href="#">
 </head>
@@ -73,18 +74,42 @@
             <h1 class="title is-2 publication-title"> <span class="small-caps">FewSOL</span>: A Dataset for Few-Shot
               Object Learning in Robotic Environments</h1>
             <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <a target="_blank" href="https://jishnujayakumar.github.io">Jishnu Jaykumar
-                  P</a><sup>1</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block">
-                <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">Yu-Wei
-                  Chao</a><sup>2</sup>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block">
-                <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a><sup>1</sup>
-              </span>
+              <div id="author-content" class="columns is-centered is-gapless">
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://jishnujayakumar.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar
+                        P</a><sup>1</sup></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en"><img
+                          class="author-image center" src="../assets/images/authors/yu-wei_chao.webp"><br>Yu-Wei
+                        Chao</a><sup>2</sup></span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a><sup>1</sup>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
-            <div class="is-size-5 publication-authors">
+            <div class="is-size-5 publication-authors affiliation">
               <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The
                   University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
               <span class="author-block"><sup>2</sup><a target="_blank"
@@ -95,6 +120,17 @@
 
             <div class="column has-text-centered">
               <div class="publication-links">
+
+                <!-- Publication Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://ieeexplore.ieee.org/document/10161143"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-link"></i>
+                    </span>
+                    <span>Publication</span>
+                  </a>
+                </span>
 
                 <!-- Arxiv Link. -->
                 <span class="link-block">
@@ -143,7 +179,7 @@
                 <span class="link-block">
                   <a href="#data" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="far fa-images"></i>
+                      <i class="fas fa-database"></i>
                     </span>
                     <span>Data</span>
                   </a>
@@ -180,6 +216,12 @@
         </div>
       </div>
       <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
 
       <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
@@ -209,10 +251,37 @@
       </div>
       <!--/ Abstract. -->
 
-
     </div>
   </section>
 
+  <section class="section">
+    <div class="container is-max-desktop">
+            <!-- Annotations. -->
+            <div class="columns is-centered has-text-centered">
+              <div class="column">
+                <h2 class="title is-3">Annotations</h2>
+                <div class="content has-text-centered">
+                    <div>
+                      <span id="rgb-d" class="annotations is-danger is-light link-block external-link button is-normal is-rounded">
+                        Multi-View RGB-D
+                      </span>
+                      <span id="pose-mask" class="annotations is-success is-light link-block external-link button is-normal is-rounded">
+                        Object Poses and Masks
+                      </span>
+                      <span id="attr" class="annotations is-info is-light link-block external-link button is-normal is-rounded">
+                        Object Attributes
+                      </span>
+                      <span id="syn-data" class="annotations is-warning is-light link-block external-link button is-normal is-rounded">
+                        Synthetic Data
+                      </span>
+                    </div><br>
+                    <span id="annotations-span"></span>
+                </div>
+              </div>
+            </div>
+            <!--/ Annotations. -->
+    </div>
+  </section>
 
   <section class="section">
     <div class="container is-max-desktop">
@@ -279,6 +348,7 @@
         </div>
       </div>
       <!--/ Data. -->
+
   </section>
 
   <section class="section">
@@ -342,12 +412,16 @@
     <div class="container is-max-desktop">
       <h2 class="title">BibTeX</h2>
       <span>Please cite <span class="small-caps"><b>FewSOL</b></span> if it helps your research:</span>
-      <pre><code>@article{p2023fewsol,
-  title = {FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments},
-  author = {P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
-  journal = {IEEE International Conference on Robotics and Automation (ICRA)},
-  year = {2023},
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@INPROCEEDINGS{padalunkal2023fewsol,
+  title={FewSOL: A Dataset for Few-Shot Object Learning in Robotic Environments}, 
+  author={P, Jishnu Jaykumar and Chao, Yu-Wei and Xiang, Yu},
+  booktitle={2023 IEEE International Conference on Robotics and Automation (ICRA)}, 
+  doi={10.1109/ICRA48891.2023.10161143},
+  pages={9140-9146},
+  year={2023}
 }</code></pre>
+      </div>
     </div>
   </section>
 
@@ -399,8 +473,9 @@
 <script defer src="./assets/js/fontawesome.all.min.js"></script>
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
-<script src="../scripts/js/index.js"></script>
-<script src="../scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/index.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
 <script>
 
   $(document).ready(function () {
@@ -411,7 +486,7 @@
       $(".navbar-menu").toggleClass("is-active");
     });
     var apiUrl = "https://api.github.com/repos/irvlutd/irvlutd.github.io/commits?sha=fewsol&per_page=1";
-    $.getJSON(apiUrl, function(data) {
+    $.getJSON(apiUrl, function (data) {
       var commitDate = new Date(data[0].commit.committer.date);
       var formattedDate = commitDate.toDateString();
       $('#last-updated').html(formattedDate);

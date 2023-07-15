@@ -1,0 +1,50 @@
+.author-image {
+    width: 7rem !important;
+    /* Adjust the desired width */
+    height: 7rem !important;
+    /* Set the same value as width to make it a square */
+    object-fit: cover !important;
+    /* Preserve the image's aspect ratio and cover the container */
+    border-radius: 50%;
+}
+
+.affiliation {
+    padding-top: 10px;
+}
+
+
+.highlight-red-shade {
+    color: #F31559;
+}
+
+.bib-container {
+    position: relative;
+}
+
+#copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+    margin: 10px;
+    border: none !important;
+    background-color: transparent !important;
+}
+
+.copy-highlight{
+    color: rgb(18, 187, 243) !important;
+    border: none !important;
+}
+
+.copy-success-highlight{
+    color: rgb(112, 175, 18);
+    border: none !important;
+}
+
+
+@media screen and (max-width: 600px) {
+    /* Apply specific styles for screens smaller than 600px wide */
+    #copy-btn{
+        display: none !important;
+    }
+}
