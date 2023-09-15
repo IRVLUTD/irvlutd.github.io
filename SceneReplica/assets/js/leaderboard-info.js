@@ -14,7 +14,7 @@ const leaderboard_entries = [
     ['MSMFormer@8@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '38/100', '41/100', 'Fixed Random', 'Model-Free', '36/100', '41/100'],
     ['MSMFormer@8@', 'Contact-graspnet@7@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '57/100', '65/100', 'Fixed Random', 'Model-Free', '61/100', '70/100'],
     // End-to-End Learning based Grasping
-    ['DexNet 2.0 @11@', 'DexNet 2.0 @11@', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '-', '-', 'Fixed Random', 'Model-Free', '51/100', '43/100'],
+    ['DexNet 2.0 @10@', 'DexNet 2.0 @10@', 'OMPL@3@', 'MoveIt', 'Algorithmic', 'Model-Free', '-', '-', 'Algorithmic', 'Model-Free', '51/100', '43/100'],
 ]
 
 const references = {
@@ -47,7 +47,7 @@ const references = {
     <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">SceneReplica Version</a> <b>]</b>`,
     "10": `J. Mahler, J. Liang, S. Niyaz, M. Laskey, R. Doan, X. Liu, J. A. Ojea,
     and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
-    with synthetic point clouds and analytic grasp metrics,” arXiv preprint
+    with synthetic point clouds and analytic grasp metrics”, arXiv preprint
     arXiv:1703.09312, 2017.
     <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
 }
