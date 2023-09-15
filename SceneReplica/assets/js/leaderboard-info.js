@@ -6,12 +6,15 @@
 const leaderboard_entries = [
     // Model based grasping methods
     ['PoseRBPF@1@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '58/100', '64/100', 'Fixed Random', 'Model-Based', '59/100', '59/100'],
-    ['PoseCNN@4@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '47/100', '48/100', 'Fixed Random', 'Model-Based', '40/100', '45/100'],
+    ['PoseCNN@4@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '48/100', '50/100', 'Fixed Random', 'Model-Based', '38/100', '44/100'],
+    ['GDRNPP@9@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '69/100', '66/100', 'Fixed Random', 'Model-Based', '51/100', '43/100'],
     // Model free grasping methods
-    ['UCN@5@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '43/100', '46/100', 'Fixed Random', 'Model-Free', '37/100', '40/100'],
+    ['UCN@5@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '43/100', '46/100', 'Fixed Random', 'Model-Free', '39/100', '42/100'],
     ['UCN@5@', 'Contact-graspnet@7@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '60/100', '63/100', 'Fixed Random', 'Model-Free', '60/100', '64/100'],
     ['MSMFormer@8@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '38/100', '41/100', 'Fixed Random', 'Model-Free', '36/100', '41/100'],
     ['MSMFormer@8@', 'Contact-graspnet@7@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '57/100', '65/100', 'Fixed Random', 'Model-Free', '61/100', '70/100'],
+    // End-to-End Learning based Grasping
+    ['DexNet 2.0 @11@', 'DexNet 2.0 @11@', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '-', '-', 'Fixed Random', 'Model-Free', '51/100', '43/100'],
 ]
 
 const references = {
@@ -36,9 +39,17 @@ const references = {
     grasp generation in cluttered scenes. In 2021 IEEE International Conference on Robotics and
     Automation (ICRA), pages 13438–13444. IEEE, 2021.
     <b>[</b> <a target="_blank" href="https://github.com/NVlabs/contact_graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/contact_graspnet">SceneReplica Version</a> <b>]</b>`,
-    "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object
-    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
-    <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`
+    "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
+    <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`,
+    "9": `G. Wang, F. Manhardt, F. Tombari, and X. Ji, 
+    GDR-Net: Geometry-guided direct regression network for monocular 6d object pose estimation, 
+    in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), June 2021, pp. 16 611–16 62
+    <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">SceneReplica Version</a> <b>]</b>`,
+    "10": `J. Mahler, J. Liang, S. Niyaz, M. Laskey, R. Doan, X. Liu, J. A. Ojea,
+    and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
+    with synthetic point clouds and analytic grasp metrics,” arXiv preprint
+    arXiv:1703.09312, 2017.
+    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
 }
 
 const video_links = {
@@ -88,6 +99,29 @@ const video_links = {
         [161, 'https://drive.google.com/file/d/1hPt4sJMLrprWt3lulskDzUN6SSHNipRG/preview', '#'],
     ],
     "3" : [
+        // scene-ID, near-to-far-vid-link, fix-rand-vid-link
+        [10, '#', '#'],
+        [25, '#', '#'],
+        [27, '#', '#'],
+        [33, '#', '#'],
+        [36, '#', '#'],
+        [38, '#', '#'],
+        [39, '#', '#'],
+        [48, '#', '#'],
+        [56, '#', '#'],
+        [65, '#', '#'],
+        [68, '#', '#'],
+        [77, '#', '#'],
+        [83, '#', '#'],
+        [84, '#', '#'],
+        [104, '#', '#'],
+        [122, '#', '#'],
+        [130, '#', '#'],
+        [141, '#', '#'],
+        [148, '#', '#'],
+        [161, '#', '#']
+    ],
+    "4" : [
         [10, 'https://drive.google.com/file/d/1L1lXhu6yW0QS895RmGxL4EYtrRegBBWl/preview', 'https://drive.google.com/file/d/1zfUbB9i0V36RsdOuNwC2HnZ1nEBSAWmN/preview'],
         [25, 'https://drive.google.com/file/d/1goTiU8mWVvpAobglIuo-7XkOZy9bRXeR/preview', 'https://drive.google.com/file/d/1uwi1eGQvsKoboxRft4GXajavQx8Jt7vo/preview'],
         [27, 'https://drive.google.com/file/d/1NR7nsfyYoAPWgftPJ4XvbrryyYcNlygA/preview', 'https://drive.google.com/file/d/1hbkXBq9boB2TgNQ2Kg6uNJRbBVPUYxzL/preview'],
@@ -109,7 +143,7 @@ const video_links = {
         [148, 'https://drive.google.com/file/d/1IIwyeI_wFyIDIdKWWyp6cjOKuZh5kVWd/preview', '#'],
         [161, 'https://drive.google.com/file/d/1CTUTNaiYpbgF-wPwpfNjS6zeIXfqZUmz/preview', '#'],
     ],
-    "4": [
+    "5": [
         [10, 'https://drive.google.com/file/d/1Dqsgm0VvaFrM87-4BjzrcyWeVsn8YXQA/preview', 'https://drive.google.com/file/d/1DPPqh51c1TTzuaIRscf9WOp1rMbx903L/preview'],
         [25, 'https://drive.google.com/file/d/19kpWMNdApCj0GgzAmIbKGslY8fCILa39/preview', 'https://drive.google.com/file/d/1KP3aEs_TOFWBoj5BI_2RvH2l5MddvbFY/preview'],
         [27, 'https://drive.google.com/file/d/1pp4uendPHViGih4sGIidObhLVIbKm7aA/preview', 'https://drive.google.com/file/d/1JIQW6KlthN8_bxQXhNmBH50zPkrB4JQP/preview'],
@@ -131,7 +165,7 @@ const video_links = {
         [148, 'https://drive.google.com/file/d/1hftbFClyqC5QIkNskj5wx0GIFMsAMhjZ/preview', 'https://drive.google.com/file/d/1mAtJNVgqsrckq0cAq9eL4kS8ImcC6rTd/preview'],
         [161, 'https://drive.google.com/file/d/1g9bbmTZaTM0e8WLKxZMFvRU4CnkWFs3_/preview', 'https://drive.google.com/file/d/1lyCV1mnd6a-CpQEoqS7kJv98KbTJ5ReT/preview'],
     ],
-    "5": [
+    "6": [
         [10, 'https://drive.google.com/file/d/1vkaerTV_Ya5DW2Be8WjzE-jTLdkfBkPq/preview', 'https://drive.google.com/file/d/1FS-Lo-au_j4X8VwQxnWJNo_tK37jhIy2/preview'],
         [25, 'https://drive.google.com/file/d/1e89E6GHPjJ7HK82fMwexvRk8bm4b6Wif/preview', 'https://drive.google.com/file/d/1GqhRhmmcFtVgfUcDKEsh5I06boOeVgVS/preview'],
         [27, 'https://drive.google.com/file/d/1FVI9qX8vg99llhRvM4B5GjJcUtOUtlmt/preview', 'https://drive.google.com/file/d/1AZgDUweafJSZaCrLRai6I_UzcH5GV7bb/preview'],
@@ -153,7 +187,7 @@ const video_links = {
         [148, 'https://drive.google.com/file/d/1J_Qsk6rCdbsq-GxSAsW7hExV2MilFu_U/preview', 'https://drive.google.com/file/d/1re43m1gu1ByegE5l90uAOzy9O3NOzN-N/preview'],
         [161, 'https://drive.google.com/file/d/12U6RRhYcYR_tO4QT6itVrPHkkkqbRyIR/preview', 'https://drive.google.com/file/d/16VgHycDFbRV4LqmjYInWt89mVkfD_gM7/preview'],
     ],
-    "6": [
+    "7": [
         [10, 'https://drive.google.com/file/d/1fZ9Z2ieS4mnPI-9oVbS4Piy599meqByQ/preview', 'https://drive.google.com/file/d/1QOp2Chl3EXx02z5-i-u5gCjH9jF7UpBZ/preview'],
         [25, 'https://drive.google.com/file/d/1rb-R-eev5zb5Bm5NhZEriG5m9RTXVGfK/preview', 'https://drive.google.com/file/d/1fhi7du_bPiIORTZ0P2T39bQ8QmH03tYm/preview'],
         [27, 'https://drive.google.com/file/d/1TBnwGlWit7nxssacTg2rvG8LEbRH2UUb/preview', 'https://drive.google.com/file/d/1HNdDKQ72DGRbaNxkOLTaxc9RM_nNn2DJ/preview'],
@@ -174,5 +208,28 @@ const video_links = {
         [141, 'https://drive.google.com/file/d/1Kk3_ykPyv2RBxGVm7qi8M6-ce3Y4tox1/preview', 'https://drive.google.com/file/d/1QBn18MOm4TDcYJNpEUlYw6PIYJ3gA_E_/preview'],
         [148, 'https://drive.google.com/file/d/1-_rbNqLwHE1elHFxLeBERadWkfFCSspb/preview', 'https://drive.google.com/file/d/1si0d00jQVUvPjZzlUMMgR2ARex2UmIac/preview'],
         [161, 'https://drive.google.com/file/d/1RDCpIuiywXrWJ5cmISav0N-cBQB5JZeD/preview', 'https://drive.google.com/file/d/1ao23IW0_Dmgiz5f-QAI01sMBDoNbN89Z/preview'],
-    ]
+    ],
+    "8" : [
+        // scene-ID, near-to-far-vid-link, fix-rand-vid-link
+        [10, '#', '#'],
+        [25, '#', '#'],
+        [27, '#', '#'],
+        [33, '#', '#'],
+        [36, '#', '#'],
+        [38, '#', '#'],
+        [39, '#', '#'],
+        [48, '#', '#'],
+        [56, '#', '#'],
+        [65, '#', '#'],
+        [68, '#', '#'],
+        [77, '#', '#'],
+        [83, '#', '#'],
+        [84, '#', '#'],
+        [104, '#', '#'],
+        [122, '#', '#'],
+        [130, '#', '#'],
+        [141, '#', '#'],
+        [148, '#', '#'],
+        [161, '#', '#']
+    ],
 }
