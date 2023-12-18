@@ -1,6 +1,6 @@
 ### irvlutd.github.io redirects to [https://labs.utdallas.edu/irvl](https://labs.utdallas.edu/irvl/).
 
-#### **NOTE**: Please don't override the `index.html` in the root folder.
+#### **NOTE**: Please don't override the `index.html` in the root folder and delete a specific project branch.
 
 ### To create a new project page
 - Git clone
