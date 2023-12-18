@@ -7,11 +7,15 @@ const leaderboard_entries = [
     // Model based grasping methods
     ['PoseRBPF@1@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '58/100', '64/100', 'Fixed Random', 'Model-Based', '59/100', '59/100'],
     ['PoseCNN@4@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '48/100', '50/100', 'Fixed Random', 'Model-Based', '38/100', '44/100'],
+    ['GDRNPP@9@', 'GraspIt!@2@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '66/100', '69/100', 'Fixed Random', 'Model-Based', '62/100', '64/100'],
     // Model free grasping methods
-    ['UCN@5@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '43/100', '46/100', 'Fixed Random', 'Model-Free', '39/100', '42/100'],
+    ['UCN@5@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '43/100', '46/100', 'Fixed Random', 'Model-Free', '37/100', '40/100'],
     ['UCN@5@', 'Contact-graspnet@7@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '60/100', '63/100', 'Fixed Random', 'Model-Free', '60/100', '64/100'],
     ['MSMFormer@8@', 'GraspNet@6@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '38/100', '41/100', 'Fixed Random', 'Model-Free', '36/100', '41/100'],
     ['MSMFormer@8@', 'Contact-graspnet@7@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '57/100', '65/100', 'Fixed Random', 'Model-Free', '61/100', '70/100'],
+    ['MSMFormer@8@', 'Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '-', '-', 'Fixed Random', 'Model-Free', '56/100', '59/100'],
+    // End-to-End Learning based Grasping
+    ['DexNet 2.0 @10@', 'DexNet 2.0 @10@', 'OMPL@3@', 'MoveIt', 'Algorithmic', 'Model-Free', '-', '-', 'Algorithmic', 'Model-Free', '43/100', '51/100'],
 ]
 
 const references = {
@@ -36,19 +40,27 @@ const references = {
     grasp generation in cluttered scenes. In 2021 IEEE International Conference on Robotics and
     Automation (ICRA), pages 13438–13444. IEEE, 2021.
     <b>[</b> <a target="_blank" href="https://github.com/NVlabs/contact_graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/contact_graspnet">SceneReplica Version</a> <b>]</b>`,
-    "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object
-    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
-    <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`
+    "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
+    <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`,
+    "9": `G. Wang, F. Manhardt, F. Tombari, and X. Ji, 
+    GDR-Net: Geometry-guided direct regression network for monocular 6d object pose estimation, 
+    in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), June 2021, pp. 16 611–16 62
+    <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">SceneReplica Version</a> <b>]</b>`,
+    "10": `J. Mahler, J. Liang, S. Niyaz, M. Laskey, R. Doan, X. Liu, J. A. Ojea,
+    and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
+    with synthetic point clouds and analytic grasp metrics”, arXiv preprint
+    arXiv:1703.09312, 2017.
+    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
 }
 
 const video_links = {
     "1": [
         // scene-ID, near-to-far-vid-link, fix-rand-vid-link
-        [10, 'https://www.youtube.com/embed/yOq392sQGTE', 'https://www.youtube.com/embed/xotvTLLUBjc'],
+        [10, 'https://drive.google.com/file/d/1iH_yzc2oADWUyigakGnOY2Aald8kUsF5/preview', 'https://www.youtube.com/embed/xotvTLLUBjc'],
         [25, 'https://drive.google.com/file/d/1lFAba7ZQs2sfQQK4DnfpA-jZJcqBZrbD/preview', 'https://drive.google.com/file/d/18Ltzd3dnj_C2AUUasRgQ_SyZBY-zzPfS/preview'],
         [27, 'https://drive.google.com/file/d/1PUFa-2pfaLhLPJUGnBOWISyCyltEQQPl/preview', 'https://drive.google.com/file/d/1B7ad2z5vS6yImecfqvXnZUEhhlEUYZ4w/preview'],
-        [33, '#', 'https://drive.google.com/file/d/1AReJZRaUgMx_RBzDOlcWdeQd3lffbzgh/preview'],
-        [36, '#', 'https://drive.google.com/file/d/1eAqjss6mbifX8zx_JUO95lkL0E-jmx0k/preview'],
+        [33, 'https://drive.google.com/file/d/1eua9_t38DaqDw9B0bCUJnEk0iQ6lVOCv/preview', 'https://drive.google.com/file/d/1AReJZRaUgMx_RBzDOlcWdeQd3lffbzgh/preview'],
+        [36, 'https://drive.google.com/file/d/13HMz_TFdJDc1ayH0G0d8AkBGN4AqHM_Y/preview', 'https://drive.google.com/file/d/1eAqjss6mbifX8zx_JUO95lkL0E-jmx0k/preview'],
         [38, 'https://drive.google.com/file/d/1VT9k9aD8mzaWaf-G7QARF8z8FvBkqeHz/preview', 'https://drive.google.com/file/d/1r0lUhEbpNvDCVVPGv_yVnjOemx7l4F25/preview'],
         [39, 'https://drive.google.com/file/d/1HYz5ln3qjHwvUHJUTGJPrYyLFFQRBIaz/preview', 'https://drive.google.com/file/d/1RL3N5u82Sv4-tP45c2xxw2SR2gCzQKqU/preview'],
         [48, 'https://drive.google.com/file/d/1-ZoI3YzIQEqZsjSDdNwE5I-9efmvQX6Y/preview', 'https://drive.google.com/file/d/1-e3HIx0QYCTNW1PsfV7qhPrk5TH5tOFp/preview'],
@@ -76,18 +88,41 @@ const video_links = {
         [48, 'https://drive.google.com/file/d/12jJKTpHtxIW-Hk0u9Xl65DaCdBjt_A-N/preview', 'https://drive.google.com/file/d/1ph_QiKEh9IVUvhgL36oC6q8nHGvHvT43/preview'],
         [56, 'https://drive.google.com/file/d/1O12duR_wWeVkfxXypomUgph-HkfXx0p5/preview', 'https://drive.google.com/file/d/1dOJ55QQbE7E4LUBKol3VKJRKex-PF6JH/preview'],
         [65, 'https://drive.google.com/file/d/15xotcELK-bZEY8WegWy91xXdOFEHmtgC/preview', 'https://drive.google.com/file/d/1Mv7J3YNaihZ5uYheOmftU8eI89oVFSWQ/preview'],
-        [68, '#', 'https://drive.google.com/file/d/1SuZjKISiUEpk7QMHp1t3SmdonjqKvaDn/preview'],
+        [68, 'https://drive.google.com/file/d/1byfdLov_J8DXS35sOUgBmoFaM9XhTZbC/preview', 'https://drive.google.com/file/d/1SuZjKISiUEpk7QMHp1t3SmdonjqKvaDn/preview'],
         [77, 'https://drive.google.com/file/d/1JSk6gfh3v1h5tZsKumbFO_ykAaFd13eL/preview', 'https://drive.google.com/file/d/1Sas4HsRdp2SKdl-Ey0SG1jPD8rDn2mr2/preview'],
         [83, 'https://drive.google.com/file/d/1wf6UCdF85Vwxt3HK326APQa5-cMsYP1Z/preview', 'https://drive.google.com/file/d/1NNEVh9yAm0GIhl_AFb_qzgMXhHDJJzQ3/preview'],
         [84, 'https://drive.google.com/file/d/1XIc0F_s9Q0pYWiMZeDicqqBETZt5jjJ5/preview', 'https://drive.google.com/file/d/1FW_8zF8SRhoO62slyYkz3FBGsats1VXs/preview'],
-        [104, 'https://drive.google.com/file/d/1T65qkjUGmkf5_XDNVDixlaaPcY3qKtOG/preview', '#'],
-        [122, 'https://drive.google.com/file/d/1LJFZwvA9izreexgGteAd191WufGMwUVP/preview', '#'],
-        [130, 'https://drive.google.com/file/d/1NiNX1qTcZv6MDdIIgBSdXgmaKdYapfSQ/preview', '#'],
-        [141, 'https://drive.google.com/file/d/1rPusFFYr4skSGYqsXKba_GcMwN_yuhLK/preview', '#'],
-        [148, 'https://drive.google.com/file/d/100MgOOXERs_5BdDMbB2jpqXpVyh6yl31/preview', '#'],
-        [161, 'https://drive.google.com/file/d/1hPt4sJMLrprWt3lulskDzUN6SSHNipRG/preview', '#'],
+        [104, 'https://drive.google.com/file/d/1T65qkjUGmkf5_XDNVDixlaaPcY3qKtOG/preview', 'https://drive.google.com/file/d/1Ms1SIDFn47xG_GqFOiw42iHjF-ko8OYA/preview'],
+        [122, 'https://drive.google.com/file/d/1LJFZwvA9izreexgGteAd191WufGMwUVP/preview', 'https://drive.google.com/file/d/1Zrt7tg6VIg3qZp7YBhvyvrEc-qht69m0/preview'],
+        [130, 'https://drive.google.com/file/d/1NiNX1qTcZv6MDdIIgBSdXgmaKdYapfSQ/preview', 'https://drive.google.com/file/d/1Cyp_o8aY795-B2OwVbR7VLDQgY-WgUJW/preview'],
+        [141, 'https://drive.google.com/file/d/1rPusFFYr4skSGYqsXKba_GcMwN_yuhLK/preview', 'https://drive.google.com/file/d/1kGnMNvxCo408Qxrf5-e6xkfwiA1Abxav/preview'],
+        [148, 'https://drive.google.com/file/d/100MgOOXERs_5BdDMbB2jpqXpVyh6yl31/preview', 'https://drive.google.com/file/d/1Gm4OPzxCoJh-KQ4P_HmawN4F56HpB5Ri/preview'],
+        [161, 'https://drive.google.com/file/d/1hPt4sJMLrprWt3lulskDzUN6SSHNipRG/preview', 'https://drive.google.com/file/d/1qXg4XsOR2vD8lebKrAc5A_iwDqBk1k4K/preview'],
     ],
     "3" : [
+        // scene-ID, near-to-far-vid-link, fix-rand-vid-link
+        [10, 'https://drive.google.com/file/d/14crOLrKkuQcjSDea5l90uQYogAdle_VB/preview', 'https://drive.google.com/file/d/1vPjQRB3ym55XQlq58MiAHou9RR6pXREi/preview'],
+        [25, 'https://drive.google.com/file/d/19vsJiK3zykXd3HLwTyZH1D6dFHCm1oLi/preview', 'https://drive.google.com/file/d/1YsDhzxwtDmlidL0R7Cpk9DHE8BPNnOJJ/preview'],
+        [27, 'https://drive.google.com/file/d/1m1FCl4dlvLB20NauASTvPFk3rybw6UbU/preview', 'https://drive.google.com/file/d/1i_otp0ytWxCJGEX4IA2diVl9RDi_1u-Z/preview'],
+        [33, 'https://drive.google.com/file/d/1rBetdy_ZgJupBR-W_PlZhM0VbNFgp3UF/preview', 'https://drive.google.com/file/d/1I0YBgfRTlDIFN1oGbcflNT6zKZylI91I/preview'],
+        [36, 'https://drive.google.com/file/d/1J_bwKhqJ9F3isIykyor9yrzoYalsoDqc/preview', 'https://drive.google.com/file/d/17SYtqoLdr1ro0d5JF9vYYrmSjpHkhpYM/preview'],
+        [38, 'https://drive.google.com/file/d/1JpM0R2PFOU9PGoVoDrVLdNIN51_YcIDm/preview', 'https://drive.google.com/file/d/1_uU-yVvUyFQv9jvxT4o9pY-FywgfUrBw/preview'],
+        [39, 'https://drive.google.com/file/d/1mMJ9zIzOIe-DMlm7JxWediQnmW-kG5If/preview', 'https://drive.google.com/file/d/1NqIbJQtSIrU-VpoPTIL3wmzofLn4bZsi/preview'],
+        [48, 'https://drive.google.com/file/d/1sqJN8ZQXuWcctGO2nrbigv508tu2ny6K/preview', 'https://drive.google.com/file/d/1Ru7NYzpC2_f_6frfigdbXQIj4gRH7JVL/preview'],
+        [56, 'https://drive.google.com/file/d/16dd8ZjeE_T86MfML378myGZaFfm3Hsdk/preview', 'https://drive.google.com/file/d/1lGWaLCxk0-udU296-rAZx8QcOnyqv283/preview'],
+        [65, 'https://drive.google.com/file/d/1L15AQkW1YI3Bnxk29jQ2lzxbFO7iTGE8/preview', 'https://drive.google.com/file/d/1H7pLQ2BYSpgIf0-JHAG3ndxuG7WIimUg/preview'],
+        [68, 'https://drive.google.com/file/d/1CSMnNGYCjGc_MbtDpf7sEb5RLPuVexP8/preview', 'https://drive.google.com/file/d/1QXQ2Az77f2kIC_RTSlPN438HeKoFsQzE/preview'],
+        [77, 'https://drive.google.com/file/d/1MGsl49wXhS67_L2a1L2SgaLBmMZpqk4h/preview', 'https://drive.google.com/file/d/1jcgZxQ1uL2BuWHKbQbK21rcJVmGBGRl1/preview'],
+        [83, 'https://drive.google.com/file/d/1jGa2oGVRU1CqdhhV0S_YQtZZqOeDW2gH/preview', 'https://drive.google.com/file/d/1kNOzS3qTuBo0l7jDpsoQda7uLqjNuM68/preview'],
+        [84, 'https://drive.google.com/file/d/1k41SpdJwWan3Q-gRdSwpUCaEAZCd6ERI/preview', 'https://drive.google.com/file/d/1DCQaAssktQZtWyxFZZ7mcn07J2Vj9KHK/preview'],
+        [104, 'https://drive.google.com/file/d/1hgsvO0W4sCmKRoRAcpaFT_G6RrAgmhzD/preview', 'https://drive.google.com/file/d/1KEe8FivTXNuahecF7e2p5m3yMT9UVmaO/preview'],
+        [122, 'https://drive.google.com/file/d/1rqWidaXzKQB1pCYaQS-yH7fyWbgGBMea/preview', 'https://drive.google.com/file/d/1G6hjwEesPy4Ibx8q18CpW59vRjQGk9OM/preview'],
+        [130, 'https://drive.google.com/file/d/1RhxlM2pAIeNHXJv5G4gh2lRUAyTzeuOQ/preview', 'https://drive.google.com/file/d/1zd4BtHJl5L37RDbB0TFRNDR5euMSGbVc/preview'],
+        [141, 'https://drive.google.com/file/d/1vgBQMNXuLQBLVx_wykHEN2V3FjndNFOt/preview', 'https://drive.google.com/file/d/1oUIVasUpBPgInq3prUzcubYLjm6B4Ca7/preview'],
+        [148, 'https://drive.google.com/file/d/1bYFnTdty26wtfqXFoecapcZO9oYqxDYS/preview', 'https://drive.google.com/file/d/1eW6hMqgoP5PVlYNHj_XGDPpZTvk881uF/preview'],
+        [161, 'https://drive.google.com/file/d/1H7Dm89164gUigNCNovfY6eqYaDkCMJcr/preview', 'https://drive.google.com/file/d/1-h7RxVnfz0x9bJrMCKPn6ai-JyJLxMiJ/preview'],
+    ],
+    "4" : [
         [10, 'https://drive.google.com/file/d/1L1lXhu6yW0QS895RmGxL4EYtrRegBBWl/preview', 'https://drive.google.com/file/d/1zfUbB9i0V36RsdOuNwC2HnZ1nEBSAWmN/preview'],
         [25, 'https://drive.google.com/file/d/1goTiU8mWVvpAobglIuo-7XkOZy9bRXeR/preview', 'https://drive.google.com/file/d/1uwi1eGQvsKoboxRft4GXajavQx8Jt7vo/preview'],
         [27, 'https://drive.google.com/file/d/1NR7nsfyYoAPWgftPJ4XvbrryyYcNlygA/preview', 'https://drive.google.com/file/d/1hbkXBq9boB2TgNQ2Kg6uNJRbBVPUYxzL/preview'],
@@ -95,21 +130,21 @@ const video_links = {
         [36, 'https://drive.google.com/file/d/1JuvUJyGUbWTXme_vZNS-8Xp-rlwo7suZ/preview', 'https://drive.google.com/file/d/1tiZJiw6YEZav7ua1u0HTdUg_Z8uXlRlL/preview'],
         [38, 'https://drive.google.com/file/d/16WruRXpUpSJkbiwBnl0iGGN86PvFgYav/preview', 'https://drive.google.com/file/d/1bKozWKg6Ck3vaqShmEGfQdV7nIXKrB-3/preview'],
         [39, 'https://drive.google.com/file/d/1fEIK0pctDmE4T3ME8gCnL061GaEw090p/preview', 'https://drive.google.com/file/d/1mgnuno_QuulRLbKb_hKWncZY1gChrhDA/preview'],
-        [48, 'https://drive.google.com/file/d/1IteRkL1AV7jH4vzZ7G3vzJB9-HECRbDh/preview', '#'],
-        [56, 'https://drive.google.com/file/d/1AqA7T8LVGcm6bM37ySpfk-cYDe5SHBvK/preview', '#'],
-        [65, 'https://drive.google.com/file/d/1gnADRWiFhfKLngwhmLt-Nve9-JfKk_4Z/preview', '#'],
-        [68, 'https://drive.google.com/file/d/14kVlNGvbRFtUSIGI4qezYoDfuFwe201w/preview', '#'],
-        [77, 'https://drive.google.com/file/d/1E64gkJXcSd6O8TjrXeb91z1yuZDe1u9U/preview', '#'],
-        [83, 'https://drive.google.com/file/d/1qnKLUhnD1Sjgg-1TC2HHq0St_16KruoR/preview', '#'],
-        [84, 'https://drive.google.com/file/d/1bYlLGH-TEQLxP5D68NxB9rigcwMrKu2a/preview', '#'],
-        [104, 'https://drive.google.com/file/d/1XcB3fDGlIxKMEeCC1-CSKqxkoF_6f_Dy/preview', '#'],
-        [122, 'https://drive.google.com/file/d/1eM9yFkY1jvKJhaGX9svNwH67IMw9KTPH/preview', '#'],
-        [130, 'https://drive.google.com/file/d/1K_kbXxigTBzfzMU643eNaU_8Dqnn6MMp/preview', '#'],
-        [141, 'https://drive.google.com/file/d/1vjy7U0R5na5YZcUnsl7kWvQW1ab3KDfC/preview', '#'],
-        [148, 'https://drive.google.com/file/d/1IIwyeI_wFyIDIdKWWyp6cjOKuZh5kVWd/preview', '#'],
-        [161, 'https://drive.google.com/file/d/1CTUTNaiYpbgF-wPwpfNjS6zeIXfqZUmz/preview', '#'],
+        [48, 'https://drive.google.com/file/d/1IteRkL1AV7jH4vzZ7G3vzJB9-HECRbDh/preview', 'https://drive.google.com/file/d/1LaOI2WMjnysjs_GvWFZDB_lZ0SfoYSxB/preview'],
+        [56, 'https://drive.google.com/file/d/1AqA7T8LVGcm6bM37ySpfk-cYDe5SHBvK/preview', 'https://drive.google.com/file/d/1YUmU0XheJEtEIsGYyyKBjwJoHhJll4zL/preview'],
+        [65, 'https://drive.google.com/file/d/1gnADRWiFhfKLngwhmLt-Nve9-JfKk_4Z/preview', 'https://drive.google.com/file/d/18fDQ6bdE5mcJghLEdfw8ULiCZHJmHgcA/preview'],
+        [68, 'https://drive.google.com/file/d/14kVlNGvbRFtUSIGI4qezYoDfuFwe201w/preview', 'https://drive.google.com/file/d/1xoxOtR9SFvNrILo-idGt9-4PNg-97bkC/preview'],
+        [77, 'https://drive.google.com/file/d/1E64gkJXcSd6O8TjrXeb91z1yuZDe1u9U/preview', 'https://drive.google.com/file/d/15GX5uz8LQGoh3hucVDY4mBs43fdAmwh2/preview'],
+        [83, 'https://drive.google.com/file/d/1qnKLUhnD1Sjgg-1TC2HHq0St_16KruoR/preview', 'https://drive.google.com/file/d/15aAOB08VCF-kUaJAG_zzmRSZoy9YeJtT/preview'],
+        [84, 'https://drive.google.com/file/d/1bYlLGH-TEQLxP5D68NxB9rigcwMrKu2a/preview', 'https://drive.google.com/file/d/1yQE4ipL0al6OymaRguiGBhApg7Z_3Kv1/preview'],
+        [104, 'https://drive.google.com/file/d/1XcB3fDGlIxKMEeCC1-CSKqxkoF_6f_Dy/preview', 'https://drive.google.com/file/d/1_AXKDHTMK70m75elWU8DQeeGX0cdR0a7/preview'],
+        [122, 'https://drive.google.com/file/d/1eM9yFkY1jvKJhaGX9svNwH67IMw9KTPH/preview', 'https://drive.google.com/file/d/1OAwzgB6RAhSV42_0_Shllor2X5xXWA8a/preview'],
+        [130, 'https://drive.google.com/file/d/1K_kbXxigTBzfzMU643eNaU_8Dqnn6MMp/preview', 'https://drive.google.com/file/d/10J-7F3DOQQQiiTD1xS4DRZ3d6YXa0ETY/preview'],
+        [141, 'https://drive.google.com/file/d/1vjy7U0R5na5YZcUnsl7kWvQW1ab3KDfC/preview', 'https://drive.google.com/file/d/1LLJ3SmnSi_5jwUfiaQsUGy-3SqKeliM8/preview'],
+        [148, 'https://drive.google.com/file/d/1IIwyeI_wFyIDIdKWWyp6cjOKuZh5kVWd/preview', 'https://drive.google.com/file/d/1PRk_H99WO0izBFP6L6wKqlM793ai_AIC/preview'],
+        [161, 'https://drive.google.com/file/d/1CTUTNaiYpbgF-wPwpfNjS6zeIXfqZUmz/preview', 'https://drive.google.com/file/d/1wUSf-jj56oZanvmwipsPKfKbALleMEnA/preview'],
     ],
-    "4": [
+    "5": [
         [10, 'https://drive.google.com/file/d/1Dqsgm0VvaFrM87-4BjzrcyWeVsn8YXQA/preview', 'https://drive.google.com/file/d/1DPPqh51c1TTzuaIRscf9WOp1rMbx903L/preview'],
         [25, 'https://drive.google.com/file/d/19kpWMNdApCj0GgzAmIbKGslY8fCILa39/preview', 'https://drive.google.com/file/d/1KP3aEs_TOFWBoj5BI_2RvH2l5MddvbFY/preview'],
         [27, 'https://drive.google.com/file/d/1pp4uendPHViGih4sGIidObhLVIbKm7aA/preview', 'https://drive.google.com/file/d/1JIQW6KlthN8_bxQXhNmBH50zPkrB4JQP/preview'],
@@ -131,7 +166,7 @@ const video_links = {
         [148, 'https://drive.google.com/file/d/1hftbFClyqC5QIkNskj5wx0GIFMsAMhjZ/preview', 'https://drive.google.com/file/d/1mAtJNVgqsrckq0cAq9eL4kS8ImcC6rTd/preview'],
         [161, 'https://drive.google.com/file/d/1g9bbmTZaTM0e8WLKxZMFvRU4CnkWFs3_/preview', 'https://drive.google.com/file/d/1lyCV1mnd6a-CpQEoqS7kJv98KbTJ5ReT/preview'],
     ],
-    "5": [
+    "6": [
         [10, 'https://drive.google.com/file/d/1vkaerTV_Ya5DW2Be8WjzE-jTLdkfBkPq/preview', 'https://drive.google.com/file/d/1FS-Lo-au_j4X8VwQxnWJNo_tK37jhIy2/preview'],
         [25, 'https://drive.google.com/file/d/1e89E6GHPjJ7HK82fMwexvRk8bm4b6Wif/preview', 'https://drive.google.com/file/d/1GqhRhmmcFtVgfUcDKEsh5I06boOeVgVS/preview'],
         [27, 'https://drive.google.com/file/d/1FVI9qX8vg99llhRvM4B5GjJcUtOUtlmt/preview', 'https://drive.google.com/file/d/1AZgDUweafJSZaCrLRai6I_UzcH5GV7bb/preview'],
@@ -153,7 +188,7 @@ const video_links = {
         [148, 'https://drive.google.com/file/d/1J_Qsk6rCdbsq-GxSAsW7hExV2MilFu_U/preview', 'https://drive.google.com/file/d/1re43m1gu1ByegE5l90uAOzy9O3NOzN-N/preview'],
         [161, 'https://drive.google.com/file/d/12U6RRhYcYR_tO4QT6itVrPHkkkqbRyIR/preview', 'https://drive.google.com/file/d/16VgHycDFbRV4LqmjYInWt89mVkfD_gM7/preview'],
     ],
-    "6": [
+    "7": [
         [10, 'https://drive.google.com/file/d/1fZ9Z2ieS4mnPI-9oVbS4Piy599meqByQ/preview', 'https://drive.google.com/file/d/1QOp2Chl3EXx02z5-i-u5gCjH9jF7UpBZ/preview'],
         [25, 'https://drive.google.com/file/d/1rb-R-eev5zb5Bm5NhZEriG5m9RTXVGfK/preview', 'https://drive.google.com/file/d/1fhi7du_bPiIORTZ0P2T39bQ8QmH03tYm/preview'],
         [27, 'https://drive.google.com/file/d/1TBnwGlWit7nxssacTg2rvG8LEbRH2UUb/preview', 'https://drive.google.com/file/d/1HNdDKQ72DGRbaNxkOLTaxc9RM_nNn2DJ/preview'],
@@ -174,5 +209,51 @@ const video_links = {
         [141, 'https://drive.google.com/file/d/1Kk3_ykPyv2RBxGVm7qi8M6-ce3Y4tox1/preview', 'https://drive.google.com/file/d/1QBn18MOm4TDcYJNpEUlYw6PIYJ3gA_E_/preview'],
         [148, 'https://drive.google.com/file/d/1-_rbNqLwHE1elHFxLeBERadWkfFCSspb/preview', 'https://drive.google.com/file/d/1si0d00jQVUvPjZzlUMMgR2ARex2UmIac/preview'],
         [161, 'https://drive.google.com/file/d/1RDCpIuiywXrWJ5cmISav0N-cBQB5JZeD/preview', 'https://drive.google.com/file/d/1ao23IW0_Dmgiz5f-QAI01sMBDoNbN89Z/preview'],
-    ]
+    ],
+    "8" : [
+        // scene-ID, near-to-far-vid-link, fix-rand-vid-link (NOTE: only has rand order as top-down)
+        [10, '', 'https://drive.google.com/file/d/12fIJHWb6wBiFsU7-ZWjgdzusMKW0-NJp/preview'],
+        [25, '', 'https://drive.google.com/file/d/1994DFwYVFGq--1qODxfcU-elTf14MVoM/preview'],
+        [27, '', 'https://drive.google.com/file/d/1D1XDzPen1G8MDYvE8I3-VhozuvNQhtsu/preview'],
+        [33, '', 'https://drive.google.com/file/d/1MwVI3eGh0p2Rj7hS3rwrFMIHCDCuwXJv/preview'],
+        [36, '', 'https://drive.google.com/file/d/1i2PDVnvSOty99brC68wFRaI6Yo7whsE7/preview'],
+        [38, '', 'https://drive.google.com/file/d/1p0SriKV4JjvRlnp_Aa69YEBWwHouesz7/preview'],
+        [39, '', 'https://drive.google.com/file/d/1m-eNCEexnQy-brKdK7hjg4WTCX08j5mv/preview'],
+        [48, '', 'https://drive.google.com/file/d/19mVDP17obJ9cH0w38AUvoPbHlLMrJ3Tn/preview'],
+        [56, '', 'https://drive.google.com/file/d/1CvUNihOsntoEUhwUD6adIzmkidd2gTId/preview'],
+        [65, '', 'https://drive.google.com/file/d/1W32zkOQkdSaD6QDUrkoco_F-dE-tor2D/preview'],
+        [68, '', 'https://drive.google.com/file/d/1TDpHQ_Tj15HSKRbhTs31t7Djk_SjSE2q/preview'],
+        [77, '', 'https://drive.google.com/file/d/1U0AMXoKb3Xqs3T2hb3f12r0-soZl2K3i/preview'],
+        [83, '', 'https://drive.google.com/file/d/1Pu5ghkaEeVm_EKEJ44DZorSnIeZQwZI2/preview'],
+        [84, '', 'https://drive.google.com/file/d/12-c75_VlSFKNJF6IJkfO0f0BKOXKLUd0/preview'],
+        [104, '', 'https://drive.google.com/file/d/1neCTx0zYuOGsQ1r3i_4kH0KwCREFPMi2/preview'],
+        [122, '', 'https://drive.google.com/file/d/1R-_vn7T6ag6Ja-rT2aGFraCO4kIEKrFr/preview'],
+        [130, '', 'https://drive.google.com/file/d/1WL_AnE1uXy6tXyGDdLpGIiUWcBU75Ep4/preview'],
+        [141, '', 'https://drive.google.com/file/d/1BXnWwJyF1dae_6WNr8QUxd6ciZEq9w_E/preview'],
+        [148, '', 'https://drive.google.com/file/d/1N85p_KE71ThBAYgo3vlDSE5Z-h4BL2Gx/preview'],
+        [161, '', 'https://drive.google.com/file/d/1wou7Loh397q62U2fXN1q658_kRb4iM0V/preview'],
+    ],
+    "9" : [
+        // scene-ID, near-to-far-vid-link, fix-rand-vid-link (NOTE: only has rand order as top-down)
+        [10, '', 'https://drive.google.com/file/d/12fIJHWb6wBiFsU7-ZWjgdzusMKW0-NJp/preview'],
+        [25, '', 'https://drive.google.com/file/d/1994DFwYVFGq--1qODxfcU-elTf14MVoM/preview'],
+        [27, '', 'https://drive.google.com/file/d/1D1XDzPen1G8MDYvE8I3-VhozuvNQhtsu/preview'],
+        [33, '', 'https://drive.google.com/file/d/1MwVI3eGh0p2Rj7hS3rwrFMIHCDCuwXJv/preview'],
+        [36, '', 'https://drive.google.com/file/d/1i2PDVnvSOty99brC68wFRaI6Yo7whsE7/preview'],
+        [38, '', 'https://drive.google.com/file/d/1p0SriKV4JjvRlnp_Aa69YEBWwHouesz7/preview'],
+        [39, '', 'https://drive.google.com/file/d/1m-eNCEexnQy-brKdK7hjg4WTCX08j5mv/preview'],
+        [48, '', 'https://drive.google.com/file/d/19mVDP17obJ9cH0w38AUvoPbHlLMrJ3Tn/preview'],
+        [56, '', 'https://drive.google.com/file/d/1CvUNihOsntoEUhwUD6adIzmkidd2gTId/preview'],
+        [65, '', 'https://drive.google.com/file/d/1W32zkOQkdSaD6QDUrkoco_F-dE-tor2D/preview'],
+        [68, '', 'https://drive.google.com/file/d/1TDpHQ_Tj15HSKRbhTs31t7Djk_SjSE2q/preview'],
+        [77, '', 'https://drive.google.com/file/d/1U0AMXoKb3Xqs3T2hb3f12r0-soZl2K3i/preview'],
+        [83, '', 'https://drive.google.com/file/d/1Pu5ghkaEeVm_EKEJ44DZorSnIeZQwZI2/preview'],
+        [84, '', 'https://drive.google.com/file/d/12-c75_VlSFKNJF6IJkfO0f0BKOXKLUd0/preview'],
+        [104, '' ,'https://drive.google.com/file/d/1neCTx0zYuOGsQ1r3i_4kH0KwCREFPMi2/preview'], 
+        [122, '' ,'https://drive.google.com/file/d/1R-_vn7T6ag6Ja-rT2aGFraCO4kIEKrFr/preview'], 
+        [130, '' ,'https://drive.google.com/file/d/1WL_AnE1uXy6tXyGDdLpGIiUWcBU75Ep4/preview'],
+        [141, '' ,'https://drive.google.com/file/d/1BXnWwJyF1dae_6WNr8QUxd6ciZEq9w_E/preview'], 
+        [148, '' ,'https://drive.google.com/file/d/1N85p_KE71ThBAYgo3vlDSE5Z-h4BL2Gx/preview'], 
+        [161, '' ,'https://drive.google.com/file/d/1wou7Loh397q62U2fXN1q658_kRb4iM0V/preview'],
+    ],
 }
