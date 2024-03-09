@@ -29,5 +29,5 @@ $('.annotations').click(function(){
             $(this).html(_html(annotations[curr_id])).fadeIn(timer);
             current_ann_ele = curr_id;
         });
-    }
+    }    
 });

@@ -102,7 +102,7 @@
               <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">The
                   University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
               <br>
-              <span id="accepted-conference" class="author-block"><br>In Submission</span>
+              <!-- span id="accepted-conference" class="author-block"><br>In Submission</span -->
             </div>
 
             <div class="column has-text-centered">
@@ -121,7 +121,7 @@
 
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="#code" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -164,14 +164,29 @@
     </div>
   </section>
 
+  <section id="scenes" class="section">
+    <div class="container is-max-desktop">
+      <!-- 20xScenes. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-justified">
+            <img src="assets/images/gto.jpg" alt="gto">
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>  
+
   <section class="section">
     <div class="container is-max-desktop">
 
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <div class="publication-video">
-<!--            <iframe src="https://www.youtube.com/embed/-kcaEeloK3g?rel=0&amp;showinfo=0" frameborder="0"-->
-<!--                    allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/D-ocFqsryBQ?si=FmaPAFJcLLgKlMob"
+             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+             allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -180,8 +195,47 @@
   </section>
 
   <!--VIDEOS OF RESULTS -->
+  <section class="section">
+    <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">SceneReplica Experiments</h3>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="publication-video">
+          <iframe src="https://drive.google.com/file/d/15LcsuBJjX8J20CjmgEj-W2fFiFt4yg6k/preview" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <h3 class="title is-3 has-text-centered">More videos are available <a href="./scene-videos">here</a></h3>
+  </div>
+  </section>  
 
   <!--VIDEOS OF FAILURES -->
+  <section class="section">
+    <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">Shelf Experiments</h3>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="publication-video">
+          <iframe src="https://drive.google.com/file/d/1xrUhtgsCTlRx_5HgvMX2nc69qAKKRDnc/preview" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  <section class="section" id="contact">
+    <div class="container is-max-desktop">
+
+      <h2 class="title">References</h2>
+      <p>1. SceneReplica: Benchmarking Real-World Robot Manipulation by Creating Reproducible Scenes <br>
+        Ninad Khargonkar, Sai Haneesh Allu, Yangxiao Lu, Jishnu Jaykumar P, Balakrishnan Prabhakaran, Yu Xiang <br>
+        In International Conference on Robotics and Automation (ICRA), 2024.</p>
+    </div>
+  </section>
+    
 
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop">
@@ -212,8 +266,8 @@
       <div class="is-vcentered interpolation-panel">
         <div class="container content">
           <p style="font-size: 16px">
-            This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract
-            number HR00112220005.
+            This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program 
+            under contract number HR00112220005 and the Sony Research Award Program.
           </p>
         </div>
       </div>
@@ -235,6 +289,7 @@
 <script defer src="./assets/js/fontawesome.all.min.js"></script>
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
+<script src="./assets/js/leaderboard-info.js"></script>
 <script src="./assets/js/index.js"></script>
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
