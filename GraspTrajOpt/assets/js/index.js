@@ -10,6 +10,7 @@ function _html(ann){
 }
 
 function process_vid_link(id, category, vli) {
+    console.log(category)
     window.localStorage.setItem("cat", category);
     window.localStorage.setItem("id", id);
     window.localStorage.setItem('vli', vli);
