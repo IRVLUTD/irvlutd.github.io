@@ -33,22 +33,32 @@ function get_leaderboard_entry(idx, entry) {
     let row_prefix = `<td>${idx + 1}</td>`
     let th_n2f_content = ``
     let th_frnd_content = ``
+    let display_n2f = true
+    let display_frnd = true
     for (var i = 0; i < n; i += 1) {
+    //  Don't display an order's results if its grasping and pick and place success are -, -
+    // meaning the corresponding order is not supported by the row method / pipeline
         entry[i] = entry[i].replace(/@(\d+)@/g, '<a href="#bib-$1"> [$1]</a>');
         if (i >= 0 && i < 4) {
             row_prefix += `<td>${entry[i]}</td>`;
         } else if (i >= 4 && i < 8) {
-            th_n2f_content += `<td>${entry[i]}</td>`;
+            display_n2f = (entry[6] != '-' && entry[7] != '-')
+            th_n2f_content += display_n2f ? `<td>${entry[i]}</td>` : '';
         } else if (i >= 8 && i < n) {
-            th_frnd_content += `<td>${entry[i]}</td>`;
+            display_frnd = (entry[10] != '-' && entry[11] != '-')
+            th_frnd_content += display_frnd ? `<td>${entry[i]}</td>` : '';
         }
+
     }
 
-    th_n2f_content += get_link(idx + 1, 'Near-to-Far', 1)
-    th_frnd_content += get_link(idx + 1, 'Fixed-Random', 2)
+    th_n2f_content += (display_n2f) ? get_link(idx + 1, 'Near-to-Far', 1) : ''
+    th_frnd_content += (display_frnd) ? get_link(idx + 1, 'Fixed-Random', 2) : ''
+
+    let n2f_html = (display_n2f) ? `<tr>${row_prefix}${th_n2f_content}</tr>` : ''
+    let frnd_html = (display_frnd) ? `<tr>${row_prefix}${th_frnd_content}</tr>` : ''
 
     // return `<tr><th>${idx+1}</th>${th_content}</tr>` Use for rank
-    return `<tr>${row_prefix}${th_n2f_content}</tr><tr>${row_prefix}${th_frnd_content}</tr>`
+    return `${n2f_html}${frnd_html}`
 }
 
 $(document).ready(function () {
