@@ -6,7 +6,7 @@
   <meta name="keywords" content="NIDS-Net, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, NIDS-Net, Instance Detection, Instance Segmentation, Novel Instance">
   <meta name="description" content="Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation">
   <meta name="author" content="Yangxiao Lu,  Jishnu Jaykumar P, Yunhui Guo, Nicholas Ruozzi, Yu Xiang">
-  <title>NIDS-Net</title>
+  <title id="title" project-name="NIDSNet">NIDS-Net</title>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CFGPJHLM4C"></script>
 <script>
@@ -26,14 +26,9 @@
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="icon" href="#">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./assets/js/fontawesome.all.min.js"></script>
-  <script src="./assets/js/bulma-carousel.min.js"></script>
-  <script src="./assets/js/bulma-slider.min.js"></script>
-  <script src="./assets/js/index.js"></script>
 </head>
 <body>
 
@@ -42,28 +37,65 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title"> <span class="small-caps">Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a target="_blank" href="https://youngsean.github.io/">Yangxiao Lu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-              <a target="_blank" href="https://jishnujayakumar.github.io/">Jishnu Jaykumar P</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <span class="author-block">
-                <a target="_blank" href="https://yunhuiguo.github.io/">Yunhui Guo</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </span>
-              <span class="author-block">
-                <a target="_blank" href="https://personal.utdallas.edu/~nicholas.ruozzi/">Nicholas Ruozzi</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </span>
-              <span class="author-block">
-              <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a>
-            </span>
-          </div>
+          <h1 class="title is-1 publication-title"> <span>Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation</h1>
+            <div class="is-size-6 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                  <div class="column">
+                    <div class="center">
+                      <div>
+                        <a target="_blank" href="https://youngsean.github.io">
+                          <img class="display-image author-image center"
+                            src="../assets/images/authors/yangxiao_lu.webp"> <br>Yangxiao Lu</a></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://jishnujayakumar.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar
+                        P</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://yunhuiguo.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/yunhui_guo.webp"> <br>Yunhui Guo</a></span>
+                    </div>
+                  </div>
+                </div>
 
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<!--            <span class="author-block"><sup>2</sup><a target="_blank" href="https://about.meta.com/">Meta</a></span>-->
-            <!-- <span id="accepted-conference" class="author-block"><br>In arXiv</span> -->
-            <br><span id="accepted-conference" class="author-block"><br>arXiv, 2024</span>
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~nicholas.ruozzi/"><img
+                          class="author-image center" src="../assets/images/authors/nicholas_ruozzi.webp"><br>Nicholas Ruozzi</a></span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
+            <span id="accepted-conference" class="author-block">arXiv, 2024<br></span>
           </div>
 
           <div class="column has-text-centered">
@@ -330,19 +362,19 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop">
-    <h2 class="title">Citation (BibTeX) </h2>
+    <h2 class="title has-text-centered">BibTeX</h2>
     <span>Please cite <span class="small-caps">NIDS-Net</span> if it helps your research:</span>
-    <pre><code>
-      @misc{lu2024adapting,
-      title={Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation},
-      author={Yangxiao Lu and Jishnu Jaykumar P and Yunhui Guo and Nicholas Ruozzi and Yu Xiang},
-      year={2024},
-      eprint={2405.17859},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-      }
-    </code></pre>
-  </div>
+    <div class="bib-container">
+    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{lu2024adapting,
+title={Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation},
+author={Yangxiao Lu and Jishnu Jaykumar P and Yunhui Guo and Nicholas Ruozzi and Yu Xiang},
+year={2024},
+eprint={2405.17859},
+archivePrefix={arXiv},
+primaryClass={cs.CV}
+}</code></pre>
+    </div>
+</div>
 </section>
 
 <section class="section" id="contact">
@@ -371,14 +403,20 @@
 <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
-      <a target="_blank" href="https://arxiv.org/pdf/2211.11679.pdf" class="large-font bottom_buttons black-font">
-        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
-      </a>
-      <br>
-      <p>Last updated on 23-Mar-2023 | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a>.</p>
+      <p id="website-template-credits">
+        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
     </div>
   </div>
 </footer>
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/index.js"></script>
+
+
 </html>
