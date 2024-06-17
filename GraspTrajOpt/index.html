@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords"
+    content="GraspTrajOpt, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Dataset Construction, Sim-to-Real">
+  <meta name="description" content="Grasping Trajectory Optimization with Point Clouds">
+  <meta name="author" content="Yu Xiang, Sai Haneesh Allu, Rohith Peddi, Tyler Summers, Vibhav Gogate">
+  <title id="title" project-name="GraspTrajOpt">Grasping Trajectory Optimization with Point Clouds</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCG42Z51TG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-WCG42Z51TG');
+  </script>
+
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"> Grasping Trajectory Optimization with Point Clouds</h1>
+
+            <!--AUTHOR INFORMATION -->
+
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br><span class="is-size-6">Yu<br>Xiang</span> </a>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://www.linkedin.com/in/sai-haneesh-allu">
+                        <img class="display-image author-image center"
+                             src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai Haneesh<br>Allu</span> </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://www.linkedin.com/in/rohithpeddi/">
+                        <img class="display-image author-image center"
+                             src="../assets/images/authors/rohith_peddi.webp"><br><span class="is-size-6">Rohith<br>Peddi</span> </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/">
+                        <img class="display-image author-image center"
+                             src="../assets/images/authors/tyler_summers.webp"><br><span class="is-size-6">Tyler<br>Summers</span> </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~vibhav.gogate/">
+                        <img class="display-image author-image center"
+                             src="../assets/images/authors/vibhav_gogate.webp"><br><span class="is-size-6">Vibhav<br>Gogate</span> </a>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">The
+                  University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <br>
+              <!-- span id="accepted-conference" class="author-block"><br>In Submission</span -->
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2403.05466"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce a new trajectory optimization method for robotic grasping based on a point-cloud
+              representation of robots and task spaces. In our method, robots are represented by 3D points on their
+              link surfaces. The task space of a robot is represented by a point cloud that can be obtained from depth
+              sensors. Using the point-cloud representation, goal reaching in grasping can be formulated as point
+              matching, while collision avoidance can be efficiently achieved by querying the signed distance values
+              of the robot points in the signed distance field of the scene points. Consequently, a constrained
+              non-linear optimization problem is formulated to solve the joint motion and grasp planning problem.
+              The advantage of our method is that the point-cloud representation is general to be used with any robot
+              in any environment. We demonstrate the effectiveness of our method by conducting experiments on a tabletop
+              scene and a shelf scene for grasping with a Fetch mobile manipulator and a Franka Panda arm.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+  <section id="scenes" class="section">
+    <div class="container is-max-desktop">
+      <!-- 20xScenes. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="content has-text-justified">
+            <img src="assets/images/gto.jpg" alt="gto">
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>  
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/D-ocFqsryBQ?si=FmaPAFJcLLgKlMob"
+             title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+             allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!--VIDEOS OF RESULTS -->
+  <section class="section">
+    <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">SceneReplica Experiments</h3>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="publication-video">
+          <iframe src="https://drive.google.com/file/d/15LcsuBJjX8J20CjmgEj-W2fFiFt4yg6k/preview" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <h3 class="title is-3 has-text-centered">More videos are available <a href="./scene-videos">here</a>
+      <span class="icon scene-video-link" onclick="process_vid_link('1', 'Near-to-Far', '1')"></span>
+    </h3>
+  </div>
+  </section>  
+
+  <!--VIDEOS OF FAILURES -->
+  <section class="section">
+    <div class="container is-max-desktop">
+    <h3 class="title is-3 has-text-centered">Shelf Experiments</h3>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="publication-video">
+          <iframe src="https://drive.google.com/file/d/1xrUhtgsCTlRx_5HgvMX2nc69qAKKRDnc/preview" frameborder="0"
+                  allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  <section class="section" id="contact">
+    <div class="container is-max-desktop">
+
+      <h2 class="title">References</h2>
+      <p>1. SceneReplica: Benchmarking Real-World Robot Manipulation by Creating Reproducible Scenes <br>
+        Ninad Khargonkar, Sai Haneesh Allu, Yangxiao Lu, Jishnu Jaykumar P, Balakrishnan Prabhakaran, Yu Xiang <br>
+        In International Conference on Robotics and Automation (ICRA), 2024.</p>
+    </div>
+  </section>
+    
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop">
+      <h2 class="title">BibTeX</h2>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button></button><code>@misc{xiang2024grasping,
+      title={Grasping Trajectory Optimization with Point Clouds}, 
+      author={Yu Xiang and Sai Haneesh Allu and Rohith Peddi and Tyler Summers and Vibhav Gogate},
+      year={2024},
+      eprint={2403.05466},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container is-max-desktop">
+
+      <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Yu Xiang: <a target="_blank"
+          href="mailto:yu.xiang@utdallas.edu">yu.xiang@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgements</h2>
+      <div class="is-vcentered interpolation-panel">
+        <div class="container content">
+          <p style="font-size: 16px">
+            This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program 
+            under contract number HR00112220005 and the Sony Research Award Program.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<script src="./assets/js/leaderboard-info.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="./assets/js/index.js"></script>
+
+</html>
