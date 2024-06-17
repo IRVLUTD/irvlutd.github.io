@@ -1,187 +1,251 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose Tracking of Hand-Object Interaction</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<style>
-h2 {
-  font-family: 'Rubik', sans-serif;
-  font-size: 40px;
-  font-weight: 300;
-  letter-spacing: -1px;
-  margin-bottom: 1rem;
-}
-h3 {
-  margin-bottom: 1rem;
-}
-h4 {
-  margin-bottom: 1rem;
-}
-video {
-  width: 100%;
-  height: 100%;
-}
-code {
-  background-color: #f5f5f5;
-  display: block;
-  padding: 20px;
-  white-space: pre-wrap;
-}
-.container {
-  padding: 40px 15px;
-}
-.center {
-  text-align: center;
-}
-.underline {
-  text-decoration: underline;
-}
-.nowrap {
-  white-space: nowrap;
-}
-.authors {
-  line-height: 2;
-  font-size: 18px;
-}
-.section {
-  padding: 10px 0 30px;
-}
-.content {
-  padding: 10px 0;
-}
-.video {
-  padding: 20px 0 20px;
-}
-.image{
-  padding: 0 30px;
-}
-.image-doc{
-  padding: 0 25px;
-}
-.pipeline {
-  width: 100%;
-  height: auto;
-  padding: 0 15px;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-.pipeline img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-.embedded-video {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  border-radius: 10px !important;
-}
-.embedded-video iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-</style>
-</head>
-<body>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="content">
-        <h2 class="center content">HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose Tracking of Hand-Object Interaction</h2>
-        <div class="center content authors">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="" target="_blank">
-            <span class="nowrap">Jikai Wang<sup>1</sup></span>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="" target="_blank">
-            <span class="nowrap">Qifan Zhang<sup>1</sup></span>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://research.nvidia.com/person/yu-wei-chao" target="_blank">
-            <span class="nowrap">Yu-Wei Chao<sup>2</sup></span>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://research.nvidia.com/person/bowen-wen" target="_blank">
-            <span class="nowrap">Bowen Wen<sup>2</sup></span>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://profiles.utdallas.edu/xguo" target="_blank">
-            <span class="nowrap">Xiaohu Guo<sup>1</sup></span>
-          </a>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="https://yuxng.github.io" target="_blank">
-            <span class="nowrap">Yu Xiang<sup>1</sup></span>
-          </a>
-        </div>
-        <div class="center content authors">
-          <span><sup>1</sup>University of Texas at Dallas, <sup>2</sup>NVIDIA</span>
-        </div>
-        <!-- <div class="center authors">
-          <span>European Conference on Computer Vision (ECCV), 2024</span>
-        </div> -->
-      </div>
-
-      <div class="video">
-        <video autoplay="autoplay" muted="muted" loop="loop">
-          <source src="assets/videos/ho-cap-demo.mp4" type="video/mp4">
-        </video>
-      </div>
-
-      <div class="section">
-        <h3>Abstract</h3>
-        <p>
-          We introduce a data capture system and a new dataset named HO-Cap that can be used to study 3D reconstruction and pose tracking of hands and objects in videos. The capture system uses multiple RGB-D cameras and a HoloLens headset for data collection, avoiding the use of expensive 3D scanners or mocap systems. We propose a semi-automatic method to obtain annotations of shape and pose of hands and objects in the collected videos, which significantly reduces the required annotation time compared to manual labeling. With this system, we captured a video dataset of humans using objects to perform different tasks, as well as simple pick-and-place and handover of an object from one hand to the other, which can be used as human demonstrations for embodied AI and robot manipulation research. Our data capture setup and annotation framework can be used by the community to reconstruct 3D shapes of objects and human hands and track their poses in videos.
-        </p>
-      </div>
-
-      <div class="section">
-        <h3>Pipeline</h3>
-        <div class="center pipeline"><img src="./assets/images/pipeline.png" alt="Pipeline Image"></div>
-      </div>
-
-      <div class="section">
-        <h3>Object Shapes & IDs</h3>
-        <div class="center pipeline"><img src="./assets/images/object-shapes.png" alt="Object Shapes"></div>
-        <div class="center pipeline"><img src="./assets/images/object-ids.png" alt="Object IDs"></div>
-      </div>
-
-      <div class="section">
-        <h3>Paper & Document</h3>
-        <div class="row content">
-          <div class="center image-doc">
-            <a href="" target="_blank">
-              <img src="./assets/images/arxiv.png" height="176px" width="136px" alt="arXiv">
-              <br>
-              <span class="icon"> <i class="fas fa-file-pdf"></i> </span>
-              <span>arXiv</span>
-            </a>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose
+      Tracking of Hand-Object Interaction
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Rubik", sans-serif;
+      }
+      h2 {
+        font-size: 40px;
+        font-weight: 300;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+      }
+      h3,
+      h4 {
+        margin-bottom: 1rem;
+      }
+      video {
+        width: 100%;
+        height: 100%;
+      }
+      code {
+        background-color: #f5f5f5;
+        display: block;
+        padding: 20px;
+        white-space: pre-wrap;
+      }
+      .container {
+        padding: 40px 15px;
+      }
+      .center {
+        text-align: center;
+      }
+      .underline {
+        text-decoration: underline;
+      }
+      .nowrap {
+        white-space: nowrap;
+      }
+      .authors {
+        line-height: 2;
+        font-size: 18px;
+      }
+      .section {
+        padding: 10px 0 30px;
+      }
+      .content {
+        padding: 10px 0;
+      }
+      .video {
+        padding: 20px 0;
+      }
+      .image {
+        padding: 0 30px;
+      }
+      .image-doc {
+        padding: 0 25px;
+      }
+      .pipeline {
+        width: 100%;
+        height: auto;
+        padding: 0 15px;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .pipeline img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+      }
+      .embedded-video {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 56.25%;
+        overflow: hidden;
+        border-radius: 10px !important;
+      }
+      .embedded-video iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="content">
+            <h2 class="center">
+              HO-Cap: A Capture System and Dataset for 3D Reconstruction and
+              Pose Tracking of Hand-Object Interaction
+            </h2>
+            <div class="center authors">
+              <a href="" target="_blank"
+                ><span class="nowrap">Jikai Wang<sup>1</sup></span></a
+              >
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="" target="_blank"
+                ><span class="nowrap">Qifan Zhang<sup>1</sup></span></a
+              >
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href="https://research.nvidia.com/person/yu-wei-chao"
+                target="_blank"
+                ><span class="nowrap">Yu-Wei Chao<sup>2</sup></span></a
+              >
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a
+                href="https://research.nvidia.com/person/bowen-wen"
+                target="_blank"
+                ><span class="nowrap">Bowen Wen<sup>2</sup></span></a
+              >
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://profiles.utdallas.edu/xguo" target="_blank"
+                ><span class="nowrap">Xiaohu Guo<sup>1</sup></span></a
+              >
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://yuxng.github.io" target="_blank"
+                ><span class="nowrap">Yu Xiang<sup>1</sup></span></a
+              >
+            </div>
+            <div class="center authors">
+              <span
+                ><sup>1</sup>University of Texas at Dallas,
+                <sup>2</sup>NVIDIA</span
+              >
+            </div>
           </div>
-        </div>
-        <br>
-        <div class="content">
-          <h4>Citing HO-Cap</h4>
-          <p>Please cite HO-Cap if it helps your research:</p>
-          <pre><code>
-            TBD
-          </code></pre>
-        </div>
-      </div>
 
-      <div class="section">
-        <h3>Data</h3>
-        <p>The entire dataset could be downloaded from <a href="https://utdallas.box.com/v/ho-cap-dataset" target="_blank"><span class="icon"> <i class="fas fa-download"></i> </span>HO-Cap-Dataset</a>. Download all the files to <q>./data</q> folder and extract them individually.</p>
-        <p>Once you successfully download and extract the dataset, you should have a folder with the following structure:</p>
-        <pre><code>├── calibration
+          <div class="video">
+            <video autoplay muted loop>
+              <source src="assets/videos/ho-cap-demo.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <div class="section">
+            <h3>Abstract</h3>
+            <p>
+              We introduce a data capture system and a new dataset named HO-Cap
+              that can be used to study 3D reconstruction and pose tracking of
+              hands and objects in videos. The capture system uses multiple
+              RGB-D cameras and a HoloLens headset for data collection, avoiding
+              the use of expensive 3D scanners or mocap systems. We propose a
+              semi-automatic method to obtain annotations of shape and pose of
+              hands and objects in the collected videos, which significantly
+              reduces the required annotation time compared to manual labeling.
+              With this system, we captured a video dataset of humans using
+              objects to perform different tasks, as well as simple
+              pick-and-place and handover of an object from one hand to the
+              other, which can be used as human demonstrations for embodied AI
+              and robot manipulation research. Our data capture setup and
+              annotation framework can be used by the community to reconstruct
+              3D shapes of objects and human hands and track their poses in
+              videos.
+            </p>
+          </div>
+
+          <div class="section">
+            <h3>Pipeline</h3>
+            <div class="center pipeline">
+              <img src="./assets/images/pipeline.png" alt="Pipeline Image" />
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Object Shapes & IDs</h3>
+            <div class="center pipeline">
+              <img
+                src="./assets/images/object-shapes.png"
+                alt="Object Shapes"
+              />
+            </div>
+            <br />
+            <div class="center pipeline">
+              <img src="./assets/images/object-ids.png" alt="Object IDs" />
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Paper & Document</h3>
+            <div class="row content">
+              <div class="center image-doc">
+                <a href="https://arxiv.org/abs/2406.06843" target="_blank">
+                  <img
+                    src="./assets/images/arxiv.png"
+                    height="176px"
+                    width="136px"
+                    alt="arXiv"
+                  />
+                  <br />
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </div>
+            </div>
+            <br />
+            <div class="content">
+              <h4>Citing HO-Cap</h4>
+              <p>Please cite HO-Cap if it helps your research:</p>
+              <pre><code>@misc{wang2024hocap,
+  title={HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose Tracking of Hand-Object Interaction}, 
+  author={Jikai Wang and Qifan Zhang and Yu-Wei Chao and Bowen Wen and Xiaohu Guo and Yu Xiang},
+  year={2024},
+  eprint={2406.06843},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV}
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="section">
+            <h3>Data</h3>
+            <p>
+              The entire dataset could be downloaded from
+              <a
+                href="https://utdallas.box.com/v/ho-cap-release"
+                target="_blank"
+                ><span class="icon"><i class="fas fa-download"></i></span
+                >HO-Cap-Dataset</a
+              >. Download all the files to <q>./data</q> folder and extract them
+              individually.
+            </p>
+            <p>
+              Once you successfully download and extract the dataset, you should
+              have a folder with the following structure:
+            </p>
+            <pre><code>├── calibration
 ├── models
 ├── subject_1
 │   ├── 20231025_165502
@@ -190,41 +254,57 @@ code {
 └── subject_9
     ├── 20231027_123403
     ├── 20231027_123725</code></pre>
-        <p>For instructions about using the dataset please see <span><a href="https://github.com/IRVLUTD/HO-Cap" target="_blank">HO-Cap</a></span>.</p>
-      </div>
+            <p>
+              For instructions about using the dataset please see
+              <span><a href="" target="_blank">HO-Cap</a></span
+              >.
+            </p>
+          </div>
 
-      <div class="section">
-        <h3>Code</h3>
-        <div class="row content">
-          <div class="center image">
-            <a href="https://github.com/IRVLUTD/HO-Cap" target="_blank">
-              <img src="./assets/images/github-mark.png" height="64px" width="64px" alt="GitHub">
-            </a>
+          <div class="section">
+            <h3>Code (coming soon...)</h3>
+            <div class="row content">
+              <div class="center image">
+                <a href="https://github.com/IRVLUTD/HO-Cap" target="_blank"
+                  ><img
+                    src="./assets/images/github-mark.png"
+                    height="64px"
+                    width="64px"
+                    alt="GitHub"
+                /></a>
+              </div>
+              <div>
+                <span
+                  ><a href="https://github.com/IRVLUTD/HO-Cap" target="_blank"
+                    >HO-Cap</a
+                  ></span
+                >
+                <br />
+                <span
+                  >A Python package that provides evaluation and visualization
+                  tools for the HO-Cap dataset.</span
+                >
+              </div>
+            </div>
           </div>
-          <div>
-            <span><a href="https://github.com/IRVLUTD/HO-Cap" target="_blank">HO-Cap</a></span>
-            <br>
-            <span>A Python package that provides evaluation and visualization tools for the HO-Cap dataset.</span>
+
+          <div class="section">
+            <h3>Contact</h3>
+            <p>
+              Send any comments or questions to Jikai Wang:
+              <a href="mailto:jikai.wang@utdallas.edu"
+                >jikai.wang@utdallas.edu</a
+              >.
+            </p>
           </div>
+
+          <hr />
+          <p>
+            Last updated on 01-June-2024 | Template borrowed from
+            <a href="https://dex-ycb.github.io" target="_blank">DexYCB</a>.
+          </p>
         </div>
       </div>
-
-      <!-- <div class="section">
-        <h3>Video</h3>
-          <div class="embedded-video">
-            <iframe src="https://www.youtube.com/embed/Q4wyBaZeBw0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </div>
-      </div> -->
-
-      <div class="section">
-        <h3>Contact</h3>
-        <p>Send any comments or questions to Jikai Wang: <a href="mailto:jikai.wang@utdallas.edu">jikai.wang@utdallas.edu</a>.</p>
-      </div>
-
-      <hr>
-      <p>Last updated on 01-June-2024 | Template borrowed from <a href="https://dex-ycb.github.io" target="_blank">DexYCB</a>.</p>
     </div>
-  </div>
-</div>
-</body>
+  </body>
 </html>
