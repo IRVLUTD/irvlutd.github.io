@@ -3,6 +3,7 @@ $(document).ready(function() {
     var projects = {
         "FewSOL" : ["../FewSOL", "FewSOL"],
         "Proto-CLIP" : ["../Proto-CLIP", "proto-clip"],
+        "SceneReplica": ["../SceneReplica", "scene-replica"],
         "NIDSNet" : ["../NIDSNet", "NIDSNet"],
     }
 
