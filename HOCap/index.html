@@ -177,26 +177,38 @@
           </div>
 
           <div class="section">
-            <h3>Data Capture Setup</h3>
+            <h3>Data Capture Setup (9 RGB-D Cameras + HoloLens, No Mo-cap)</h3>
             <div class="center pipeline">
               <img src="./assets/images/hardware.png" alt="Hardware Image" />
             </div>
-          </div>          
-
-          <div class="section">
-            <h3>Annotation Pipeline</h3>
-            <div class="center pipeline">
-              <img src="./assets/images/pipeline.png" alt="Pipeline Image" />
-            </div>
           </div>
-
+          
           <div class="section">
-            <h3>Reconstructed Object Shapes</h3>
+            <h3>Object Shape Reconstruction using a Single Azure Camera</h3>
+            <div class="center pipeline">
+              <img
+                src="./assets/images/object_shape.png"
+                alt="Object Shape"
+              />
+            </div>            
+            <br />
             <div class="center pipeline">
               <img
                 src="./assets/images/object-shapes.png"
                 alt="Object Shapes"
               />
+            </div>
+          </div>          
+
+          <div class="section">
+            <h3>Semi-automatic Annotation Pipeline for Hand-Object Poses</h3>
+            <p> The only human annotation required is to manually prompt
+              two points for each object in the first frame to generate an initial segmentation
+              mask of the object using SAM, and label the name of the object to associate
+              it to an object in our database.
+              </p>
+            <div class="center pipeline">
+              <img src="./assets/images/pipeline.png" alt="Pipeline Image" />
             </div>
           </div>
 
