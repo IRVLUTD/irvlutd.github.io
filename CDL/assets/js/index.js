@@ -173,6 +173,13 @@ $(document).ready(function () {
         rows.sort(function (a, b) {
             var aValue = $(a).find('td').eq(column).text().toUpperCase();
             var bValue = $(b).find('td').eq(column).text().toUpperCase();
+            // Check if values are numbers
+            var aNum = parseFloat(aValue);
+            var bNum = parseFloat(bValue);
+            if (!isNaN(aNum) && !isNaN(bNum)) {
+                return isAscending ? aNum - bNum : bNum - aNum;
+            }else{
+
             if (aValue < bValue) {
                 return isAscending ? -1 : 1;
             }
@@ -180,6 +187,7 @@ $(document).ready(function () {
                 return isAscending ? 1 : -1;
             }
             return 0;
+        }
         });
 
         // Clear the table body and re-append the sorted rows
