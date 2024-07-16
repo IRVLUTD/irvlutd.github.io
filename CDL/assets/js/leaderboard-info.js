@@ -7,6 +7,8 @@ const leaderboard_entries = [
     // Model based grasping methods
 
     ['#', 'ViT-Large', 'CODA', '10', '88.97', '3.97'],
+    ['#', 'ViT-Large', 'Dual', '10', '87.56', '4.99'],
+    ['#', 'ViT-Large', 'L2P', '10', '86.36', '5.98'],
 
 
     ['#', 'ViT-Base', 'L2P', '10', '83.02', '6.06'],
@@ -38,6 +40,8 @@ const leaderboard_entries_imagenet = [
     // Model based grasping methods
 
     ['#', 'ViT-Large', 'CODA', '10', '78.79', '4.46'],
+    ['#', 'ViT-Large', 'Dual', '10', '74.95', '4.93'],
+    ['#', 'ViT-Large', 'L2P', '10', '74.19', '5.31'],
 
     ['#', 'ViT-Base', 'L2P', '10', '71.59', '5.65'],
     ['ViT-Large', 'ViT-Base', 'L2P', '10', '74.01', '4.26'],
