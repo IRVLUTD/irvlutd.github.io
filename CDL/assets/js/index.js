@@ -78,7 +78,7 @@ $(document).ready(function () {
     var tbody = table.find('tbody');
 
     // Define the default sort column index
-    var defaultSortColumn = 2; // Set it to the desired column index (0-based)
+    var defaultSortColumn = 5; // Set it to the desired column index (0-based)
 
     // Sort the default column by default
     sortTable(defaultSortColumn);
@@ -141,7 +141,7 @@ $(document).ready(function () {
     var tbody_imagenet = table_imagenet.find('tbody');
 
     // Define the default sort column index
-    var defaultSortColumn = 2; // Set it to the desired column index (0-based)
+    var defaultSortColumn = 5; // Set it to the desired column index (0-based)
 
     // Sort the default column by default
     sortTable_imagenet(defaultSortColumn);
