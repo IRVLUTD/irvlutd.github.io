@@ -39,7 +39,7 @@ const leaderboard_entries = [
 const leaderboard_entries_imagenet = [
     // Model based grasping methods
 
-    ['#', 'ViT-Large', 'CODACODA@3@', '10', '78.79', '4.46'],
+    ['#', 'ViT-Large', 'CODA@3@', '10', '78.79', '4.46'],
     ['#', 'ViT-Large', 'Dual@2@', '10', '74.95', '4.93'],
     ['#', 'ViT-Large', 'L2P@1@', '10', '74.19', '5.31'],
 
@@ -47,22 +47,22 @@ const leaderboard_entries_imagenet = [
     ['ViT-Large', 'ViT-Base', 'L2P@1@', '10', '74.01', '4.26'],
     ['#', 'ViT-Base', 'Dual@2@', '10', '72.44', '3.80'],
     ['ViT-Large', 'ViT-Base', 'Dual@2@', '10', '76.36', '4.27'],
-    ['#', 'ViT-Base', 'CODACODA@3@', '10', '75.78', '5.70'],
-    ['ViT-Large', 'ViT-Base', 'CODACODA@3@', '10', '77.95', '5.64'],
+    ['#', 'ViT-Base', 'CODA@3@', '10', '75.78', '5.70'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', '10', '77.95', '5.64'],
 
     ['#', 'ViT-Small', 'L2P@1@', '10', '61.95', '6.52'],
     ['ViT-Base', 'ViT-Small', 'L2P@1@', '10', '65.04', '7.38'],
     ['#', 'ViT-Small', 'Dual@2@', '10', '64.27', '5.93'],
     ['ViT-Base', 'ViT-Small', 'Dual@2@', '10', '67.75', '6.61'],
-    ['#', 'ViT-Small', 'CODACODA@3@', '10', '67.44', '8.52'],
-    ['ViT-Base', 'ViT-Small', 'CODACODA@3@', '10', '70.06', '8.70'],
+    ['#', 'ViT-Small', 'CODA@3@', '10', '67.44', '8.52'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', '10', '70.06', '8.70'],
 
     ['#', 'ViT-Tiny', 'L2P@1@', '10', '44.98', '8.79'],
     ['ViT-Base', 'ViT-Tiny', 'L2P@1@', '10', '51.00', '9.18'],
     ['#', 'ViT-Tiny', 'Dual@2@', '10', '46.54', '10.25'],
     ['ViT-Base', 'ViT-Tiny', 'Dual@2@', '10', '53.88', '9.60'],
-    ['#', 'ViT-Tiny', 'CODACODA@3@', '10', '50.23', '12.75'],
-    ['ViT-Base', 'ViT-Tiny', 'CODACODA@3@', '10', '53.13', '13.92'],
+    ['#', 'ViT-Tiny', 'CODA@3@', '10', '50.23', '12.75'],
+    ['ViT-Base', 'ViT-Tiny', 'CODA@3@', '10', '53.13', '13.92'],
    
    
 ]
