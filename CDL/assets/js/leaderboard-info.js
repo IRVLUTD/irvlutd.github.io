@@ -6,31 +6,31 @@
 const leaderboard_entries = [
     // Model based grasping methods
 
-    ['#', 'ViT-Large', 'CODA', '10', '88.97', '3.97'],
-    ['#', 'ViT-Large', 'Dual', '10', '87.56', '4.99'],
-    ['#', 'ViT-Large', 'L2P', '10', '86.36', '5.98'],
+    ['#', 'ViT-Large', 'CODA@3@', '10', '88.97', '3.97'],
+    ['#', 'ViT-Large', 'Dual@2@', '10', '87.56', '4.99'],
+    ['#', 'ViT-Large', 'L2P@1@', '10', '86.36', '5.98'],
 
 
-    ['#', 'ViT-Base', 'L2P', '10', '83.02', '6.06'],
-    ['ViT-Large', 'ViT-Base', 'L2P', '10', '83.78', '7.43'],
-    ['#', 'ViT-Base', 'Dual', '10', '84.66', '5.46'],
-    ['ViT-Large', 'ViT-Base', 'Dual', '10', '86.57', '5.72'],
-    ['#', 'ViT-Base', 'CODA', '10', '86.16', '5.63'],
-    ['ViT-Large', 'ViT-Base', 'CODA', '10', '87.69', '5.40'],
+    ['#', 'ViT-Base', 'L2P@1@', '10', '83.02', '6.06'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', '10', '83.78', '7.43'],
+    ['#', 'ViT-Base', 'Dual@2@', '10', '84.66', '5.46'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', '10', '86.57', '5.72'],
+    ['#', 'ViT-Base', 'CODA@3@', '10', '86.16', '5.63'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', '10', '87.69', '5.40'],
 
-    ['#', 'ViT-Small', 'L2P', '10', '77.71', '7.12'],
-    ['ViT-Base', 'ViT-Small', 'L2P', '10', '80.24', '7.31'],
-    ['#', 'ViT-Small', 'Dual', '10', '79.85', '6.12'],
-    ['ViT-Base', 'ViT-Small', 'Dual', '10', '82.29', '6.6'],
-    ['#', 'ViT-Small', 'CODA', '10', '82.18', '6.48'],
-    ['ViT-Base', 'ViT-Small', 'CODA', '10', '83.24', '7.63'],
+    ['#', 'ViT-Small', 'L2P@1@', '10', '77.71', '7.12'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', '10', '80.24', '7.31'],
+    ['#', 'ViT-Small', 'Dual@2@', '10', '79.85', '6.12'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', '10', '82.29', '6.6'],
+    ['#', 'ViT-Small', 'CODA@3@', '10', '82.18', '6.48'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', '10', '83.24', '7.63'],
 
-    ['#', 'ViT-Tiny', 'L2P', '10', '60.68', '13.98'],
-    ['ViT-Base', 'ViT-Tiny', 'L2P', '10', '67.61', '10.99'],
-    ['#', 'ViT-Tiny', 'Dual', '10', '62.63', '14.74'],
-    ['ViT-Base', 'ViT-Tiny', 'Dual', '10', '68.58', '10.79'],
-    ['#', 'ViT-Tiny', 'CODA', '10', '65.05', '13.55'],
-    ['ViT-Base', 'ViT-Tiny', 'CODA', '10', '70.05', '14.33'],
+    ['#', 'ViT-Tiny', 'L2P@1@', '10', '60.68', '13.98'],
+    ['ViT-Base', 'ViT-Tiny', 'L2P@1@', '10', '67.61', '10.99'],
+    ['#', 'ViT-Tiny', 'Dual@2@', '10', '62.63', '14.74'],
+    ['ViT-Base', 'ViT-Tiny', 'Dual@2@', '10', '68.58', '10.79'],
+    ['#', 'ViT-Tiny', 'CODA@3@', '10', '65.05', '13.55'],
+    ['ViT-Base', 'ViT-Tiny', 'CODA@3@', '10', '70.05', '14.33'],
 
    
    
@@ -39,67 +39,48 @@ const leaderboard_entries = [
 const leaderboard_entries_imagenet = [
     // Model based grasping methods
 
-    ['#', 'ViT-Large', 'CODA', '10', '78.79', '4.46'],
-    ['#', 'ViT-Large', 'Dual', '10', '74.95', '4.93'],
-    ['#', 'ViT-Large', 'L2P', '10', '74.19', '5.31'],
+    ['#', 'ViT-Large', 'CODACODA@3@', '10', '78.79', '4.46'],
+    ['#', 'ViT-Large', 'Dual@2@', '10', '74.95', '4.93'],
+    ['#', 'ViT-Large', 'L2P@1@', '10', '74.19', '5.31'],
 
-    ['#', 'ViT-Base', 'L2P', '10', '71.59', '5.65'],
-    ['ViT-Large', 'ViT-Base', 'L2P', '10', '74.01', '4.26'],
-    ['#', 'ViT-Base', 'Dual', '10', '72.44', '3.80'],
-    ['ViT-Large', 'ViT-Base', 'Dual', '10', '76.36', '4.27'],
-    ['#', 'ViT-Base', 'CODA', '10', '75.78', '5.70'],
-    ['ViT-Large', 'ViT-Base', 'CODA', '10', '77.95', '5.64'],
+    ['#', 'ViT-Base', 'L2P@1@', '10', '71.59', '5.65'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', '10', '74.01', '4.26'],
+    ['#', 'ViT-Base', 'Dual@2@', '10', '72.44', '3.80'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', '10', '76.36', '4.27'],
+    ['#', 'ViT-Base', 'CODACODA@3@', '10', '75.78', '5.70'],
+    ['ViT-Large', 'ViT-Base', 'CODACODA@3@', '10', '77.95', '5.64'],
 
-    ['#', 'ViT-Small', 'L2P', '10', '61.95', '6.52'],
-    ['ViT-Base', 'ViT-Small', 'L2P', '10', '65.04', '7.38'],
-    ['#', 'ViT-Small', 'Dual', '10', '64.27', '5.93'],
-    ['ViT-Base', 'ViT-Small', 'Dual', '10', '67.75', '6.61'],
-    ['#', 'ViT-Small', 'CODA', '10', '67.44', '8.52'],
-    ['ViT-Base', 'ViT-Small', 'CODA', '10', '70.06', '8.70'],
+    ['#', 'ViT-Small', 'L2P@1@', '10', '61.95', '6.52'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', '10', '65.04', '7.38'],
+    ['#', 'ViT-Small', 'Dual@2@', '10', '64.27', '5.93'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', '10', '67.75', '6.61'],
+    ['#', 'ViT-Small', 'CODACODA@3@', '10', '67.44', '8.52'],
+    ['ViT-Base', 'ViT-Small', 'CODACODA@3@', '10', '70.06', '8.70'],
 
-    ['#', 'ViT-Tiny', 'L2P', '10', '44.98', '8.79'],
-    ['ViT-Base', 'ViT-Tiny', 'L2P', '10', '51.00', '9.18'],
-    ['#', 'ViT-Tiny', 'Dual', '10', '46.54', '10.25'],
-    ['ViT-Base', 'ViT-Tiny', 'Dual', '10', '53.88', '9.60'],
-    ['#', 'ViT-Tiny', 'CODA', '10', '50.23', '12.75'],
-    ['ViT-Base', 'ViT-Tiny', 'CODA', '10', '53.13', '13.92'],
+    ['#', 'ViT-Tiny', 'L2P@1@', '10', '44.98', '8.79'],
+    ['ViT-Base', 'ViT-Tiny', 'L2P@1@', '10', '51.00', '9.18'],
+    ['#', 'ViT-Tiny', 'Dual@2@', '10', '46.54', '10.25'],
+    ['ViT-Base', 'ViT-Tiny', 'Dual@2@', '10', '53.88', '9.60'],
+    ['#', 'ViT-Tiny', 'CODACODA@3@', '10', '50.23', '12.75'],
+    ['ViT-Base', 'ViT-Tiny', 'CODACODA@3@', '10', '53.13', '13.92'],
    
    
 ]
 
 const references = {
-    "1": `X. Deng, A. Mousavian, Y. Xiang, F. Xia, T. Bretl, and D. Fox. Poserbpf: A rao–blackwellized
-    particle filter for 6-d object pose tracking. IEEE Transactions on Robotics, 37(5):1328–1342,
-    2021. <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseRBPF">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/posecnn-pytorch">SceneReplica Version</a> <b>]</b>`,
-    "2": `A. T. Miller and P. K. Allen. Graspit! a versatile simulator for robotic grasping. IEEE Robotics
-    & Automation Magazine, 11(4):110–122, 2004. <b>[</b> <a target="_blank" href="https://github.com/graspit-simulator">Official Code</a> <b>]</b>`,
-    "3": `I. A. Sucan, M. Moll, and L. E. Kavraki. The open motion planning library. IEEE Robotics &
-    Automation Magazine, 19(4):72–82, 2012. <b>[</b> <a target="_blank" href="https://github.com/ompl/ompl">Official Code</a> <b>]</b>`,
-    "4": `Y. Xiang, T. Schmidt, V. Narayanan, and D. Fox. Posecnn: A convolutional neural network for
-    6d object pose estimation in cluttered scenes. arXiv preprint arXiv:1711.00199, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseCNN-PyTorch">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/PoseCNN-PyTorch-NV-Release">SceneReplica Version</a> <b>]</b>`,
-    "5": `Y. Xiang, C. Xie, A. Mousavian, and D. Fox. Learning rgb-d feature embeddings for unseen
-    object instance segmentation. In Conference on Robot Learning, pages 461–470. PMLR, 2021.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/UnseenObjectClustering">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/UnseenObjectClustering">SceneReplica Version</a> <b>]</b>`,
-    "6": `A. Mousavian, C. Eppner, and D. Fox. 6-dof graspnet: Variational grasp generation for object
-    manipulation. In Proceedings of the IEEE/CVF International Conference on Computer Vision,
-    pages 2901–2910, 2019.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/6dof-graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/pytorch_6dof-graspnet">SceneReplica Version</a> <b>]</b>`,
-    "7": `M. Sundermeyer, A. Mousavian, R. Triebel, and D. Fox. Contact-graspnet: Efficient 6-dof
-    grasp generation in cluttered scenes. In 2021 IEEE International Conference on Robotics and
-    Automation (ICRA), pages 13438–13444. IEEE, 2021.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/contact_graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/contact_graspnet">SceneReplica Version</a> <b>]</b>`,
-    "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
-    <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`,
-    "9": `G. Wang, F. Manhardt, F. Tombari, and X. Ji, 
-    GDR-Net: Geometry-guided direct regression network for monocular 6d object pose estimation, 
-    in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), June 2021, pp. 16 611–16 62
-    <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">SceneReplica Version</a> <b>]</b>`,
-    "10": `J. Mahler, J. Liang, S. Niyaz, M. Laskey, R. Doan, X. Liu, J. A. Ojea,
-    and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
-    with synthetic point clouds and analytic grasp metrics”, arXiv preprint
-    arXiv:1703.09312, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
+    "1": `Zifeng Wang, Zizhao Zhang, Chen-Yu Lee, Han Zhang, Ruoxi Sun, Xiaoqi Ren, Guolong Su,
+Vincent Perot, Jennifer Dy, and Tomas Pfister. Learning to prompt for continual learning. In
+Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages
+139–149, 2022. <b>[</b> <a target="_blank" href="https://github.com/google-research/l2p">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2112.08654">Paper</a> <b>]</b>`,
+    "2": `Zifeng Wang, Zizhao Zhang, Sayna Ebrahimi, Ruoxi Sun, Han Zhang, Chen-Yu Lee, Xiaoqi
+Ren, Guolong Su, Vincent Perot, Jennifer Dy, et al. Dualprompt: Complementary prompting for
+rehearsal-free continual learning. In European Conference on Computer Vision, pages 631–648.
+Springer, 2022. <b>[</b> <a target="_blank" href="https://github.com/google-research/l2p">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2204.04799">Paper</a> <b>]</b>`,
+    "3": `James Seale Smith, Leonid Karlinsky, Vyshnavi Gutta, Paola Cascante-Bonilla, Donghyun
+Kim, Assaf Arbelle, Rameswar Panda, Rogerio Feris, and Zsolt Kira. Coda-prompt: Continual
+decomposed attention-based prompting for rehearsal-free continual learning. In Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages
+11909–11919, June 2023. <b>[</b> <a target="_blank" href="https://github.com/GT-RIPL/CODA-Prompt">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2211.13218">Paper</a><b>]</b>`,
 }
 
 const video_links = {
