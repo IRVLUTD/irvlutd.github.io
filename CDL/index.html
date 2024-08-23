@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="CDL, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, Continual Learning, knowledge Distillation, Prompt, Vision Transformer, Classification">
+  <meta name="description" content="Continual Distillation Learning">
+  <meta name="author" content="Qifan Zhang, Yunhui Guo, Yu Xiang">
+  <title id="title" project-name="CDL">CDL</title>
+  <style>
+    .table-container {
+      display: flex;
+      justify-content: center;
+    }
+    .table {
+      margin: auto;
+      display: block;
+    }
+  </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QSEEGZJDMG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QSEEGZJDMG');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning</h1>
+            <div class="is-size-6 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                  <div class="column">
+                    <div class="center">
+                      <div>
+                        <a target="_blank" href="https://irvlutd.github.io/CDL/">
+                          <img class="display-image author-image center"
+                            src="../assets/images/authors/qifan_zhang.webp"> <br>Qifan Zhang</a></span>
+                      </div>
+                    </div>
+                  </div>
+            
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://yunhuiguo.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/yunhui_guo.webp"> <br>Yunhui Guo</a></span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
+            <span id="accepted-conference" class="author-block">arXiv, 2024<br></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2407.13911" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Arxiv</span>
+                </a>
+              </span>
+
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://github.com/IRVLUTD/CDL" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+
+              <!-- Leaserboard. -->
+              <span class="link-block">
+                <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-trophy"></i>
+                  </span>
+                  <span>Results-board</span>
+                </a>
+              </span>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+<!--      <div class="columns is-centered has-text-centered">-->
+<!--        <div class="column">-->
+<!--          <div class="publication-video">-->
+<!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
+<!--            <iframe src="https://www.youtube.com/embed/CRAVObWhxLw?si=IvSbS4sgEqou8dH6"-->
+<!--            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+<!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We study the problem of Continual Distillation Learning (CDL) that considers
+Knowledge Distillation (KD) in the Continual Learning (CL) setup. A teacher
+model and a student model need to learn a sequence of tasks, and the knowledge of
+the teacher model will be distillated to the student in order to improve the student
+model. We introduce a novel method named CDL-Prompt that leverages prompt-
+based continual learning models to build the teacher-student model. We investigate
+how to utilize the prompts of the teacher model in the student model for knowledge
+distillation, and propose an attention-based prompt mapping scheme to use the
+teacher prompts for the student. We demonstrate that our method can be applied
+to different prompt-based continual learning models such as L2P, DualPrompt
+and CODA-Prompt to improve their performance using powerful teacher models.
+While recent CL methods focus on prompt learning, we show that our method can
+be utilized to build efficient CL models using prompt-based knowledge distillation.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section id="framework" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">CDL-Prompt</h2>
+        <p>CDL-Prompt is a framework for continual distillation learning that can be integrated into various prompt-based methods to improve performance.</p>
+        <div class="content has-text-justified">
+          <img src="assets/images/framework.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+<section id="scenes" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Experiment Results</h2>
+        <div class="content has-text-justified">
+          <img src="assets/images/Base_results.png" alt="CDL-Prompt(Using CODA baseline and ViT-base backbone) outperforms other prompt-based methods in both Cifar-100 and ImageNet-R datasets. Accuracy refers to the average accuracy for all 10 tasks. We train multiple times and take the average.">
+          <p class="center">CDL-Prompt(Using CODA baseline and ViT-base backbone) outperforms other prompt-based methods in both Cifar-100 and ImageNet-R datasets. Accuracy refers to the average accuracy for all 10 tasks. We train multiple times and take the average.</p>
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+<section id="leaderboard" class="section">
+  <div class="container is-max-desktop">
+    <!-- LeaderBoard. -->
+    <div class="columns">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"></span>&nbsp;More Prompt-based Models</h2>
+          
+          <span><strong>Adding more methods</strong>: Our CDL-Prompt not only uses CODA-Prompt as the baseline model but also includes result statistics from various different prompt-based methods. In the future, we will continuously add and update our CDL method on different prompt-based models.</span>
+          
+          <div class="content has-text-justified"></div>
+          <span class="link-block">
+            <a href="https://www.cs.toronto.edu/~kriz/cifar.html" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fas fa-database"></i>
+              </span>
+              <span>Cifar-100</span>
+            </a>
+          </span>
+          <div class="table-container">
+
+  
+          <table id="leaderboard-table" class="table">
+            <thead>
+              <tr>
+                <th><abbr title="Click to Sort">#</abbr></th>
+                <th><abbr title="Click to Sort">Teacher</abbr></th>
+                <th><abbr title="Click to Sort">Student</abbr></th>
+                <th><abbr title="Click to Sort">Baseline</abbr></th>
+                <th><abbr title="Click to Sort">Task-Number</abbr></th>
+                <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
+                <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
+                
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+          </div>
+          <div class="content has-text-justified"></div>
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/1409.0575" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                <i class="fas fa-database"></i>
+              </span>
+              <span>ImageNet-R</span>
+            </a>
+          </span>
+
+          <div class="table-container">
+
+  
+            <table id="leaderboard-table_imagenet" class="table">
+              <thead>
+                <tr>
+                  <th><abbr title="Click to Sort">#</abbr></th>
+                  <th><abbr title="Click to Sort">Teacher</abbr></th>
+                  <th><abbr title="Click to Sort">Student</abbr></th>
+                  <th><abbr title="Click to Sort">Baseline</abbr></th>
+                  <th><abbr title="Click to Sort">Task-Number</abbr></th>
+                  <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
+                  <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
+                  
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body_imagenet"></tbody>
+            </table>
+            </div>
+
+
+
+
+
+        </div>
+      </div>
+      <!--/ LeaderBoard. -->
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- References. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">References</h2>
+        <span><strong>Official Code</strong>: Source code from the authors of the method <br> </span>
+        <div class="content has-text-justified">
+          <ol id="references"></ol>
+        </div>
+      </div>
+    </div>
+    <!--/ References. -->
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code (coming soon...)</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/CDL"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">CDL</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The code for CDL-Prompt.
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!--/ Code. -->
+
+
+  </div>
+
+
+  
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 class="title has-text-centered">BibTeX</h2>
+    <span>Please cite <span class="small-caps">CDL</span> if it helps your research:</span>
+    <div class="bib-container">
+    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2024CDL,
+title={Continual Distillation Learning},
+author={Qifan Zhang and Yunhui Guo and Yu Xiang},
+year={2024},
+eprint={2407.13911},
+archivePrefix={arXiv},
+primaryClass={cs.CV}
+}</code></pre>
+    </div>
+</div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Qifan Zhang: <a target="_blank" href="mailto:qifan.zhang@utdallas.edu">qifan.zhang@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005 and the Sony Research Award Program.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p id="website-template-credits">
+        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+    </div>
+  </div>
+</footer> -->
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<script src="./assets/js/leaderboard-info.js"></script>
+<script src="./assets/js/index.js"></script>
+
+
+</html>

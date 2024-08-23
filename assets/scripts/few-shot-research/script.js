@@ -3,21 +3,11 @@ $(document).ready(function() {
     var projects = {
         "FewSOL" : ["../FewSOL", "FewSOL"],
         "Proto-CLIP" : ["../Proto-CLIP", "proto-clip"],
+        "SceneReplica": ["../SceneReplica", "scene-replica"],
+        "NIDSNet" : ["../NIDSNet", "NIDSNet"],
     }
 
     const current_project_name = document.getElementById("title").getAttribute("project-name");
-
-    // related research dropdown
-    const related_research = document.getElementById("related-research")
-    const related_research_home = document.getElementById("related-research-home")
-    const related_research_dropdown = document.getElementById("related-research-dropdown")
-    related_research_home.setAttribute("href", "https://jishnujayakumar.github.io");
-    related_research.innerHTML = "Related Research"
-    for (const [project_name, project_info] of Object.entries(projects)) {
-        if (project_name != current_project_name){
-            related_research_dropdown.innerHTML += "<a class='navbar-item' href='" + project_info[0] + "' target='_blank'><center>" + project_name + "</center></a>"
-        }
-    }
 
     // website templated credits
     const website_template_credits = document.getElementById("website-template-credits")
@@ -31,4 +21,19 @@ $(document).ready(function() {
         $('#last-updated').html(formattedDate);
         });
     }
+
+    // related research dropdown
+    const related_research = document.getElementById("related-research")
+    const related_research_home = document.getElementById("related-research-home")
+    const related_research_dropdown = document.getElementById("related-research-dropdown")
+    if(related_research !== null && related_research_home !== null && related_research_dropdown !== null){
+        related_research_home.setAttribute("href", "https://jishnujayakumar.github.io");
+        related_research.innerHTML = "Related Research"
+        for (const [project_name, project_info] of Object.entries(projects)) {
+            if (project_name != current_project_name){
+                related_research_dropdown.innerHTML += "<a class='navbar-item' href='" + project_info[0] + "' target='_blank'><center>" + project_name + "</center></a>"
+            }
+        }
+    }
+
   });

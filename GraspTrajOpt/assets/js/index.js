@@ -9,6 +9,14 @@ function _html(ann){
     return `<img src="${ann[0]}" alt=""><br><br><p class="has-text-centered is-active">${ann[1]}</p>`;
 }
 
+function process_vid_link(id, category, vli) {
+    window.localStorage.setItem("cat", category);
+    window.localStorage.setItem("id", id);
+    window.localStorage.setItem('vli', vli);
+    window.location.href = './scene-videos';
+}
+
+
 let ann_id = '#annotations-span';
 let default_id = `rgb-d`
 let init_css = {'font-weight': 'normal','border': 'none'}
