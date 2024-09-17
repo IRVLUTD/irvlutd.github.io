@@ -13,17 +13,11 @@
             text-align: center;
             display: table;
             opacity: 1;
-<<<<<<< HEAD
-            /* animation: fadein 3s forwards; */
-            /* background: #f5f5f5; */
             overflow: hidden;
         }
         h1 {
             font-size: 2em;
             margin-bottom: 10px;
-=======
-            animation: fadein 3s forwards;
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
         }
         h2 {
             font-weight: 300;
@@ -37,11 +31,12 @@
             vertical-align: middle;
             display: table-cell;
         }
-<<<<<<< HEAD
+
         #countdown {
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            opacity: 0; /* Initially hidden */
         }
         .block {
             position: relative;
@@ -55,59 +50,21 @@
             font-size: 1.5em;
             font-weight: bold;
             border-radius: 10px;
-            /* animation: blockUpdate 1s infinite; */
+            background: linear-gradient(to right, #ff0000, #ff0000, #ff0000); Fallback gradient
+            background-size: 200% 200%;
+            transition: background 0.5s ease;
         }
 
-        .red{
-            background-color: #ee3a03;
-        }
-        .green{
-            background-color: #00b98b;
-        }
-        .blue{
-            background-color: #0be0d6;
-        }
-        .yellow{
-            background-color: #e2cf20;
-        }
-
-        /* Animation for updating block */
-        @keyframes blockUpdate {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
         .label {
             position: absolute;
             bottom: -25px;
             font-size: 0.9em;
             color: #777;
-=======
-        #progress {
-            width: 45%;
-            margin: 0 auto;
-            border-radius: 25px;
-            background-color: #f3f2f2;
-            padding: 7px 5px;
         }
-        #fill {
-            padding: 2px 0;
-            width: 0%; /* Default to 0%, will be updated by JS */
-            border-radius: 25px;
-        }
-        #barpercent h3 {
-            color: white;
-            margin: 0; padding: 0;
-            opacity: 1;
-            animation: fadein 3s forwards;
-        }
-        @keyframes fadein  {
-            from { opacity: 0; }
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
-        }
+
         @media screen and (max-width:600px) {
             img {
-                max-width: 100%; /* Make image full width on mobile */
+                max-width: 100%;
             }
             h1 {
                 font-size: 1.3em;
@@ -116,41 +73,35 @@
                 margin: 1.1em;
                 font-size: 1.1em;
             }
-<<<<<<< HEAD
             .block {
                 width: 60px;
                 height: 60px;
                 font-size: 1.2em;
-=======
-            #progress {
-                width: 80%; /* Adjust progress bar for mobile */
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
             }
         }
     </style>
 </head>
 <body>
     <div id="main">
-<<<<<<< HEAD
-        <h1>i-Teach</h1>
+        <h1><i>i-Teach</i>: Interactive Teaching for Robot Perception using Mixed Reality</h1>
         <img src="InteractiveTeaching-main.dark.anonymous.jpg" alt="Logo Image">
-        <h2>🚧 Our website is under construction, but something amazing is coming soon! Stay tuned! 😊✨</h2>
-        
+        <h2 id="typingMessage"></h2>
+
         <!-- Countdown Timer Blocks -->
         <div id="countdown">
-            <div class="block red" id="days">
+            <div class="block" id="days">
                 <div class="time">00</div>
                 <div class="label">Days</div>
             </div>
-            <div class="block blue" id="hours">
+            <div class="block" id="hours">
                 <div class="time">00</div>
                 <div class="label">Hours</div>
             </div>
-            <div class="block green" id="minutes">
+            <div class="block" id="minutes">
                 <div class="time">00</div>
                 <div class="label">Minutes</div>
             </div>
-            <div class="block yellow" id="seconds">
+            <div class="block" id="seconds">
                 <div class="time">00</div>
                 <div class="label">Seconds</div>
             </div>
@@ -163,10 +114,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 
     <script>
+        function typingEffect(element, text, speed, callback) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            type();
+        }
+
         function countdownTimer(endDate) {
             function updateTimer() {
                 const now = new Date().getTime();
                 const timeLeft = endDate - now;
+                const totalDuration = endDate - new Date().setHours(0, 0, 0, 0); // Total duration from today midnight
+                const progressPercentage = ((totalDuration - timeLeft) / totalDuration) * 100;
 
                 if (timeLeft > 0) {
                     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
@@ -178,6 +145,13 @@
                     document.getElementById("hours").querySelector(".time").innerText = hours;
                     document.getElementById("minutes").querySelector(".time").innerText = minutes;
                     document.getElementById("seconds").querySelector(".time").innerText = seconds;
+
+                    // Apply gradient color based on progress
+                    const red = Math.max(255 - (progressPercentage * 2.55), 0);
+                    const green = Math.min(progressPercentage * 2.55, 255);
+                    const color1 = `rgb(${red}, ${green}, 0)`;
+                    const color2 = `rgb(${red}, ${green}, 0)`;
+                    
                 } else {
                     clearInterval(timerInterval);
                     document.getElementById("countdown").innerHTML = "We are live! 🎉";
@@ -189,59 +163,13 @@
 
         // Set the countdown end date (e.g., 09/22/2024)
         const endDate = new Date("2024-09-22T00:00:00").getTime();
-        countdownTimer(endDate);
-=======
-        <h1>i-Teach: Interactive Teaching for Robot Perception using Mixed Reality</h1>
-        <img src="InteractiveTeaching-main.dark.anonymous.jpg" alt="Logo Image">
-        <h2>🚧 Our website is under construction, but something amazing is coming soon! Stay tuned! 😊✨</h2>
-        <div id="progress"><div id="fill"><div id="barpercent"><h3 id="progress-text">0%</h3></div></div></div>
-        <footer>
-            <p style="font-size: 0.8em; color: #777; margin-top: 20px;">Adapted from <a href="https://github.com/YC/coming-soon" target="_blank">https://github.com/YC/coming-soon</a></p>
-        </footer>
-    </div>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    
-    <script>
-        function getProgressPercentage(startDate, endDate) {
-            const today = new Date();
-            const start = new Date(startDate);
-            const end = new Date(endDate);
 
-            // Ensure that today's date falls within the range
-            if (today < start) return 0;
-            if (today > end) return 100;
-
-            const totalDuration = end - start;
-            const elapsed = today - start;
-
-            return Math.round((elapsed / totalDuration) * 100);
-        }
-
-        function getProgressColor(percentage) {
-            const colors = ['#ff0000', '#ff8000', '#ffbf00', '#ffff00', '#bfff00', '#80ff00', '#00ff00']; // Red to Green spectrum
-            const index = Math.min(Math.floor(percentage / (100 / 7)), 6); // Divide into 7 sections
-            return colors[index];
-        }
-
-        function updateProgressBar() {
-            const progressPercentage = getProgressPercentage('2024-09-16', '2024-09-22');
-            const progressColor = getProgressColor(progressPercentage);
-
-            // Update the width and background color of the progress bar
-            const progressBar = document.getElementById('fill');
-            const progressText = document.getElementById('progress-text');
-            progressBar.style.width = progressPercentage + '%';
-            progressBar.style.backgroundColor = progressColor;
-
-            // Update the percentage text inside the progress bar
-            progressText.textContent = progressPercentage + '%';
-        }
-
-        // Call the function to update progress bar on page load
-        updateProgressBar();
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
+        // Start typing effect and then countdown timer
+        typingEffect(document.getElementById('typingMessage'), '🚧 Our website is under construction, but something amazing is coming soon! Stay tuned! 😊✨', 50, function() {
+            // Show countdown timer after typing effect
+            document.getElementById("countdown").style.opacity = 1;
+            countdownTimer(endDate);
+        });
     </script>
-
-
 </body>
 </html>
