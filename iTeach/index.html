@@ -13,7 +13,6 @@
             text-align: center;
             display: table;
             opacity: 1;
-<<<<<<< HEAD
             /* animation: fadein 3s forwards; */
             /* background: #f5f5f5; */
             overflow: hidden;
@@ -21,9 +20,6 @@
         h1 {
             font-size: 2em;
             margin-bottom: 10px;
-=======
-            animation: fadein 3s forwards;
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
         }
         h2 {
             font-weight: 300;
@@ -37,7 +33,6 @@
             vertical-align: middle;
             display: table-cell;
         }
-<<<<<<< HEAD
         #countdown {
             display: flex;
             justify-content: center;
@@ -82,28 +77,6 @@
             bottom: -25px;
             font-size: 0.9em;
             color: #777;
-=======
-        #progress {
-            width: 45%;
-            margin: 0 auto;
-            border-radius: 25px;
-            background-color: #f3f2f2;
-            padding: 7px 5px;
-        }
-        #fill {
-            padding: 2px 0;
-            width: 0%; /* Default to 0%, will be updated by JS */
-            border-radius: 25px;
-        }
-        #barpercent h3 {
-            color: white;
-            margin: 0; padding: 0;
-            opacity: 1;
-            animation: fadein 3s forwards;
-        }
-        @keyframes fadein  {
-            from { opacity: 0; }
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
         }
         @media screen and (max-width:600px) {
             img {
@@ -116,25 +89,19 @@
                 margin: 1.1em;
                 font-size: 1.1em;
             }
-<<<<<<< HEAD
             .block {
                 width: 60px;
                 height: 60px;
                 font-size: 1.2em;
-=======
-            #progress {
-                width: 80%; /* Adjust progress bar for mobile */
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
             }
         }
     </style>
 </head>
 <body>
     <div id="main">
-<<<<<<< HEAD
-        <h1>i-Teach</h1>
+        <h1><i>i-Teach</i>: Interactive Teaching for Robot Perception using Mixed Reality</h1>
         <img src="InteractiveTeaching-main.dark.anonymous.jpg" alt="Logo Image">
-        <h2>🚧 Our website is under construction, but something amazing is coming soon! Stay tuned! 😊✨</h2>
+        <h3>🚧 <b>Our website is under construction, but something amazing is coming soon! Stay tuned!</b> 😊✨</h3>
         
         <!-- Countdown Timer Blocks -->
         <div id="countdown">
@@ -190,56 +157,6 @@
         // Set the countdown end date (e.g., 09/22/2024)
         const endDate = new Date("2024-09-22T00:00:00").getTime();
         countdownTimer(endDate);
-=======
-        <h1>i-Teach: Interactive Teaching for Robot Perception using Mixed Reality</h1>
-        <img src="InteractiveTeaching-main.dark.anonymous.jpg" alt="Logo Image">
-        <h2>🚧 Our website is under construction, but something amazing is coming soon! Stay tuned! 😊✨</h2>
-        <div id="progress"><div id="fill"><div id="barpercent"><h3 id="progress-text">0%</h3></div></div></div>
-        <footer>
-            <p style="font-size: 0.8em; color: #777; margin-top: 20px;">Adapted from <a href="https://github.com/YC/coming-soon" target="_blank">https://github.com/YC/coming-soon</a></p>
-        </footer>
-    </div>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    
-    <script>
-        function getProgressPercentage(startDate, endDate) {
-            const today = new Date();
-            const start = new Date(startDate);
-            const end = new Date(endDate);
-
-            // Ensure that today's date falls within the range
-            if (today < start) return 0;
-            if (today > end) return 100;
-
-            const totalDuration = end - start;
-            const elapsed = today - start;
-
-            return Math.round((elapsed / totalDuration) * 100);
-        }
-
-        function getProgressColor(percentage) {
-            const colors = ['#ff0000', '#ff8000', '#ffbf00', '#ffff00', '#bfff00', '#80ff00', '#00ff00']; // Red to Green spectrum
-            const index = Math.min(Math.floor(percentage / (100 / 7)), 6); // Divide into 7 sections
-            return colors[index];
-        }
-
-        function updateProgressBar() {
-            const progressPercentage = getProgressPercentage('2024-09-16', '2024-09-22');
-            const progressColor = getProgressColor(progressPercentage);
-
-            // Update the width and background color of the progress bar
-            const progressBar = document.getElementById('fill');
-            const progressText = document.getElementById('progress-text');
-            progressBar.style.width = progressPercentage + '%';
-            progressBar.style.backgroundColor = progressColor;
-
-            // Update the percentage text inside the progress bar
-            progressText.textContent = progressPercentage + '%';
-        }
-
-        // Call the function to update progress bar on page load
-        updateProgressBar();
->>>>>>> 4bacfa9914440bca649dac55e363d34a5d783eb2
     </script>
 
 
