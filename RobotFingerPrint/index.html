@@ -134,7 +134,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <div class="content has-text-justified">
-          <img src="assets/images/teaser-Main.png" alt="Intro Image">
+          <img src="assets/images/teaser-wide.png" alt="Teaser Image">
         </div>
       </div>
     </div>
@@ -148,11 +148,8 @@
     <p>
       TODO:
       <ul>
-
         <li>Arxiv Paper Link</li>
-        <li>Embedded Video upload to youtube and update link</li>
-        <li>Code and Dataset description below + updated links</li>
-
+        <li>Embedded Video upload to youtube and update embed link</li>
       </ul>
     </p>
 
@@ -195,41 +192,27 @@
           <div class="column">
             <h2 id="code" class="title is-3">Code</h2>
 
-            <!-- Isaac Sim Code. -->
+            <!-- Code Repo. -->
             <div class="content has-text-justified">
               <h2 class="title is-3">
                 <span class="link-block">
-                  <a target="_blank" href="https://github.com/IRVLUTD/" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="https://github.com/IRVLUTD/robot-finger-print" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fab fa-github"></i>
                     </span>
-                    <span> <span class="small-caps">Grasp Ranking: Isaac Sim</span>
-                    </a>
-                </span>
-              </h2>
-              <p>
-                Python code
-              </p>
-            </div>
-            <!--/ Isaac Sim Code. -->
-
-            <!-- Graspit Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
-                <span class="link-block">
-                  <a target="_blank" href="https://github.com/IRVLUTD/" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                        <i class="fab fa-github"></i>
+                    <span> <span class="small-caps">
+                      IRVLUTD => robot-finger-print <a target="_blank"></a>
                     </span>
-                    <span> <span class="small-caps">Grasp Candidates: Graspit!-based generation</span>
-                    </a>
+                  </a>
                 </span>
               </h2>
               <p>
-                Python code
+                Code repository for the project, adapted from <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/">GenDexGrasp</a>.
+                Please follow their instructions for the isaac gym grasp evaluation setup. We used a learning rate of <code>learning_rate=0.1</code> and <code>step_size=0.02</code> for the grasp evaluation params defined under the
+                <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/blob/07f9f5493045985967375cea734d1abc91d35f50/envs/tasks/grasp_test_force_barrett.py#L254">env script</a> for each gripper.
               </p>
             </div>
-            <!--/ Graspit Code. -->
+            <!--/ Code Repo. -->
 
           </div>
         </div>
@@ -252,16 +235,17 @@
             <div class="content has-text-justified">
               <h2 class="title is-3">
                 <span class="link-block">
-                  <a target="_blank" href="https://utdallas.box.com/v/multi-gripper-grasp-data/" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="https://utdallas.box.com/v/RobotFingerPrint-Data" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                         <i class="fas fa-link"></i>
                     </span>
-                    <span class="small-caps">Dataset: Grasp Files + Object 3D Models + USD</span>
+                    <span class="small-caps">Dataset: Gripper Coordinates and Surface Points</span>
                     </a>
                 </span>
               </h2>
               <p>
-                Box.com (no login required) link for the overall dataset folder. Includes the 3d models and the grasp file for each (object, gripper) pair including the negative grasps. Each pair's grasps are saved in <code>.json</code> file with the grasp poses, fall times and other details. Check out the README in the folder for more details.
+                Box.com (no login required) link for the gripper surface points coordinates and other metadata files. Please refer to the README provided in the folder for overall setup (since these files are supposed to be used with the dataset provided by <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/">GenDexGrasp</a>). 
+
               </p>
             </div>
             <!--/ Grasp Json Files. -->
