@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="RobotFingerPrint, MultiGripperGrasp, GenDexGrasp, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, Robot Perception, Object Recognition, Grasping, Multi gripper grasps, Dataset Construction, Sim-to-Real, Grasp Transfer">
+  <meta name="description" content="RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​">
+  <meta name="author" content="Ninad Khargonkar, Luis Felipe Casas, Balakrishnan Prabhakaran, Yu Xiang">
+  <title>RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/bulma-carousel.min.js"></script>
+  <script src="./assets/js/bulma-slider.min.js"></script>
+  <script src="./assets/js/index.js"></script>
+</head>
+
+<body>
+
+<!-- Authors and Paper Links to other sections on page -->
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title"> <span class="small-caps">RobotFingerPrint:</span> Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​</h1>
+          <div class="is-size-5 publication-authors">
+
+            <span class="author-block">
+              <a target="_blank" href="https://kninad.github.io">Ninad Khargonkar</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://lfcasas71.wixsite.com/luis-felipe-casas/">Luis Felipe Casas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://personal.utdallas.edu/~praba/">Balakrishnan Prabhakaran</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a>
+            </span>
+
+            
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <!-- <span class="author-block">*equal contribution</span> -->
+            <span id="accepted-conference" class="author-block"><br> Under submission to IEEE International Conference on Robotics and Automation (ICRA), 2025</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/pdf/2409.14519"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>  
+                </a>
+              </span> 
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=#code
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+
+              <!-- BibTex Link. -->
+              <span class="link-block">
+                <a href="#citation"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-quote-right"></i>
+                  </span>
+                  <span>Citation</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Video and Abstract -->
+<section id="scenes" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <img src="assets/images/teaser-wide.png" alt="Teaser Image">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>  
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!-- Abstract. -->
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce a novel representation named as the unified gripper coordinate space for grasp synthesis of multiple grippers. The space is a 2D surface of a sphere in 3D using longitude and latitude as its coordinates, and it is shared for all robotic grippers. We propose a new algorithm to map the palm surface of a gripper into the unified gripper coordinate space, and design a conditional variational autoencoder to predict the unified gripper coordinates given an input object. The predicted unified gripper coordinates establish correspondences between the gripper and the object, which can be used in an optimization problem to solve the grasp pose and the finger joints for grasp synthesis. We demonstrate that using the unified gripper coordinate space improves the success rate and diversity in the grasp synthesis of multiple grippers.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/qvyhMjGf46I?si=DK9i6INJp_0oMdiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<!-- Code Related Links -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+
+            <!-- Code Repo. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/robot-finger-print" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">
+                      IRVLUTD => robot-finger-print <a target="_blank"></a>
+                    </span>
+                  </a>
+                </span>
+              </h2>
+              <p>
+                Code repository for the project, adapted from <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/">GenDexGrasp</a>.
+                Please follow their instructions for the isaac gym grasp evaluation setup. We used a learning rate of <code>learning_rate=0.1</code> and <code>step_size=0.02</code> for the grasp evaluation params defined under the
+                <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/blob/07f9f5493045985967375cea734d1abc91d35f50/envs/tasks/grasp_test_force_barrett.py#L254">env script</a> for each gripper.
+              </p>
+            </div>
+            <!--/ Code Repo. -->
+
+          </div>
+        </div>
+        <!--/ Code. -->
+
+  </div>
+</section>
+
+
+<!-- Dataset Related Links -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Dataset. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="data" class="title is-3">Dataset</h2>
+
+            <!-- Grasp Json Files. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://utdallas.box.com/v/RobotFingerPrint-Data" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fas fa-link"></i>
+                    </span>
+                    <span class="small-caps">Dataset: Gripper Coordinates and Surface Points</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                Box.com (no login required) link for the gripper surface points coordinates and other metadata files. Please refer to the README provided in the folder for overall setup (since these files are supposed to be used with the dataset provided by <a target="_blank" href="https://github.com/tengyu-liu/GenDexGrasp/">GenDexGrasp</a>). 
+
+              </p>
+            </div>
+            <!--/ Grasp Json Files. -->
+
+          </div>
+        </div>
+        <!--/ Dataset. -->
+  </div>
+</section>
+
+<!-- CITATION -->
+<section class="section" id="citation">
+  <div class="container is-max-desktop">
+    <h2 id="bibtex" class="title">Citation (BibTeX)</h2>
+    <span>Please cite <span class="small-caps">RobotFingerPrint</span> if this work helps in your research:</span>
+    <pre><code>@inproceedings{khargonkar2024robotfingerprint,
+      title={RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​},
+      author={Khargonkar, Ninad and Casas, Luis Felipe and  and Prabhakaran, Balakrishnan and Xiang, Yu},
+      journal={arXiv preprint arXiv:2409.14519},
+      year={2024}
+    }</code></pre>
+  </div>
+</section>
+<!-- booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, -->
+
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Ninad Khargonkar: <a target="_blank" href="mailto:ninadarun.khargonkar@utdallas.edu">ninadarun.khargonkar@utdallas.edu</a> or <br>Luis Felipe Casas: <a target="_blank" href="mailto:luis.casasmurillo@utdallas.edu">Luis.CasasMurillo@UTDallas.edu</a></p>
+  </div>
+</section>
+
+<!-- Acknowledgements -->
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported by the Sony Research Award Program and the National Science Foundation (NSF) under Grant No. 2346528.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+<!-- UPDATE TIME -->
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p>Webpage last updated on 23-Sep-2024 | Template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a></p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
