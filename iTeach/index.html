@@ -131,16 +131,17 @@
             <div class="column has-text-centered">
               <div class="publication-links">
 
-                <!-- Arxiv Link. -->
-                <span class="link-block">
-                  <a target="_blank" href="#"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                    </span>
-                    <span>arXiv (coming soon..)</span>
-                  </a>
+            <!-- Arxiv Link. -->
+            <span class="link-block">
+              <a target="_blank" href="#"
+                class="external-link button is-normal is-rounded is-dark">
+                <span class="icon">
+                  <i class="ai ai-arxiv"></i>
                 </span>
+                <span>arXiv (coming soon... 🚀)</span>
+              </a>
+            </span>
+
 
                 <!-- Ar5iv Link. -->
                 <!-- <span class="link-block">
@@ -161,10 +162,11 @@
                   <span class="icon">
                     <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Supplementary (coming soon..)</span>
+                  <span>Supplementary (coming soon... 🗂️)</span>
                 </a>
               </span>
               <br>
+
 
 
                 <!-- Dataset Link. -->
@@ -255,7 +257,7 @@
       <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Abstract</h2>
+          <h2 class="title is-3">📝 Abstract</h2>
           <div class="content has-text-justified">
             <p>
               We introduce <i><b>iTeach</b></i>, a Mixed Reality (MR)
@@ -274,9 +276,9 @@ capable and adaptive in real-world environments.
           </div>
 
           <div class="hero-body has-text-centered">
-            <h1 class="title">Overview</h1>
+            <h1 class="title">🔍 Overview</h1>
             <img class="center" src="./assets/images/iteach/iteach-overview.webp" alt=""><br><br>
-            <p>
+            <p class="has-text-justified">
               iTeach system overview.
               (i) A Robot views a scene. (ii) A model (here DH-YOLO) predicts predefined objects
 (here door/handle). (iii) Scene image with predictions overlayed (SIP) are sent to HoloLens POV. (iv) User wearing HoloLens
@@ -306,8 +308,8 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
   <section class="" id="demo">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Real World Demo</h2>
-        <p>Demo video showing human interaction and learning</p>
+        <h2 class="title is-3">🌍 Real World Demo</h2>
+        <p>🎥 Demo video showing human interaction and learning</p>
       </div>
     </div>
     <div class="container is-max-desktop">
@@ -328,12 +330,11 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
   <section class="section" id="exp-setup">
     <div class="hero-body">
       <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">Our Experiment Setup</h2>
+        <div class="container is-max-desktop">
+          <h2 class="title is-3">🔬 Our Experiment Setup 🛠️</h2>
+          <img src="assets/images/iteach/iTeach-exp-setup-with-captions.webp" alt="">
+          <p class="has-text-justified">🤖 Our experimental setup included a Fetch mobile robot, a HoloLens 2 device 🥽, a Lenovo Legion Pro 7 laptop 💻 equipped with an RTX 4090 GPU, and a human instructor 👤. The laptop environment is configured with Python 3.8.10 and PyTorch 2.4.0, utilizing CUDA 12.1 and an NVIDIA GeForce RTX 4090 Laptop GPU, which has approximately 16 GB of memory.</p>
         </div>
-      </div>
-      <div class="container is-max-desktop">
-        <img src="assets/images/iteach/iTeach-exp-setup-with-captions.webp" alt="">
       </div>
     </div>
   </section>
@@ -342,38 +343,54 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
   <!-- HoloLens 2 app -->
   <section class="section" id="hololens-2-app">
     <div class="hero-body">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">HoloLens 2 App</h2>
-        </div>
-      </div>
       <div class="container is-max-desktop">
         <div class="column has-text-centered text-primary">
+          <h2 class="title is-3">🥽 HoloLens 2 App</h2>
           <p class="title is-5">(i) The user interface flow of our labeling app from the startup phase to the main menu.</p>
           <img src="assets/images/iteach/iteach-app-select-to-main-menu-2x2.webp" alt=""><br><br><br>
           <br><br>
           <p class="title is-5">(ii) Description of the main menu options in the <i>iTeachlabeller</i> app.</p>
           <img src="assets/images/iteach/iTeach-main.menu.jpg" alt=""><br><br><br>
+          <p class="has-text-justified is-3">✨ We are providing a build <a href="https://utdallas.box.com/v/iTeachLabellerApp" target="_blank" rel="noopener noreferrer">here</a> to help you get started easily 🚀, without the need to set up the environment or go through the building process again 🔧.</p>
+
         </div>
       </div>
     </div>
   </section>
   <!-- HoloLens 2 app -->
-   
-    <!-- Practical challenges -->
-    <section class="section" id="practical-challenges">
-      <div class="hero-body">
-        <div class="columns is-centered has-text-centered">
-          <div class="column">
-            <h2 class="title is-3">Practical Challenges encountered during Experiments</h2>
-          </div>
-        </div>
-        <div class="container is-max-desktop">
-          <img src="assets/images/iteach/iteach-practical-challenges-encountered.webp" alt="">
+
+  <!-- User Sample Capture Diversity -->
+  <section class="section" id="data-collection-diversity">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="column has-text-centered text-primary">
+          <h2 class="title is-3">🌟 Sample Scenarios for Data Collection</h2>
+          <p class="title is-5">(i) Diverse samples from different locations.</p>
+          <img src="assets/images/iteach/iteach-diff-places-diverse-samples.webp" alt=""><br><br><br>
+          <br><br>
+          <p class="title is-5">(ii) Different samples from the same location.</p>
+          <img src="assets/images/iteach/iteach-same-loc-diff-samples.webp" alt=""><br><br><br>
         </div>
       </div>
-    </section>
-    <!-- Practical challenges -->
+    </div>
+  </section>
+  <!-- User Sample Capture Diversity -->
+
+  <!-- Practical challenges -->
+  <section class="section" id="practical-challenges">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">⚠️ Practical Challenges Encountered During Experiments</h2>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <img src="assets/images/iteach/iteach-practical-challenges-encountered.webp" alt="">
+        <p class="has-text-justified">⚙️ Each of these challenges comes with corresponding benefits that enhance the overall use case of the system. In summary, these challenges are manageable, as demonstrated by our fully functional system ✅.</p>
+    </div>
+  </section>
+  <!-- Practical challenges -->
+    
    
     <section class="section">
       <div class="container is-max-desktop">
@@ -485,12 +502,26 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
                 </span>
               </h2>
               <p>
-                A toolkit for the <span class="">iTeach</span> dataset.
+                A toolkit for the <span class="">iTeach</span> containing inference code for DH-YOLO.
               </p>
             </div>
             <!--/ Toolkit Code. -->
   
-  
+            <!-- HuggingFace Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://huggingface.co/spaces/IRVLUTD/DH-YOLO/tree/main"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span>🤗 HuggingFace Demo</span>
+                  </a>
+                </span>
+              </h2>
+              <p>
+                The code for 🤗 space.
+              </p>
+            </div>
+            <!--/ HuggingFace Code. -->
   
             <!-- Dataloader Code. -->
             <div class="content has-text-justified">
@@ -511,6 +542,7 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
               </p>
             </div>
             <!--/ Dataloader Code. -->
+  
           </div>
         </div>
         <!--/ Code. -->
@@ -524,7 +556,7 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
   <section class="section" id="BibTeX"> 
     <div class="container is-max-desktop">
       <h2 class="title  has-text-centered">BibTeX</h2>
-      <span>Please cite <i><b>iTeach</b></i></span> if it helps your research:</span>
+      <span>Please cite <i><b>iTeach</b></i></span> if it helps your research 🙌:</span>
       <div class="bib-container">
         <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>Coming soon...</code></pre>
       </div>
@@ -533,37 +565,38 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
 
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
-
+  
       <h2 class="title">Contact</h2>
       <p>
-      <ul>
-        Inform an <a href="https://github.com/IRVLUTD/iTeach/issues">issue</a></p>
-      </ul>
-
-      <ul>
-        Join the <a href="https://github.com/IRVLUTD/iTeach/discussions">discussion forum</a>
-      </ul>
-
-      <ul>
-        Send any comments or questions to Jishnu: <a target="_blank"
-          href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
-      </ul>
-
-    </div>
+        <ul>
+          Inform an <a href="https://github.com/IRVLUTD/iTeach/issues">issue</a> 📝
+        </ul>
+  
+        <ul>
+          Join the <a href="https://github.com/IRVLUTD/iTeach/discussions">discussion forum</a> 💬
+        </ul>
+  
+        <ul>
+          Send any comments or questions to Jishnu: <a target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>📧
+        </ul>
+  
+      </div>
   </section>
+  
 
   <section class="section">
     <div class="container is-max-desktop content">
-      <h2 class="title">Acknowledgements</h2>
+      <h2 class="title has-text-centered">🙏 Acknowledgements</h2>
       <div class="is-vcentered interpolation-panel">
         <div class="container content">
           <p style="font-size: 16px">
-            This work was supported by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, and the National Science Foundation (NSF) under Grant No.2346528. We thank <a href="https://saihaneeshallu.github.io" target="_blank" rel="noopener noreferrer">Sai Haneesh Allu</a> for his assistance with the real-world experiments.
+            This work was supported by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, and the National Science Foundation (NSF) under Grant No.2346528. We thank <a href="https://saihaneeshallu.github.io" target="_blank" rel="noopener noreferrer">Sai Haneesh Allu</a> for his assistance with the real-world experiments. 🙌
           </p>
         </div>
       </div>
     </div>
   </section>
+  
 
 
   <footer class="footer">
@@ -571,14 +604,15 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
       <div class="content has-text-centered">
         <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
         <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
-      </a> -->
+        </a> -->
         <!-- <br> -->
         <p id="website-template-credits">
-          Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+          Last updated on: <span id="last-updated"></span> | Page template borrowed from 🌐
+        </p>
       </div>
     </div>
   </footer>
-
+  
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script defer src="./assets/js/fontawesome.all.min.js"></script>
