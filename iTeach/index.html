@@ -153,41 +153,74 @@
                 </a>
               </span>  -->
 
-                <!-- Supplementary Link. -->
+
+              <!-- Supplementary Link. -->
+              <span class="link-block">
+                <a target="_blank" href="#"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Supplementary (coming soon..)</span>
+                </a>
+              </span>
+              <br>
+
+
+                <!-- Dataset Link. -->
                 <span class="link-block">
-                  <a target="_blank" href="#"
-                    class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="#data" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                      <i class="fas fa-database"></i>
                     </span>
-                    <span>Supplementary (coming soon..)</span>
+                    <span>Data</span>
                   </a>
                 </span>
 
                 <!-- Code Link. -->
                 <span class="link-block">
-                  <a href="#"
-                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                  <a target="_blank" href="#code"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code (coming soon...)</span>
+                    <span>Code</span>
                   </a>
                 </span>
-                <br>
 
-                <!-- Dataset Link. -->
+
+
+                <!-- Exp-Setup Link. -->
                 <span class="link-block">
-                  <a href="#data" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="#exp-setup"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
-                      <i class="fas fa-database"></i>
+                      <i class="fas fa-cog"></i>
                     </span>
-                    <span>Data (coming soon..)</span>
+                    <span>Exp-Setup</span>
+                  </a>
+                </span>
+
+                <!-- Real World Demo Link. -->
+                <span class="link-block">
+                  <a href="#demo" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Real World Demo</span>
+                  </a>
+                </span>
+
+
+                <!--Hugging Face. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://huggingface.co/spaces/IRVLUTD/DH-YOLO" class="external-link button is-normal is-rounded is-dark">
+                    <span>🤗 HuggingFace Demo</span>
                   </a>
                 </span>
 
                 <!-- PapersWithCode Link. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a target="_blank" href="#"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
@@ -195,28 +228,17 @@
                     </span>
                     <span>paperswithcode (coming soon..)</span>
                   </a>
-                </span>
-
-
-                <!-- Real World Demo Link. -->
-                <span class="link-block">
-                  <a target="_blank" href="#demo" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-globe"></i>
-                    </span>
-                    <span>Real World Demo</span>
-                  </a>
-                </span>
+                </span> -->
 
                 <!-- FAQs. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-question"></i>
                     </span>
                     <span>FAQs</span>
                   </a>
-                </span>
+                </span> -->
               </div>
 
             </div>
@@ -249,18 +271,20 @@ the accuracy and efficiency of door and handle detection,
 highlighting the potential of MR to make robotic systems more
 capable and adaptive in real-world environments.
             </p>
-            <!-- <p>
-              We investigated (i) few-shot object classification and (ii) joint object segmentation
-              and few-shot classification with the state-of-the-art methods for few-shot learning
-              and meta-learning using our dataset. The evaluation results show that there is still
-              a large margin to be improved for few-shot object classification in robotic environments.
-            </p>
-            <p>
-              Our dataset can be used to study a set of few-shot object recognition
-              problems such as classification, detection and segmentation, shape reconstruction,
-              pose estimation, keypoint correspondences and attribute recognition.
-            </p> -->
           </div>
+
+          <div class="hero-body has-text-centered">
+            <h1 class="title">Overview</h1>
+            <img class="center" src="./assets/images/iteach/iteach-overview.webp" alt=""><br><br>
+            <p>
+              iTeach system overview.
+              (i) A Robot views a scene. (ii) A model (here DH-YOLO) predicts predefined objects
+(here door/handle). (iii) Scene image with predictions overlayed (SIP) are sent to HoloLens POV. (iv) User wearing HoloLens
+sees the same scene image (SIP) and annotates the correct labels. (v) The annotated labels with scene images are sent to a
+trainable model for fine-tuning. (vi) Goal: The predictions improve based on interactive teaching. 
+            </p>
+          </div>
+
         </div>
       </div>
       <!--/ Abstract. -->
@@ -276,10 +300,13 @@ capable and adaptive in real-world environments.
   </section>
 
 
+
+
+
   <section class="" id="demo">
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Demo</h2>
+        <h2 class="title is-3">Real World Demo</h2>
         <p>Demo video showing human interaction and learning</p>
       </div>
     </div>
@@ -297,7 +324,204 @@ capable and adaptive in real-world environments.
   </section>
 
 
-  <section class="section" id="BibTeX">
+  <!-- Our experiment setup -->
+  <section class="section" id="exp-setup">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Our Experiment Setup</h2>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <img src="assets/images/iteach/iTeach-exp-setup-with-captions.webp" alt="">
+      </div>
+    </div>
+  </section>
+  <!-- Our experiment setup -->
+
+  <!-- HoloLens 2 app -->
+  <section class="section" id="hololens-2-app">
+    <div class="hero-body">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">HoloLens 2 App</h2>
+        </div>
+      </div>
+      <div class="container is-max-desktop">
+        <div class="column has-text-centered text-primary">
+          <p class="title is-5">(i) The user interface flow of our labeling app from the startup phase to the main menu.</p>
+          <img src="assets/images/iteach/iteach-app-select-to-main-menu-2x2.webp" alt=""><br><br><br>
+          <br><br>
+          <p class="title is-5">(ii) Description of the main menu options in the <i>iTeachlabeller</i> app.</p>
+          <img src="assets/images/iteach/iTeach-main.menu.jpg" alt=""><br><br><br>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- HoloLens 2 app -->
+   
+    <!-- Practical challenges -->
+    <section class="section" id="practical-challenges">
+      <div class="hero-body">
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3">Practical Challenges encountered during Experiments</h2>
+          </div>
+        </div>
+        <div class="container is-max-desktop">
+          <img src="assets/images/iteach/iteach-practical-challenges-encountered.webp" alt="">
+        </div>
+      </div>
+    </section>
+    <!-- Practical challenges -->
+   
+    <section class="section">
+      <div class="container is-max-desktop">
+  
+        <!-- Data. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="data" class="title is-3 has-text-centered"></h2>
+            <div class="column has-text-centered">
+              <img src="assets/images/iteach/iTeach-IRVLUTD-DoorHandle-Dataset-Banner.webp" alt="">
+              <img src="https://raw.githubusercontent.com/IRVLUTD/IRVLUTDDoorHandleDataset/refs/heads/main/imgs/area-covered-for-irvlutd-doorhandle-dataset-creation.png" alt="">
+            <h3>🆕 We introduce a new  dataset collected from the <a href="https://www.utdallas.edu/" target="_blank" rel="noopener noreferrer">UT Dallas</a> campus consisting of both indoor 🏢 and outdoor 🌳 scenes.</h3>
+          </div>
+            <!-- iTeach Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3 has-text-centered">
+                <span class="link-block">
+                  <a target="_blank" href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-Dataset"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-images"></i>
+                    </span>
+                    <span>IRVLUTD-DoorHandle-Dataset 🔥</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a target="_blank" href="https://utdallas.box.com/v/iTeach-Experiment-Datasets"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-images"></i>
+                    </span>
+                    <span><i>iTeach</i>-Experiment-Datasets</span>
+                  </a>
+                </span>
+              </h2>
+              <!-- <span class="has-text-centered">iTeach</span> is licensed under <span class="underline">MIT license</span>. -->
+              <p>
+  
+              Once you successfully download and extract the dataset, you should have a folder with the following
+              structure:
+  
+              <pre><code>├── IRVLUTD-DoorHandle-Dataset/
+                    ├── train/
+                          ├── train.524.zip
+                          ├── train.1008.zip
+                          ├── train.1532.zip
+                    ├── test_dataset.256.zip
+                    ├── hololens.finetuning.data.100.zip
+                    └── <span class="red bold">README.md</span></code></pre>
+                    <!-- ├── README.md -->
+              </p>
+  
+              <p>More information can be found in the <a class="red bold"
+                  href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-DS-README" target="_blank">README.md</a>. For instructions
+                about using the dataset please see the <span><a target="_blank"
+                    href="https://pypi.org/project/IRVLUTDDoorHandleDataset" target="_blank">PyTorch Dataloader</a></span>.</p>
+              <p class="italic">
+                <span class="bold">Note</span>: Use <a target="_blank"
+                  href="https://utdallas.box.com/v/iTeach-Experiment-Datasets"><span
+                    class="">iTeach</span>-experiment-datasets</a> for experiments mentioned in the paper.
+              </p>
+            </div>
+            <!--/ iTeach Code. -->
+          </div>
+        </div>
+        <!--/ Data. -->
+  
+    </section>
+  
+    <section class="section">
+      <div class="container is-max-desktop">
+  
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+  
+  
+            <!-- iTeach Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/iTeach"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class=""><i>iTeach</i></span></span>
+                  </a>
+                </span>
+              </h2>
+              <p>
+                The code for (i) iTeachLabeller app, (ii) iTeach system and (iii) iTeach experiments.
+              </p>
+            </div>
+            <!--/ iTeach Code. -->
+  
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://pypi.org/project/iteach-toolkit"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class=""><i>iTeach</i></span> Toolkit</span>
+                  </a>
+                </span>
+              </h2>
+              <p>
+                A toolkit for the <span class="">iTeach</span> dataset.
+              </p>
+            </div>
+            <!--/ Toolkit Code. -->
+  
+  
+  
+            <!-- Dataloader Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://pypi.org/project/IRVLUTDDoorHandleDataset"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class=""><i>iTeach</i></span> PyTorch Dataloader</span>
+                  </a>
+                </span>
+              </h2>
+              <p>
+                A PyTorch dataloader for the <a target="_blank" href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-Dataset" class="external-link is-normal is-rounded is-dark">
+                  <span>IRVLUTD-DoorHandle-Dataset</span></a>.
+              </p>
+            </div>
+            <!--/ Dataloader Code. -->
+          </div>
+        </div>
+        <!--/ Code. -->
+  
+  
+      </div>
+    </section>
+  
+  
+
+  <section class="section" id="BibTeX"> 
     <div class="container is-max-desktop">
       <h2 class="title  has-text-centered">BibTeX</h2>
       <span>Please cite <i><b>iTeach</b></i></span> if it helps your research:</span>
