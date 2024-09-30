@@ -537,11 +537,11 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
       <h2 class="title">Contact</h2>
       <p>
       <ul>
-        <!-- Inform an <a href="https://github.com/IRVLUTD/Proto-CLIP/issues">issue</a></p> -->
+        Inform an <a href="https://github.com/IRVLUTD/iTeach/issues">issue</a></p>
       </ul>
 
       <ul>
-        <!-- Join the <a href="https://github.com/IRVLUTD/Proto-CLIP/discussions">discussion forum</a> -->
+        Join the <a href="https://github.com/IRVLUTD/iTeach/discussions">discussion forum</a>
       </ul>
 
       <ul>
@@ -588,59 +588,5 @@ trainable model for fine-tuning. (vi) Goal: The predictions improve based on int
 <script src="./assets/js/iv-viewer.js"></script>
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
-<script>
-  // carousel
-  bulmaCarousel.attach('#slider', {
-    slidesToScroll: 1,
-    slidesToShow: 1,
-    infinite: true,
-    autoplay: true,
-  });
-  var slideIndex = 1;
-  showSlides(slideIndex);
-
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
-
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("item-slide");
-    var captionText = document.getElementById("caption");
-    if (n > slides.length) { slideIndex = 1 }
-    if (n < 1) { slideIndex = slides.length }
-    for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-  }
-
-  const image = document.querySelector('.t-sne');
-
-  const options = {
-
-    // the initial zoom value of an image
-    zoomValue: 50,
-
-    // show/hide snap view
-    snapView: true,
-
-    // maximum percentage you can zoom an image
-    maxZoom: 300,
-
-    // wether to refresh the viewer on resize of window
-    refreshOnResize: true,
-
-    // wether to zoom in / out an image with mouse wheel
-    zoomOnMouseWheel: true
-  };
-
-  // const viewer = new ImageViewer(container, options);
-  const viewer = new ImageViewer(image, options);
-
-</script>
 
 </html>
