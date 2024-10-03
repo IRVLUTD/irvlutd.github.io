@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 
@@ -279,10 +280,19 @@ capable and adaptive in real-world environments.
             <h1 class="title">🔍 Overview</h1>
             <img class="center" src="./assets/images/iteach/iteach-overview.webp" alt=""><br><br>
             <p class="has-text-justified">
-            <p class="has-text-justified">
               <b>🤖 iTeach system overview.</b>
               (i) A Robot views a scene. 🌄 (ii) A model (here DH-YOLO) predicts predefined objects (here door/handle) 🚪🖐️. (iii) Scene image with predictions overlayed (SIP) are sent to HoloLens POV 🥽. (iv) User wearing HoloLens sees the same scene image (SIP) and annotates the correct labels ✍️. (v) The annotated labels with scene images are sent to a trainable model for fine-tuning ⚙️. (vi) <b>Goal🎯:</b> The predictions improve based on interactive teaching.
           </p>
+
+
+          </div>
+
+
+          <div class="hero-body has-text-centered">
+            <h1 class="title">🚀 System Workflow</h1><br>
+            <img class="center" src="./assets/images/iteach/iteach-detailed-system-flow-chart.webp" alt=""><br><br>
+            <p class="has-text-justified">🛠️ Detailed workflow of the system. ✅ Correct predictions are outlined in green, and ❌ incorrect predictions are marked in red borders.</p>
+            
 
           </div>
 
@@ -312,11 +322,7 @@ capable and adaptive in real-world environments.
       </div>
     </div>
     <div class="container is-max-desktop">
-      <div class="tabs is-centered">
-        <div class="columns is-centered has-text-centered">
-         
-        </div>
-      </div>
+
 
       <div id="demo-vid-iframe" class="hero-body">
         <div class="iframe-container"><iframe src="https://www.youtube.com/embed/fusb4CkM_IE?rel=0&amp;showinfo=0&amp;vq=hd1080" frameborder="0"
@@ -324,7 +330,9 @@ capable and adaptive in real-world environments.
       </div>
   </section>
 
-
+  <br>
+  <br>
+  <br>
   <!-- Our experiment setup -->
   <section class="section" id="exp-setup">
     <div class="hero-body">
@@ -341,13 +349,12 @@ capable and adaptive in real-world environments.
 
   <!-- HoloLens 2 app -->
   <section class="section" id="hololens-2-app">
-    <div class="hero-body">
+    <div class="">
       <div class="container is-max-desktop">
         <div class="column has-text-centered text-primary">
           <h2 class="title is-3">🥽 HoloLens 2 App</h2>
           <p class="title is-5">(i) The user interface flow of our labelling app from the startup phase to the main menu.</p>
           <img src="assets/images/iteach/iteach-app-select-to-main-menu-2x2.webp" alt=""><br><br><br>
-          <br><br>
           <p class="title is-5">(ii) Description of the main menu options in the <i>iTeachlabeller</i> app.</p>
           <img src="assets/images/iteach/iTeach-main.menu.jpg" alt=""><br><br><br>
           <p class="has-text-justified is-3">✨ We are providing a build <a href="https://utdallas.box.com/v/iTeachLabellerApp" target="_blank" rel="noopener noreferrer">here</a> to help you get started easily 🚀, without the need to set up the environment or go through the building process again 🔧.</p>
@@ -360,13 +367,12 @@ capable and adaptive in real-world environments.
 
   <!-- User Sample Capture Diversity -->
   <section class="section" id="data-collection-diversity">
-    <div class="hero-body">
+    <div class="">
       <div class="container is-max-desktop">
         <div class="column has-text-centered text-primary">
           <h2 class="title is-3">🌟 Sample Scenarios for Data Collection</h2>
           <p class="title is-5">(i) Diverse samples from different locations.</p>
-          <img src="assets/images/iteach/iteach-diff-places-diverse-samples.webp" alt=""><br><br><br>
-          <br><br>
+          <img src="assets/images/iteach/iteach-diff-places-diverse-samples.webp" alt=""><br><br>
           <p class="title is-5">(ii) Different samples from the same location.</p>
           <img src="assets/images/iteach/iteach-same-loc-diff-samples.webp" alt=""><br><br><br>
         </div>
@@ -377,7 +383,7 @@ capable and adaptive in real-world environments.
 
   <!-- Practical challenges -->
   <section class="section" id="practical-challenges">
-    <div class="hero-body">
+    <div class="">
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">⚠️ Practical Challenges Encountered During Experiments</h2>
@@ -556,7 +562,7 @@ capable and adaptive in real-world environments.
 
   <section class="section" id="BibTeX"> 
     <div class="container is-max-desktop">
-      <h2 class="title  has-text-centered">📚 BibTeX</h2>
+      <h2 class="title  has-text-centered">BibTeX</h2>
       <span>Please cite <i><b>iTeach</b></i></span> if it helps your research 🙌:</span>
       <div class="bib-container">
         <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>Coming soon...</code></pre>
@@ -567,7 +573,7 @@ capable and adaptive in real-world environments.
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
   
-      <h2 class="title">📬 Contact</h2>
+      <h2 class="title">Contact</h2>
       <p>
         <ul>
           Inform an <a href="https://github.com/IRVLUTD/iTeach/issues">issue</a> 📝
