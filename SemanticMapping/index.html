@@ -72,10 +72,20 @@
 
             <div class="column has-text-centered">
               <div class="publication-links">
-
                 <!-- Arxiv Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://arxiv.org/pdf/2409.15493"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2409.15493"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -91,6 +101,16 @@
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href=#auto-exploration class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Real World Exploration</span>
                   </a>
                 </span>
 
@@ -127,19 +147,6 @@
   <!-- Video and Abstract -->
   <section id="scenes" class="section">
     <div class="container is-max-desktop">
-      <!-- 20xScenes. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <div class="content has-text-justified" style="margin-left: 0.5cm;">
-            <img src="assets/images/overview.webp" alt="Teaser Image">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
 
       <!-- Abstract. -->
       <br>
@@ -168,6 +175,27 @@
       </div>
       <!--/ Abstract. -->
 
+      <div class="container is-max-desktop">
+        <br>
+        <br>
+
+        <!-- 20xScenes. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3">System Overview</h2>
+            <div class="content has-text-justified" style="margin-left: 0.5cm;">
+              <img src="assets/images/overview.webp" alt="Teaser Image">
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+
 
       <!-- Paper video. -->
       <div class="columns is-centered has-text-centered">
@@ -181,8 +209,30 @@
         </div>
       </div>
       <!--/ Paper video. -->
+      <!-- </div> -->
+
+      <!-- Paper video. -->
+      <div id="auto-exploration" class="columns is-centered has-text-centered">
+        <div class="column hero-body">
+          <h2 class="title is-3"><br>Real World Autonomous Exploration</h2>
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/EeulTx0civU"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div><br>
+          <p>The video demonstrates a robot autonomously exploring a 96m x 93m area using a
+            <a href="https://github.com/IRVLUTD/dynamic-window-frontier-exploration" target="_blank">Dynamic Window Frontier
+              Exploration</a>
+            strategy. The robot completes the exploration in approximately 150 minutes, reaching a maximum speed of 0.6
+            m/s. During this process, it covers a total distance of over 800 meters.
+          </p>
+        </div>
+      </div>
+      <!--/ Paper video. -->
     </div>
   </section>
+
 
 
   <!-- Code Related Links -->
@@ -209,9 +259,7 @@
                 </a>
               </span>
             </h2>
-            <p>
-              Code will be released soon !
-            </p>
+
           </div>
           <!--/ Code Repo. -->
 
@@ -223,7 +271,7 @@
   </section>
 
 
-  
+
 
   <!-- CITATION -->
   <section class="section" id="citation">
@@ -262,7 +310,8 @@
             work of T. Summers was supported by the United States
             Air Force Office of Scientific Research under Grant FA9550-
             23-1-0424 and the National Science Foundation under Grant
-            ECCS-2047040. We would like to thank our colleague, <a href="https://jishnujayakumar.github.io" target="_blank" rel="noopener noreferrer">Jishnu Jaykumar P</a>, for his assistance during the experiments
+            ECCS-2047040. We would like to thank our colleague, <a href="https://jishnujayakumar.github.io"
+              target="_blank" rel="noopener noreferrer">Jishnu Jaykumar P</a>, for his assistance during the experiments
           </p>
         </div>
       </div>
@@ -278,7 +327,8 @@
       </a> -->
         <!-- <br> -->
         <p id="website-template-credits">
-          Last updated on: <span id="last-updated"></span> | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a></p>
+          Last updated on: <span id="last-updated"></span> | Page template borrowed from <a target="_blank"
+            href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a></p>
       </div>
     </div>
   </footer>
@@ -290,4 +340,5 @@
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
 <script src="./assets/js/index.js"></script>
+
 </html>
