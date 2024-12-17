@@ -235,6 +235,13 @@
           </div>
 
           <div class="section">
+            <h3>Labels provided by HOCap Dataset</h3>
+            <div class="center pipeline">
+              <img src="./assets/images/vis_labels.png" alt="vis_labels Image" />
+            </div>
+          </div>
+
+          <div class="section">
             <h3>Paper & Document</h3>
             <div class="row content">
               <div class="center image-doc">
@@ -291,13 +298,17 @@
               >
               file.
             </p>
-            <p>The rendered video of poses and segmentations for each sequence could be found in <a
-              href="https://utdallas.box.com/s/4jf5cfodt7ob1arlff0zoix02mb7srov"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="icon"><i class="fas fa-folder"></i></span>
-              renderings</a
-            ></p>
+            <p>
+              The rendered video of poses and segmentations for each sequence
+              could be found in
+              <a
+                href="https://utdallas.box.com/s/4jf5cfodt7ob1arlff0zoix02mb7srov"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon"><i class="fas fa-folder"></i></span>
+                renderings</a
+              >
+            </p>
             <p>We provide two options for downloading the dataset:</p>
             <ol>
               <li>
@@ -420,6 +431,15 @@
                       poses.zip (23.8 MB)</a
                     >
                   </li>
+                  <li>
+                    <a
+                      href="https://utdallas.box.com/s/ayd4st2wo588z2yqbuxalptxnz2qxlj5"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><span class="icon"><i class="fas fa-download"></i></span>
+                      labels.zip (1.5 GB)</a
+                    >
+                  </li>
                 </ul>
               </li>
             </ol>
@@ -429,36 +449,37 @@
               following:
             </p>
             <pre>
-<code>datasets/
-├── calibration
-├── models
-├── subject_1
-│   ├── 20231025_165502
-│   │     ├── 037522251142
-│   │     │   ├── color_000000.jpg
-│   │     │   ├── depth_000000.png
-│   │     │   ├── label_000000.npz
-│   │     │   ├── ...
-│   │     ├── ...
-│   │     ├── meta.yaml
-│   │     ├── poses_m.npy
-│   │     ├── poses_o.npy
-│   │     ├── poses_pv.npy
-│   ├── 20231025_165807
-│   ├── ...
-├── ...
-└── subject_9
-    ├── 20231027_123403
-    ├── ...</code>
+<code>datasets
+  ├── calibration
+  ├── models
+  ├── subject_1
+  │   ├── 20231025_165502
+  │   │   ├── 037522251142
+  │   │   │   ├── color_000000.jpg
+  │   │   │   ├── depth_000000.png
+  │   │   │   ├── label_000000.npz
+  │   │   │   └── ...
+  │   │   ├── 043422252387
+  │   │   ├── ...
+  │   │   ├── hololens_kv5h72
+  │   │   ├── meta.yaml
+  │   │   ├── poses_m.npy
+  │   │   ├── poses_o.npy
+  │   │   └── poses_pv.npy
+  │   ├── 20231025_165502
+  │   └── ...
+  ├── ...
+  └── subject_9</code>
             </pre>
             <p>
-              We also provide the recordings used for objects reconstruction in <a
-              href="https://utdallas.box.com/s/w1yw5ucjejpc9uijk0l1catswfg1b3g2"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="icon"><i class="fas fa-folder"></i></span>
-              object_collections</a
-            >
+              We also provide the recordings used for objects reconstruction in
+              <a
+                href="https://utdallas.box.com/s/w1yw5ucjejpc9uijk0l1catswfg1b3g2"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon"><i class="fas fa-folder"></i></span>
+                object_collections</a
+              >
             </p>
             <p>
               For instructions about using the dataset please see
@@ -522,7 +543,7 @@
           <div class="section">
             <hr />
             <p>
-              Last updated on 01-June-2024 | Template borrowed from
+              Last updated on 15-Dec-2024 | Template borrowed from
               <a href="https://dex-ycb.github.io" target="_blank">DexYCB</a>.
             </p>
           </div>
