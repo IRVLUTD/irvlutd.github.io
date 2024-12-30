@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords"
+    content="SemanticMapping, Autonomous Exploration, Navigation, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, Object Detection, Segmentation">
+  <meta name="description"
+    content="Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots​">
+  <meta name="author" content="Sai Haneesh Allu, Itay Kadosh, Tyler Summers, Yu Xiang">
+  <title>Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots​​</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+
+<body>
+
+  <!-- Authors and Paper Links to other sections on page -->
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title"> Autonomous Exploration and Semantic Updating of Large-Scale Indoor
+              Environments with Mobile Robots​​</h1>
+            <div class="is-size-5 publication-authors">
+
+              <span class="author-block">
+                <a target="_blank" href="https://saihaneeshallu.github.io/">Sai Haneesh
+                  Allu</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://www.linkedin.com/in/itay-kadosh-695718239/">Itay
+                  Kadosh</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <span class="author-block"></span>
+              <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/">Tyler
+                Summers</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </span>
+              <span class="author-block">
+                <a target="_blank" href="https://yuxng.github.io">Yu Xiang</a>
+              </span>
+
+
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of
+                  Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <!-- <span class="author-block">*equal contribution</span> -->
+              <!-- <span id="accepted-conference" class="author-block"><br> Under submission to IEEE International Conference on Robotics and Automation (ICRA), 2025</span> -->
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/pdf/2409.15493"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2409.15493"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href=#code class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href=#auto-exploration class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Real World Exploration</span>
+                  </a>
+                </span>
+
+                <!-- Dataset Link. -->
+                <!-- <span class="link-block">
+                <a href="#data"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span> -->
+
+                <!-- BibTex Link. -->
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fa fa-quote-right"></i>
+                    </span>
+                    <span>Citation</span>
+                  </a>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ 
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Abstract. -->
+      <br>
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce a new robotic system that enables a mobile robot to autonomously explore an unknown
+              environment, build a semantic map of the environment,
+              and subsequently update the semantic map to reflect
+              environment changes, such as location changes of objects.
+              Our system leverages a LiDAR scanner for 2D occupancy
+              grid mapping and an RGB-D camera for object perception.
+              We introduce a semantic map representation that combines
+              a 2D occupancy grid map for geometry, with a topological
+              map for object semantics. This map representation enables
+              us to effectively update the semantics by deleting or adding
+              nodes to the topological map. Our system has been tested
+              on a Fetch robot. The robot can semantically map a
+              93m×90m floor and update the semantic map once objects
+              are moved in the environment.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <div class="container is-max-desktop">
+        <br>
+        <br>
+
+        <!-- 20xScenes. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3">System Overview</h2>
+            <div class="content has-text-justified" style="margin-left: 0.5cm;">
+              <img src="assets/images/overview.webp" alt="Teaser Image">
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+
+
+
+      <!-- Paper video. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/q3bfSFYbX08"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+      <!-- </div> -->
+
+      <!-- Paper video. -->
+      <div id="auto-exploration" class="columns is-centered has-text-centered">
+        <div class="column hero-body">
+          <h2 class="title is-3"><br>Real World Autonomous Exploration</h2>
+          <div class="publication-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/EeulTx0civU"
+              title="YouTube video player" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div><br>
+          <p>The video demonstrates a robot autonomously exploring a 96m x 93m area using a
+            <a href="https://github.com/IRVLUTD/dynamic-window-frontier-exploration" target="_blank">Dynamic Window Frontier
+              Exploration</a>
+            strategy. The robot completes the exploration in approximately 150 minutes, reaching a maximum speed of 0.6
+            m/s. During this process, it covers a total distance of over 800 meters.
+          </p>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+
+
+  <!-- Code Related Links -->
+  <section class="section">
+    <div class="container is-max-desktop">
+
+      <!-- Code. -->
+      <div class="columns is-centered has-text-justified">
+        <div class="column">
+          <h2 id="code" class="title is-3">Code</h2>
+
+          <!-- Code Repo. -->
+          <div class="content has-text-justified">
+            <h2 class="title is-3">
+              <span class="link-block">
+                <a target="_blank" href="https://github.com/IRVLUTD/AutoX-SemMap.git"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span> <span class="small-caps">
+                      IRVLUTD => Autonomous Exploration, Semantic Mapping and Update <a target="_blank"></a>
+                    </span>
+                </a>
+              </span>
+            </h2>
+
+          </div>
+          <!--/ Code Repo. -->
+
+        </div>
+      </div>
+      <!--/ Code. -->
+
+    </div>
+  </section>
+
+
+
+
+  <!-- CITATION -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 id="bibtex" class="title">Citation (BibTeX)</h2>
+      <span>Please cite this work if it helps in your research:</span>
+      <pre><code>@inproceedings{allu2024semanticmapping,
+  title={Autonomous Exploration and Semantic Updating of Large-Scale Indoor Environments with Mobile Robots},
+  author={Allu, Sai Haneesh and Kadosh, Itay and Summers, Tyler and Xiang, Yu},
+  journal={arXiv preprint arXiv:2409.15493},
+  year={2024}
+}</code></pre>
+    </div>
+  </section>
+  <!-- booktitle={IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, -->
+
+
+  <section class="section" id="contact">
+    <div class="container is-max-desktop">
+
+      <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Sai Haneesh Allu: <a target="_blank"
+          href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section">
+    <div class="container is-max-desktop content">
+      <h2 class="title">Acknowledgements</h2>
+      <div class="is-vcentered interpolation-panel">
+        <div class="container content">
+          <p style="font-size: 16px">
+            This work was supported by the DARPA Perceptuallyenabled Task Guidance (PTG) Program under contract number
+            HR00112220005 and the Sony Research Award Program. The
+            work of T. Summers was supported by the United States
+            Air Force Office of Scientific Research under Grant FA9550-
+            23-1-0424 and the National Science Foundation under Grant
+            ECCS-2047040. We would like to thank our colleague, <a href="https://jishnujayakumar.github.io" target="_blank" rel="noopener noreferrer">Jishnu Jaykumar P</a>, for his assistance during the experiments
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPDATE TIME -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
+        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
+      </a> -->
+        <!-- <br> -->
+        <p id="website-template-credits">
+          Last updated on: <span id="last-updated"></span> | Page template borrowed from <a target="_blank" href="https://nerfies.github.io"><span class="small-caps black-font">Nerfies</span></a></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="./assets/js/index.js"></script>
+</html>
