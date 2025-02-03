@@ -16,6 +16,8 @@ const leaderboard_entries = [
     ['MSMFormer@8@', 'Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '-', '-', 'Fixed Random', 'Model-Free', '56/100', '59/100'],
     // End-to-End Learning based Grasping
     ['DexNet 2.0 @10@', 'DexNet 2.0 @10@', 'OMPL@3@', 'MoveIt', 'Algorithmic', 'Model-Free', '-', '-', 'Algorithmic', 'Model-Free', '43/100', '51/100'],
+    // GTO
+    ['MSMFormer@8@', 'Contact-graspnet@7@ + Top-Down', 'GTO@11@', 'MoveIt', 'Near-to-Far', 'Model-Free', '65/100', '71/100', '-', '-', '-', '-'],
 ]
 
 const references = {
@@ -50,7 +52,10 @@ const references = {
     and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
     with synthetic point clouds and analytic grasp metrics”, arXiv preprint
     arXiv:1703.09312, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
+    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`,
+    "11": `Y. Xiang, S.H. Allu, R. Peddi, T. Summers, V. Gogate, “Grasping Trajectory Optimization with Point Clouds”, arXiv preprint
+    arXiv:2403.05466, 2024.
+    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/gto_planning">SceneReplica Version</a> <b>]</b>`
 }
 
 const video_links = {
@@ -255,5 +260,27 @@ const video_links = {
         [141, '' ,'https://drive.google.com/file/d/1BXnWwJyF1dae_6WNr8QUxd6ciZEq9w_E/preview'], 
         [148, '' ,'https://drive.google.com/file/d/1N85p_KE71ThBAYgo3vlDSE5Z-h4BL2Gx/preview'], 
         [161, '' ,'https://drive.google.com/file/d/1wou7Loh397q62U2fXN1q658_kRb4iM0V/preview'],
+    ],
+    "10": [
+        [10, 'https://utdallas.box.com/s/yhvutxsda12vmpiml2qthswmz4d1qiep', ''],
+        [25, 'https://utdallas.box.com/s/3w2vqfar1ru2niw0tdm8fhfn6rxddblt', ''],
+        [27, 'https://utdallas.box.com/s/lxna33y0chhkwmy8gjm0ta3moovlsefs', ''],
+        [33, 'https://utdallas.box.com/s/f420ko0s846p4zggn5rlqp4iky3r9kji', ''],
+        [36, 'https://utdallas.box.com/s/od8ccyzd37bg1okx6289o6zts4zaang2', ''],
+        [38, 'https://utdallas.box.com/s/nsei161fvsshp3gbnsb8nfzqmz3w07yj', ''],
+        [39, 'https://utdallas.box.com/s/5dhd50id1kzopq9bfvqujjza6h72g9pg', ''],
+        [48, 'https://utdallas.box.com/s/wlpggrpq4qa0soi9dip6sb3qg1rkcyd9', ''],
+        [56, 'https://utdallas.box.com/s/s0q3jdjoyxz1qda57mef0wf65ele6zb1', ''],
+        [65, 'https://utdallas.box.com/s/2t2ha8pc3ymcqoi9qp0nh5hbt0bvql6t', ''],
+        [68, 'https://utdallas.box.com/s/yd598ukmxru10l6d25jmfrcy36dsp5dl', ''],
+        [77, 'https://utdallas.box.com/s/e9x3tu1mx25r9u5w7n3ppmk3de54s9xx', ''],
+        [83, 'https://utdallas.box.com/s/hq732qusb0j64ofwhn30ae7mllvmsty5', ''],
+        [84, 'https://utdallas.box.com/s/25cd6hvr952o51hg7z8qhlp99osyfmyq', ''],
+        [104, 'https://utdallas.box.com/s/xfltq9bbhr2ld0ru8jbsv8x4k51refmq', ''],
+        [122, 'https://utdallas.box.com/s/afk9qthb5fz00evj49mbw23tmujjslxt', ''],
+        [130, 'https://utdallas.box.com/s/2h43fp2g65fvgm7a1bojjjugrgb7t635', ''],
+        [141, 'https://utdallas.box.com/s/r0honj5nzgxqx14dl3lyjpr9g7bdospo', ''],
+        [148, 'https://utdallas.box.com/s/vjqazua0zb4a5byo42n9yebu87r8ifrk', ''],
+        [161, 'https://utdallas.box.com/s/nwr3ebvh7gx2u9ygel3kk5j051biwss2', ''],
     ],
 }
