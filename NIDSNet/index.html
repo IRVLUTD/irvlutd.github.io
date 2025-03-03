@@ -207,8 +207,12 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">NIDS-Net</h2>
-        <p>NIDS-Net is a unified framework for Novel Instance Detection and Segmentation (NIDS).</p>
         <div class="content has-text-justified">
+          <p>NIDS-Net is a unified framework for Novel Instance Detection and Segmentation (NIDS).</p>
+        
+          <p>We use Grounding DINO <a href="#bib-2"> [2] </a> and Segment Anything <a href="#bib-3"> [3] </a> to obtain foreground object proposals. 
+            Then DINOv2 <a href="#bib-4"> [4] </a>is applied to generate instance embeddings. Adapters can refine these embeddings for matching.
+          </p>  
           <img src="assets/images/fw0.png" alt="gto">
         </div>
       </div>
@@ -256,7 +260,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">BOP Benchmark</h2>
-        <h3><a href="https://bop.felk.cvut.cz/leaderboards/segmentation-unseen-bop23/core-datasets/">Ranked #1: Model-based 2D segmentation of unseen objects – Core datasets</a></h3>
+        <h3><a href="https://bop.felk.cvut.cz/leaderboards/segmentation-unseen-bop23/core-datasets/">Ranked #1: Model-based 2D segmentation of unseen objects – Core datasets (As of 2024/11)</a></h3>
         <div class="content has-text-justified">
           <img src="assets/images/leaderboard.png" alt="gto">
         </div>
@@ -392,6 +396,20 @@
                     <p>
                     K. Kotar, S. Tian, H.-X. Yu, D. Yamins, and J. Wu. Are these the same apple? comparing images based on object intrinsics. Advances in Neural Information Processing Systems, 36, 2024.<a href="https://arxiv.org/abs/2311.00750"> arXiv </a>
                     </p>
+                </li>
+                <li id="bib-2">
+                  <p>Liu, Shilong, et al. "Grounding dino: Marrying dino with grounded pre-training for open-set object detection." European Conference on Computer Vision. Cham: Springer Nature Switzerland, 2024.
+                  </p>
+                </li>
+                <li id="bib-3">
+                  <p>
+                    Kirillov, Alexander, et al. "Segment anything." Proceedings of the IEEE/CVF international conference on computer vision. 2023.
+                  </p>
+                </li>
+                <li id="bib-4">
+                  <p>
+                    Oquab, Maxime, et al. "Dinov2: Learning robust visual features without supervision." arXiv preprint arXiv:2304.07193 (2023).
+                  </p>
                 </li>
             </ol>
           </div>
