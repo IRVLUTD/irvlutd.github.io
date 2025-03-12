@@ -2,185 +2,103 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose Tracking of Hand-Object Interaction."
+    />
+    <meta
+      name="keywords"
+      content="HO-Cap; 3D Reconstruction; Hand Pose; Object Pose; Pose Tracking; Hand-Object Interaction; Dataset; Deep Learning; 3D Vision; Computer Vision;"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Jikai Wang" />
     <title>
       HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose
       Tracking of Hand-Object Interaction
     </title>
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
-    <style>
-      body {
-        font-family: "Rubik", sans-serif;
-      }
-
-      h2 {
-        font-size: 40px;
-        font-weight: 300;
-        letter-spacing: -1px;
-        margin-bottom: 1rem;
-      }
-
-      h3,
-      h4 {
-        margin-bottom: 1rem;
-      }
-
-      video {
-        width: 100%;
-        height: 100%;
-      }
-
-      code {
-        background-color: #f5f5f5;
-        display: block;
-        padding: 20px;
-        white-space: pre-wrap;
-      }
-
-      .container {
-        padding: 40px 15px;
-      }
-
-      .center {
-        text-align: center;
-      }
-
-      .underline {
-        text-decoration: underline;
-      }
-
-      .nowrap {
-        white-space: nowrap;
-      }
-
-      .authors {
-        line-height: 2;
-        font-size: 18px;
-      }
-
-      .section {
-        padding: 10px 0 30px;
-      }
-
-      .content {
-        padding: 10px 0;
-      }
-
-      .video {
-        padding: 20px 0;
-      }
-
-      .image {
-        padding: 0 30px;
-      }
-
-      .image-doc {
-        padding: 0 25px;
-      }
-
-      .pipeline {
-        width: 100%;
-        height: auto;
-        padding: 0 15px;
-        max-width: 100%;
-        box-sizing: border-box;
-      }
-
-      .pipeline img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-      }
-
-      .embedded-video {
-        position: relative;
-        width: 100%;
-        height: 0;
-        padding-bottom: 56.25%;
-        overflow: hidden;
-        border-radius: 10px !important;
-      }
-
-      .embedded-video iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
 
-  <body>
+  <body id="page-top">
+    <div class="section container-fluid text-justify text-center bg-light">
+      <!-- Title -->
+      <div id="title">
+        <h1>
+          HO-Cap: A Capture System and Dataset for <br />
+          3D Reconstruction and Pose Tracking <br />
+          of Hand-Object Interaction
+        </h1>
+      </div>
+      <!-- Authors -->
+      <div id="authors" class="content text-nowrap">
+        <a href="https://jwroboticsvision.github.io" target="_blank"
+          ><span class="nowrap">Jikai Wang</span></a
+        ><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#"><span class="nowrap">Qifan Zhang</span></a
+        ><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://research.nvidia.com/person/yu-wei-chao" target="_blank"
+          ><span class="nowrap">Yu-Wei Chao</span></a
+        ><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://research.nvidia.com/person/bowen-wen" target="_blank"
+          ><span class="nowrap">Bowen Wen</span></a
+        ><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://profiles.utdallas.edu/xguo" target="_blank"
+          ><span class="nowrap">Xiaohu Guo</span></a
+        ><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="https://yuxng.github.io" target="_blank"
+          ><span class="nowrap">Yu Xiang</span></a
+        ><sup>1</sup>
+        <br />
+        <span><sup>1</sup>University of Texas at Dallas</span>,
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <span><sup>2</sup>NVIDIA</span>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div id="nav_buttons" class="content d-grid gap-2 d-md-block">
+        <a
+          class="btn btn-dark btn-sm"
+          href="https://arxiv.org/abs/2406.06843"
+          target="_blank"
+          ><i class="ai ai-arxiv"></i> arXiv</a
+        >
+        <a class="btn btn-dark btn-sm" href="#video"
+          ><i class="fa-solid fa-film"></i> Video</a
+        >
+        <a class="btn btn-dark btn-sm" href="#code"
+          ><i class="fab fa-github"></i> Code</a
+        >
+        <a class="btn btn-dark btn-sm" href="#data"
+          ><i class="fa-solid fa-cloud-arrow-down"></i> Dataset</a
+        >
+        <a class="btn btn-dark btn-sm" href="#cite"
+          ><i class="fas fa-quote-right"></i> Citation</a
+        >
+      </div>
+    </div>
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <div class="section">
-            <div class="content">
-              <h2 class="center">
-                HO-Cap: A Capture System and Dataset for 3D Reconstruction and
-                Pose Tracking of Hand-Object Interaction
-              </h2>
-              <div class="center authors">
-                <a href="" target="_blank"
-                  ><span class="nowrap">Jikai Wang<sup>1</sup></span></a
-                >
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="" target="_blank"
-                  ><span class="nowrap">Qifan Zhang<sup>1</sup></span></a
-                >
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a
-                  href="https://research.nvidia.com/person/yu-wei-chao"
-                  target="_blank"
-                  ><span class="nowrap">Yu-Wei Chao<sup>2</sup></span></a
-                >
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a
-                  href="https://research.nvidia.com/person/bowen-wen"
-                  target="_blank"
-                  ><span class="nowrap">Bowen Wen<sup>2</sup></span></a
-                >
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://profiles.utdallas.edu/xguo" target="_blank"
-                  ><span class="nowrap">Xiaohu Guo<sup>1</sup></span></a
-                >
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://yuxng.github.io" target="_blank"
-                  ><span class="nowrap">Yu Xiang<sup>1</sup></span></a
-                >
-              </div>
-              <div class="center authors">
-                <span
-                  ><sup>1</sup>University of Texas at Dallas,
-                  <sup>2</sup>NVIDIA</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="section">
-            <div class="video">
-              <video autoplay muted loop playsinline>
-                <source src="assets/videos/hocap-demo.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Abstract</h3>
-            <p>
+        <div class="col-md-auto">
+          <div class="section center" id="abstract">
+            <h2>Abstract</h2>
+            <p style="text-align: justify">
               We introduce a data capture system and a new dataset, HO-Cap, for
               3D reconstruction and pose tracking of hands and objects in
               videos. The system leverages multiple RGB-D cameras and a HoloLens
@@ -200,69 +118,105 @@
             </p>
           </div>
 
-          <div class="section">
-            <h3>Data Capture Setup (9 RGB-D Cameras + HoloLens, No Mo-cap)</h3>
-            <div class="center pipeline">
-              <img src="./assets/images/hardware.png" alt="Hardware Image" />
+          <div id="video" class="text-justify text-center">
+            <h3>Video</h3>
+            <div class="gap-2 d-md-block text-justify text-center">
+              <button
+                type="button"
+                class="btn btn-outline-primary active video-btn"
+                data-src="assets/videos/demo_video_task1.mp4"
+              >
+                Task 1
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary video-btn"
+                data-src="assets/videos/demo_video_task2.mp4"
+              >
+                Task 2
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary video-btn"
+                data-src="assets/videos/demo_video_task3.mp4"
+              >
+                Task 3
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-primary video-btn"
+                data-src="assets/videos/demo_video_isaacsim.mp4"
+              >
+                Isaac Sim Replay
+              </button>
             </div>
+
+            <div class="video section">
+              <video id="videoPlayer" autoplay muted loop playsinline>
+                <source
+                  id="videoSource"
+                  src="assets/videos/demo_video_task1.mp4"
+                  type="video/mp4"
+                />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>
+              Visualization of all the sequences could be found in
+              <a
+                href="https://utdallas.box.com/s/4jf5cfodt7ob1arlff0zoix02mb7srov"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><span class="icon"
+                  ><i class="fas fa-download"></i> Sequence_Renderings</span
+                ></a
+              >.
+            </p>
           </div>
 
-          <div class="section">
-            <h3>Object Shape Reconstruction using a Single Azure Camera</h3>
-            <div class="center pipeline">
+          <div id="overview" class="section">
+            <h2 class="text-justify text-center">Overview</h2>
+            <h3>Data Capture Setup</h3>
+            <figure class="pipeline">
+              <img
+                src="./assets/images/hardware.png"
+                alt="Data Capture Setup"
+              />
+              <figcaption>8 RealSense Cameras + HoloLens, No Mo-cap</figcaption>
+            </figure>
+
+            <h3>Object Shape Reconstruction</h3>
+            <figure class="pipeline">
               <img src="./assets/images/object_shape.png" alt="Object Shape" />
-            </div>
+              <figcaption>Recorded with single Azure Kinect Camera</figcaption>
+            </figure>
+
             <br />
-            <div class="center pipeline">
+            <figure class="pipeline">
               <img
                 src="./assets/images/object-shapes.png"
-                alt="Object Shapes"
+                alt="All Object Shapes"
               />
-            </div>
-          </div>
+              <figcaption>All Object Shapes in HO-Cap Dataset</figcaption>
+            </figure>
 
-          <div class="section">
-            <h3>Semi-automatic Annotation Pipeline for Hand-Object Poses</h3>
-            <p>
-              The only human annotation required is to manually prompt two
-              points for each object in the first frame to generate an initial
-              segmentation mask of the object using SAM, and label the name of
-              the object to associate it to an object in our database.
-            </p>
-            <div class="center pipeline">
+            <h3>Annotation Pipeline (Semi-Automatic)</h3>
+            <figure class="pipeline">
               <img src="./assets/images/pipeline.png" alt="Pipeline Image" />
-            </div>
+              <figcaption style="text-align: justify">
+                The only human annotation required is to (1) manually prompt two
+                points for each object in the initial frame to generate an
+                initial segmentation mask of the object using SAM2, and (2)
+                label the name of the object to associate it to an object in our
+                database.
+              </figcaption>
+            </figure>
           </div>
 
-          <div class="section">
-            <h3>Labels provided by HOCap Dataset</h3>
-            <div class="center pipeline">
-              <img src="./assets/images/vis_labels.png" alt="vis_labels Image" />
-            </div>
-          </div>
-
-          <div class="section">
-            <h3>Paper & Document</h3>
-            <div class="row content">
-              <div class="center image-doc">
-                <a href="https://arxiv.org/abs/2406.06843" target="_blank">
-                  <img
-                    src="./assets/images/arxiv.png"
-                    height="176px"
-                    width="136px"
-                    alt="arXiv"
-                  />
-                  <br />
-                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                  <span>arXiv</span>
-                </a>
-              </div>
-            </div>
-            <br />
-            <div class="content">
-              <h4>Citing HO-Cap</h4>
-              <p>Please cite HO-Cap if it helps your research:</p>
-              <pre><code>@misc{wang2024hocapcapturedataset3d,
+          <div class="section" id="cite">
+            <h3>Citation</h3>
+            <p>Please cite HO-Cap if it helps your research:</p>
+            <pre><code>@misc{wang2024hocapcapturedataset3d,
       title={HO-Cap: A Capture System and Dataset for 3D Reconstruction and Pose Tracking of Hand-Object Interaction},
       author={Jikai Wang and Qifan Zhang and Yu-Wei Chao and Bowen Wen and Xiaohu Guo and Yu Xiang},
       year={2024},
@@ -271,11 +225,27 @@
       primaryClass={cs.CV},
       url={https://arxiv.org/abs/2406.06843},
 }</code></pre>
-            </div>
           </div>
 
-          <div class="section">
-            <h3>Data</h3>
+          <div class="section" id="code">
+            <h3>Code</h3>
+            <p>
+              <span
+                ><i class="fa-brands fa-github fa-lg"></i>
+                <a href="https://github.com/IRVLUTD/HO-Cap" target="_blank"
+                  >HOCap-Toolkit</a
+                ></span
+              >
+              <br />
+              <span
+                >A Python package that provides evaluation and visualization
+                tools for the HO-Cap dataset.</span
+              >
+            </p>
+          </div>
+
+          <div class="section" id="data">
+            <h3>HO-Cap Dataset</h3>
             <p>
               HO-Cap is licensed under
               <span class="underline"
@@ -287,169 +257,201 @@
                 ></span
               >.
             </p>
-            <p>
-              The links to purchase the objects are provided in the
-              <a
-                href="https://utdallas.box.com/s/jrj1s2wn46cv4gvpcstbhuus15sjrw7y"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><span class="icon"><i class="fas fa-file-excel"></i></span>
-                objects_info.xlsx</a
-              >
-              file.
-            </p>
-            <p>
-              The rendered video of poses and segmentations for each sequence
-              could be found in
-              <a
-                href="https://utdallas.box.com/s/4jf5cfodt7ob1arlff0zoix02mb7srov"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><span class="icon"><i class="fas fa-folder"></i></span>
-                renderings</a
-              >
-            </p>
-            <p>We provide two options for downloading the dataset:</p>
+
             <ol>
-              <li>
-                Download the data using a Python script as introduced by
-                <a
-                  href="https://github.com/IRVLUTD/HO-Cap?tab=readme-ov-file#download-the-ho-cap-dataset"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >HOCap-Toolkit</a
-                >.
-              </li>
-              <li>
-                Download the individual zipped data from Box manually:
-                <ul>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/nlp4c6vtd0n8o0entxlh1vxdpcdeh0h8"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      calibration.zip (19.6 KB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/con44iqej33weg9f3rpxof61eh3x2x21"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      models.zip (52.5 MB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/w0voy9bixtxyclo52841xyamock2lxpt"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_1.zip (8.0 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/j498kxxrkvaf674tvmt4su4ad0bz9s9f"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_2.zip (20.6 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/shklq33yaoozh9gm681nxwnq0o3y0y1d"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_3.zip (18 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/dew68k7b3ya09t40818gpfxm95oa4yeq"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_4.zip (8.3 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/mutor2a09kudze1yw173gsfetsru7ces"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_5.zip (3.2 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/iyja7rdbjx2ksgjhmdu6mx3zqvaurdni"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_6.zip (14.9 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/4g5qyig6i4uz1rgrzkcu9n4mhdjs74m2"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_7.zip (9.6 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/khrb5guy8rdwnoqi4euk2w0mk5lslxkn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_8.zip (6.2 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/3x5yitydmbmwolq9bty5dd2udu5v52fc"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      subject_9.zip (11.7 GB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/2lofbp2yd005d8o213ns77mdrtxg8eep"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      poses.zip (23.8 MB)</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="https://utdallas.box.com/s/ayd4st2wo588z2yqbuxalptxnz2qxlj5"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      ><span class="icon"><i class="fas fa-download"></i></span>
-                      labels.zip (1.5 GB)</a
-                    >
-                  </li>
-                </ul>
-              </li>
+              <li><b>Object Information</b></li>
+              <ul>
+                <li>
+                  Object descriptions and purchase links:
+                  <a
+                    href="https://utdallas.box.com/s/jrj1s2wn46cv4gvpcstbhuus15sjrw7y"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span class="icon"
+                      ><i class="fas fa-download"></i>Objects_Info</span
+                    ></a
+                  >.
+                </li>
+                <li>
+                  Recordings for object reconstruction:
+                  <a
+                    href="https://utdallas.box.com/s/w1yw5ucjejpc9uijk0l1catswfg1b3g2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span class="icon"><i class="fas fa-download"></i></span>
+                    Objects_Collection</a
+                  >.
+                </li>
+              </ul>
+
+              <li><b>Dataset Download</b></li>
+              <ul>
+                <li>
+                  <b>Option One:</b> download the data with script provided by
+                  <a
+                    href="https://github.com/IRVLUTD/HO-Cap?tab=readme-ov-file#download-the-hocap-dataset"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >HOCap-Toolkit</a
+                  >.
+                </li>
+                <li>
+                  <b>Option Two:</b> download the individual zipped data from
+                  Box manually:
+                  <ul>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/nlp4c6vtd0n8o0entxlh1vxdpcdeh0h8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        calibration.zip (19.6 KB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/con44iqej33weg9f3rpxof61eh3x2x21"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        models.zip (52.5 MB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/w0voy9bixtxyclo52841xyamock2lxpt"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_1.zip (8.0 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/j498kxxrkvaf674tvmt4su4ad0bz9s9f"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_2.zip (20.6 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/shklq33yaoozh9gm681nxwnq0o3y0y1d"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_3.zip (18 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/dew68k7b3ya09t40818gpfxm95oa4yeq"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_4.zip (8.3 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/mutor2a09kudze1yw173gsfetsru7ces"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_5.zip (3.2 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/iyja7rdbjx2ksgjhmdu6mx3zqvaurdni"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_6.zip (14.9 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/4g5qyig6i4uz1rgrzkcu9n4mhdjs74m2"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_7.zip (9.6 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/khrb5guy8rdwnoqi4euk2w0mk5lslxkn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_8.zip (6.2 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/3x5yitydmbmwolq9bty5dd2udu5v52fc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        subject_9.zip (11.7 GB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/2lofbp2yd005d8o213ns77mdrtxg8eep"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        poses.zip (23.8 MB)</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="https://utdallas.box.com/s/ayd4st2wo588z2yqbuxalptxnz2qxlj5"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        ><span class="icon"
+                          ><i class="fas fa-download"></i
+                        ></span>
+                        labels.zip (1.5 GB)</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
             </ol>
-            <p>
-              Once you successfully download the zip files, extract them to the
-              "./datasets" folder, the directory structure should look like the
-              following:
-            </p>
+
+            Once you successfully download the zip files, extract them to the
+            "./datasets/HO-Cap" folder, the directory structure should look like
+            the following:
             <pre>
-<code>datasets
+<code>datasets/HO-Cap
   ├── calibration
   ├── models
   ├── subject_1
@@ -470,17 +472,8 @@
   │   └── ...
   ├── ...
   └── subject_9</code>
-            </pre>
-            <p>
-              We also provide the recordings used for objects reconstruction in
-              <a
-                href="https://utdallas.box.com/s/w1yw5ucjejpc9uijk0l1catswfg1b3g2"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><span class="icon"><i class="fas fa-folder"></i></span>
-                object_collections</a
-              >
-            </p>
+                </pre>
+
             <p>
               For instructions about using the dataset please see
               <span
@@ -494,61 +487,79 @@
             </p>
           </div>
 
-          <div class="section">
-            <h3>Code</h3>
-            <div class="row content">
-              <div class="center image">
-                <a href="https://github.com/IRVLUTD/HO-Cap" target="_blank"
-                  ><img
-                    src="./assets/images/github-mark.png"
-                    height="64px"
-                    width="64px"
-                    alt="GitHub"
-                /></a>
-              </div>
-              <div>
-                <span
-                  ><a href="https://github.com/IRVLUTD/HO-Cap" target="_blank"
-                    >HOCap-Toolkit</a
-                  ></span
-                >
-                <br />
-                <span
-                  >A Python package that provides evaluation and visualization
-                  tools for the HO-Cap dataset.</span
-                >
-              </div>
-            </div>
-          </div>
-
-          <div class="section">
+          <div class="section" id="contact">
             <h3>Contact</h3>
             <p>
-              Send any comments or questions to Jikai Wang:
+              For any comments or questions, please contact Jikai Wang:
+              <br />
               <a href="mailto:jikai.wang@utdallas.edu"
                 >jikai.wang@utdallas.edu</a
               >.
             </p>
           </div>
 
-          <div class="section">
+          <div class="section" id="acknowledgements">
             <h3>Acknowledgements</h3>
             <p>
-              This work was supported in part by the DARPA Perceptually enabled
-              Task Guidance (PTG) Program under contract number HR00112220005
-              and the Sony Research Award Program
+              This work was supported in part by the DARPA Perceptually-enabled
+              Task Guidance (PTG) Program under contract number HR00112220005,
+              the Sony Research Award Program, and the National Science
+              Foundation (NSF) under Grant No. 2346528.
             </p>
           </div>
 
-          <div class="section">
-            <hr />
-            <p>
-              Last updated on 15-Dec-2024 | Template borrowed from
-              <a href="https://dex-ycb.github.io" target="_blank">DexYCB</a>.
-            </p>
-          </div>
+          <footer class="bg-dark mt-auto text-white text-center mb-0">
+            <div class="container-fluid p-4">
+              <!-- <p>&copy; 2024 Jikai Wang. All Rights Reserved.</p> -->
+              <p>Last updated on 08-Mar-2025.</p>
+            </div>
+          </footer>
+
+          <!-- Back to Top Button -->
+          <button id="back-to-top" class="btn btn-primary">
+            <i class="fas fa-arrow-up"></i>
+          </button>
         </div>
       </div>
     </div>
+
+    <script>
+      // Back to Top Button Functionality
+      const backToTopButton = document.getElementById("back-to-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.style.display = "block";
+        } else {
+          backToTopButton.style.display = "none";
+        }
+      });
+
+      backToTopButton.addEventListener("click", () => {
+        // Scroll smoothly to the Abstract section
+        document.getElementById("title").scrollIntoView({ behavior: "smooth" });
+        // window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Video Player
+      document.addEventListener("DOMContentLoaded", function () {
+        let videoPlayer = document.getElementById("videoPlayer");
+        let videoSource = document.getElementById("videoSource");
+        let buttons = document.querySelectorAll(".video-btn");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", function () {
+            let videoSrc = this.getAttribute("data-src");
+            videoSource.src = videoSrc;
+            videoPlayer.load();
+            videoPlayer.play();
+
+            // Remove active class from all buttons and add to the clicked one
+            buttons.forEach((btn) => btn.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+      });
+    </script>
   </body>
 </html>
