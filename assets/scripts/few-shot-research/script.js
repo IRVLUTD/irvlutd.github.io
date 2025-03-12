@@ -5,6 +5,7 @@ $(document).ready(function() {
         "Proto-CLIP" : ["../Proto-CLIP", "proto-clip"],
         "SceneReplica": ["../SceneReplica", "scene-replica"],
         "NIDSNet" : ["../NIDSNet", "NIDSNet"],
+        "iTeach" : ["../iTeach", "iTeach"],
     }
 
     const current_project_name = document.getElementById("title").getAttribute("project-name");
@@ -37,3 +38,4 @@ $(document).ready(function() {
     }
 
   });
+  

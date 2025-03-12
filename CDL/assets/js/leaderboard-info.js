@@ -27,6 +27,7 @@ const leaderboard_entries = [
     ['ViT-Large', 'ViT-Base', 'CODA@3@', 'KDP(ours)', '10', '87.13', '5.30'],
 
 
+
     
     ['#', 'ViT-Small', 'Dual@2@', '#', '10', '79.85', '6.12'],
     ['ViT-Base', 'ViT-Small', 'Dual@2@', 'KD@4@', '10', '80.16', '5.76'],
@@ -45,6 +46,7 @@ const leaderboard_entries = [
 
 
 
+
     ['#', 'ViT-Small', 'L2P@1@', '#', '10', '77.71', '7.12'],
     ['ViT-Base', 'ViT-Small', 'L2P@1@', 'KD@4@', '10', '79.64', '6.35'],
     ['ViT-Base', 'ViT-Small', 'L2P@1@', 'DKD@5@', '10', '78.21', '9.13'],
@@ -59,6 +61,7 @@ const leaderboard_entries = [
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'ReviewKD@7@', '10', '83.12', '7.97'],
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DeiT@8@', '10', '84.21', '6.06'],
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KDP(ours)', '10', '86.56', '4.97'],
+
    
 
 
@@ -126,6 +129,7 @@ const leaderboard_entries_imagenet = [
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'ReviewKD@7@', '10', '72.17', '6.11'],
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DeiT@8@', '10', '73.99', '5.09'],
     ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KDP(ours)', '10', '76.91', '3.15'],
+
    
 
 
