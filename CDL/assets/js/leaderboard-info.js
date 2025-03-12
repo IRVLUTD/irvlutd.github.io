@@ -6,31 +6,66 @@
 const leaderboard_entries = [
     // Model based grasping methods
 
-    ['#', 'ViT-Large', 'CODA@3@', '10', '88.97', '3.97'],
-    ['#', 'ViT-Large', 'Dual@2@', '10', '87.56', '4.99'],
-    ['#', 'ViT-Large', 'L2P@1@', '10', '86.36', '5.98'],
 
 
-    ['#', 'ViT-Base', 'L2P@1@', '10', '83.02', '6.06'],
-    ['ViT-Large', 'ViT-Base', 'L2P@1@', '10', '83.78', '7.43'],
-    ['#', 'ViT-Base', 'Dual@2@', '10', '84.66', '5.46'],
-    ['ViT-Large', 'ViT-Base', 'Dual@2@', '10', '86.57', '5.72'],
-    ['#', 'ViT-Base', 'CODA@3@', '10', '86.16', '5.63'],
-    ['ViT-Large', 'ViT-Base', 'CODA@3@', '10', '87.69', '5.40'],
 
-    ['#', 'ViT-Small', 'L2P@1@', '10', '77.71', '7.12'],
-    ['ViT-Base', 'ViT-Small', 'L2P@1@', '10', '80.24', '7.31'],
-    ['#', 'ViT-Small', 'Dual@2@', '10', '79.85', '6.12'],
-    ['ViT-Base', 'ViT-Small', 'Dual@2@', '10', '82.29', '6.6'],
-    ['#', 'ViT-Small', 'CODA@3@', '10', '82.18', '6.48'],
-    ['ViT-Base', 'ViT-Small', 'CODA@3@', '10', '83.24', '7.63'],
 
-    ['#', 'ViT-Tiny', 'L2P@1@', '10', '60.68', '13.98'],
-    ['ViT-Base', 'ViT-Tiny', 'L2P@1@', '10', '67.61', '10.99'],
-    ['#', 'ViT-Tiny', 'Dual@2@', '10', '62.63', '14.74'],
-    ['ViT-Base', 'ViT-Tiny', 'Dual@2@', '10', '68.58', '10.79'],
-    ['#', 'ViT-Tiny', 'CODA@3@', '10', '65.05', '13.55'],
-    ['ViT-Base', 'ViT-Tiny', 'CODA@3@', '10', '70.05', '14.33'],
+
+    ['#', 'ViT-Small', 'CODA@3@', '#', '10', '82.18', '6.48'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'KD@4@', '10', '83.03', '7.24'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'DKD@5@', '10', '82.27', '7.81'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'FitNets@6@', '10', '81.83', '8.83'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'ReviewKD@7@', '10', '82.20', '7.54'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'DeiT@8@', '10', '83.79', '6.58'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'KDP(ours)', '10', '84.31', '5.63'],  
+    ['#', 'ViT-Base', 'CODA@3@', '#', '10', '86.16', '5.63'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'KD@4@', '10', '86.27', '5.45'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'DKD@5@', '10', '85.42', '6.55'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'FitNets@6@', '10', '85.95', '6.56'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'ReviewKD@7@', '10', '86.21', '5.64'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'DeiT@8@', '10', '86.78', '5.43'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'KDP(ours)', '10', '87.13', '5.30'],
+
+
+    
+    ['#', 'ViT-Small', 'Dual@2@', '#', '10', '79.85', '6.12'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'KD@4@', '10', '80.16', '5.76'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'DKD@5@', '10', '80.44', '6.96'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'FitNets@6@', '10', '80.70', '5.73'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'ReviewKD@7@', '10', '80.33', '5.86'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'DeiT@8@', '10', '80.64', '5.67'], 
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'KDP(ours)', '10', '81.78', '3.63'], 
+    ['#', 'ViT-Base', 'Dual@2@', '#', '10', '84.66', '5.91'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'KD@4@', '10', '84.67', '4.52'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'DKD@5@', '10', '84.93', '4.95'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'FitNets@6@', '10', '83.12', '8.33'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'ReviewKD@7@', '10', '84.11', '5.19'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'DeiT@8@', '10', '85.73', '5.05'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'KDP(ours)', '10', '86.92', '4.77'],
+
+
+
+    ['#', 'ViT-Small', 'L2P@1@', '#', '10', '77.71', '7.12'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'KD@4@', '10', '79.64', '6.35'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'DKD@5@', '10', '78.21', '9.13'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'FitNets@6@', '10', '79.56', '5.89'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'ReviewKD@7@', '10', '78.50', '8.04'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'DeiT@8@', '10', '79.56', '6.71'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'KDP(ours)', '10', '81.79', '4.31'],  
+    ['#', 'ViT-Base', 'L2P@1@', '#', '10', '83.02', '6.06'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KD@4@', '10', '85.00', '4.48'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DKD@5@', '10', '83.29', '4.99'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'FitNets@6@', '10', '83.60', '5.21'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'ReviewKD@7@', '10', '83.12', '7.97'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DeiT@8@', '10', '84.21', '6.06'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KDP(ours)', '10', '86.56', '4.97'],
+   
+
+
+
+
+
+
 
    
    
@@ -39,31 +74,61 @@ const leaderboard_entries = [
 const leaderboard_entries_imagenet = [
     // Model based grasping methods
 
-    ['#', 'ViT-Large', 'CODA@3@', '10', '78.79', '4.46'],
-    ['#', 'ViT-Large', 'Dual@2@', '10', '74.95', '4.93'],
-    ['#', 'ViT-Large', 'L2P@1@', '10', '74.19', '5.31'],
 
-    ['#', 'ViT-Base', 'L2P@1@', '10', '71.59', '5.65'],
-    ['ViT-Large', 'ViT-Base', 'L2P@1@', '10', '74.01', '4.26'],
-    ['#', 'ViT-Base', 'Dual@2@', '10', '72.44', '3.80'],
-    ['ViT-Large', 'ViT-Base', 'Dual@2@', '10', '76.36', '4.27'],
-    ['#', 'ViT-Base', 'CODA@3@', '10', '75.78', '5.70'],
-    ['ViT-Large', 'ViT-Base', 'CODA@3@', '10', '77.95', '5.64'],
 
-    ['#', 'ViT-Small', 'L2P@1@', '10', '61.95', '6.52'],
-    ['ViT-Base', 'ViT-Small', 'L2P@1@', '10', '65.04', '7.38'],
-    ['#', 'ViT-Small', 'Dual@2@', '10', '64.27', '5.93'],
-    ['ViT-Base', 'ViT-Small', 'Dual@2@', '10', '67.75', '6.61'],
-    ['#', 'ViT-Small', 'CODA@3@', '10', '67.44', '8.52'],
-    ['ViT-Base', 'ViT-Small', 'CODA@3@', '10', '70.06', '8.70'],
 
-    ['#', 'ViT-Tiny', 'L2P@1@', '10', '44.98', '8.79'],
-    ['ViT-Base', 'ViT-Tiny', 'L2P@1@', '10', '51.00', '9.18'],
-    ['#', 'ViT-Tiny', 'Dual@2@', '10', '46.54', '10.25'],
-    ['ViT-Base', 'ViT-Tiny', 'Dual@2@', '10', '53.88', '9.60'],
-    ['#', 'ViT-Tiny', 'CODA@3@', '10', '50.23', '12.75'],
-    ['ViT-Base', 'ViT-Tiny', 'CODA@3@', '10', '53.13', '13.92'],
+
+    ['#', 'ViT-Small', 'CODA@3@', '#', '10', '67.44', '8.52'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'KD@4@', '10', '69.91', '7.64'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'DKD@5@', '10', '68.92', '8.39'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'FitNets@6@', '10', '69.87', '7.38'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'ReviewKD@7@', '10', '70.19', '7.68'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'DeiT@8@', '10', '70.74', '6.66'],
+    ['ViT-Base', 'ViT-Small', 'CODA@3@', 'KDP(ours)', '10', '71.92', '5.61'],   
+    ['#', 'ViT-Base', 'CODA@3@', '#', '10', '76.42', '4.31'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'KD@4@', '10', '76.99', '3.81'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'DKD@5@', '10', '76.70', '4.84'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'FitNets@6@', '10', '74.55', '6.81'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'ReviewKD@7@', '10', '75.72', '4.14'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'DeiT@8@', '10', '77.83', '4.51'],
+    ['ViT-Large', 'ViT-Base', 'CODA@3@', 'KDP(ours)', '10', '78.62', '3.46'],
+
+
+    
+    ['#', 'ViT-Small', 'Dual@2@', '#', '10', '65.51', '5.93'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'KD@4@', '10', '65.68', '7.26'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'DKD@5@', '10', '65.44', '7.27'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'FitNets@6@', '10', '66.20', '5.93'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'ReviewKD@7@', '10', '65.69', '6.56'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'DeiT@8@', '10', '65.82', '4.00'],
+    ['ViT-Base', 'ViT-Small', 'Dual@2@', 'KDP(ours)', '10', '68.77', '3.13'],  
+    ['#', 'ViT-Base', 'Dual@2@', '#', '10', '73.18', '3.45'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'KD@4@', '10', '73.90', '3.31'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'DKD@5@', '10', '75.24', '4.15'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'FitNets@6@', '10', '71.23', '5.71'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'ReviewKD@7@', '10', '72.19', '5.72'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'DeiT@8@', '10', '76.03', '3.90'],
+    ['ViT-Large', 'ViT-Base', 'Dual@2@', 'KDP(ours)', '10', '76.06', '3.77'],
+
+
+
+    ['#', 'ViT-Small', 'L2P@1@', '#', '10', '63.82', '6.52'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'KD@4@', '10', '63.97', '6.51'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'DKD@5@', '10', '62.91', '6.55'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'FitNets@6@', '10', '64.29', '6.37'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'ReviewKD@7@', '10', '63.64', '6.36'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'DeiT@8@', '10', '64.99', '3.83'],
+    ['ViT-Base', 'ViT-Small', 'L2P@1@', 'KDP(ours)', '10', '68.18', '2.08'],  
+    ['#', 'ViT-Base', 'L2P@1@', '#', '10', '73.94', '4.41'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KD@4@', '10', '74.12', '4.60'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DKD@5@', '10', '74.58', '4.69'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'FitNets@6@', '10', '70.39', '5.84'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'ReviewKD@7@', '10', '72.17', '6.11'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'DeiT@8@', '10', '73.99', '5.09'],
+    ['ViT-Large', 'ViT-Base', 'L2P@1@', 'KDP(ours)', '10', '76.91', '3.15'],
    
+
+
    
 ]
 
@@ -71,17 +136,36 @@ const references = {
     "1": `Zifeng Wang, Zizhao Zhang, Chen-Yu Lee, Han Zhang, Ruoxi Sun, Xiaoqi Ren, Guolong Su,
 Vincent Perot, Jennifer Dy, and Tomas Pfister. Learning to prompt for continual learning. In
 Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, pages
-139–149, 2022. <b>[</b> <a target="_blank" href="https://github.com/google-research/l2p">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2112.08654">Paper</a> <b>]</b>`,
+139–149, 2022. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/2112.08654">Paper</a> <b>]</b>`,
     "2": `Zifeng Wang, Zizhao Zhang, Sayna Ebrahimi, Ruoxi Sun, Han Zhang, Chen-Yu Lee, Xiaoqi
 Ren, Guolong Su, Vincent Perot, Jennifer Dy, et al. Dualprompt: Complementary prompting for
 rehearsal-free continual learning. In European Conference on Computer Vision, pages 631–648.
-Springer, 2022. <b>[</b> <a target="_blank" href="https://github.com/google-research/l2p">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2204.04799">Paper</a> <b>]</b>`,
+Springer, 2022. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/2204.04799">Paper</a> <b>]</b>`,
     "3": `James Seale Smith, Leonid Karlinsky, Vyshnavi Gutta, Paola Cascante-Bonilla, Donghyun
 Kim, Assaf Arbelle, Rameswar Panda, Rogerio Feris, and Zsolt Kira. Coda-prompt: Continual
 decomposed attention-based prompting for rehearsal-free continual learning. In Proceedings
 of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), pages
-11909–11919, June 2023. <b>[</b> <a target="_blank" href="https://github.com/GT-RIPL/CODA-Prompt">Official Code</a> | <a target="_blank" href="https://arxiv.org/abs/2211.13218">Paper</a><b>]</b>`,
+11909–11919, June 2023. <b>[</b>  <a target="_blank" href="https://arxiv.org/abs/2211.13218">Paper</a><b>]</b>`,
+    "4": `Geoffrey Hinton, Oriol Vinyals, and Jeff Dean. Distilling the
+knowledge in a neural network, 2015. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/1503.02531">Paper</a><b>]</b>`,
+    "5": `Borui Zhao, Quan Cui, Renjie Song, Yiyu Qiu, and Jiajun
+Liang. Decoupled knowledge distillation. In Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern
+Recognition (CVPR), pages 11953–11962, 2022. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/2203.08679">Paper</a><b>]</b>`,
+    "6": `Adriana Romero, Nicolas Ballas, Samira Ebrahimi Kahou,
+Antoine Chassang, Carlo Gatta, and Yoshua Bengio. Fitnets:
+Hints for thin deep nets. arXiv preprint arXiv:1412.6550,
+2014. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/1412.6550">Paper</a><b>]</b>`,
+    "7": `Pengguang Chen, Shu Liu, Hengshuang Zhao, and Jiaya Jia.
+Distilling knowledge via knowledge review. In Proceedings
+of the IEEE/CVF Conference on Computer Vision and Pat-
+tern Recognition (CVPR), pages 5008–5017, 2021. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/2104.09044">Paper</a><b>]</b>`,
+    "8": `Hugo Touvron, Matthieu Cord, Matthijs Douze, Francisco
+Massa, Alexandre Sablayrolles, and Herv´e J´egou. Training
+data-efficient image transformers & distillation through at-
+tention. arXiv preprint arXiv:2012.12877, 2020. <b>[</b> <a target="_blank" href="https://arxiv.org/abs/2012.12877">Paper</a><b>]</b>`,
 }
+
 
 const video_links = {
     "1": [
