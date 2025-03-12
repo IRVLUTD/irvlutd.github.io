@@ -48,8 +48,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning: An Empirical Study of Knowledge Distillation
-            in Prompt-based Continual Learning</h1>
+          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning: Knowledge Distillation in Prompt-based
+            Continual Learning</h1>
             <div class="is-size-6 publication-authors">
               <div id="author-content" class="columns is-centered is-gapless">
                   <div class="column">
@@ -90,7 +90,7 @@
             
           <div class="is-size-6 publication-authors">
             <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
-            <span id="accepted-conference" class="author-block">arXiv, 2024<br></span>
+            <!-- <span id="accepted-conference" class="author-block">arXiv, 2024<br></span> -->
           </div>
 
           <div class="column has-text-centered">
@@ -159,19 +159,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Knowledge Distillation (KD) focuses on using a teacher model to improve a student model. 
-            Traditionally, KD is studied in an offline fashion, where a training dataset is available before learning. 
-            In this work, we introduce the problem of Continual Distillation Learning (CDL) that 
-            considers KD in the Continual Learning (CL) setup. A teacher model and a student model need to 
-            learn a sequence of tasks, and the knowledge of the teacher model will be distilled to the student to 
-            improve the student model in an online fashion. The CDL problem is valuable to study since for 
-            prompt-based continual learning methods, using a larger vision transformer (ViT) leads to better 
-            performance in continual learning. Distilling the knowledge from a large ViT to a small ViT can 
-            improve inference efficiency for promptbased CL models. To this end, we conducted experiments to 
-            study the CDL problem with three prompt-based CL models, i.e., L2P, DualPrompt and CODA-Prompt, 
-            where we utilized logit distillation, feature distillation and prompt distillation for knowledge 
-            distillation from a teacher model to a student model. Our findings of this study can serve as 
-            baselines for future CDL work.
+            We introduce the problem of continual distillation learning (CDL) in order to use knowledge distillation (KD) 
+            to improve prompt-based continual learning (CL) models. The CDL problem is valuable to study since the use of 
+            a larger vision transformer (ViT) leads to better performance in prompt-based continual learning. 
+            The distillation of knowledge from a large ViT to a small ViT can improve the inference efficiency for 
+            prompt-based CL models. We empirically found that existing KD methods such as logit distillation and feature 
+            distillation cannot effectively improve the student model in the CDL setup. To this end, we introduce a novel 
+            method named Knowledge Distillation based on Prompts (KDP), in which globally accessible prompts specifically 
+            designed for knowledge distillation are inserted into the frozen ViT backbone of the student model. 
+            We demonstrate that our KDP method effectively enhances the distillation performance in comparison to 
+            existing KD methods in the CDL setup.
           </p>
         </div>
       </div>
@@ -187,11 +184,11 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">CDL</h2>
-        <p>We introduce the problem of Continual Distillation Learning (CDL) that considers differetn KD methods in the Prompt-based Continual Learning (CL) setup. 
-          The following figure illustrates the overall workflow of our experiment.
-        </p>
+        <p>We introduce the problem of Continual Distillation Learning (CDL) that considers differetn KD methods 
+          in the Prompt-based Continual Learning (CL) setup. The following figure illustrates the overall workflow of our experiment. 
+          The blue dashed area highlights our proposed KDP method, which addresses the limitations of other KD approaches and achieves state-of-the-art (SOTA) performance.</p>
         <div class="content has-text-justified">
-          <img src="assets/images/overview.png" alt="gto">
+          <img src="assets/images/CDL.png" alt="gto">
         </div>
       </div>
     </div>
@@ -207,10 +204,10 @@
     <div class="columns">
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"></span>&nbsp;Experiment Results</h2>
+          <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"></span>Experiment Results</h2>
           
-          <span><strong>Experiment Results</strong>: 
-            We conducted knowledge distillation experiments on three prompt-based continual learning methods, providing inspiration for future research in CDL, which can be extended to more continual learning methods.</span>
+          <span><strong>Experiment Results:</strong> We conducted knowledge distillation experiments on three prompt-based continual learning methods, providing inspiration for future research in CDL, which can be extended to more continual learning methods.</span>
+
           
           <div class="content has-text-justified"></div>
           <span class="link-block">
@@ -234,8 +231,7 @@
                 <th><abbr title="Click to Sort">KD-Method</abbr></th>
                 <th><abbr title="Click to Sort">Task-Number</abbr></th>
                 <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
-                <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
-                
+                <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>            
               </tr>
             </thead>
             <tbody id="leaderboard-body"></tbody>
@@ -265,7 +261,6 @@
                   <th><abbr title="Click to Sort">Task-Number</abbr></th>
                   <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
                   <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
-                  
                 </tr>
               </thead>
               <tbody id="leaderboard-body_imagenet"></tbody>
@@ -312,6 +307,39 @@
 
 
 
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/CDL"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">CDL</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The code for CDL.
+              </p>
+            </div>
+
+          </div>
+        </div>
+        <!--/ Code. -->
+
+
+  </div>
 
 
 
