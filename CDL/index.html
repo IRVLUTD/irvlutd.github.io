@@ -48,13 +48,14 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning</h1>
+          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning: Knowledge Distillation in Prompt-based
+            Continual Learning</h1>
             <div class="is-size-6 publication-authors">
               <div id="author-content" class="columns is-centered is-gapless">
                   <div class="column">
                     <div class="center">
                       <div>
-                        <a target="_blank" href="https://irvlutd.github.io/CDL/">
+                        <a target="_blank" href="https://qfantastic.github.io/">
                           <img class="display-image author-image center"
                             src="../assets/images/authors/qifan_zhang.webp"> <br>Qifan Zhang</a></span>
                       </div>
@@ -89,7 +90,7 @@
             
           <div class="is-size-6 publication-authors">
             <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
-            <span id="accepted-conference" class="author-block">arXiv, 2024<br></span>
+            <!-- <span id="accepted-conference" class="author-block">arXiv, 2024<br></span> -->
           </div>
 
           <div class="column has-text-centered">
@@ -108,7 +109,7 @@
 
               <!-- Code Link. -->
               <span class="link-block">
-                <a target="_blank" href="https://github.com/IRVLUTD/CDL" class="external-link button is-normal is-rounded is-dark">
+                <a target="_blank" href="https://github.com/IRVLUTD/CDL_Empirical_Study" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
@@ -158,19 +159,16 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We study the problem of Continual Distillation Learning (CDL) that considers
-Knowledge Distillation (KD) in the Continual Learning (CL) setup. A teacher
-model and a student model need to learn a sequence of tasks, and the knowledge of
-the teacher model will be distillated to the student in order to improve the student
-model. We introduce a novel method named CDL-Prompt that leverages prompt-
-based continual learning models to build the teacher-student model. We investigate
-how to utilize the prompts of the teacher model in the student model for knowledge
-distillation, and propose an attention-based prompt mapping scheme to use the
-teacher prompts for the student. We demonstrate that our method can be applied
-to different prompt-based continual learning models such as L2P, DualPrompt
-and CODA-Prompt to improve their performance using powerful teacher models.
-While recent CL methods focus on prompt learning, we show that our method can
-be utilized to build efficient CL models using prompt-based knowledge distillation.
+            We introduce the problem of continual distillation learning (CDL) in order to use knowledge distillation (KD) 
+            to improve prompt-based continual learning (CL) models. The CDL problem is valuable to study since the use of 
+            a larger vision transformer (ViT) leads to better performance in prompt-based continual learning. 
+            The distillation of knowledge from a large ViT to a small ViT can improve the inference efficiency for 
+            prompt-based CL models. We empirically found that existing KD methods such as logit distillation and feature 
+            distillation cannot effectively improve the student model in the CDL setup. To this end, we introduce a novel 
+            method named Knowledge Distillation based on Prompts (KDP), in which globally accessible prompts specifically 
+            designed for knowledge distillation are inserted into the frozen ViT backbone of the student model. 
+            We demonstrate that our KDP method effectively enhances the distillation performance in comparison to 
+            existing KD methods in the CDL setup.
           </p>
         </div>
       </div>
@@ -185,10 +183,12 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
     <!-- 20xScenes. -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">CDL-Prompt</h2>
-        <p>CDL-Prompt is a framework for continual distillation learning that can be integrated into various prompt-based methods to improve performance.</p>
+        <h2 class="title is-3">CDL</h2>
+        <p>We introduce the problem of Continual Distillation Learning (CDL) that considers differetn KD methods 
+          in the Prompt-based Continual Learning (CL) setup. The following figure illustrates the overall workflow of our experiment. 
+          The blue dashed area highlights our proposed KDP method, which addresses the limitations of other KD approaches and achieves state-of-the-art (SOTA) performance.</p>
         <div class="content has-text-justified">
-          <img src="assets/images/framework.png" alt="gto">
+          <img src="assets/images/CDL.png" alt="gto">
         </div>
       </div>
     </div>
@@ -196,21 +196,7 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
   </div>
 </section>
 
-<section id="scenes" class="section">
-  <div class="container is-max-desktop">
-    <!-- 20xScenes. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Experiment Results</h2>
-        <div class="content has-text-justified">
-          <img src="assets/images/Base_results.png" alt="CDL-Prompt(Using CODA baseline and ViT-base backbone) outperforms other prompt-based methods in both Cifar-100 and ImageNet-R datasets. Accuracy refers to the average accuracy for all 10 tasks. We train multiple times and take the average.">
-          <p class="center">CDL-Prompt(Using CODA baseline and ViT-base backbone) outperforms other prompt-based methods in both Cifar-100 and ImageNet-R datasets. Accuracy refers to the average accuracy for all 10 tasks. We train multiple times and take the average.</p>
-        </div>
-      </div>
-    </div>
-    <!--/ 20xScenes. -->
-  </div>
-</section>
+
 
 <section id="leaderboard" class="section">
   <div class="container is-max-desktop">
@@ -218,9 +204,10 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
     <div class="columns">
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"></span>&nbsp;More Prompt-based Models</h2>
+          <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"></span>Experiment Results</h2>
           
-          <span><strong>Adding more methods</strong>: Our CDL-Prompt not only uses CODA-Prompt as the baseline model but also includes result statistics from various different prompt-based methods. In the future, we will continuously add and update our CDL method on different prompt-based models.</span>
+          <span><strong>Experiment Results:</strong> We conducted knowledge distillation experiments on three prompt-based continual learning methods, providing inspiration for future research in CDL, which can be extended to more continual learning methods.</span>
+
           
           <div class="content has-text-justified"></div>
           <span class="link-block">
@@ -241,10 +228,10 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
                 <th><abbr title="Click to Sort">Teacher</abbr></th>
                 <th><abbr title="Click to Sort">Student</abbr></th>
                 <th><abbr title="Click to Sort">Baseline</abbr></th>
+                <th><abbr title="Click to Sort">KD-Method</abbr></th>
                 <th><abbr title="Click to Sort">Task-Number</abbr></th>
                 <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
-                <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
-                
+                <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>            
               </tr>
             </thead>
             <tbody id="leaderboard-body"></tbody>
@@ -270,10 +257,10 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
                   <th><abbr title="Click to Sort">Teacher</abbr></th>
                   <th><abbr title="Click to Sort">Student</abbr></th>
                   <th><abbr title="Click to Sort">Baseline</abbr></th>
+                  <th><abbr title="Click to Sort">KD-Method</abbr></th>
                   <th><abbr title="Click to Sort">Task-Number</abbr></th>
                   <th><abbr title="Click to Sort">Accuarcy(%)</abbr></th>
                   <th><abbr title="Click to Sort">Forgetting(%)</abbr></th>
-                  
                 </tr>
               </thead>
               <tbody id="leaderboard-body_imagenet"></tbody>
@@ -297,7 +284,7 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">References</h2>
-        <span><strong>Official Code</strong>: Source code from the authors of the method <br> </span>
+        
         <div class="content has-text-justified">
           <ol id="references"></ol>
         </div>
@@ -321,13 +308,14 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
 
 
 
+
 <section class="section">
   <div class="container is-max-desktop">
 
         <!-- Code. -->
         <div class="columns is-centered has-text-justified">
           <div class="column">
-            <h2 id="code" class="title is-3">Code (coming soon...)</h2>
+            <h2 id="code" class="title is-3">Code</h2>
             <!-- Toolkit Code. -->
             <div class="content has-text-justified">
               <h2 class="title is-3">
@@ -342,7 +330,7 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
                 </span>
               </h2>
               <p>
-                The code for CDL-Prompt.
+                The code for CDL.
               </p>
             </div>
 
@@ -352,6 +340,7 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
 
 
   </div>
+
 
 
   
@@ -365,7 +354,7 @@ be utilized to build efficient CL models using prompt-based knowledge distillati
     <span>Please cite <span class="small-caps">CDL</span> if it helps your research:</span>
     <div class="bib-container">
     <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2024CDL,
-title={Continual Distillation Learning},
+title={Continual Distillation Learning: Knowledge Distillation in Prompt-based Continual Learning},
 author={Qifan Zhang and Yunhui Guo and Yu Xiang},
 year={2024},
 eprint={2407.13911},
@@ -391,7 +380,7 @@ primaryClass={cs.CV}
   <div class="is-vcentered interpolation-panel">
     <div class="container content">
       <p style="font-size: 16px">
-        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005 and the Sony Research Award Program.
+        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, and the National Science Foundation (NSF) under Grant No. 2346528.
       </p>
     </div>
   </div>

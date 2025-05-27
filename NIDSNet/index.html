@@ -112,6 +112,17 @@
                 </a>
               </span> 
 
+              <!-- Appendix Link. -->
+              <span class="link-block">
+                <a target="_blank" href="assets/images/NIDS_Net_appendix.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Appendix</span>
+                </a>
+              </span> 
+
 
               <!-- Code Link. -->
               <span class="link-block">
@@ -160,16 +171,16 @@
   <div class="container is-max-desktop">
 
       <!-- Paper video. -->
-<!--      <div class="columns is-centered has-text-centered">-->
-<!--        <div class="column">-->
-<!--          <div class="publication-video">-->
-<!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
-<!--            <iframe src="https://www.youtube.com/embed/CRAVObWhxLw?si=IvSbS4sgEqou8dH6"-->
-<!--            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+     <div class="columns is-centered has-text-centered">
+       <div class="column">
+         <div class="publication-video">
+<!-- &lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt; -->
+           <iframe src="https://www.youtube.com/embed/BrO_se6MJQk?si=G8sltnevlNEJpYzN"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 <!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
+         </div>
+       </div>
+     </div>
       <!--/ Paper video. -->
 
     <!-- Abstract. -->
@@ -178,7 +189,9 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Novel Instance Detection and Segmentation (NIDS) aims at detecting and segmenting novel object instances given a few examples of each instance. We propose a unified framework (NIDS-Net) comprising object proposal generation, embedding creation for both instance templates and proposal regions, and embedding matching for instance label assignment. Leveraging recent advancements in large vision methods, we utilize the Grounding DINO and Segment Anything Model (SAM) to obtain object proposals with accurate bounding boxes and masks. Central to our approach is the generation of high-quality instance embeddings. We utilize foreground feature averages of patch embeddings from the DINOv2 ViT backbone, followed by refinement through a weight adapter mechanism that we introduce. We show experimentally that our weight adapter can adjust the embeddings locally within their feature space and effectively limit overfitting. This methodology enables a straightforward matching strategy, resulting in significant performance gains. Our framework surpasses current state-of-the-art methods, demonstrating notable improvements of 22.3, 46.2, 10.3, and 24.0 in average precision (AP) across four detection datasets. In instance segmentation tasks on seven core datasets of the BOP challenge, our method outperforms the top RGB methods by 3.6 AP and remains competitive with the best RGB-D method.
+            Novel Instance Detection and Segmentation (NIDS) aims at detecting and segmenting novel object instances given a few examples of each instance. We propose a unified, simple, yet effective framework (NIDS-Net) comprising object proposal generation, embedding creation for both instance templates and proposal regions, and embedding matching for instance label assignment. Leveraging recent advancements in large vision methods, we utilize Grounding DINO and Segment Anything Model (SAM) to obtain object proposals with accurate bounding boxes and masks. Central to our approach is the generation of high-quality instance embeddings. We utilized foreground feature averages of patch embeddings from the DINOv2 ViT backbone, followed by refinement through a weight adapter mechanism that we introduce. 
+            </p>
+          <p>We show experimentally that our weight adapter can adjust the embeddings locally within their feature space and effectively limit overfitting in the few-shot setting. Furthermore, the weight adapter optimizes weights to enhance the distinctiveness of instance embeddings during similarity computation. This methodology enables a straightforward matching strategy that results in significant performance gains. Our framework surpasses current state-of-the-art methods, demonstrating notable improvements in four detection datasets. In the segmentation tasks on seven core datasets of the BOP challenge, our method outperforms the leading published RGB methods and remains competitive with the best RGB-D method. We have also verified our method using real-world images from a Fetch robot and a RealSense camera.
           </p>
         </div>
       </div>
@@ -194,8 +207,12 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">NIDS-Net</h2>
-        <p>NIDS-Net is a unified framework for Novel Instance Detection and Segmentation (NIDS).</p>
         <div class="content has-text-justified">
+          <p>NIDS-Net is a unified framework for Novel Instance Detection and Segmentation (NIDS).</p>
+        
+          <p>We use Grounding DINO <a href="#bib-2"> [2] </a> and Segment Anything <a href="#bib-3"> [3] </a> to obtain foreground object proposals. 
+            Then DINOv2 <a href="#bib-4"> [4] </a>is applied to generate instance embeddings. Adapters can refine these embeddings for matching.
+          </p>  
           <img src="assets/images/fw0.png" alt="gto">
         </div>
       </div>
@@ -243,7 +260,7 @@
     <div class="columns is-centered has-text-centered">
       <div class="column">
         <h2 class="title is-3">BOP Benchmark</h2>
-        <h3><a href="https://bop.felk.cvut.cz/leaderboards/segmentation-unseen-bop23/core-datasets/">Ranked #1: Model-based 2D segmentation of unseen objects – Core datasets</a></h3>
+        <h3><a href="https://bop.felk.cvut.cz/leaderboards/segmentation-unseen-bop23/core-datasets/">Ranked #1: Model-based 2D segmentation of unseen objects – Core datasets (As of 2024/11)</a></h3>
         <div class="content has-text-justified">
           <img src="assets/images/leaderboard.png" alt="gto">
         </div>
@@ -268,6 +285,39 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Appendix. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="appendix" class="title is-3">Appendix</h2>
+            <!-- Appendix. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="assets/images/NIDS_Net_appendix.pdf"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span> <span class="small-caps">NIDS-Net Appendix</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The Appendix of NIDS-Net.
+              </p>
+            </div>
+            <!--/ Toolkit Code. -->
+
+          </div>
+        </div>
+        <!--/ Code. -->
+
+
+  </div>
+</section>
 
 
 <section class="section">
@@ -297,9 +347,6 @@
 
           </div>
         </div>
-        <!--/ Code. -->
-
-
   </div>
 </section>
 
@@ -349,6 +396,20 @@
                     <p>
                     K. Kotar, S. Tian, H.-X. Yu, D. Yamins, and J. Wu. Are these the same apple? comparing images based on object intrinsics. Advances in Neural Information Processing Systems, 36, 2024.<a href="https://arxiv.org/abs/2311.00750"> arXiv </a>
                     </p>
+                </li>
+                <li id="bib-2">
+                  <p>Liu, Shilong, et al. "Grounding dino: Marrying dino with grounded pre-training for open-set object detection." European Conference on Computer Vision. Cham: Springer Nature Switzerland, 2024.
+                  </p>
+                </li>
+                <li id="bib-3">
+                  <p>
+                    Kirillov, Alexander, et al. "Segment anything." Proceedings of the IEEE/CVF international conference on computer vision. 2023.
+                  </p>
+                </li>
+                <li id="bib-4">
+                  <p>
+                    Oquab, Maxime, et al. "Dinov2: Learning robust visual features without supervision." arXiv preprint arXiv:2304.07193 (2023).
+                  </p>
                 </li>
             </ol>
           </div>

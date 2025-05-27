@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="MultiGrounding, Multimodal Reference Visual Grounding, Visual Grounding, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Instance Detection, Novel Instance">
+  <meta name="description" content="Multimodal Reference Visual Grounding">
+  <meta name="author" content="Yangxiao Lu,  Ruosen Li, Liqiang Jing, Jikai Wang, Xinya Du, Yunhui Guo, Nicholas Ruozzi, Yu Xiang">
+  <title id="title" project-name="MultiGrounding">MRVG</title>
+
+<!--<script async src="https://www.googletagmanager.com/gtag/js?id=G-CFGPJHLM4C"></script>-->
+<!--<script>-->
+<!--  window.dataLayer = window.dataLayer || [];-->
+<!--  function gtag(){dataLayer.push(arguments);}-->
+<!--  gtag('js', new Date());-->
+
+<!--  gtag('config', 'G-CFGPJHLM4C');-->
+<!--</script>-->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> <span>Multimodal Reference Visual Grounding</h1>
+            <div class="is-size-6 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                  <div class="column">
+                    <div class="center">
+                      <div>
+                        <a target="_blank" href="https://youngsean.github.io">
+                          <img class="display-image author-image center"
+                            src="../assets/images/authors/yangxiao_lu.webp"> <br>Yangxiao Lu</a></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://scholar.google.com.hk/citations?user=tN-RVAkAAAAJ&hl=en">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/ruosen_li.webp"> <br>Ruosen Li</a></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+
+                     <div>
+                      <a target="_blank" href="https://liqiangjing.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/liqiang_jing.webp"> <br>Liqiang Jing</a></span>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://jwroboticsvision.github.io/"><img class="author-image center"
+                          src="../assets/images/authors/jikai_wang.webp"><br>Jikai Wang</a>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="column">
+                  <div class="center">
+
+
+                    <div>
+                      <a target="_blank" href="https://xinyadu.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/xinya_du.webp"> <br>Xinya Du</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+
+
+                    <div>
+                      <a target="_blank" href="https://yunhuiguo.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/yunhui_guo.webp"> <br>Yunhui Guo</a></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~nicholas.ruozzi/"><img
+                          class="author-image center" src="../assets/images/authors/nicholas_ruozzi.webp"><br>Nicholas Ruozzi</a></span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
+            <span id="accepted-conference" class="author-block">arXiv, 2025<br></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+<!--               Arxiv Link.-->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2504.02876"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/YoungSean/Multimodal-Reference-Visual-Grounding"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/wqh9z1ljch9sjqr1squyuwjmr894w1gy"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>MultimodalGround Dataset</span>
+                  </a>
+              </span>
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+<!--     <div class="columns is-centered has-text-centered">-->
+<!--       <div class="column">-->
+<!--         <div class="publication-video">-->
+<!--&lt;!&ndash; &lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt; &ndash;&gt;-->
+<!--           <iframe src="https://www.youtube.com/embed/BrO_se6MJQk?si=G8sltnevlNEJpYzN"-->
+<!--            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>-->
+<!--&lt;!&ndash;&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;&ndash;&gt;-->
+<!--         </div>-->
+<!--       </div>-->
+<!--     </div>-->
+      <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Visual grounding focuses on detecting objects from images based on language expressions. Recent Large Vision-Language Models (LVLMs) have significantly advanced visual grounding performance by training large models with large-scale datasets. However, the problem remains challenging, especially when similar objects appear in the input image. For example, an LVLM may not be able to differentiate Diet Coke and regular Coke in an image. In this case, if additional reference images of Diet Coke and regular Coke are available, it can help the visual grounding of similar objects.
+          </p>
+          <p>In this work, we introduce a new task named Multimodal Reference Visual Grounding (MRVG).
+In this task, a model has access to a set of reference images of objects in a database. Based on these reference images and a language expression, the model is required to detect a target object from a query image. We first introduce a new dataset to study the MRVG problem. Then we introduce a novel method, named MRVG-Net, to solve this visual grounding problem. We show that by efficiently using reference images with few-shot object detection and using Large Language Models (LLMs) for object matching, our method achieves superior visual grounding performance compared to the state-of-the-art LVLMs such as Qwen2.5-VL-7B. Our approach bridges the gap between few-shot detection and visual grounding, unlocking new capabilities for visual understanding.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section id="task" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Multimodal Reference Visual Grounding (MRVG)</h2>
+        <div class="content has-text-justified">
+
+          <p>Comparison of three visual grounding tasks: (a) Visual grounding identifies objects in a query image based on a textual expression. (b) In-context visual grounding utilizes reference images to specify the target object in addition to the language expression, where the reference images must contain the target object. (c) Multimodal reference visual grounding uses a set of reference images alongside a referring expression to identify the target, where the target only represents one object in the reference images. </p>
+          <img src="assets/images/tasks5.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+<section id="framework" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">MRVG-Net</h2>
+        <div class="content has-text-justified">
+          <p>MRVG-Net is our proposed framework for Multimodal Reference Visual Grounding (MRVG).</p>
+        
+          <p>Architecture of our MRVG-Net. Only the weight adapter of NIDS-Net <a href="#bib-1"> [1] </a>  is trained using the reference images. After the NIDS-Net produces detection results in a few-shot fashion, the corresponding object descriptions are retrieved from a pre-stored file. The Large Language Model (LLM) then matches these descriptions with the referring expression to select the most relevant description and its associated bounding box.</p>
+          <img src="assets/images/fw4.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+<!--<section id="ffa" class="section">-->
+<!--  <div class="container is-max-desktop">-->
+<!--    &lt;!&ndash; 20xScenes. &ndash;&gt;-->
+<!--    <div class="columns is-centered has-text-centered">-->
+<!--      <div class="column">-->
+<!--        <h2 class="title is-3">Foreground Feature Averaging (FFA)</h2>-->
+<!--        <p>FFA<a href="#bib-1"> [1] </a> is used to generate initial instance embeddings.</p>-->
+<!--        <div class="content has-text-justified">-->
+<!--          <img src="assets/images/FFA3.png" alt="gto">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;/ 20xScenes. &ndash;&gt;-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+<section id="detection" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Detection Examples</h2>
+        <div class="content has-text-justified">
+          <img src="assets/images/cases2.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+
+<!--<section class="section">-->
+<!--  <div class="container is-max-desktop">-->
+
+<!--        &lt;!&ndash; Appendix. &ndash;&gt;-->
+<!--        <div class="columns is-centered has-text-justified">-->
+<!--          <div class="column">-->
+<!--            <h2 id="appendix" class="title is-3">Appendix</h2>-->
+<!--            &lt;!&ndash; Appendix. &ndash;&gt;-->
+<!--            <div class="content has-text-justified">-->
+<!--              <h2 class="title is-3">-->
+<!--                <span class="link-block">-->
+<!--                  <a target="_blank" href="assets/images/NIDS_Net_appendix.pdf"-->
+<!--                     class="external-link button is-normal is-rounded is-dark">-->
+<!--                    <span class="icon">-->
+<!--                        <i class="ai ai-arxiv"></i>-->
+<!--                    </span>-->
+<!--                    <span> <span class="small-caps">NIDS-Net Appendix</span>-->
+<!--                    </a>-->
+<!--                </span>-->
+<!--              </h2>-->
+<!--              <p>-->
+<!--                The Appendix of NIDS-Net.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;/ Toolkit Code. &ndash;&gt;-->
+
+<!--          </div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash;/ Code. &ndash;&gt;-->
+
+
+<!--  </div>-->
+<!--</section>-->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/YoungSean/Multimodal-Reference-Visual-Grounding"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">MRVG-Net</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+                The code for MRVG-Net.
+              </p>
+            </div>
+
+          </div>
+        </div>
+  </div>
+</section>
+
+  <section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="data" class="title is-3">MultimodalGround Dataset</h2>
+            <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/wqh9z1ljch9sjqr1squyuwjmr894w1gy"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>MultimodalGround Dataset</span>
+                  </a>
+              </span>
+
+<!--              <span class="link-block">-->
+<!--                <a href="https://utdallas.box.com/s/yw8oazutnp1ektcnzh3hm8u5vjtq7to7"-->
+<!--                   class="external-link button is-normal is-rounded is-dark">-->
+<!--                  <span class="icon">-->
+<!--                      <i class="far fa-images"></i>-->
+<!--                  </span>-->
+<!--                  <span>BOP Segmentation Data</span>-->
+<!--                  </a>-->
+<!--              </span>-->
+
+          </div>
+        </div>
+  </div>
+</section>
+
+  
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- References. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">References</h2>
+          <div class="content has-text-justified">
+            <ol id="references">
+                <li id="bib-1">
+                    <p>
+                    Lu, Y., Guo, Y., Ruozzi, N. and Xiang, Y., 2024. Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation. arXiv preprint arXiv:2405.17859.</p>
+                </li>
+<!--                <li id="bib-2">-->
+<!--                  <p>Liu, Shilong, et al. "Grounding dino: Marrying dino with grounded pre-training for open-set object detection." European Conference on Computer Vision. Cham: Springer Nature Switzerland, 2024.-->
+<!--                  </p>-->
+<!--                </li>-->
+<!--                <li id="bib-3">-->
+<!--                  <p>-->
+<!--                    Kirillov, Alexander, et al. "Segment anything." Proceedings of the IEEE/CVF international conference on computer vision. 2023.-->
+<!--                  </p>-->
+<!--                </li>-->
+<!--                <li id="bib-4">-->
+<!--                  <p>-->
+<!--                    Oquab, Maxime, et al. "Dinov2: Learning robust visual features without supervision." arXiv preprint arXiv:2304.07193 (2023).-->
+<!--                  </p>-->
+                </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <!--/ References. -->
+    </div>
+  </section>
+
+
+
+<!--<section class="section" id="BibTeX">-->
+<!--  <div class="container is-max-desktop">-->
+<!--    <h2 class="title has-text-centered">BibTeX</h2>-->
+<!--    <span>Please cite <span class="small-caps">NIDS-Net</span> if it helps your research:</span>-->
+<!--    <div class="bib-container">-->
+<!--    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{lu2024adapting,-->
+<!--title={Adapting Pre-Trained Vision Models for Novel Instance Detection and Segmentation},-->
+<!--author={Yangxiao Lu and Jishnu Jaykumar P and Yunhui Guo and Nicholas Ruozzi and Yu Xiang},-->
+<!--year={2024},-->
+<!--eprint={2405.17859},-->
+<!--archivePrefix={arXiv},-->
+<!--primaryClass={cs.CV}-->
+<!--}</code></pre>-->
+<!--    </div>-->
+<!--</div>-->
+<!--</section>-->
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Yangxiao Lu: <a target="_blank" href="mailto:yangxiao.lu@utdallas.edu">yangxiao.lu@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        We would like to express our sincere gratitude to the annotators who contributed to the creation of our dataset. In particular, we thank Praneeth Champooranan, Michael Ugochukwu, Itay Kadosh and Peter Driscoll for their meticulous and dedicated efforts in annotating the data. Their contributions were invaluable to the success of this work.
+      </p>
+<p  style="font-size: 16px">This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the National Science Foundation (NSF) under Grant No. 2346528, and the NVIDIA Academic Grant Program Award.</p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p id="website-template-credits">
+        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/index.js"></script>
+
+
+</html>
