@@ -6,6 +6,7 @@ $(document).ready(function() {
         "SceneReplica": ["../SceneReplica", "scene-replica"],
         "NIDSNet" : ["../NIDSNet", "NIDSNet"],
         "iTeach" : ["../iTeach", "iTeach"],
+        "HRT1" : ["../HRT1", "hrt1"],
     }
 
     const current_project_name = document.getElementById("title").getAttribute("project-name");

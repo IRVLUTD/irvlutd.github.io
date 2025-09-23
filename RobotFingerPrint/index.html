@@ -5,9 +5,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="RobotFingerPrint, MultiGripperGrasp, GenDexGrasp, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, Robot Perception, Object Recognition, Grasping, Multi gripper grasps, Dataset Construction, Sim-to-Real, Grasp Transfer">
-  <meta name="description" content="RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​">
+  <meta name="description" content="RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis and Transfer​">
   <meta name="author" content="Ninad Khargonkar, Luis Felipe Casas, Balakrishnan Prabhakaran, Yu Xiang">
-  <title>RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​</title>
+  <title>RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis and Transfer​</title>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
@@ -46,7 +46,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-2 publication-title"> <span class="small-caps">RobotFingerPrint:</span> Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​</h1>
+          <h1 class="title is-2 publication-title"> <span class="small-caps">RobotFingerPrint:</span> Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis and Transfer​</h1>
           <div class="is-size-5 publication-authors">
 
             <span class="author-block">
@@ -68,7 +68,7 @@
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <!-- <span class="author-block">*equal contribution</span> -->
-            <!-- <span id="accepted-conference" class="author-block"><br> Under submission to IEEE International Conference on Robotics and Automation (ICRA), 2025</span> -->
+            <span id="accepted-conference" class="author-block"><br>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025</span>
           </div>
 
           <div class="column has-text-centered">
@@ -104,6 +104,17 @@
                       <i class="far fa-images"></i>
                   </span>
                   <span>Data</span>
+                  </a>
+              </span>
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="#videos"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-play"></i>
+                  </span>
+                  <span>Video</span>
                   </a>
               </span>
 
@@ -150,21 +161,58 @@
       <div class="column">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>
-            We introduce a novel representation named as the unified gripper coordinate space for grasp synthesis of multiple grippers. The space is a 2D surface of a sphere in 3D using longitude and latitude as its coordinates, and it is shared for all robotic grippers. We propose a new algorithm to map the palm surface of a gripper into the unified gripper coordinate space, and design a conditional variational autoencoder to predict the unified gripper coordinates given an input object. The predicted unified gripper coordinates establish correspondences between the gripper and the object, which can be used in an optimization problem to solve the grasp pose and the finger joints for grasp synthesis. We demonstrate that using the unified gripper coordinate space improves the success rate and diversity in the grasp synthesis of multiple grippers.
+          <p> We introduce a novel grasp representation named
+              the Unified Gripper Coordinate Space (UGCS) for grasp
+              synthesis and grasp transfer. Our representation leverages
+              spherical coordinates to create a shared coordinate space across
+              different robot grippers, enabling it to synthesize and transfer
+              grasps for both novel objects and previously unseen grippers.
+              The strength of this representation lies in the ability to map
+              palm and fingers of a gripper and the unified coordinate
+              space. Grasp synthesis is formulated as predicting the unified
+              spherical coordinates on object surface points via a conditional
+              variational autoencoder. The predicted unified gripper coordi-
+              nates establish exact correspondences between the gripper and
+              object points, which is used to optimize grasp pose and joint
+              values. Grasp transfer is facilitated through the point-to-point
+              correspondence between any two (potentially unseen) grippers
+              and solved via a similar optimization. Extensive simulation and
+              real-world experiments showcase the efficacy of the unified
+              grasp representation for grasp synthesis in generating stable
+              and diverse grasps. Similarly, we showcase real-world grasp
+              transfer from human demonstrations across different objects.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
 
-
+      <br><br>
       <!-- Paper video. -->
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <div class="publication-video">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/qvyhMjGf46I?si=DK9i6INJp_0oMdiA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h2 id="videos" class="title is-3">Videos</h2>
+
+          <h4 class="title is-4">Supplementary Video Presentation</h4>
+          <div class="publication-video">            
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/BLgxe3YQWBk?si=wI68c86Bqd6PvXf2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
+          
+          <br><br><br>
+
+          <h4 class="title is-4">Real World Experiments on SceneReplica Benchmark</h4>
+          <div class="publication-video">            
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Dpmj3jWddRg?si=IrTtPkUNOxU1hRu3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+
+
+          <br><br><br>
+
+          <h4 class="title is-4">Grasp Transfer Examples</h4>
+          <div class="publication-video">            
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/4ZFvQGp1RsY?si=OZSXgCE0W2cEz5LO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+
         </div>
       </div>
       <!--/ Paper video. -->
@@ -251,7 +299,7 @@
     <h2 id="bibtex" class="title">Citation (BibTeX)</h2>
     <span>Please cite <span class="small-caps">RobotFingerPrint</span> if this work helps in your research:</span>
     <pre><code>@inproceedings{khargonkar2024robotfingerprint,
-      title={RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis​},
+      title={RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis and Transfer​},
       author={Khargonkar, Ninad and Casas, Luis Felipe and  and Prabhakaran, Balakrishnan and Xiang, Yu},
       journal={arXiv preprint arXiv:2409.14519},
       year={2024}
@@ -276,7 +324,7 @@
   <div class="is-vcentered interpolation-panel">
     <div class="container content">
       <p style="font-size: 16px">
-        This work was supported by the Sony Research Award Program and the National Science Foundation (NSF) under Grant No. 2346528.
+        This work was supported by the Sony Research Award Program and the National Science Foundation (NSF) under Grant No. 2346528. We acknowledge the GPU support from NVIDIA through the Academic Grant Program.
       </p>
     </div>
   </div>
