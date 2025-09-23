@@ -16,6 +16,10 @@ const leaderboard_entries = [
     ['MSMFormer@8@', 'Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Free', '-', '-', 'Fixed Random', 'Model-Free', '56/100', '59/100'],
     // End-to-End Learning based Grasping
     ['DexNet 2.0 @10@', 'DexNet 2.0 @10@', 'OMPL@3@', 'MoveIt', 'Algorithmic', 'Model-Free', '-', '-', 'Algorithmic', 'Model-Free', '43/100', '51/100'],
+    // GTO
+    ['MSMFormer@8@', 'Contact-graspnet@7@ + Top-Down', 'GTO@11@', 'MoveIt', 'Near-to-Far', 'Model-Free', '65/100', '71/100', '-', '-', '-', '-'],
+    // RFP
+    ['GDRNPP@9@', 'RFP@12@ + Top-Down', 'OMPL@3@', 'MoveIt', 'Near-to-Far', 'Model-Based', '70/100', '73/100', '-', '-', '-', '-'],
 ]
 
 const references = {
@@ -50,7 +54,12 @@ const references = {
     and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
     with synthetic point clouds and analytic grasp metrics”, arXiv preprint
     arXiv:1703.09312, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`
+    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`,
+    "11": `Y. Xiang, S.H. Allu, R. Peddi, T. Summers, V. Gogate, “Grasping Trajectory Optimization with Point Clouds”, arXiv preprint
+    arXiv:2403.05466, 2024.
+    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/gto_planning">SceneReplica Version</a> <b>]</b>`,
+    "12": `N. Khargonkar, L.F. Casas, B. Prabhakaran, Y. Xiang, “RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis”, arXiv preprint arXiv:2409.14519 2024.
+    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/robot-finger-print">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/ros_package">SceneReplica Version</a> <b>]</b>`
 }
 
 const video_links = {
@@ -256,4 +265,49 @@ const video_links = {
         [148, '' ,'https://drive.google.com/file/d/1N85p_KE71ThBAYgo3vlDSE5Z-h4BL2Gx/preview'], 
         [161, '' ,'https://drive.google.com/file/d/1wou7Loh397q62U2fXN1q658_kRb4iM0V/preview'],
     ],
+     "10": [
+        [10, 'https://drive.google.com/file/d/1Cks0dbBAjXj6-pN7GPLzU0mypbYFqR14/preview', ''],
+        [25, 'https://drive.google.com/file/d/1bGVJx6ww5KQ6BQkoqo-nO2R4s1lYVwl2/preview', ''],
+        [27, 'https://drive.google.com/file/d/1Iz9Aey8diYLQWCh93LDh-l1ccslG1Yyh/preview', ''],
+        [33, 'https://drive.google.com/file/d/1-skyNXqDVfn6CHf7RZhxd9tm9tVphwhg/preview', ''],
+        [36, 'https://drive.google.com/file/d/1z9duG4ejXW-JTvSpJOAgkF3-4BQA9gE6/preview', ''],
+        [38, 'https://drive.google.com/file/d/1e9U4_j9xwH-Nf6qVqMTmEhaxG26EdkA8/preview', ''],
+        [39, 'https://drive.google.com/file/d/108AVG9gYu3KL4pmER1vXLpeVFFlKQDep/preview', ''],
+        [48, 'https://drive.google.com/file/d/1IB-V0bv2Lu28Ou8XHJf4oaqD4dne7gQG/preview', ''],
+        [56, 'https://drive.google.com/file/d/1NsKQoWTSGi3INwS0NI4aRG_V46iCV8lH/preview', ''],
+        [65, 'https://drive.google.com/file/d/1wGXfwECM60xy6HpV9SKpiVSGlxLu2CT5/preview', ''],
+        [68, 'https://drive.google.com/file/d/1wP75J0RVlOg8BA1rshidbfQXazcLwSLE/preview', ''],
+        [77, 'https://drive.google.com/file/d/1SLabrEB9Gv6AYbTCeNBF3TjSHxuXZ27c/preview', ''],
+        [83, 'https://drive.google.com/file/d/1r92ZD0qsZBJ5-mvtLgTGIx80YIcQ6SPC/preview', ''],
+        [84, 'https://drive.google.com/file/d/1pk9RJF-ls3dcXZkdr_ymJXLbxtbn8e7Z/preview', ''],
+        [104, 'https://drive.google.com/file/d/1Uf8qU7al_f8HpKSX6tX5joU29w1OxqMt/preview', ''],
+        [122, 'https://drive.google.com/file/d/1E4Zk4M4gtcOp6RCOMuYsxCyqU9mH5Sje/preview', ''],
+        [130, 'https://drive.google.com/file/d/1yJUuTWtM6ojMuw1pyZMIdCdniFW9NH5g/preview', ''],
+        [141, 'https://drive.google.com/file/d/1YJ5Z_zExFgcowSwAZAampBRChdm6UENQ/preview', ''],
+        [148, 'https://drive.google.com/file/d/1lyREQIWexDvrYkwHIxCradBGUNwgkZTD/preview', ''],
+        [161, 'https://drive.google.com/file/d/1HBg137aFOnccWyBcx8GZnxi8wJNk9g9_/preview', ''],
+    ],
+    "11": [
+        
+        [10, 'https://drive.google.com/file/d/1W_43gpy13PSsZlt42SUxRn1kOYqUXc7L/preview', ''],
+        [25, 'https://drive.google.com/file/d/1jWhkHQ4KwDXZAk7vxX2y6S4GuPw8sCaU/preview', ''],
+        [27, 'https://drive.google.com/file/d/1YtTVp-f-VZoAJ3jTGiui1AQ7CUQCTrSE/preview', ''],
+        [33, 'https://drive.google.com/file/d/1JOVYxDIjdeqSkOgk-Vt6s0-8EzWKqrJ4/preview', ''],
+        [36, 'https://drive.google.com/file/d/1QI45P0T6xc_CnnoeA2isFGdLrcXGJBkf/preview', ''],
+        [38, 'https://drive.google.com/file/d/1VOQGs-C0zDW653huRxwW6AijogqOJ3-r/preview', ''],
+        [39, 'https://drive.google.com/file/d/14OO_zNYjJ7gO514MapzAHu0c71nOs5tV/preview', ''],
+        [48, 'https://drive.google.com/file/d/16cqvhaxDHpKc0gl87csBBggR4PQLA4SE/preview', ''],
+        [56, 'https://drive.google.com/file/d/1B-WNHiMqTReRj5a_OfLBqziussAmd07m/preview', ''],
+        [65, 'https://drive.google.com/file/d/1rX1EgZDugbyEUq0-OoME7j9v21CcVpcB/preview', ''],
+        [68, 'https://drive.google.com/file/d/1QVIAt9Ye6-OL9T1gqxFO6kGSoOYECZ4Q/preview', ''],
+        [77, 'https://drive.google.com/file/d/17h8lI8iElk_fYFQSx52Oi2fMd_AN7X1m/preview', ''],
+        [83, 'https://drive.google.com/file/d/1XXBg8b3KkkpDC2Zea8hJVs-4TNbaHZ3i/preview', ''],
+        [84, 'https://drive.google.com/file/d/11SvLDNTTRW7BBNjeNtAYaAZpGIR3AWoG/preview', ''],
+        [104, 'https://drive.google.com/file/d/1sRohS7GsFm8BF2VEKJtuwcf6bDu93bSF/preview', ''],
+        [122, 'https://drive.google.com/file/d/1PqL472XiMJNYgCk9bQ3d3x57WiGlu-vh/preview', ''],
+        [130, 'https://drive.google.com/file/d/1AwYQjs7WtrwLYHVGZV8iQFj2Yw8djZSj/preview', ''],
+        [141, 'https://drive.google.com/file/d/1rL2Ou-8_a-ssUN2Vt4g8jjKwq3EY7aO6/preview', ''],
+        [148, 'https://drive.google.com/file/d/1ZEOO2K55qHm3rOY2b-iGFtB0DWf6rPey/preview', ''],
+        [161, 'https://drive.google.com/file/d/1RRuR1zJI1BtIMJOfX0otV9fR5WLB2V6C/preview', ''],
+     ],
 }
