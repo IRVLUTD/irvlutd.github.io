@@ -39,7 +39,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 id="project-name" class="title is-2 publication-title"></h1>
+            <h1 id="project-name" class="title is-2 publication-title wheat"></h1>
             <div class="is-size-5 publication-authors">
 
               <div id="author-content" class="columns is-centered is-gapless">
@@ -131,7 +131,7 @@
                 <!-- Arxiv Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://arxiv.org/abs/2510.21026"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark wheat">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -154,7 +154,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://github.com/IRVLUTD/HRT1"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded is-dark wheat">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -164,7 +164,7 @@
 
                 <!-- Real World Demo Link. -->
                 <span class="link-block">
-                  <a href="#demo" class="external-link button is-normal is-rounded is-dark">
+                  <a href="#demo" class="external-link button is-normal is-rounded is-dark wheat">
                     <span class="icon">
                       <i class="fas fa-globe"></i>
                     </span>
@@ -187,7 +187,7 @@
       <!-- Abstract. -->
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Abstract</h2>
+          <h2 class="title is-3 royal-theme">Abstract</h2>
           <div class="content has-text-justified">
             <p>
               We introduce a novel system for human-to-robot
@@ -220,10 +220,9 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">HRT1 Overview</h2>
+          <h2 class="title is-3 royal-theme">HRT1 Overview</h2>
           <div class="publication-video">
-            <iframe src="assets/videos/dummy.mp4" frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen=""></iframe>
+            <video src="https://utdallas.box.com/shared/static/ccv1obzwi7owbh1gisjkt1ujuw3myy78.mp4" autoplay muted loop></video>
           </div>
         </div>
       </div>
@@ -232,42 +231,52 @@
   </section>
 
   <section class="section" id="demo">
-    <div class="columns is-centered has-text-centered">
+    <div class="container">
+    <div class="columns has-text-centered">
       <div class="column">
-        <h2 class="title is-3">Real World Execution</h2>
-        <p><strong>[ 16 Tasks X 3 Trials ]</strong></p>
+        <h2 class="title is-3 royal-theme">Real World Execution</h2>
+        <p><strong class="wheat">[ 15 Tasks x 3 Trials ]</strong></p>
       </div>
     </div>
-    <div class="container is-max-desktop">
-      <div class="tabs is-centered">
-        <ul>
-          <li id="trial-1" class="is-active demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Trial-1</span>
-            </a>
-          </li>
-          <li id="trial-2" class="demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Trial-2</span>
-            </a>
-          </li>
-          <li id="trial-3" class="demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Trial-3</span>
-            </a>
-          </li>
-          <li>
-        </ul>
+
+    <div class="tabs is-centered">
+      <ul>
+        <li id="trial-0" class="is-active demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
+            <span>Human Demonstration</span>
+          </a>
+        </li>
+        <li id="trial-1" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-1</span>
+          </a>
+        </li>
+        <li id="trial-2" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-2</span>
+          </a>
+        </li>
+        <li id="trial-3" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-3</span>
+          </a>
+        </li>
+      </ul>
       </div>
 
       <div id="demo-vid-iframe" class="hero-body">
-        <div class="iframe-container">
-          
-        </div>
+      <div class="iframe-container"></div>
       </div>
+
+
+      <div id="demo-vid-iframe" class="hero-body">
+        <div class="iframe-container"></div>
+      </div>
+      
   </section>
 
 
@@ -275,9 +284,9 @@
   <!-- BibTeX -->
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop">
-      <h2 class="title">BibTeX</h2>
+      <h2 class="title royal-theme">BibTeX</h2>
       <span>Please cite our work if it helps your research:</span>
-      <div class="bib-container">
+      <div class="bib-container royal-theme">
         <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2025hrt1,
   title={HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation}, 
   author={Sai Haneesh Allu and Jishnu Jaykumar P and Ninad Khargonkar and Tyler Summers and Jian Yao and Yu Xiang},
@@ -294,7 +303,7 @@
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
 
-      <h2 class="title">Contact</h2>
+      <h2 class="title royal-theme">Contact</h2>
       <p>Send any comments or questions to Sai | Jishnu: <br><a target="_blank"
           href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> | <a target="_blank"
           href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
@@ -304,9 +313,9 @@
   <!-- Acknowledgements -->
   <section class="section">
     <div class="container is-max-desktop content has-text-centered">
-      <h2 class="title">Acknowledgements</h2>
-      <div class="is-vcentered interpolation-panel">
-        <div class="container content">
+      <h2 class="title royal-theme wheat">Acknowledgements</h2>
+      <div class="is-vcentered interpolation-panel wheat">
+        <div class="container content bg-black">
           <p style="font-size: 16px">
             This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, and the NVIDIA Academic Grant Program Award.
           </p>
