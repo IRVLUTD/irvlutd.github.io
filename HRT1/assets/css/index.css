@@ -40,7 +40,7 @@ ul, ul:hover{
 }
 
 li.is-active > a {
-  color: gold !important;
+  color: rgb(203, 157, 29) !important;
 }
 
 .copy-highlight {
@@ -58,8 +58,30 @@ footer {
   /* border: 3px solid wheat; */
   /* border-radius: 10px; */
   /* padding: 1rem; */
-  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); soft wheat glow */
+  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); */
 }
+
+
+.royal-theme-btn {
+  background-color: black;
+  color: wheat;
+  border: 3px solid wheat !important;
+  border-radius: 5px;
+  padding: 1rem;
+  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); */
+}
+
+.royal-theme-btn:hover {
+  color: rgb(203, 157, 29) !important;
+  border: 3px solid rgb(203, 157, 29) !important;
+}
+
+.royal-theme-btn-fewsol {
+  background-color: black;
+  color: rgb(203, 157, 29);
+  border-bottom: 3px dashed rgb(203, 157, 29) !important;
+}
+
 
 .royal-theme p {
   color: wheat;
