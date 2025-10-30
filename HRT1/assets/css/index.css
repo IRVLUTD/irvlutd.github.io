@@ -1,5 +1,81 @@
 body {
   font-family: 'Noto Sans', sans-serif;
+  background-color: #000 !important;
+  color: wheat !important;
+}
+
+.bg-black{
+  background-color: black !important;
+}
+
+.wheat, .small-caps{
+  color: wheat !important;
+}
+
+li > a {
+  color: wheat !important;
+}
+
+.tabs li.is-active a, .tabs li.is-active a:hover{
+    border-bottom-color: none !important;
+}
+
+li:not(.is-active):hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* bigger and darker */
+    transform: translateY(-3px); /* optional: adds a slight lift effect */
+}
+
+.tabs li.is-active a {
+    border-bottom-color: none !important;
+    border: 2px solid wheat !important;
+    border-radius: 10px !important;
+}
+
+*:not(video) {
+  border-bottom-color: transparent !important;
+}
+
+ul, ul:hover{
+  border-bottom: none !important;
+}
+
+li.is-active > a {
+  color: gold !important;
+}
+
+.copy-highlight {
+  color: black !important;
+}
+
+footer {
+  background-color: black !important;
+  color: wheat !important;
+}
+
+.royal-theme {
+  background-color: black;
+  color: wheat;
+  /* border: 3px solid wheat; */
+  /* border-radius: 10px; */
+  /* padding: 1rem; */
+  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); soft wheat glow */
+}
+
+.royal-theme p {
+  color: wheat;
+}
+
+.royal-theme video {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid wheat;
+}
+
+/* Optional: subtle hover effect */
+.royal-theme:hover {
+  /* box-shadow: 0 0 12px rgba(245, 222, 179, 0.6); */
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
 }
 
 .text-dec-none{ /* TODO: remove this */
