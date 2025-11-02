@@ -3,7 +3,7 @@
 // -----------------------------
 
 // How many videos per row (1..6)
-const VIDEOS_PER_ROW = 3;
+const VIDEOS_PER_ROW = 4;
 
 // Shared task description list (same for all trials; 16 entries)
 const TASKS = [
@@ -22,7 +22,7 @@ const TASKS = [
   "Task 13: Clean plate with towel.",
   "Task 14: Put toy in bin.",
   "Task 15: Close the fire extinguisher door.",
-  // "Task 16: Reset to standby state."
+  "Task 16: Displace cracker box."
 ];
 
 // One place to edit per-trial data: each trial has 16 clips with { src, ok }
@@ -43,7 +43,7 @@ const TRIALS = {
     { src: "assets/videos/human_demo/task_42_13s_clean_plate_with_towel.webm", successful_trial: true },
     { src: "assets/videos/human_demo/task_28_put_toy_in_bin.webm", successful_trial: true },
     { src: "assets/videos/human_demo/task_54_7s_close_fire_extinguisher_door.webm", successful_trial: true },
-    // { src: "assets/videos/trial_1_task_16.webm", successful_trial: true }
+    { src: "assets/videos/human_demo/task_26_crackerbox.webm", successful_trial: true }
   ],
   "trial-1": [
     { src: "assets/videos/task_1_trial_1.mp4", successful_trial: true  },
@@ -61,7 +61,7 @@ const TRIALS = {
     { src: "assets/videos/task_13_trial_1.mp4", successful_trial: true },
     { src: "assets/videos/task_14_trial_1.mp4", successful_trial: true  },
     { src: "assets/videos/task_15_trial_1.mp4", successful_trial: true  },
-    // { src: "assets/videos/task_16_trial_1.mp4", successful_trial: true  }
+    { src: "assets/videos/task_16_trial_1.mp4", successful_trial: true  }
   ],
   "trial-2": [
     { src: "assets/videos/task_1_trial_2.mp4", successful_trial: true  },
@@ -79,7 +79,7 @@ const TRIALS = {
     { src: "assets/videos/task_13_trial_2.mp4", successful_trial: true  },
     { src: "assets/videos/task_14_trial_2.mp4", successful_trial: true  },
     { src: "assets/videos/task_15_trial_2.mp4", successful_trial: true  },
-    // { src: "assets/videos/task_16_trial_2.mp4", successful_trial: true }
+    { src: "assets/videos/task_16_trial_2.mp4", successful_trial: true }
   ],
   "trial-3": [
     { src: "assets/videos/task_1_trial_3.mp4", successful_trial: true },
@@ -97,6 +97,6 @@ const TRIALS = {
     { src: "assets/videos/task_13_trial_3.mp4", successful_trial: true  },
     { src: "assets/videos/task_14_trial_3.mp4", successful_trial: true  },
     { src: "assets/videos/task_15_trial_3.mp4", successful_trial: true },
-    // { src: "assets/videos/task_16_trial_3.mp4", successful_trial: true  }
+    { src: "assets/videos/task_16_trial_3.mp4", successful_trial: true  }
   ]
 };
