@@ -1,0 +1,147 @@
+/* Sample Royal Theme
+Work done while being at the Intelligent Robotics and Vision Lab at the University of Texas, Dallas
+Please check the licenses of the respective works utilized here before using this script.
+🖋️ Jishnu Jaykumar Padalunkal (2025).
+*/
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background-color: #000 !important;
+  color: wheat !important;
+}
+
+a.href-link {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+a.href-link:hover, a.red:hover{
+  color: gold !important;
+  border-bottom: 2px dashed gold !important;
+}
+
+#related-research-dropdown{
+  background-color: rgb(30, 30, 30) !important;
+}
+
+#related-research-dropdown a:hover{
+  background-color: rgb(50, 50, 50) !important;
+  color: gold !important;
+}
+
+#related-research-home, #related-research, #related-research-dropdown a{
+  background-color: rgb(30, 30, 30) !important;
+  color: gold !important;
+}
+
+#related-research::after {
+  background-color: rgb(30, 30, 30) !important;
+  color: white !important; /* optional, for visibility */
+}
+
+.bg-black{
+  background-color: black !important;
+}
+
+.wheat{
+  color: wheat !important;
+}
+
+.navbar-burger{
+  color: wheat !important;
+}
+
+.navbar-brand, .navbar-tabs{
+  background-color: black !important;
+}
+
+.navbar-menu{
+  background-color: black !important;
+}
+
+li > a {
+  color: wheat !important;
+}
+
+.tabs li.is-active a, .tabs li.is-active a:hover{
+    border-bottom-color: none !important;
+}
+
+li:not(.is-active):hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* bigger and darker */
+    transform: translateY(-3px); /* optional: adds a slight lift effect */
+}
+
+.tabs li.is-active a {
+    border-bottom-color: none !important;
+    border: 2px solid wheat !important;
+    border-radius: 10px !important;
+}
+
+*:not(video) {
+  border-bottom-color: transparent !important;
+}
+
+ul, ul:hover{
+  border-bottom: none !important;
+}
+
+li.is-active > a {
+  color: rgb(203, 157, 29) !important;
+}
+
+.copy-highlight {
+  color: black !important;
+}
+
+footer {
+  background-color: black !important;
+  color: wheat !important;
+}
+
+.royal-theme {
+  background-color: black;
+  color: wheat;
+  /* border: 3px solid wheat; */
+  /* border-radius: 10px; */
+  /* padding: 1rem; */
+  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); */
+}
+
+
+.royal-theme-btn {
+  background-color: black;
+  color: wheat;
+  border: 3px solid wheat !important;
+  border-radius: 5px;
+  padding: 1rem;
+  /* box-shadow: 0 2px 8px rgba(245, 222, 179, 0.3); */
+}
+
+.royal-theme-btn:hover {
+  color: rgb(203, 157, 29) !important;
+  border: 3px solid rgb(203, 157, 29) !important;
+}
+
+.royal-theme-btn-fewsol, .royal-theme-btn-fewsol:hover {
+  background-color: black;
+  color: rgb(203, 157, 29);
+  border-bottom: 3px dashed rgb(203, 157, 29) !important;
+}
+
+
+.royal-theme p {
+  color: wheat;
+}
+
+.royal-theme video {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid wheat;
+}
+
+/* Optional: subtle hover effect */
+.royal-theme:hover {
+  /* box-shadow: 0 0 12px rgba(245, 222, 179, 0.6); */
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
