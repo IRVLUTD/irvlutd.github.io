@@ -46,6 +46,10 @@ a.href-link:hover, a.red:hover{
   color: wheat !important;
 }
 
+.gold {
+  color: gold !important;
+}
+
 .navbar-burger{
   color: wheat !important;
 }
