@@ -37,15 +37,11 @@ function get_vid_html(trialId) {
     const { src, successful_trial } = clips[i] || {};
     const task = TASKS[i] || "";
 
-<video data-src="videos/teleop/IMG_4152-4x.mp4"  src="videos/teleop/IMG_4152-4x.mp4">
-          Your browser does not support the video tag.
-        </video>
-
     if (isHumanDemo) {
       html += `
         <div class="column ${columnClass}">
           <div class="video-container wheat-theme" style="text-align:center;">
-            <video controls="" autoplay="" loop="" muted="" playsinline=""
+            <video controls='' autoplay='' loop='' muted='' playsinline=''
               style="width:100%; border-radius:10px; border:2px solid wheat;" data-src="${src}" src="${src}">
               Your browser does not support the video tag.
             </video>
