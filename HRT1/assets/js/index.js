@@ -37,10 +37,6 @@ function get_vid_html(trialId) {
     const { src, successful_trial } = clips[i] || {};
     const task = TASKS[i] || "";
 
-<video data-src="videos/teleop/IMG_4152-4x.mp4"  src="videos/teleop/IMG_4152-4x.mp4">
-          Your browser does not support the video tag.
-        </video>
-
     if (isHumanDemo) {
       html += `
         <div class="column ${columnClass}">

@@ -28,22 +28,22 @@ const TASKS = [
 // One place to edit per-trial data: each trial has 16 clips with { src, ok }
 const TRIALS = {
   "trial-0": [
-    { src: "assets/videos/human_demo/task_27_put_bread_inside_toaster.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_44_12s_clean_plate_with_tissue.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_45_12s_clean_plate_with_brush.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_18_10s-move-chair.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_57_rearrange_sugrabox_shelf.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_47_8s_close_jar_with_red_lid_with_left_hand.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_59_takeout_sugarbox_from_shelf.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_39_seasoning_on_omlette_v1.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_56_put_bottle_in_shelf.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_33_hang_cap.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_48_4s_remove_cap_from_hook_left_hand_person2.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_41_12s_serve_lays_on_plate_left_hand.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_42_13s_clean_plate_with_towel.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_28_put_toy_in_bin.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_54_7s_close_fire_extinguisher_door.webm", successful_trial: true },
-    { src: "assets/videos/human_demo/task_26_crackerbox.webm", successful_trial: true }
+    { src: "assets/videos/human_demo/task_27_put_bread_inside_toaster.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_44_12s_clean_plate_with_tissue.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_45_12s_clean_plate_with_brush.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_18_10s-move-chair.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_57_rearrange_sugrabox_shelf.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_47_8s_close_jar_with_red_lid_with_left_hand.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_59_takeout_sugarbox_from_shelf.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_39_seasoning_on_omlette_v1.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_56_put_bottle_in_shelf.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_33_hang_cap.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_48_4s_remove_cap_from_hook_left_hand_person2.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_41_12s_serve_lays_on_plate_left_hand.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_42_13s_clean_plate_with_towel.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_28_put_toy_in_bin.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_54_7s_close_fire_extinguisher_door.mp4", successful_trial: true },
+    { src: "assets/videos/human_demo/task_26_crackerbox.mp4", successful_trial: true }
   ],
   "trial-1": [
     { src: "assets/videos/task_1_trial_1.mp4", successful_trial: true  },
