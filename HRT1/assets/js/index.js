@@ -41,7 +41,7 @@ function get_vid_html(trialId) {
       html += `
         <div class="column ${columnClass}">
           <div class="video-container wheat-theme" style="text-align:center;">
-            <video controls="" autoplay="" loop="" muted="" playsinline=""
+            <video controls='' autoplay='' loop='' muted='' playsinline=''
               style="width:100%; border-radius:10px; border:2px solid wheat;" data-src="${src}" src="${src}">
               Your browser does not support the video tag.
             </video>
