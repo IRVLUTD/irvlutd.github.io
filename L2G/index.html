@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="L2G-Det, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Instance Detection, Instance Segmentation, Novel Instance">
+  <meta name="description" content="From Local Matches to Global Masks: Novel Instance Detection in Open-World Scenes">
+  <meta name="author" content="Qifan Zhang, Sai Haneesh Allu, Jikai Wang, Yangxiao Lu, Yu Xiang">
+  <title id="title" project-name="L2G">L2G</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CFGPJHLM4C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CFGPJHLM4C');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> <span>From Local Matches to Global Masks: Novel Instance Detection in Open-World Scenes</h1>
+            <div class="is-size-6 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                  <div class="column">
+                    <div class="center">
+                      <div>
+                        <a target="_blank" href="https://qfantastic.github.io/">
+                          <img class="display-image author-image center"
+                            src="assets/images/qifan.webp"> <br>Qifan Zhang</a></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="column">
+                  <div class="center">
+
+
+                    <div>
+                      <a target="_blank" href="https://saihaneeshallu.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/sai-haneesh-allu.webp"> <br>Sai Haneesh Allu</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+
+                    <div>
+                      <a target="_blank" href="https://jwroboticsvision.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/jikai_wang.webp"> <br>Jikai Wang</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://youngsean.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/yangxiao_lu.webp"> <br>Yangxiao Lu</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
+            <!-- <span id="accepted-conference" class="author-block">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2025<br></span> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> 
+
+
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/IRVLUTD/L2G"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/abom0cfjdr82b4wf38fd6f6ehxjdv96b"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Datasets</span>
+                  </a>
+              </span>
+
+              <!-- Results Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/3cc1gcohdluudc37ezcebf5nj9szdur9"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Results</span>
+                  </a>
+              </span>
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+      <!-- Paper video. -->
+     <div class="columns is-centered has-text-centered">
+       <div class="column">
+         <div class="publication-video">
+<!-- &lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt; -->
+           <iframe src="https://www.youtube.com/embed/v=cd5Pje3pIfs&t=1s"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
+         </div>
+       </div>
+     </div>
+      <!--/ Paper video. -->
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Detecting and segmenting novel object instances in open-world environments is a fundamental 
+            problem in robotic perception. Given only a small set of template images, a robot must locate 
+            and segment a specific object instance in a cluttered, previously unseen scene. 
+            Existing proposal-based approaches are highly sensitive to proposal quality and often fail 
+            under occlusion and background clutter. We propose L2G-Det, a local-to-global instance detection 
+            framework that bypasses explicit object proposals by leveraging dense patch-level matching between 
+            templates and the query image. Locally matched patches generate candidate points, which are refined 
+            through a candidate selection module to suppress false positives. The filtered points are then 
+            used to prompt an augmented Segment Anything Model (SAM) with instance-specific object tokens, 
+            enabling reliable reconstruction of complete instance masks. Experiments demonstrate improved 
+            performance over proposal-based methods in challenging open-world settings.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section id="framework" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">L2G-Net</h2>
+
+        <div class="content has-text-justified">
+          <p>Conceptual comparison between object proposal-based instance detection 
+          methods and our local-to-global instance detection.</p>
+          <img src="assets/images/intro_V4.png" alt="gto">
+        </div>
+
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>Overview of our L2G-Det framework for novel instance detection.It consists of a candidate selection module and an augmented SAM module. 
+            Only the adapters and object-tokens are learnable, while all other components are frozen.</p>
+          
+          <img src="assets/images/Framework.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+
+<section id="detection" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Detection Examples</h2>
+        <div class="content has-text-justified">
+          <img src="assets/images/RoboTools.png" alt="gto">
+        </div>
+        <div class="content has-text-justified">
+          <img src="assets/images/High_Res.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/L2G"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">L2G-Net</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+ 
+              </p>
+            </div>
+
+          </div>
+        </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 class="title has-text-centered">BibTeX</h2>
+    <span>Please cite <span class="small-caps">L2G-Net</span> if it helps your research:</span>
+    <div class="bib-container">
+    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{
+}</code></pre>
+    </div>
+</div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Yangxiao Lu: <a target="_blank" href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p id="website-template-credits">
+        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/index.js"></script>
+
+
+</html>
