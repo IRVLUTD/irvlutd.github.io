@@ -243,6 +243,76 @@
     <!-- 20xScenes. -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
+        <h2 class="title is-3">Experiment Results</h2>
+        <div class="content has-text-justified">
+          <p>
+          L2G-Det consistently outperforms existing detectors on both the 
+          High-Resolution dataset <a href="#ref14">[14]</a> 
+          and RoboTools dataset <a href="#ref4">[4]</a>, 
+          achieving significant improvements in Precision.
+          </p>
+        </div>
+
+        <!-- Dataset switch buttons -->
+        <!-- <div class="dataset-switch">
+
+          <button class="dataset-pill active" data-target="table-hr">
+            <span class="icon">
+              <i class="fas fa-database"></i>
+            </span>
+            <span>High_Resolution</span>
+          </button>
+
+          <button class="dataset-pill" data-target="table-robo">
+            <span class="icon">
+              <i class="fas fa-database"></i>
+            </span>
+            <span>RoboTools</span>
+          </button>
+
+        </div> -->
+
+        <div class="dataset-switch">
+
+          <button class="dataset-pill active" data-dataset="robo">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>RoboTools</span>
+          </button>
+
+          <button class="dataset-pill" data-dataset="hr">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>High_Resolution</span>
+          </button>
+
+
+        </div>
+
+        <div class="table-container">
+          <table id="leaderboard-table" class="table is-fullwidth">
+            <thead id="leaderboard-head"></thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+
+
+   
+
+
+
+
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+<section id="Real_world" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
         <h2 class="title is-3">Real-World Robotic Experiments</h2>
         <div class="content has-text-justified">
           <p>A Fetch robot equipped with L2G-Det autonomously navigates cluttered indoor environments 
@@ -270,6 +340,105 @@
     <!--/ 20xScenes. -->
   </div>
 </section>
+
+
+<section id="references" class="section">
+<div class="container is-max-desktop">
+<h2 class="title is-3">References</h2>
+
+<ol class="references">
+
+<li id="ref1">
+Anton Osokin, Denis Sumin, and Vasily Lomakin. 
+OS2D: One-Stage One-Shot Object Detection by Matching Anchor Features. 
+ECCV, 2020.
+</li>
+
+<li id="ref2">
+Jean-Philippe Mercier, Mathieu Garon, Philippe Giguere, and Jean-Francois Lalonde. 
+Deep Template-Based Object Instance Detection. 
+WACV, 2021.
+</li>
+
+<li id="ref3">
+Dahun Kim, Tsung-Yi Lin, Anelia Angelova, In So Kweon, and Weicheng Kuo. 
+Learning Open-World Object Proposals without Learning to Classify. 
+IEEE RA-L, 2022.
+</li>
+
+<li id="ref4">
+Bowen Li, Jiashun Wang, Yaoyu Hu, Chen Wang, and Sebastian Scherer. 
+VoxDet: Voxel Learning for Novel Instance Detection. 
+NeurIPS, 2024.
+</li>
+
+<li id="ref5">
+Qianqian Shen et al. 
+Solving Instance Detection from an Open-World Perspective. 
+CVPR, 2025.
+</li>
+
+<li id="ref6">
+Yangxiao Lu, Jishnu Jaykumar P, Yunhui Guo, Nicholas Ruozzi, and Yu Xiang. 
+Adapting Pre-trained Vision Models for Novel Instance Detection and Segmentation. 
+2024.
+</li>
+
+<li id="ref7">
+Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun. 
+Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. 
+NeurIPS, 2015.
+</li>
+
+<li id="ref8">
+Tsung-Yi Lin et al. 
+Focal Loss for Dense Object Detection. 
+ICCV, 2017.
+</li>
+
+<li id="ref9">
+Xingyi Zhou, Dequan Wang, and Philipp Krähenbühl. 
+Objects as Points. 
+arXiv:1904.07850, 2019.
+</li>
+
+<li id="ref10">
+Zhi Tian et al. 
+FCOS: Fully Convolutional One-Stage Object Detection. 
+ICCV, 2019.
+</li>
+
+<li id="ref11">
+Feng Li et al. 
+DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection. 
+ICLR, 2023.
+</li>
+
+<li id="ref12">
+Alexander Kirillov et al. 
+Segment Anything. 
+ICCV, 2023.
+</li>
+
+<li id="ref13">
+Maxime Oquab et al. 
+DINOv2: Learning Robust Visual Features without Supervision. 
+2023.
+</li>
+
+<li id="ref14">
+Qianqian Shen et al. 
+A High-Resolution Dataset for Instance Detection with Multi-View Instance Capture. 
+NeurIPS Datasets and Benchmarks, 2023.
+</li>
+
+
+
+</ol>
+</div>
+</section>
+
+
 
 
 
@@ -311,10 +480,17 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop">
-    <h2 class="title has-text-centered">BibTeX</h2>
+    <h2 id="BibTeX" class="title is-3">Citation</h2>
     <span>Please cite <span class="small-caps">L2G-Net</span> if it helps your research:</span>
     <div class="bib-container">
-    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{
+    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{zhang2026l2gdet,
+  title        = {From Local Matches to Global Masks: Novel Instance Detection in Open-World Scenes},
+  author       = {Qifan Zhang and Sai Haneesh Allu and Jikai Wang and Yangxiao Lu and Yu Xiang},
+  year         = {2026},
+  eprint       = {2603.03577},
+  archivePrefix= {arXiv},
+  primaryClass = {cs.CV},
+  url          = {https://arxiv.org/abs/2603.03577}
 }</code></pre>
     </div>
 </div>
@@ -360,6 +536,189 @@
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
 <script src="./assets/js/index.js"></script>
+<!-- <script src="./assets/js/leaderboard-info.js"></script> -->
+
+<script>
+const leaderboardData = {
+
+  hr: {
+    headers: ["Method", "AP_avg", "AP_hard", "AP_easy", "AP50", "AP75"],
+    rows: [
+
+      ['FasterRCNN <a href="#ref7">[7]</a>', "19.5", "10.3", "23.8", "29.2", "23.3"],
+
+      ['RetinaNet <a href="#ref8">[8]</a>', "22.2", "14.9", "26.5", "31.2", "25.0"],
+
+      ['CenterNet <a href="#ref9">[9]</a>', "21.1", "11.8", "25.7", "32.7", "23.6"],
+
+      ['FCOS <a href="#ref10">[10]</a>', "22.4", "13.2", "28.7", "32.8", "25.5"],
+
+      ['DINO <a href="#ref11">[11]</a>', "28.0", "17.9", "32.6", "39.6", "32.2"],
+
+      ['SAM + DINO <a href="#ref12">[12]</a>, <a href="#ref13">[13]</a>', 
+        "37.0", "22.4", "43.9", "44.1", "40.4"],
+
+      ['SAM + DINOv2 <a href="#ref12">[12]</a>, <a href="#ref13">[13]</a>', 
+        "41.6", "28.0", "47.6", "49.1", "46.0"],
+
+      ['NIDS-Net <a href="#ref6">[6]</a>', 
+        "63.9", "43.4", "72.7", "76.6", "70.6"],
+
+      ['<b>L2G-Det (Ours)</b>', 
+        "76.2", "61.0", "81.2", "80.6", "77.9"]
+    ]
+  },
+
+  robo: {
+    headers: ["Method", "AP", "AP50", "AP75"],
+    rows: [
+
+      ['OS2D <a href="#ref1">[1]</a>', "2.9", "6.5", "2.0"],
+
+      ['DTOID <a href="#ref2">[2]</a>', "3.6", "9.0", "2.0"],
+
+      ['OLNCorr. <a href="#ref3">[3]</a>', "14.4", "18.1", "15.7"],
+
+      ['VoxDet <a href="#ref4">[4]</a>', "18.7", "23.6", "20.5"],
+
+      ['OTS-FM <a href="#ref5">[5]</a>', "56.7", "64.8", "59.0"],
+
+      ['IDOW <a href="#ref5">[5]</a>', "59.4", "67.8", "61.8"],
+
+      ['NIDS-Net <a href="#ref6">[6]</a>', "64.9", "79.4", "70.8"],
+
+      ['<b>L2G-Det (Ours)</b>', "71.9", "84.6", "77.2"]
+    ]
+  }
+
+};
+</script>
+
+
+<!-- <script>
+  function renderLeaderboard(datasetKey) {
+    const tableHead = document.getElementById("leaderboard-head");
+    const tableBody = document.getElementById("leaderboard-body");
+    const dataset = leaderboardData[datasetKey];
+
+    // Render head
+    tableHead.innerHTML = `
+      <tr>
+        ${dataset.headers.map(h => `<th>${h}</th>`).join("")}
+      </tr>
+    `;
+
+    // Render body
+    tableBody.innerHTML = dataset.rows.map(row => `
+      <tr>
+        ${row.map((cell, idx) => {
+          // Last row bold
+          const isLastRow = row[0].includes("L2G-Det");
+          return `<td${isLastRow ? ' style="font-weight: 700;"' : ""}>${cell}</td>`;
+        }).join("")}
+      </tr>
+    `).join("");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".dataset-pill");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", function () {
+        buttons.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        renderLeaderboard(this.dataset.dataset);
+      });
+    });
+
+    // Default
+    renderLeaderboard("robo");
+  });
+</script> -->
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function convertCitations(element) {
+
+    const regex = /\[(\d+(?:\s*,\s*\d+)*)\]/g;
+
+    element.innerHTML = element.innerHTML.replace(regex, function(match, nums) {
+
+      return nums.split(",").map(n => {
+        const num = n.trim();
+        return `<a href="#ref-${num}">[${num}]</a>`;
+      }).join(", ");
+
+    });
+
+  }
+
+
+  const table = document.getElementById("leaderboard-table");
+
+  if (table) {
+    convertCitations(table);
+  }
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function renderLeaderboard(datasetKey) {
+  const tableHead = document.getElementById("leaderboard-head");
+  const tableBody = document.getElementById("leaderboard-body");
+  const dataset = leaderboardData[datasetKey];
+
+  tableHead.innerHTML = `
+    <tr>
+      ${dataset.headers.map(h => `<th>${h}</th>`).join("")}
+    </tr>
+  `;
+
+  tableBody.innerHTML = dataset.rows.map(row => `
+    <tr>
+      ${row.map(cell => `<td>${cell}</td>`).join("")}
+    </tr>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".dataset-pill");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+      buttons.forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      renderLeaderboard(this.dataset.dataset);
+    });
+  });
+
+  const activeBtn = document.querySelector(".dataset-pill.active");
+  if (activeBtn) {
+    renderLeaderboard(activeBtn.dataset.dataset);
+  }
+});
+</script>
+
+
+
+
+
+
+
 
 
 </html>
