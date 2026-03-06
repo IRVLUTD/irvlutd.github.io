@@ -188,3 +188,71 @@ font-style: italic;
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+.dataset-switch {
+  display: flex;
+  gap: 18px;
+  margin: 20px 0 15px 0;
+  justify-content: flex-start; 
+}
+
+.dataset-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  width: 240px;     
+  height: 52px;
+
+  border-radius: 999px;
+  border: none;
+
+  background: #e6e6e6;
+  color: #333;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.dataset-pill:hover {
+  background: #d9d9d9;
+}
+
+.dataset-pill.active {
+  background: #3d3d3d;
+  color: white;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.dataset-pill .icon {
+  font-size: 18px;
+}
+
+
+#leaderboard-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#leaderboard-table th {
+  border-bottom: 2px solid #444;
+  font-weight: 600;
+  text-align: center;
+}
+
+#leaderboard-table td {
+  text-align: center;
+}
+
+#leaderboard-table tbody tr:last-child td {
+  font-weight: 700;   
+}
+
+.table-container {
+  margin-top: 10px;
+}
