@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description"
+    content="Web home for HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta id="meta-author" name="author"
+    content="Sai Haneesh Allu, Jishnu Jaykumar P, Ninad Khargonkar, Jian Yao, Tyler Summers, Yu Xiang">
+  <meta id="meta-keywords" name="keywords"
+    content="One Shot, Mobile Manipulation, Learning from Humans, UTD, IRVL, IRVLUTD, Robotics">
+  <title id="title" project-name="HRT1"></title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
+  <link rel="icon" href="#">
+  <!-- Google tag (gtag.js) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    // gtag('config', 'G-RR17MKXYJG');
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title wheat"></h1>
+            <div class="is-size-5 publication-authors">
+
+              <div id="author-content" class="columns is-centered is-gapless">
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://saihaneeshallu.github.io"><img
+                          class="display-image author-image center"
+                          src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai
+                          Haneesh<br>Allu<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://jishnujayakumar.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br><span
+                          class="is-size-6">Jishnu<br>Jaykumar
+                          P<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://kninad.github.io"><img class="display-image author-image center"
+                          src="../assets/images/authors/ninad.khargonkar.webp"><br><span
+                          class="is-size-6">Ninad<br>Khargonkar<sup>1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/"><img
+                          class="display-image author-image center"
+                          src="../assets/images/authors/tyler_summers.webp"><br><span
+                          class="is-size-6">Tyler<br>Summers<sup>1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://scholar.google.com/citations?user=V3kGMXUAAAAJ&hl=en"><img
+                          class="display-image author-image center"
+                          src="../assets/images/authors/jian_yao.webp"><br><span
+                          class="is-size-6">Jian<br>Yao<sup>2</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br><span
+                          class="is-size-6">Yu<br>Xiang<sup>1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block eq-contri"><sup>*</sup> Equal
+                Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"> <a target="_blank" href="https://utdallas.edu"><sup>1</sup>The University of
+                  Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"> <a target="_blank"
+                  href="https://www.xpeng.com/"><sup>2</sup>XPeng</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <br> <br><span id="accepted-conference" class="author-block">arXiv 2025</span>
+            </div>
+
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2510.21026"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+
+
+
+                <!-- Arxiv Link. -->
+                <!-- <span class="link-block">
+                  <a target="_blank" href="" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Supplementary</span>
+                  </a>
+                </span> -->
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/HRT1"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Real World Demo Link. -->
+                <span class="link-block">
+                  <a href="#demo" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <i class="fas fa-globe"></i>
+                    </span>
+                    <span>Real World Demo</span>
+                  </a>
+                </span>
+
+                <!-- BibTeX Link. -->
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-quote-right fa-w-16" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="quote-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg><!-- <i class="fa fa-quote-right"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Citation</span>
+                  </a>
+                </span>
+
+                <br>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3 royal-theme">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We introduce a novel system for human-to-robot
+              trajectory transfer that enables robots to manipulate objects by
+              learning from human demonstration videos. The system consists
+              of four modules. The first module is a data collection module
+              that is designed to collect human demonstration videos from
+              the point of view of a robot using an AR headset. The second
+              module is a video understanding module that detects objects
+              and extracts 3D human-hand trajectories from demonstration
+              videos. The third module transfers a human-hand trajectory
+              into a reference trajectory of a robot end-effector in 3D space.
+              The last module utilizes a trajectory optimization algorithm
+              to solve a trajectory in the robot configuration space that can
+              follow the end-effector trajectory transferred from the human
+              demonstration. Consequently, these modules enable a robot to
+              watch a human demonstration video once and then repeat the
+              same mobile manipulation task in different environments, even
+              when objects are placed differently from the demonstrations.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3 royal-theme">HRT1 Overview</h2>
+          <img src="assets/overview.png" alt="">
+          <div class="publication-video">
+            <video autoplay="" loop="" muted="" controls="" preload="metadata">
+              <source src="assets/videos/overview.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <!--/ Paper video. -->
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="container">
+    <div class="columns has-text-centered">
+      <div class="column">
+        <h2 class="title is-3 royal-theme">Real World Execution</h2>
+        <p><strong class="wheat">16 Tasks, 3 Trials each<br>Base movement: 5X<br>Task Execution: 1X</strong></p>
+      </div>
+    </div>
+
+    <div class="tabs is-centered">
+      <ul>
+        <li id="trial-0" class="is-active demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
+            <span>Human Demonstration</span>
+          </a>
+        </li>
+        <li id="trial-1" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-1</span>
+          </a>
+        </li>
+        <li id="trial-2" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-2</span>
+          </a>
+        </li>
+        <li id="trial-3" class="demo-video-iframe wheat">
+          <a>
+            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
+            <span>Trial-3</span>
+          </a>
+        </li>
+      </ul>
+      </div>
+
+      <div id="demo-vid-iframe" class="hero-body">
+      <div class="iframe-container"></div>
+      </div>
+      
+  </section>
+
+
+
+  <!-- BibTeX -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title royal-theme">BibTeX</h2>
+      <span>Please cite our work if it helps your research:</span>
+      <div class="bib-container royal-theme">
+        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2025hrt1,
+  title={HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation}, 
+  author={Sai Haneesh Allu* and Jishnu Jaykumar P* and Ninad Khargonkar and Tyler Summers and Jian Yao and Yu Xiang},
+  year={2025},
+  eprint={2510.21026},
+  archivePrefix={arXiv},
+  primaryClass={cs.RO},
+  url={https://arxiv.org/abs/2510.21026}, 
+}</code></pre>
+      </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+
+      <h2 class="title royal-theme">Contact</h2>
+      <p>Send any comments or questions to Sai | Jishnu: <br><a class="href-link" target="_blank"
+          href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> | <a class="href-link" target="_blank"
+          href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="title royal-theme wheat">Acknowledgements</h2>
+      <div class="is-vcentered interpolation-panel wheat">
+        <div class="container content bg-black">
+          <p style="font-size: 16px">
+            This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, the NVIDIA Academic Grant Program Award, and a gift funding from XPeng.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<script src="./assets/js/video_config.js"></script>
+<script src="./assets/js/index.js"></script>
+</html>

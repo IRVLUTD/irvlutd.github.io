@@ -6,6 +6,7 @@ $(document).ready(function() {
         "SceneReplica": ["../SceneReplica", "scene-replica"],
         "NIDSNet" : ["../NIDSNet", "NIDSNet"],
         "iTeach" : ["../iTeach", "iTeach"],
+        "HRT1" : ["../HRT1", "hrt1"],
     }
 
     const current_project_name = document.getElementById("title").getAttribute("project-name");
@@ -13,7 +14,7 @@ $(document).ready(function() {
     // website templated credits
     const website_template_credits = document.getElementById("website-template-credits")
     if(current_project_name != 'FewSOL'){
-        website_template_credits.innerHTML += "<a target='_blank' href='" + projects['FewSOL'][0] + "'><span class='small-caps black-font'>FewSOL</span></a> ← <a target='_blank' href='https://nerfies.github.io'><span class='small-caps black-font'>Nerfies</span></a>."
+        website_template_credits.innerHTML += "<a class='royal-theme-btn-fewsol' target='_blank' href='" + projects['FewSOL'][0] + "'><span class='small-caps'>FewSOL</span></a>."
         // Last updated
         var apiUrl = "https://api.github.com/repos/irvlutd/irvlutd.github.io/commits?sha=" + projects[current_project_name][1] + "&per_page=1";
         $.getJSON(apiUrl, function(data) {
