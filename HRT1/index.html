@@ -13,6 +13,9 @@
   <title id="title" project-name="HRT1"></title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
@@ -22,6 +25,7 @@
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
   <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
+  <link rel="stylesheet" href="../assets/css/clap-theme.css">
   <link rel="icon" href="#">
   <!-- Google tag (gtag.js) -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script> -->
@@ -35,12 +39,47 @@
 </head>
 
 <body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="aurora-container"><div class="aurora"></div></div>
+  <div class="grain-overlay"></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" id="lightbox">
+    <button class="lightbox-close" aria-label="Close enlarged figure">×</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- Progress sidebar (≥1200px) -->
+  <nav class="progress-sidebar" aria-label="Page progress">
+    <div class="progress-track">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" id="progress-fill"></div>
+      <div class="progress-item" data-section="abstract">
+        <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
+      </div>
+      <div class="progress-item" data-section="overview">
+        <a href="#overview"><span class="progress-dot"></span><span class="progress-label">Overview</span></a>
+      </div>
+      <div class="progress-item" data-section="demo">
+        <a href="#demo"><span class="progress-dot"></span><span class="progress-label">Real-World</span></a>
+      </div>
+      <div class="progress-item" data-section="citation">
+        <a href="#citation"><span class="progress-dot"></span><span class="progress-label">BibTeX</span></a>
+      </div>
+      <div class="progress-item" data-section="contact">
+        <a href="#contact"><span class="progress-dot"></span><span class="progress-label">Contact</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <a id="main" tabindex="-1"></a>
+
   <section class="hero">
     <div class="hero-body pad-zero">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 id="project-name" class="title is-2 publication-title wheat"></h1>
+            <h1 id="project-name" class="title is-2 publication-title royal-theme"></h1>
+            <div class="title-line"></div>
             <div class="is-size-5 publication-authors">
 
               <div id="author-content" class="columns is-centered is-gapless">
@@ -50,8 +89,7 @@
                     <div>
                       <a target="_blank" href="https://saihaneeshallu.github.io"><img
                           class="display-image author-image center"
-                          src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai
-                          Haneesh<br>Allu<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                          src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai Haneesh Allu<sup>1</sup><sup class="eq-contri">*</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -62,7 +100,7 @@
                       <a target="_blank" href="https://jishnujayakumar.github.io">
                         <img class="display-image author-image center"
                           src="../assets/images/authors/jishnu_padalunkal.webp"> <br><span
-                          class="is-size-6">Jishnu<br>Jaykumar
+                          class="is-size-6">Jishnu Jaykumar
                           P<sup>1</sup><sup class="eq-contri">*</sup></span></a>
                     </div>
                   </div>
@@ -74,7 +112,7 @@
                     <div>
                       <a target="_blank" href="https://kninad.github.io"><img class="display-image author-image center"
                           src="../assets/images/authors/ninad.khargonkar.webp"><br><span
-                          class="is-size-6">Ninad<br>Khargonkar<sup>1</sup></span></a>
+                          class="is-size-6">Ninad Khargonkar<sup>1</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -85,7 +123,7 @@
                       <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/"><img
                           class="display-image author-image center"
                           src="../assets/images/authors/tyler_summers.webp"><br><span
-                          class="is-size-6">Tyler<br>Summers<sup>1</sup></span></a>
+                          class="is-size-6">Tyler Summers<sup>1</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -96,7 +134,7 @@
                       <a target="_blank" href="https://scholar.google.com/citations?user=V3kGMXUAAAAJ&hl=en"><img
                           class="display-image author-image center"
                           src="../assets/images/authors/jian_yao.webp"><br><span
-                          class="is-size-6">Jian<br>Yao<sup>2</sup></span></a>
+                          class="is-size-6">Jian Yao<sup>2</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -106,7 +144,7 @@
                     <div>
                       <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
                           src="../assets/images/authors/yu_xiang.webp"><br><span
-                          class="is-size-6">Yu<br>Xiang<sup>1</sup></span></a>
+                          class="is-size-6">Yu Xiang<sup>1</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -116,14 +154,12 @@
             </div>
 
             <div class="is-size-6 publication-authors author-meta-info">
-              <span class="author-block eq-contri"><sup>*</sup> Equal
-                Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank" href="https://utdallas.edu"><sup>1</sup>The University of
-                  Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank"
-                  href="https://www.xpeng.com/"><sup>2</sup>XPeng</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <br> <br><span id="accepted-conference" class="author-block">arXiv 2025</span>
+              <span class="author-block affil-inline"><span class="eq-contri"><sup>*</sup>&nbsp;Equal contribution</span>&nbsp;&nbsp;<sup>1</sup><a class="href-link" target="_blank" href="https://utdallas.edu">The University of Texas at Dallas</a>&nbsp;&nbsp;<sup>2</sup><a class="href-link" target="_blank" href="https://www.xpeng.com/">XPeng</a></span>
             </div>
+
+            <p id="accepted-conference" class="venue-line">
+              <b>arXiv 2025</b>
+            </p>
 
 
             <div class="column has-text-centered">
@@ -193,12 +229,32 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="abstract-wrap">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
+      <div id="abstract" class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3 royal-theme">Abstract</h2>
+
+          <div class="tldr tldr-hrt1">
+            <div class="tldr-head">
+              <span class="tldr-label">TL;DR</span>
+              <span class="tldr-lede">Watch <b>one</b> human demo → robot repeats the task in a <b>new scene</b>.</span>
+            </div>
+
+            <ol class="tldr-chain" aria-label="Pipeline">
+              <li><span class="tc-tag">01</span><span class="tc-text">MR-headset<br>human demo</span></li>
+              <li><span class="tc-tag">02</span><span class="tc-text">3D hand<br>trajectory</span></li>
+              <li><span class="tc-tag">03</span><span class="tc-text">Robot<br>end-effector</span></li>
+              <li><span class="tc-tag">04</span><span class="tc-text">Trajectory<br>execution</span></li>
+            </ol>
+
+            <p class="tldr-foot">
+              Validated on <b>16 real-world tasks</b> · <b>3 trials each</b> on a Fetch mobile manipulator.
+            </p>
+          </div>
+
+          <h2 class="title is-3 royal-theme has-text-centered">Abstract</h2>
+          <div class="title-line"></div>
           <div class="content has-text-justified">
             <p>
               We introduce a novel system for human-to-robot
@@ -206,7 +262,7 @@
               learning from human demonstration videos. The system consists
               of four modules. The first module is a data collection module
               that is designed to collect human demonstration videos from
-              the point of view of a robot using an AR headset. The second
+              the point of view of a robot using an MR headset. The second
               module is a video understanding module that detects objects
               and extracts 3D human-hand trajectories from demonstration
               videos. The third module transfers a human-hand trajectory
@@ -227,111 +283,164 @@
   </section>
 
 
-  <section class="section">
+  <section class="section" id="overview">
     <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3 royal-theme">HRT1 Overview</h2>
-          <img src="assets/overview.png" alt="">
-          <div class="publication-video">
-            <video autoplay="" loop="" muted="" controls="" preload="metadata">
-              <source src="assets/videos/overview.mp4" type="video/mp4">
-            </video>
+      <h2 class="title is-3 royal-theme has-text-centered"><span class="small-caps">HRT1</span> Overview</h2>
+      <div class="title-line"></div>
+      <div class="paper-fig"><img src="assets/overview.png" alt="HRT1 system overview"></div>
+      <p class="fig-caption">
+        Four-module pipeline — MR-headset data capture, video understanding, trajectory transfer, and trajectory optimization —
+        enabling a robot to watch one human demonstration and repeat the task in a new scene.
+      </p>
+
+      <div class="clap-player" data-clap-player>
+        <span class="cp-label"><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;System&nbsp;Walkthrough</span>
+        <div class="cp-stage">
+          <video class="cp-video" autoplay loop muted playsinline preload="auto" poster="assets/overview.png">
+            <source src="assets/videos/overview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <button class="cp-center-play" type="button" aria-label="Play video">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="cp-controls" role="toolbar" aria-label="Video controls">
+          <button class="cp-btn cp-play" type="button" aria-label="Play / Pause (Space)">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+          <button class="cp-btn cp-back" type="button" aria-label="Back 10 seconds (←)">
+            <i class="fas fa-backward" aria-hidden="true"></i>
+            <span class="cp-sm">10</span>
+          </button>
+          <button class="cp-btn cp-fwd" type="button" aria-label="Forward 10 seconds (→)">
+            <span class="cp-sm">10</span>
+            <i class="fas fa-forward" aria-hidden="true"></i>
+          </button>
+
+          <div class="cp-scrub">
+            <input class="cp-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
           </div>
+
+          <span class="cp-time" aria-live="off"><span class="cp-cur">0:00</span>&nbsp;/&nbsp;<span class="cp-dur">0:00</span></span>
+
+          <div class="cp-volume">
+            <button class="cp-btn cp-mute" type="button" aria-label="Mute / Unmute (M)">
+              <i class="fas fa-volume-up" aria-hidden="true"></i>
+            </button>
+            <input class="cp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+          </div>
+          <button class="cp-btn cp-fs" type="button" aria-label="Fullscreen (F)">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
         </div>
       </div>
-      <!--/ Paper video. -->
     </div>
   </section>
 
   <section class="section" id="demo">
-    <div class="container">
-    <div class="columns has-text-centered">
-      <div class="column">
-        <h2 class="title is-3 royal-theme">Real World Execution</h2>
-        <p><strong class="wheat">16 Tasks, 3 Trials each<br>Base movement: 5X<br>Task Execution: 1X</strong></p>
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Real-World Execution</h2>
+      <div class="title-line"></div>
+
+      <!-- 3 compact stat tiles replace the "16 tasks · 3 trials · 5× · 1×" mixed line -->
+      <div class="rw-stats">
+        <div class="rw-stat"><div class="rw-n">16</div><div class="rw-l">tasks</div></div>
+        <div class="rw-stat"><div class="rw-n">3</div><div class="rw-l">trials each</div></div>
+        <div class="rw-stat"><div class="rw-n">5× / 1×</div><div class="rw-l">base&nbsp;/&nbsp;execution speed</div></div>
+      </div>
+
+      <!-- Trial tabs — refined pill row with gold icons + active highlight -->
+      <div class="trial-tabs">
+        <ul>
+          <li id="trial-0" class="is-active demo-video-iframe">
+            <a><span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span><span>Human Demo</span></a>
+          </li>
+          <li id="trial-1" class="demo-video-iframe">
+            <a><span class="trial-tag">01</span><span>Robot Trial</span></a>
+          </li>
+          <li id="trial-2" class="demo-video-iframe">
+            <a><span class="trial-tag">02</span><span>Robot Trial</span></a>
+          </li>
+          <li id="trial-3" class="demo-video-iframe">
+            <a><span class="trial-tag">03</span><span>Robot Trial</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="demo-vid-iframe" class="demo-video-wrap">
+        <div class="iframe-container"></div>
       </div>
     </div>
-
-    <div class="tabs is-centered">
-      <ul>
-        <li id="trial-0" class="is-active demo-video-iframe wheat">
-          <a>
-            <span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span>
-            <span>Human Demonstration</span>
-          </a>
-        </li>
-        <li id="trial-1" class="demo-video-iframe wheat">
-          <a>
-            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
-            <span>Trial-1</span>
-          </a>
-        </li>
-        <li id="trial-2" class="demo-video-iframe wheat">
-          <a>
-            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
-            <span>Trial-2</span>
-          </a>
-        </li>
-        <li id="trial-3" class="demo-video-iframe wheat">
-          <a>
-            <span class="icon is-small"><i class="fas fa-robot" aria-hidden="true"></i></span>
-            <span>Trial-3</span>
-          </a>
-        </li>
-      </ul>
-      </div>
-
-      <div id="demo-vid-iframe" class="hero-body">
-      <div class="iframe-container"></div>
-      </div>
-      
   </section>
-
-
 
   <!-- BibTeX -->
   <section class="section" id="citation">
     <div class="container is-max-desktop">
-      <h2 class="title royal-theme">BibTeX</h2>
-      <span>Please cite our work if it helps your research:</span>
-      <div class="bib-container royal-theme">
-        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2025hrt1,
-  title={HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation}, 
-  author={Sai Haneesh Allu* and Jishnu Jaykumar P* and Ninad Khargonkar and Tyler Summers and Jian Yao and Yu Xiang},
-  year={2025},
-  eprint={2510.21026},
-  archivePrefix={arXiv},
-  primaryClass={cs.RO},
-  url={https://arxiv.org/abs/2510.21026}, 
+      <h2 class="title is-3 royal-theme has-text-centered">BibTeX</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Please cite our work if it helps your research.</p>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()" aria-label="Copy BibTeX to clipboard" title="Copy BibTeX"><i class="fas fa-copy copy-highlight" aria-hidden="true"></i> <span class="copy-label">Copy</span></button><code>@misc{2025hrt1,
+  title         = {HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation},
+  author        = {Sai Haneesh Allu and Jishnu Jaykumar P and Ninad Khargonkar and Tyler Summers and Jian Yao and Yu Xiang},
+  year          = {2025},
+  eprint        = {2510.21026},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2510.21026}
 }</code></pre>
       </div>
+    </div>
   </section>
 
   <!-- Contact -->
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
-
-      <h2 class="title royal-theme">Contact</h2>
-      <p>Send any comments or questions to Sai | Jishnu: <br><a class="href-link" target="_blank"
-          href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> | <a class="href-link" target="_blank"
-          href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
+      <h2 class="title is-3 royal-theme has-text-centered">Contact</h2>
+      <div class="title-line"></div>
+      <p class="section-lede contact-line">Send any comments or questions to Sai or Jishnu — <a class="href-link" target="_blank" href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> · <a class="href-link" target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
     </div>
   </section>
 
   <!-- Acknowledgements -->
-  <section class="section">
-    <div class="container is-max-desktop content has-text-centered">
-      <h2 class="title royal-theme wheat">Acknowledgements</h2>
-      <div class="is-vcentered interpolation-panel wheat">
-        <div class="container content bg-black">
-          <p style="font-size: 16px">
-            This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, the NVIDIA Academic Grant Program Award, and a gift funding from XPeng.
-          </p>
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Acknowledgements</h2>
+      <div class="title-line"></div>
+
+      <p class="ack-eyebrow">Supported by</p>
+      <div class="ack-grid">
+        <div class="ack-card">
+          <div class="ack-org">NSF</div>
+          <div class="ack-prog">National Science Foundation</div>
+          <div class="ack-id">2346528 · 2520553</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">NVIDIA</div>
+          <div class="ack-prog">Academic Grant Program Award</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">XPeng</div>
+          <div class="ack-prog">Gift funding</div>
         </div>
       </div>
     </div>
   </section>
+
+  <footer class="site-footer">
+    <div class="container is-max-desktop">
+      <div class="footer-rule"></div>
+      <div class="footer-row">
+        <span class="footer-brand"><span class="small-caps">HRT1</span> · IRVL · UT Dallas</span>
+        <span class="footer-sep">·</span>
+        <span id="website-template-credits" class="footer-meta">
+          Last updated <span id="last-updated"></span>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-meta">Template inspired by <a class="href-link" target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps">FewSOL</span></a></span>
+      </div>
+    </div>
+  </footer>
 
 
 </body>
@@ -342,6 +451,7 @@
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
 <script src="./assets/js/global-index.js"></script>
+<script src="../assets/scripts/clap-page.js" defer></script>
 <script src="./assets/js/video_config.js"></script>
 <script src="./assets/js/index.js"></script>
 </html>
