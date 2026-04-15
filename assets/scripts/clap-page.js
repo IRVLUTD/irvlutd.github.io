@@ -50,29 +50,34 @@
 
 /* ── 03  YouTubeFacade ──────────────────────────────────────────────────── */
 (function initYouTubeFacade() {
-  var facade = document.querySelector('.yt-facade');
-  if (!facade) return;
+  var facades = document.querySelectorAll('.yt-facade');
+  if (!facades.length) return;
 
-  function activate() {
-    var id = facade.dataset.videoId;
-    var iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
-                 '?autoplay=1&rel=0&modestbranding=1';
-    iframe.title = 'iTeach overview video';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
-                   'gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
-    facade.innerHTML = '';
-    facade.appendChild(iframe);
-    facade.style.cursor = 'default';
-    facade.removeAttribute('role');
-  }
+  facades.forEach(function (facade) {
+    function activate() {
+      if (facade.classList.contains('is-playing')) return;
+      var id = facade.dataset.videoId;
+      if (!id) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                   '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      iframe.title = facade.getAttribute('aria-label') || 'Video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
+                     'gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.innerHTML = '';
+      facade.appendChild(iframe);
+      facade.classList.add('is-playing');
+      facade.removeAttribute('role');
+      facade.removeAttribute('tabindex');
+    }
 
-  facade.addEventListener('click', activate);
-  facade.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    facade.addEventListener('click', activate);
+    facade.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
   });
 })();
 
@@ -292,19 +297,34 @@
       }
     }
 
+    // Swap a FontAwesome icon reliably, whether FA is rendering via webfont
+    // (<i> stays in DOM) or SVG-JS (<i> gets replaced by <svg>). Toggling
+    // classes on the cached <i> fails in SVG-JS mode because the element is
+    // detached from the live DOM. Re-writing innerHTML + asking FA to
+    // re-process guarantees the right glyph shows either way.
+    function setFaIcon(btn, iconName) {
+      if (!btn) return;
+      btn.innerHTML = '<i class="fas fa-' + iconName + '" aria-hidden="true"></i>';
+      if (window.FontAwesome && window.FontAwesome.dom && window.FontAwesome.dom.i2svg) {
+        try { window.FontAwesome.dom.i2svg({ node: btn }); } catch (e) {}
+      }
+    }
+
+    // Sync the play/pause icon to the video's actual state. Needed because
+    // `autoplay` can fire the 'play' event before our listener attaches, so
+    // the icon would otherwise be stuck on fa-play during playback and then
+    // appear unresponsive on the first user click.
+    function syncPlayIcon() {
+      var playing = !v.paused && !v.ended;
+      setFaIcon(btnPlay, playing ? 'pause' : 'play');
+      p.classList.toggle('is-playing', playing);
+    }
+
     // Events
-    v.addEventListener('play',  function () {
-      p.classList.add('is-playing');
-      swapIcon(iPlay, 'fa-pause', 'fa-play');
-    });
-    v.addEventListener('pause', function () {
-      p.classList.remove('is-playing');
-      swapIcon(iPlay, 'fa-play', 'fa-pause');
-    });
-    v.addEventListener('ended', function () {
-      p.classList.remove('is-playing');
-      swapIcon(iPlay, 'fa-play', 'fa-pause');
-    });
+    v.addEventListener('play',    syncPlayIcon);
+    v.addEventListener('playing', syncPlayIcon);
+    v.addEventListener('pause',   syncPlayIcon);
+    v.addEventListener('ended',   syncPlayIcon);
     v.addEventListener('loadedmetadata', function () {
       if (dur) dur.textContent = fmt(v.duration);
     });
@@ -333,9 +353,11 @@
         v.muted = val === 0;
       });
     }
-    // Initial sync — video usually starts muted for autoplay.
+    // Initial sync — video usually starts muted for autoplay. Run the
+    // play-icon sync too so autoplay shows the pause glyph immediately.
     syncMuteIcon();
     syncVolumeSlider();
+    syncPlayIcon();
     document.addEventListener('fullscreenchange', function () {
       if (!iFs) return;
       if (document.fullscreenElement === p) swapIcon(iFs, 'fa-compress', 'fa-expand');

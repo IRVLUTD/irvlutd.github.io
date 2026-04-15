@@ -6,11 +6,19 @@ $(document).ready(function() {
       'scene-3': 'f-rX-itnQQU',
       'scene-4': 'OlF9yAlCVwo',
     }
-    
+
+    // Build an iframe immediately (scene-tab click is a user gesture → autoplay OK).
+    // Using autoplay=1 avoids YouTube's persistent play-button overlay on the thumb.
     function get_vid_html(vid_id){
-      return `<div class="iframe-container"><iframe src="https://www.youtube.com/embed/${demo_videos_link[vid_id]}" encrypted-media"  frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen></iframe></div>`
+      const yt = demo_videos_link[vid_id];
+      return `<div class="yt-facade is-playing" aria-label="Proto-CLIP ${vid_id} demo">
+        <iframe src="https://www.youtube-nocookie.com/embed/${yt}?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+                title="Proto-CLIP ${vid_id} demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                referrerpolicy="strict-origin-when-cross-origin"
+                style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+      </div>`;
     }
 
     // Check for click events on the navbar burger icon
@@ -19,7 +27,7 @@ $(document).ready(function() {
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
     });
-    
+
     $('.demo-video-iframe').on('click', function(){
       $('.demo-video-iframe').removeClass('is-active');
       $(this).toggleClass('is-active');
