@@ -5,12 +5,184 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta id="meta-desc" name="description"
-    content="Web home for HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+    content="HRT1 is a one-shot human-to-robot trajectory transfer system for mobile manipulation. A mobile manipulator watches a single MR-headset human demonstration, extracts a 3D human-hand trajectory, transfers it to a robot end-effector, and executes the task in a new scene via trajectory optimization. Validated on 16 real-world tasks × 3 trials on a Fetch robot.">
   <meta id="meta-author" name="author"
-    content="Sai Haneesh Allu, Jishnu Jaykumar P, Ninad Khargonkar, Jian Yao, Tyler Summers, Yu Xiang">
+    content="Sai Haneesh Allu, Jishnu Jaykumar P, Ninad Khargonkar, Tyler Summers, Jian Yao, Yu Xiang">
   <meta id="meta-keywords" name="keywords"
-    content="One Shot, Mobile Manipulation, Learning from Humans, UTD, IRVL, IRVLUTD, Robotics">
+    content="HRT1, human-to-robot trajectory transfer, one-shot imitation, mobile manipulation, learning from demonstration, learning from humans, MR headset, mixed reality, 3D hand trajectory, trajectory optimization, robot manipulation, Fetch robot, AR headset, human demonstration video, IRVL, IRVLUTD, UT Dallas, The University of Texas at Dallas, XPeng, Yu Xiang, Sai Haneesh Allu, Jishnu Jaykumar, Ninad Khargonkar, Tyler Summers, Jian Yao, robotics, computer vision, arXiv 2510.21026">
+  <meta name="robots"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot"   content="index, follow">
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://irvlutd.github.io/HRT1/">
+
+  <!-- Google Scholar / Highwire Press citation metadata -->
+  <meta name="citation_title" content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta name="citation_author" content="Allu, Sai Haneesh">
+  <meta name="citation_author" content="Jaykumar P, Jishnu">
+  <meta name="citation_author" content="Khargonkar, Ninad">
+  <meta name="citation_author" content="Summers, Tyler">
+  <meta name="citation_author" content="Yao, Jian">
+  <meta name="citation_author" content="Xiang, Yu">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_online_date"      content="2025">
+  <meta name="citation_arxiv_id"         content="2510.21026">
+  <meta name="citation_pdf_url"          content="https://arxiv.org/pdf/2510.21026">
+  <meta name="citation_public_url"       content="https://irvlutd.github.io/HRT1/">
+  <meta name="citation_language"         content="en">
+  <meta name="citation_keywords"         content="one-shot imitation; human-to-robot transfer; mobile manipulation; learning from demonstration; trajectory optimization; mixed reality">
+
+  <!-- Dublin Core -->
+  <meta name="DC.title"       content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta name="DC.creator"     content="Sai Haneesh Allu">
+  <meta name="DC.creator"     content="Jishnu Jaykumar P">
+  <meta name="DC.creator"     content="Ninad Khargonkar">
+  <meta name="DC.creator"     content="Tyler Summers">
+  <meta name="DC.creator"     content="Jian Yao">
+  <meta name="DC.creator"     content="Yu Xiang">
+  <meta name="DC.subject"     content="Human-to-robot trajectory transfer; One-shot imitation; Mobile manipulation; Trajectory optimization; Mixed reality">
+  <meta name="DC.description" content="HRT1 lets a mobile manipulator watch one MR-headset human demo and repeat the task in a new scene via 3D hand-trajectory extraction, hand-to-end-effector transfer, and trajectory optimization.">
+  <meta name="DC.publisher"   content="Intelligent Robotics and Vision Lab, The University of Texas at Dallas">
+  <meta name="DC.date"        content="2025">
+  <meta name="DC.type"        content="Text.Article">
+  <meta name="DC.language"    content="en">
+  <meta name="DC.identifier"  content="https://irvlutd.github.io/HRT1/">
+  <meta name="DC.rights"      content="© 2025 IRVL, UT Dallas">
+
+  <!-- Open Graph -->
+  <meta property="og:locale"      content="en_US">
+  <meta property="og:site_name"   content="HRT1 — IRVL · UT Dallas">
+  <meta property="og:title"       content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta property="og:description" content="Watch one MR-headset human demo → robot repeats the task in a new scene. 16 real-world tasks × 3 trials on a Fetch mobile manipulator. arXiv 2025.">
+  <meta property="og:image"       content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta property="og:image:secure_url" content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta property="og:image:alt"   content="HRT1 four-module pipeline: MR-headset demo capture, video understanding, trajectory transfer, trajectory optimization.">
+  <meta property="og:url"         content="https://irvlutd.github.io/HRT1/">
+  <meta property="og:type"        content="article">
+  <meta property="og:video"       content="https://irvlutd.github.io/HRT1/assets/videos/overview.mp4">
+  <meta property="og:video:type"  content="video/mp4">
+  <meta property="article:published_time" content="2025-10-24">
+  <meta property="article:author" content="Sai Haneesh Allu">
+  <meta property="article:author" content="Jishnu Jaykumar P">
+  <meta property="article:section" content="Robotics">
+  <meta property="article:tag"    content="One-Shot Imitation">
+  <meta property="article:tag"    content="Mobile Manipulation">
+  <meta property="article:tag"    content="Human-to-Robot Transfer">
+  <meta property="article:tag"    content="arXiv 2025">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@utdallas">
+  <meta name="twitter:creator"     content="@JishnuJPadal">
+  <meta name="twitter:title"       content="HRT1 — One-Shot Human-to-Robot Trajectory Transfer">
+  <meta name="twitter:description" content="Watch one MR-headset demo → robot repeats the task in a new scene. 16 real-world tasks × 3 trials on Fetch. arXiv 2025.">
+  <meta name="twitter:image"       content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta name="twitter:image:alt"   content="HRT1 four-module pipeline overview.">
+
   <title id="title" project-name="HRT1"></title>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://irvlutd.github.io/HRT1/#article",
+    "headline": "HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation",
+    "name":     "HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation",
+    "datePublished": "2025-10-24",
+    "dateModified":  "2025-10-24",
+    "inLanguage":    "en",
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "arXiv", "value": "2510.21026" }
+    ],
+    "abstract": "We introduce a novel system for human-to-robot trajectory transfer that enables robots to manipulate objects by learning from human demonstration videos. The system has four modules: MR-headset data collection, video understanding that extracts 3D human-hand trajectories, hand-to-end-effector trajectory transfer, and trajectory optimization in the robot configuration space. A robot watches one human demonstration video and repeats the same mobile manipulation task in new environments, even with different object placements.",
+    "description": "One-shot human-to-robot trajectory transfer for mobile manipulation from a single MR-headset human demo.",
+    "keywords": "one-shot imitation; human-to-robot transfer; mobile manipulation; trajectory optimization; mixed reality; 3D hand trajectory",
+    "author": [
+      {"@type": "Person", "name": "Sai Haneesh Allu", "url": "https://saihaneeshallu.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jishnu Jaykumar P", "url": "https://jishnujayakumar.github.io",     "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Ninad Khargonkar",   "url": "https://kninad.github.io",              "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Tyler Summers",      "url": "https://personal.utdallas.edu/~tyler.summers/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jian Yao",           "affiliation": {"@type": "Organization", "name": "XPeng"}},
+      {"@type": "Person", "name": "Yu Xiang",           "url": "https://yuxng.github.io",               "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}}
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas",
+      "url":  "https://labs.utdallas.edu/irvl"
+    },
+    "url": "https://irvlutd.github.io/HRT1/",
+    "mainEntityOfPage": "https://irvlutd.github.io/HRT1/",
+    "image": {
+      "@type": "ImageObject",
+      "url":   "https://irvlutd.github.io/HRT1/assets/overview.png"
+    },
+    "codeRepository": "https://github.com/IRVLUTD/HRT1",
+    "sameAs": [
+      "https://github.com/IRVLUTD/HRT1",
+      "https://arxiv.org/abs/2510.21026"
+    ],
+    "funding": [
+      {"@type": "Grant", "identifier": "2346528",
+       "funder": {"@type": "Organization", "name": "National Science Foundation"}},
+      {"@type": "Grant", "identifier": "2520553",
+       "funder": {"@type": "Organization", "name": "National Science Foundation"}},
+      {"@type": "MonetaryGrant",
+       "funder": {"@type": "Organization", "name": "NVIDIA Academic Grant Program"}},
+      {"@type": "MonetaryGrant",
+       "funder": {"@type": "Organization", "name": "XPeng"}}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "HRT1",
+    "codeRepository": "https://github.com/IRVLUTD/HRT1",
+    "programmingLanguage": "Python",
+    "description": "Reference implementation of HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation.",
+    "author": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://irvlutd.github.io/HRT1/#overview-video",
+    "name": "HRT1 — System Walkthrough",
+    "description": "Four-module HRT1 pipeline: MR-headset capture, video understanding, hand-to-end-effector trajectory transfer, and trajectory optimization.",
+    "thumbnailUrl": "https://irvlutd.github.io/HRT1/assets/overview.png",
+    "uploadDate": "2025-10-24",
+    "contentUrl": "https://irvlutd.github.io/HRT1/assets/videos/overview.mp4",
+    "publisher":  {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "IRVL", "item": "https://irvlutd.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "HRT1", "item": "https://irvlutd.github.io/HRT1/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "HRT1 — IRVL · UT Dallas",
+    "url":  "https://irvlutd.github.io/HRT1/",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">

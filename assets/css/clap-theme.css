@@ -1996,6 +1996,15 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   transform: translate(-50%, -50%) scale(1.08);
   box-shadow: 0 0 0 10px rgba(212,160,58,0.15);
 }
+/* Once the iframe is injected, suppress the decorative play button and the
+   click affordance. `:has()` avoids a JS class swap. `.is-playing` is the
+   fallback class the JS also sets, for browsers without :has() support. */
+.yt-facade:has(iframe)::before,
+.yt-facade:has(iframe)::after,
+.yt-facade.is-playing::before,
+.yt-facade.is-playing::after { content: none; }
+.yt-facade:has(iframe),
+.yt-facade.is-playing { cursor: default; }
 
 /* Lightbox for figures */
 .lightbox {
@@ -2483,7 +2492,8 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   max-width: 1000px;
   margin: 0 auto;
 }
-.demo-video-wrap .iframe-container {
+.demo-video-wrap .iframe-container,
+.demo-video-wrap > .yt-facade {
   position: relative;
   padding-top: 56.25%;
   border-radius: 14px;

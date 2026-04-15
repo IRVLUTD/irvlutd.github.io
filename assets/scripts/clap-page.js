@@ -50,29 +50,34 @@
 
 /* ── 03  YouTubeFacade ──────────────────────────────────────────────────── */
 (function initYouTubeFacade() {
-  var facade = document.querySelector('.yt-facade');
-  if (!facade) return;
+  var facades = document.querySelectorAll('.yt-facade');
+  if (!facades.length) return;
 
-  function activate() {
-    var id = facade.dataset.videoId;
-    var iframe = document.createElement('iframe');
-    iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
-                 '?autoplay=1&rel=0&modestbranding=1';
-    iframe.title = 'iTeach overview video';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
-                   'gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
-    facade.innerHTML = '';
-    facade.appendChild(iframe);
-    facade.style.cursor = 'default';
-    facade.removeAttribute('role');
-  }
+  facades.forEach(function (facade) {
+    function activate() {
+      if (facade.classList.contains('is-playing')) return;
+      var id = facade.dataset.videoId;
+      if (!id) return;
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
+                   '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      iframe.title = facade.getAttribute('aria-label') || 'Video';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
+                     'gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+      facade.innerHTML = '';
+      facade.appendChild(iframe);
+      facade.classList.add('is-playing');
+      facade.removeAttribute('role');
+      facade.removeAttribute('tabindex');
+    }
 
-  facade.addEventListener('click', activate);
-  facade.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    facade.addEventListener('click', activate);
+    facade.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
   });
 })();
 
