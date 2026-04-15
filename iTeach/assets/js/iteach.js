@@ -53,13 +53,15 @@
   if (!facades.length) return;
 
   facades.forEach(function (facade) {
-    function activate() {
+    function activate(opts) {
       if (facade.classList.contains('is-playing')) return;
       var id = facade.dataset.videoId;
       if (!id) return;
+      var muted = !!(opts && opts.muted);
       var iframe = document.createElement('iframe');
       iframe.src = 'https://www.youtube-nocookie.com/embed/' + id +
-                   '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+                   '?autoplay=1&rel=0&modestbranding=1&playsinline=1' +
+                   (muted ? '&mute=1' : '');
       iframe.title = facade.getAttribute('aria-label') || 'iTeach overview video';
       iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; ' +
                      'gyroscope; picture-in-picture; web-share';
@@ -73,10 +75,16 @@
       facade.removeAttribute('tabindex');
     }
 
-    facade.addEventListener('click', activate);
+    facade.addEventListener('click', function () { activate(); });
     facade.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
     });
+
+    // Auto-activate on load when the facade opts in via `data-autoplay`.
+    // Browsers only allow unprompted autoplay when muted, so force mute=1.
+    if (facade.dataset.autoplay !== undefined) {
+      activate({ muted: true });
+    }
   });
 })();
 
