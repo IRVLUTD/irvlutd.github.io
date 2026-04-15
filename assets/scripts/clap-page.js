@@ -215,3 +215,170 @@
   recompute();
   onScroll();
 })();
+
+
+/* ── 07  CLAP VideoPlayer ───────────────────────────────────────────────── *
+ * Custom HTML5 video-player controls, themed with CLAP gold/dark.
+ * Attaches to any .clap-player[data-clap-player]. Native controls hidden;
+ * ours drive play/pause, skip ±10s, seek, mute, fullscreen + keyboard
+ * shortcuts (Space, ←/→, M, F). Each player is independent.
+ */
+(function initClapPlayer() {
+  var players = document.querySelectorAll('.clap-player[data-clap-player]');
+  if (!players.length) return;
+
+  function fmt(t) {
+    if (!isFinite(t)) return '0:00';
+    t = Math.max(0, Math.floor(t));
+    var m = Math.floor(t / 60), s = t % 60;
+    return m + ':' + (s < 10 ? '0' + s : s);
+  }
+
+  players.forEach(function (p) {
+    var v       = p.querySelector('.cp-video');
+    if (!v) return;
+    var stage   = p.querySelector('.cp-stage');
+    var center  = p.querySelector('.cp-center-play');
+    var btnPlay = p.querySelector('.cp-play');
+    var btnBack = p.querySelector('.cp-back');
+    var btnFwd  = p.querySelector('.cp-fwd');
+    var btnMute = p.querySelector('.cp-mute');
+    var volSlider = p.querySelector('.cp-vol');
+    var btnFs   = p.querySelector('.cp-fs');
+    var seek    = p.querySelector('.cp-seek');
+    var cur     = p.querySelector('.cp-cur');
+    var dur     = p.querySelector('.cp-dur');
+    var iPlay   = btnPlay && btnPlay.querySelector('i');
+    var iCenter = center  && center.querySelector('i');
+    var iMute   = btnMute && btnMute.querySelector('i');
+    var iFs     = btnFs   && btnFs.querySelector('i');
+
+    v.removeAttribute('controls');
+
+    function swapIcon(ico, add, remove) {
+      if (!ico) return;
+      ico.classList.remove(remove);
+      ico.classList.add(add);
+    }
+
+    function togglePlay() {
+      if (v.paused) v.play(); else v.pause();
+    }
+    function skip(delta) {
+      v.currentTime = Math.min(Math.max(0, v.currentTime + delta), v.duration || 0);
+    }
+    function syncMuteIcon() {
+      if (!iMute) return;
+      // Use fa-volume-off for muted (FA5+6 compatible) and fa-volume-up for on.
+      if (v.muted || v.volume === 0) {
+        iMute.classList.remove('fa-volume-up', 'fa-volume-high', 'fa-volume-mute', 'fa-volume-xmark');
+        iMute.classList.add('fa-volume-off');
+      } else {
+        iMute.classList.remove('fa-volume-off', 'fa-volume-mute', 'fa-volume-xmark');
+        iMute.classList.add('fa-volume-up');
+      }
+    }
+    function toggleMute() {
+      v.muted = !v.muted;
+      // Ensure there's audible volume once unmuted (some browsers keep it at 0)
+      if (!v.muted && v.volume === 0) v.volume = 1;
+      syncMuteIcon();
+    }
+    function toggleFs() {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else if (p.requestFullscreen) {
+        p.requestFullscreen();
+      }
+    }
+
+    // Events
+    v.addEventListener('play',  function () {
+      p.classList.add('is-playing');
+      swapIcon(iPlay, 'fa-pause', 'fa-play');
+    });
+    v.addEventListener('pause', function () {
+      p.classList.remove('is-playing');
+      swapIcon(iPlay, 'fa-play', 'fa-pause');
+    });
+    v.addEventListener('ended', function () {
+      p.classList.remove('is-playing');
+      swapIcon(iPlay, 'fa-play', 'fa-pause');
+    });
+    v.addEventListener('loadedmetadata', function () {
+      if (dur) dur.textContent = fmt(v.duration);
+    });
+    v.addEventListener('timeupdate', function () {
+      if (cur) cur.textContent = fmt(v.currentTime);
+      if (seek && v.duration) {
+        var pct = (v.currentTime / v.duration) * 100;
+        seek.value = Math.round((v.currentTime / v.duration) * 1000);
+        seek.style.setProperty('--cp-progress', pct + '%');
+      }
+    });
+    function syncVolumeSlider() {
+      if (!volSlider) return;
+      var pct = v.muted ? 0 : v.volume;
+      volSlider.value = pct;
+      volSlider.style.setProperty('--cp-vol-pct', (pct * 100) + '%');
+    }
+    v.addEventListener('volumechange', function () {
+      syncMuteIcon();
+      syncVolumeSlider();
+    });
+    if (volSlider) {
+      volSlider.addEventListener('input', function () {
+        var val = parseFloat(volSlider.value);
+        v.volume = val;
+        v.muted = val === 0;
+      });
+    }
+    // Initial sync — video usually starts muted for autoplay.
+    syncMuteIcon();
+    syncVolumeSlider();
+    document.addEventListener('fullscreenchange', function () {
+      if (!iFs) return;
+      if (document.fullscreenElement === p) swapIcon(iFs, 'fa-compress', 'fa-expand');
+      else                                  swapIcon(iFs, 'fa-expand',   'fa-compress');
+    });
+
+    // Button clicks
+    if (center)  center.addEventListener('click', togglePlay);
+    if (stage)   stage.addEventListener('click',  function (e) {
+      if (e.target === stage || e.target === v) togglePlay();
+    });
+    if (btnPlay) btnPlay.addEventListener('click', togglePlay);
+    if (btnBack) btnBack.addEventListener('click', function () { skip(-10); });
+    if (btnFwd)  btnFwd .addEventListener('click', function () { skip(+10); });
+    if (btnMute) btnMute.addEventListener('click', toggleMute);
+    if (btnFs)   btnFs  .addEventListener('click', toggleFs);
+
+    // Seeking
+    if (seek) {
+      seek.addEventListener('input', function () {
+        if (!v.duration) return;
+        v.currentTime = (seek.value / 1000) * v.duration;
+      });
+    }
+
+    // Keyboard (only when the player or its focus is active)
+    p.tabIndex = 0;
+    p.addEventListener('keydown', function (e) {
+      switch (e.key) {
+        case ' ':
+        case 'k':
+          e.preventDefault(); togglePlay(); break;
+        case 'ArrowLeft':
+          e.preventDefault(); skip(-5); break;
+        case 'ArrowRight':
+          e.preventDefault(); skip(+5); break;
+        case 'm':
+        case 'M':
+          e.preventDefault(); toggleMute(); break;
+        case 'f':
+        case 'F':
+          e.preventDefault(); toggleFs(); break;
+      }
+    });
+  });
+})();
