@@ -2145,7 +2145,7 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   display: block;
   width: 100%;
   max-width: 860px;
-  height: 420px;          /* uniform frame for all four annotation images */
+  height: 320px;          /* uniform frame for all four annotation images */
   margin: 0 auto;
   object-fit: contain;    /* preserve aspect; no crop, no stretch */
   background: rgba(0, 0, 0, 0.35);
@@ -2154,7 +2154,7 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 @media (max-width: 720px) {
-  #annotations-span img { height: 260px; }
+  #annotations-span img { height: 220px; }
 }
 
 /* ============================================================================
@@ -3134,20 +3134,26 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
 .clap-player .cp-vol::-moz-range-progress { height: 4px; border-radius: 999px; background: var(--accent-primary); }
 .clap-player .cp-vol::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--accent-primary); border: 2px solid var(--bg-dark); }
 
-/* HRT1 TL;DR — headline + pipeline chain + footer stat */
-.tldr-hrt1 { padding: 1.4rem 1.5rem 1.3rem; }
-.tldr-hrt1 .tldr-head {
+/* Rich TL;DR — headline + pipeline chain + footer stat.
+   Used by HRT1 (process pipeline) and FewSOL (dataset composition). */
+.tldr-hrt1,
+.tldr-fewsol { padding: 1.4rem 1.5rem 1.3rem; }
+.tldr-fewsol { margin-bottom: 0.25rem; }
+.tldr-hrt1 .tldr-head,
+.tldr-fewsol .tldr-head {
   display: flex; align-items: baseline; gap: 0.75rem;
   flex-wrap: wrap;
   margin-bottom: 1rem;
 }
-.tldr-hrt1 .tldr-lede {
+.tldr-hrt1 .tldr-lede,
+.tldr-fewsol .tldr-lede {
   font-family: var(--font-body);
   font-size: 1.1rem;
   color: var(--text-main);
   line-height: 1.5;
 }
-.tldr-hrt1 .tldr-lede b { color: var(--accent-primary); }
+.tldr-hrt1 .tldr-lede b,
+.tldr-fewsol .tldr-lede b { color: var(--accent-primary); }
 
 .tldr-chain {
   list-style: none;
@@ -3184,14 +3190,16 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   line-height: 1.25;
 }
 
-.tldr-hrt1 .tldr-foot {
+.tldr-hrt1 .tldr-foot,
+.tldr-fewsol .tldr-foot {
   margin: 0;
   font-family: var(--font-body);
   font-size: 0.92rem;
   color: var(--text-dim);
   line-height: 1.5;
 }
-.tldr-hrt1 .tldr-foot b { color: var(--accent-primary); font-weight: 600; }
+.tldr-hrt1 .tldr-foot b,
+.tldr-fewsol .tldr-foot b { color: var(--accent-primary); font-weight: 600; }
 
 @media (max-width: 760px) {
   .tldr-chain { grid-template-columns: repeat(2, 1fr); }

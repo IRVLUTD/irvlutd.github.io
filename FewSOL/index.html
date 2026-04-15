@@ -223,6 +223,9 @@
       <div class="progress-item" data-section="abstract">
         <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
       </div>
+      <div class="progress-item" data-section="overview">
+        <a href="#overview"><span class="progress-dot"></span><span class="progress-label">Overview</span></a>
+      </div>
       <div class="progress-item" data-section="annotations">
         <a href="#annotations"><span class="progress-dot"></span><span class="progress-label">Annotations</span></a>
       </div>
@@ -409,18 +412,29 @@
   <section class="section">
     <div class="container is-max-desktop">
 
-      <div class="columns is-centered has-text-centered">
+      <!-- TL;DR -->
+      <div class="columns is-centered">
         <div class="column">
-          <div class="publication-video">
-            <div class="yt-facade" role="button" tabindex="0" aria-label="Play FewSOL overview video"
-                 data-video-id="-kcaEeloK3g">
-              <img src="https://i.ytimg.com/vi/-kcaEeloK3g/hqdefault.jpg"
-                   alt="FewSOL overview video thumbnail" loading="lazy" decoding="async">
+          <div class="tldr tldr-fewsol">
+            <div class="tldr-head">
+              <span class="tldr-label">TL;DR</span>
+              <span class="tldr-lede">A dataset for teaching robots <b>new objects</b> from <b>a few RGB-D views</b>.</span>
             </div>
+
+            <ol class="tldr-chain" aria-label="Dataset composition">
+              <li><span class="tc-tag">01</span><span class="tc-text">336<br>real objects</span></li>
+              <li><span class="tc-tag">02</span><span class="tc-text">9 RGB-D<br>views each</span></li>
+              <li><span class="tc-tag">03</span><span class="tc-text">330 synthetic<br>3D models</span></li>
+              <li><span class="tc-tag">04</span><span class="tc-text">Masks · poses<br>· attributes</span></li>
+            </ol>
+
+            <p class="tldr-foot">
+              Benchmarks <b>few-shot classification</b> and <b>joint segmentation &amp; classification</b> — with clear headroom in robotic environments.
+            </p>
           </div>
         </div>
       </div>
-      <!--/ Paper video. -->
+
     </div>
   </section>
 
@@ -465,6 +479,25 @@
       </div>
       <!--/ Abstract. -->
 
+    </div>
+  </section>
+
+  <!-- Overview video -->
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Overview</h2>
+      <div class="title-line"></div>
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <div class="publication-video">
+            <div class="yt-facade" role="button" tabindex="0" aria-label="Play FewSOL overview video"
+                 data-video-id="-kcaEeloK3g" data-autoplay="muted">
+              <img src="https://i.ytimg.com/vi/-kcaEeloK3g/hqdefault.jpg"
+                   alt="FewSOL overview video thumbnail" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -542,7 +575,7 @@
         </section>
       </div>
 
-      <details class="data-tree-details">
+      <details class="data-tree-details" open>
         <summary>
           <span class="tree-summary-kicker">Folder layout</span>
           <span class="tree-summary-hint">Once extracted, the dataset looks like this</span>
