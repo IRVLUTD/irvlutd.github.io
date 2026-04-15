@@ -297,19 +297,34 @@
       }
     }
 
+    // Swap a FontAwesome icon reliably, whether FA is rendering via webfont
+    // (<i> stays in DOM) or SVG-JS (<i> gets replaced by <svg>). Toggling
+    // classes on the cached <i> fails in SVG-JS mode because the element is
+    // detached from the live DOM. Re-writing innerHTML + asking FA to
+    // re-process guarantees the right glyph shows either way.
+    function setFaIcon(btn, iconName) {
+      if (!btn) return;
+      btn.innerHTML = '<i class="fas fa-' + iconName + '" aria-hidden="true"></i>';
+      if (window.FontAwesome && window.FontAwesome.dom && window.FontAwesome.dom.i2svg) {
+        try { window.FontAwesome.dom.i2svg({ node: btn }); } catch (e) {}
+      }
+    }
+
+    // Sync the play/pause icon to the video's actual state. Needed because
+    // `autoplay` can fire the 'play' event before our listener attaches, so
+    // the icon would otherwise be stuck on fa-play during playback and then
+    // appear unresponsive on the first user click.
+    function syncPlayIcon() {
+      var playing = !v.paused && !v.ended;
+      setFaIcon(btnPlay, playing ? 'pause' : 'play');
+      p.classList.toggle('is-playing', playing);
+    }
+
     // Events
-    v.addEventListener('play',  function () {
-      p.classList.add('is-playing');
-      swapIcon(iPlay, 'fa-pause', 'fa-play');
-    });
-    v.addEventListener('pause', function () {
-      p.classList.remove('is-playing');
-      swapIcon(iPlay, 'fa-play', 'fa-pause');
-    });
-    v.addEventListener('ended', function () {
-      p.classList.remove('is-playing');
-      swapIcon(iPlay, 'fa-play', 'fa-pause');
-    });
+    v.addEventListener('play',    syncPlayIcon);
+    v.addEventListener('playing', syncPlayIcon);
+    v.addEventListener('pause',   syncPlayIcon);
+    v.addEventListener('ended',   syncPlayIcon);
     v.addEventListener('loadedmetadata', function () {
       if (dur) dur.textContent = fmt(v.duration);
     });
@@ -338,9 +353,11 @@
         v.muted = val === 0;
       });
     }
-    // Initial sync — video usually starts muted for autoplay.
+    // Initial sync — video usually starts muted for autoplay. Run the
+    // play-icon sync too so autoplay shows the pause glyph immediately.
     syncMuteIcon();
     syncVolumeSlider();
+    syncPlayIcon();
     document.addEventListener('fullscreenchange', function () {
       if (!iFs) return;
       if (document.fullscreenElement === p) swapIcon(iFs, 'fa-compress', 'fa-expand');
