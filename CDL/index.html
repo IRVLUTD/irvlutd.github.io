@@ -48,8 +48,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title"> <span>Continual Distillation Learning: Knowledge Distillation in Prompt-based
-            Continual Learning</h1>
+          <h1 class="title is-1 publication-title"> <span>
+Decoupled Prompting for Continual Distillation in Rehearsal-Free Class-Incremental Learning</h1>
             <div class="is-size-6 publication-authors">
               <div id="author-content" class="columns is-centered is-gapless">
                   <div class="column">
@@ -57,7 +57,7 @@
                       <div>
                         <a target="_blank" href="https://qfantastic.github.io/">
                           <img class="display-image author-image center"
-                            src="../assets/images/authors/qifan_zhang.webp"> <br>Qifan Zhang</a></span>
+                            src="assets/images/qifan.webp"> <br>Qifan Zhang</a></span>
                       </div>
                     </div>
                   </div>
@@ -159,16 +159,23 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce the problem of continual distillation learning (CDL) in order to use knowledge distillation (KD) 
-            to improve prompt-based continual learning (CL) models. The CDL problem is valuable to study since the use of 
-            a larger vision transformer (ViT) leads to better performance in prompt-based continual learning. 
-            The distillation of knowledge from a large ViT to a small ViT can improve the inference efficiency for 
-            prompt-based CL models. We empirically found that existing KD methods such as logit distillation and feature 
-            distillation cannot effectively improve the student model in the CDL setup. To this end, we introduce a novel 
-            method named Knowledge Distillation based on Prompts (KDP), in which globally accessible prompts specifically 
-            designed for knowledge distillation are inserted into the frozen ViT backbone of the student model. 
-            We demonstrate that our KDP method effectively enhances the distillation performance in comparison to 
-            existing KD methods in the CDL setup.
+          Prompt-based continual learning has shown strong performance in rehearsal-free class-incremental 
+          learning by adapting learnable prompts while freezing a pre-trained Vision Transformer (ViT) backbone. 
+          However, the effect of backbone scale remains underexplored. We observe that larger ViT backbones 
+          consistently yield better continual learning performance, which motivates us to study how to transfer 
+          such capability from a larger model to a smaller one. In this paper, we introduce Continual Distillation 
+          Learning (CDL), a new setting for knowledge distillation in rehearsal-free prompt-based continual learning. 
+          We show that conventional distillation methods provide only limited gains in CDL, mainly because 
+          task-specific prompts are forced to encode both continual adaptation and distillation knowledge, while 
+          lacking a persistent mechanism for cross-task knowledge transfer. To address this problem, we propose 
+          Decoupled Continual Distillation Learning (D-CDL), which introduces persistent Knowledge-Distillation 
+          prompts (KD-prompts) and a dedicated KD branch to explicitly decouple distillation from task adaptation. 
+          The proposed KD-prompts are propagated across tasks as a global carrier of teacher knowledge, while the 
+          original prompts remain responsible for continual learning. D-CDL is simple, general, and can be integrated 
+          into various prompt-based continual learning frameworks. Extensive experiments on Split CIFAR-100 and Split 
+          ImageNet-R across four representative continual learning methods show that D-CDL consistently outperforms 
+          existing distillation baselines and substantially improves student performance under different teacher-student 
+          settings.
           </p>
         </div>
       </div>
@@ -183,12 +190,13 @@
     <!-- 20xScenes. -->
     <div class="columns is-centered has-text-centered">
       <div class="column">
-        <h2 class="title is-3">CDL</h2>
-        <p>We introduce the problem of Continual Distillation Learning (CDL) that considers differetn KD methods 
-          in the Prompt-based Continual Learning (CL) setup. The following figure illustrates the overall workflow of our experiment. 
-          The blue dashed area highlights our proposed KDP method, which addresses the limitations of other KD approaches and achieves state-of-the-art (SOTA) performance.</p>
+        <h2 class="title is-3">Decoupled Continual Distillation Learning </h2>
+        <p>we propose Decoupled Continual Distillation Learning (DCDL), which introduces persistent Knowledge-Distillation prompts (KD-prompts) and a dedicated
+KD branch to explicitly decouple distillation from task adaptation. The proposed KD-prompts are
+propagated across tasks as a global carrier of teacher knowledge, while the original prompts remain
+responsible for continual learning.</p>
         <div class="content has-text-justified">
-          <img src="assets/images/CDL.png" alt="gto">
+          <img src="assets/images/DCDL_ovverview.png" alt="gto">
         </div>
       </div>
     </div>
@@ -354,7 +362,7 @@
     <span>Please cite <span class="small-caps">CDL</span> if it helps your research:</span>
     <div class="bib-container">
     <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{2024CDL,
-title={Continual Distillation Learning: Knowledge Distillation in Prompt-based Continual Learning},
+title={Decoupled Prompting for Continual Distillation in Rehearsal-Free Class-Incremental Learning},
 author={Qifan Zhang and Yunhui Guo and Yu Xiang},
 year={2024},
 eprint={2407.13911},
