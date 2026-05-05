@@ -1,0 +1,16 @@
+site_name: MultiAxisGantrySystem
+theme: readthedocs
+site_dir: documentation
+
+nav:
+  - Home: index.md
+  - Hardware:
+      - Materials: hardware/materials.md
+      - Wiring: hardware/wiring.md
+  - Software:
+      - Applications: software/applications.md
+      - Parameters and Configuration: software/parameters_and_configuration.md
+      - Register Mapping and Control: software/register_mapping_and_control.md
+      - Code Files and API: software/code_files_and_API.md
+      - Operation and Interface: software/operation_and_interface.md
+      - Troubleshooting: software/troubleshooting.md

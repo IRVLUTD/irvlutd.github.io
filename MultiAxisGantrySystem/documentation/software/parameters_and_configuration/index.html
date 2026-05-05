@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Parameters and Configuration - MultiAxisGantrySystem</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Parameters and Configuration";
+        var mkdocs_page_input_path = "software/parameters_and_configuration.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> MultiAxisGantrySystem
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/materials/">Materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/wiring/">Wiring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../applications/">Applications</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Parameters and Configuration</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#parameter-settings">Parameter Settings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#io-settings">I/O Settings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading-pre-set-parameter-files">Loading Pre-set Parameter files</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../register_mapping_and_control/">Register Mapping and Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_files_and_API/">Code Files and API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../operation_and_interface/">Operation and Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">MultiAxisGantrySystem</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Software</li>
+      <li class="breadcrumb-item active">Parameters and Configuration</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="parameters-and-configuration">Parameters and Configuration</h1>
+<p>Connect to each driver individually via RS232 cable and configure the following parameters using <a href="https://www.leadshine.com/download/Software.html"><strong>Leadshine Motion Studio</strong></a> software.</p>
+<blockquote>
+<p><strong>⚠ Warning:</strong> Ensure <strong>Adaptive Baudrate</strong> is <strong>unchecked</strong> while connecting to the drivers. All drivers are supposed to be configured at <strong>38400 baud</strong>.</p>
+</blockquote>
+<h3 id="parameter-settings">Parameter Settings</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Parameter</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: center;">ID 1 (Motor A)</th>
+<th style="text-align: center;">ID 2 (Motor B)</th>
+<th style="text-align: center;">ID 3 (Motor C)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PA0.00</strong></td>
+<td style="text-align: left;">Motor ID</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA0.01</strong></td>
+<td style="text-align: left;">Open/Close Loop</td>
+<td style="text-align: center;">2 (closed Loop)</td>
+<td style="text-align: center;">2 (closed Loop)</td>
+<td style="text-align: center;">0 (Open Loop)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA0.02</strong></td>
+<td style="text-align: left;">Control Mode</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA5.00</strong></td>
+<td style="text-align: left;">Peak Current</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA5.01</strong></td>
+<td style="text-align: left;">Closed loop holding Current %</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA5.01</strong></td>
+<td style="text-align: left;">Open loop holding Current %</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA5.03</strong></td>
+<td style="text-align: left;">Lock Shaft Current %</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PR8.00</strong></td>
+<td style="text-align: left;">PR Control Setting</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PR8.10</strong></td>
+<td style="text-align: left;">Homing Method</td>
+<td style="text-align: center;">0 (CCW by limit)</td>
+<td style="text-align: center;">1 (CW by limit)</td>
+<td style="text-align: center;">1 (CW by limit)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>* Values below 30% on Motor C (ID 3) will trigger a <strong>Lock Shaft Alarm</strong>.<br />
+<strong>PR8.00 = 0</strong> disables auto-homing on boot, so we can control when to home the motors.</p>
+</blockquote>
+<h3 id="io-settings">I/O Settings</h3>
+<p>Navigate to <strong>Configuration &gt; IO Setting &gt; Input</strong> and assign the limit switch inputs:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Input Pin</th>
+<th style="text-align: left;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PA4.07 SI6</strong></td>
+<td style="text-align: left;">Negative Limit Input--PR(NOT)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>PA4.08 SI7</strong></td>
+<td style="text-align: left;">Positive Limit Input--PR(POT)</td>
+</tr>
+</tbody>
+</table>
+<p>The Pneumatic valve is controlled by the output from driver connected to <strong>Motor C (ID 3)</strong>. The valve is activated whenever Motor C reaches the target position ( i.e., motor is now assumed to be infront of miner to be cleaned). To achieve this, we use the <strong>CMD_OK</strong> function of the driver. </p>
+<p>Navigate to <strong>Configuration &gt; IO Setting &gt; Output</strong> and assign the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Output Pin</th>
+<th style="text-align: left;">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>PA4.11 SO1</strong></td>
+<td style="text-align: left;">Path Completed (CMD_OK)</td>
+</tr>
+</tbody>
+</table>
+<!-- The SO1 output function is set via **PA4.11** (register `0x0157`). Available options:
+
+| PA4.11 Value | Code | Symbol | Description |
+|:-------------|:----:|:------:|:------------|
+| 0 | — | Invalid | Output disabled (direct register `0x017B` does **not** work) |
+| 32 | 0x20 | **CMD_OK** | HIGH when drive is idle / command complete (**✅ Used**) |
+| 33 | 0x21 | MC_OK | HIGH when path position is reached |
+| 34 | 0x22 | HOME_OK | HIGH when homing is complete |
+| 35 | 0x23 | INP | HIGH when positioning is complete within tolerance |
+| 36 | 0x24 | BRK | HIGH when brake is released (motor enabled) |
+| 37 | 0x25 | ALM | HIGH on alarm/fault condition | -->
+
+<blockquote>
+<p>ℹ️  After setting the parameters, write them to the driver using the <strong>Write to Driver</strong> button present on the top row of the Parameter List tab. To make sure the values are set permanently, click on <strong>Save to Driver</strong> button, then disconnect the power supply of the driver and connect it back again after at least 15-20 seconds.</p>
+</blockquote>
+<h3 id="loading-pre-set-parameter-files">Loading Pre-set Parameter files</h3>
+<p>We have pre-set parameter files for each motor. You can load them using the <strong>Read Parameter files</strong> button and then write and save to the driver.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Motor</th>
+<th style="text-align: left;">Parameter File</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Motor A</td>
+<td style="text-align: left;"><a href="Motor_A.par">Motor A.par</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Motor B</td>
+<td style="text-align: left;"><a href="Motor_B.par">Motor B.par</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">Motor C</td>
+<td style="text-align: left;"><a href="Motor_C.par">Motor C.par</a></td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../applications/" class="btn btn-neutral float-left" title="Applications"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../register_mapping_and_control/" class="btn btn-neutral float-right" title="Register Mapping and Control">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../applications/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../register_mapping_and_control/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

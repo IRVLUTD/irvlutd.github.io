@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Register Mapping and Control - MultiAxisGantrySystem</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Register Mapping and Control";
+        var mkdocs_page_input_path = "software/register_mapping_and_control.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> MultiAxisGantrySystem
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/materials/">Materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/wiring/">Wiring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../applications/">Applications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters_and_configuration/">Parameters and Configuration</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Register Mapping and Control</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#control-registers">Control Registers</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#command-register-0x6002-values">Command Register (0x6002) Values</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#status-registers">Status Registers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pr-path-registers-0x62000x6207">PR Path Registers (0x6200–0x6207)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#status-word-bit-map-0x1003">Status Word Bit Map (0x1003)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#digital-output-functions-pa411">Digital Output Functions (PA4.11)</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_files_and_API/">Code Files and API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../operation_and_interface/">Operation and Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">MultiAxisGantrySystem</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Software</li>
+      <li class="breadcrumb-item active">Register Mapping and Control</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="register-mapping-and-control">Register Mapping and Control</h1>
+<p>All communication uses <strong>Modbus RTU</strong> over RS485 at 38400 baud. Function codes used: <strong>0x03</strong> (Read Holding Registers), <strong>0x06</strong> (Write Single Register), <strong>0x10</strong> (Write Multiple Registers).</p>
+<h3 id="control-registers">Control Registers</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">R/W</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Values Used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0x000F</code></td>
+<td style="text-align: left;">Servo Enable</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: left;">Enable/disable the servo drive</td>
+<td style="text-align: left;"><code>0x0001</code> = Enable</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x1801</code></td>
+<td style="text-align: left;">Fault Clear</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: left;">Clear an active fault/alarm</td>
+<td style="text-align: left;"><code>0x1111</code> = Clear all</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x6002</code></td>
+<td style="text-align: left;">Command Register</td>
+<td style="text-align: center;">W</td>
+<td style="text-align: left;">Multi-purpose command control</td>
+<td style="text-align: left;">See table below</td>
+</tr>
+</tbody>
+</table>
+<h4 id="command-register-0x6002-values">Command Register (0x6002) Values</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Value</th>
+<th style="text-align: left;">Command</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>0x0000</code></td>
+<td style="text-align: left;">Clear</td>
+<td style="text-align: left;">Clear the command register</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0x0021</code></td>
+<td style="text-align: left;">Set Zero</td>
+<td style="text-align: left;">Zero the encoder / position counter</td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>0x0040</code></td>
+<td style="text-align: left;">Quick Stop</td>
+<td style="text-align: left;">Immediately halt all motion</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-registers">Status Registers</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Register</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">R/W</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>0x1003</code></td>
+<td style="text-align: left;">Drive Status Word</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: left;">Bit-packed status flags (see bit map below)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x1012</code></td>
+<td style="text-align: left;">Position (open-loop)</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: left;">32-bit position counter (2 registers)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x1014</code></td>
+<td style="text-align: left;">Position (encoder)</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: left;">32-bit encoder position (2 registers)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>0x602E</code></td>
+<td style="text-align: left;">Digital Input Status</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: left;">Bit-packed limit switch states</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pr-path-registers-0x62000x6207">PR Path Registers (0x6200–0x6207)</h3>
+<p>Writes to these 8 consecutive registers configure and trigger a motion path:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Offset</th>
+<th style="text-align: left;">Register</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Position Mode (<code>0x0001</code>)</th>
+<th style="text-align: left;">Velocity Mode (<code>0x0002</code>)</th>
+<th style="text-align: left;">Homing Mode (<code>0x0003</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">+0</td>
+<td style="text-align: left;"><code>0x6200</code></td>
+<td style="text-align: left;">Mode</td>
+<td style="text-align: left;"><code>0x0001</code></td>
+<td style="text-align: left;"><code>0x0002</code></td>
+<td style="text-align: left;"><code>0x0003</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">+1</td>
+<td style="text-align: left;"><code>0x6201</code></td>
+<td style="text-align: left;">Position High</td>
+<td style="text-align: left;">Target pos (bits 31–16)</td>
+<td style="text-align: left;"><code>0x0000</code></td>
+<td style="text-align: left;"><code>0x0000</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">+2</td>
+<td style="text-align: left;"><code>0x6202</code></td>
+<td style="text-align: left;">Position Low</td>
+<td style="text-align: left;">Target pos (bits 15–0)</td>
+<td style="text-align: left;"><code>0x0000</code></td>
+<td style="text-align: left;"><code>0x0000</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">+3</td>
+<td style="text-align: left;"><code>0x6203</code></td>
+<td style="text-align: left;">Velocity</td>
+<td style="text-align: left;">Travel speed (RPM)</td>
+<td style="text-align: left;">Signed velocity (RPM)</td>
+<td style="text-align: left;"><code>0x0000</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">+4</td>
+<td style="text-align: left;"><code>0x6204</code></td>
+<td style="text-align: left;">Acceleration</td>
+<td style="text-align: left;">Accel rate</td>
+<td style="text-align: left;">Accel rate</td>
+<td style="text-align: left;">Accel rate</td>
+</tr>
+<tr>
+<td style="text-align: center;">+5</td>
+<td style="text-align: left;"><code>0x6205</code></td>
+<td style="text-align: left;">Deceleration</td>
+<td style="text-align: left;">Decel rate</td>
+<td style="text-align: left;">Decel rate</td>
+<td style="text-align: left;">Decel rate</td>
+</tr>
+<tr>
+<td style="text-align: center;">+6</td>
+<td style="text-align: left;"><code>0x6206</code></td>
+<td style="text-align: left;">Delay</td>
+<td style="text-align: left;"><code>0x0000</code></td>
+<td style="text-align: left;"><code>0x0000</code></td>
+<td style="text-align: left;"><code>0x0000</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">+7</td>
+<td style="text-align: left;"><code>0x6207</code></td>
+<td style="text-align: left;">Trigger</td>
+<td style="text-align: left;"><code>0x0010</code></td>
+<td style="text-align: left;"><code>0x0010</code></td>
+<td style="text-align: left;"><code>0x0010</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> All 8 registers are written atomically using Modbus function code <strong>0x10</strong> (Write Multiple Registers).</p>
+</blockquote>
+<h3 id="status-word-bit-map-0x1003">Status Word Bit Map (0x1003)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Bit</th>
+<th style="text-align: center;">Mask</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><code>0x0001</code></td>
+<td style="text-align: left;">Fault</td>
+<td style="text-align: left;">Drive has faulted (e.g., limit switch hit during motion)</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><code>0x0020</code></td>
+<td style="text-align: left;">Path Complete</td>
+<td style="text-align: left;">Current position path has finished</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;"><code>0x0040</code></td>
+<td style="text-align: left;">Homing Complete</td>
+<td style="text-align: left;">The homing routine has finished</td>
+</tr>
+</tbody>
+</table>
+<h3 id="digital-output-functions-pa411">Digital Output Functions (PA4.11)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">PA4.11 Value</th>
+<th style="text-align: center;">N.O. Code</th>
+<th style="text-align: center;">N.C. Code</th>
+<th style="text-align: center;">Symbol</th>
+<th style="text-align: left;">Trigger Condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">32</td>
+<td style="text-align: center;"><code>0x20</code></td>
+<td style="text-align: center;"><code>0xA0</code></td>
+<td style="text-align: center;">CMD_OK</td>
+<td style="text-align: left;">Any command completes (drive goes idle)</td>
+</tr>
+<tr>
+<td style="text-align: left;">33</td>
+<td style="text-align: center;"><code>0x21</code></td>
+<td style="text-align: center;"><code>0xA1</code></td>
+<td style="text-align: center;">MC_OK</td>
+<td style="text-align: left;">Path/position move reaches target</td>
+</tr>
+<tr>
+<td style="text-align: left;">34</td>
+<td style="text-align: center;"><code>0x22</code></td>
+<td style="text-align: center;"><code>0xA2</code></td>
+<td style="text-align: center;">HOME_OK</td>
+<td style="text-align: left;">Homing routine completes</td>
+</tr>
+<tr>
+<td style="text-align: left;">35</td>
+<td style="text-align: center;"><code>0x23</code></td>
+<td style="text-align: center;"><code>0xA3</code></td>
+<td style="text-align: center;">INP</td>
+<td style="text-align: left;">Motor settles within position tolerance</td>
+</tr>
+<tr>
+<td style="text-align: left;">36</td>
+<td style="text-align: center;"><code>0x24</code></td>
+<td style="text-align: center;"><code>0xA4</code></td>
+<td style="text-align: center;">BRK</td>
+<td style="text-align: left;">Brake releases (servo enabled)</td>
+</tr>
+<tr>
+<td style="text-align: left;">37</td>
+<td style="text-align: center;"><code>0x25</code></td>
+<td style="text-align: center;"><code>0xA5</code></td>
+<td style="text-align: center;">ALM</td>
+<td style="text-align: left;">Alarm/fault is active</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../parameters_and_configuration/" class="btn btn-neutral float-left" title="Parameters and Configuration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../code_files_and_API/" class="btn btn-neutral float-right" title="Code Files and API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../parameters_and_configuration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../code_files_and_API/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

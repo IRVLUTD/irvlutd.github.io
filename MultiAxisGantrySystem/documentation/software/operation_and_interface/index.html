@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Operation and Interface - MultiAxisGantrySystem</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Operation and Interface";
+        var mkdocs_page_input_path = "software/operation_and_interface.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> MultiAxisGantrySystem
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/materials/">Materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../hardware/wiring/">Wiring</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../applications/">Applications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters_and_configuration/">Parameters and Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../register_mapping_and_control/">Register Mapping and Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../code_files_and_API/">Code Files and API</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Operation and Interface</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#operating-modes">Operating Modes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-c">Calibration (C)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#homing-h">Homing (H)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#manual-positioning-rc">Manual Positioning (RC)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#auto-stepping-a">Auto Stepping (A)</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#led-signaling-system">LED Signaling System</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#emergency-stop-behavior">Emergency Stop Behavior</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#hmi-web-interface-hmi">HMI Web Interface (HMI/)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#features">Features</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">MultiAxisGantrySystem</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Software</li>
+      <li class="breadcrumb-item active">Operation and Interface</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="operation-and-interface">Operation and Interface</h1>
+<h2 id="operating-modes">Operating Modes</h2>
+<h3 id="calibration-c">Calibration (<code>C</code>)</h3>
+<ol>
+<li>Homes all active motors to their respective limit switches.</li>
+<li>Zeros all position counters.</li>
+<li>Simultaneously jogs all motors toward their opposite (far) limits.</li>
+<li>Records far limit positions and computes Motor C's travel range.</li>
+<li>Saves calibration data to EEPROM.</li>
+<li>Re-homes all motors and zeros positions again.</li>
+<li>Computes Motor C's time-per-step from its calibrated range.</li>
+</ol>
+<h3 id="homing-h">Homing (<code>H</code>)</h3>
+<ol>
+<li>Loads previously saved calibration from EEPROM.</li>
+<li>Homes all motors to their respective limit switches.</li>
+<li>Zeros positions and computes Motor C's time-per-step.</li>
+<li>System is ready for positioning commands without re-calibrating.</li>
+</ol>
+<h3 id="manual-positioning-rc">Manual Positioning (<code>RC</code>)</h3>
+<p>Two-digit serial command: first digit = <strong>row</strong> (Motors A/B), second digit = <strong>column</strong> (Motor C).</p>
+<ul>
+<li>Example: <code>03</code> → move to Row 0, Column 3.</li>
+<li>Motors A/B move via closed-loop absolute position commands.</li>
+<li>Motor C moves via time-based velocity jog (duration computed from step difference and calibrated range).</li>
+</ul>
+<h3 id="auto-stepping-a">Auto Stepping (<code>A</code>)</h3>
+<p>Performs a snake/zigzag sweep across the entire grid:</p>
+<pre><code>Row 1:  C5 ← C4 ← C3 ← C2 ← C1 ← C0    (backward sweep)
+Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
+</code></pre>
+<ul>
+<li>Supports pause/resume: pressing <code>X</code> saves current position.</li>
+<li>Pressing <code>A</code> again resumes from where it stopped.</li>
+<li>Any other command (<code>C</code>, <code>H</code>, <code>RC</code>) resets the auto sequence.</li>
+</ul>
+<h2 id="led-signaling-system">LED Signaling System</h2>
+<p>The LED indicator uses Motor C's digital output <strong>SO1</strong> configured as <strong>CMD_OK</strong> (PA4.11 = 32):</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">State</th>
+<th style="text-align: center;">CMD_OK</th>
+<th style="text-align: center;">LED</th>
+<th style="text-align: left;">How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Drive idle (no active command)</td>
+<td style="text-align: center;">HIGH</td>
+<td style="text-align: center;"><strong>ON</strong></td>
+<td style="text-align: left;"><code>quickStop()</code> → command register cleared</td>
+</tr>
+<tr>
+<td style="text-align: left;">Command running (velocity jog)</td>
+<td style="text-align: center;">LOW</td>
+<td style="text-align: center;"><strong>OFF</strong></td>
+<td style="text-align: left;"><code>signalLedOff()</code> → 0 RPM velocity jog</td>
+</tr>
+<tr>
+<td style="text-align: left;">Blink sequence</td>
+<td style="text-align: center;">HIGH→LOW</td>
+<td style="text-align: center;">ON→OFF</td>
+<td style="text-align: left;"><code>blinkLed()</code> → ON for duration, then OFF</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Design Note:</strong> <code>signalLedOff()</code> starts a 0 RPM velocity jog to keep the drive in a "busy" state, forcing CMD_OK LOW. This prevents the LED from turning on unexpectedly during idle periods.</p>
+</blockquote>
+<h2 id="emergency-stop-behavior">Emergency Stop Behavior</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mode</th>
+<th style="text-align: left;">Motors A/B</th>
+<th style="text-align: left;">Motor C</th>
+<th style="text-align: left;">System State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Calibration</strong></td>
+<td style="text-align: left;">Stop immediately</td>
+<td style="text-align: left;">Finishes current move</td>
+<td style="text-align: left;">Aborted — must restart with <code>C</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Homing</strong></td>
+<td style="text-align: left;">Stop immediately</td>
+<td style="text-align: left;">Finishes current move</td>
+<td style="text-align: left;">Aborted — must restart with <code>H</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Manual Position</strong></td>
+<td style="text-align: left;">Stop immediately</td>
+<td style="text-align: left;">Finishes column move</td>
+<td style="text-align: left;">Remains calibrated</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Auto Stepping</strong></td>
+<td style="text-align: left;">Stop immediately</td>
+<td style="text-align: left;">Finishes column move</td>
+<td style="text-align: left;">Saves position; <code>A</code> resumes</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Idle</strong></td>
+<td style="text-align: left;">Stop immediately</td>
+<td style="text-align: left;">No effect</td>
+<td style="text-align: left;">No change</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Motor C always completes its current move because it has no encoder — stopping mid-move would lose track of its position.</p>
+</blockquote>
+<hr />
+<h2 id="hmi-web-interface-hmi">HMI Web Interface (HMI/)</h2>
+<p>A browser-based control panel connecting to the Arduino via the <strong>Web Serial API</strong> (Chrome/Edge only).</p>
+<p>https://github.com/user-attachments/assets/815b3fdb-c31c-4e8e-97d4-50450c9b956b</p>
+<h3 id="features">Features</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Serial Connection</strong></td>
+<td style="text-align: left;">Connect/disconnect to Arduino at 38400 baud</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Command Buttons</strong></td>
+<td style="text-align: left;">Calibrate &amp; Home, Home, Auto, Emergency Stop</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Dynamic Position Grid</strong></td>
+<td style="text-align: left;">Configurable rows × columns grid; click any R<em>x</em>-C<em>y</em> button to send position command</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>LED Signal Toggle</strong></td>
+<td style="text-align: left;">Enable/disable the SO1 LED blink feature</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Transmission Log</strong></td>
+<td style="text-align: left;">Live feed of all TX (sent) and RX (received) serial messages</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Camera Feed</strong></td>
+<td style="text-align: left;">Streams live video from a connected webcam</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Video Recording</strong></td>
+<td style="text-align: left;">Record camera feed to <code>.webm</code> files with timestamped filenames</td>
+</tr>
+</tbody>
+</table>
+<p>https://github.com/user-attachments/assets/2300ad33-0bbf-4218-a0a2-44df9f3044bd</p>
+<p><strong>LED ON/OFF</strong> — Nozzle simulated via LED signaling:</p>
+<p>https://github.com/user-attachments/assets/69bd8a09-ef32-48e5-af23-948bd1f90b90</p>
+<blockquote>
+<p><strong>Tip:</strong> Set your browser's default download directory to a <code>recordings/</code> folder for organized video storage.</p>
+<p><strong>⚠ Warning:</strong> Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.</p>
+</blockquote>
+<hr />
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../code_files_and_API/" class="btn btn-neutral float-left" title="Code Files and API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../troubleshooting/" class="btn btn-neutral float-right" title="Troubleshooting">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../code_files_and_API/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../troubleshooting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
