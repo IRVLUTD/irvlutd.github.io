@@ -25,41 +25,41 @@ const leaderboard_entries = [
 const references = {
     "1": `X. Deng, A. Mousavian, Y. Xiang, F. Xia, T. Bretl, and D. Fox. Poserbpf: A rao–blackwellized
     particle filter for 6-d object pose tracking. IEEE Transactions on Robotics, 37(5):1328–1342,
-    2021. <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseRBPF">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/posecnn-pytorch">SceneReplica Version</a> <b>]</b>`,
+    2021. <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseRBPF">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/posecnn-pytorch">VLAReplica Version</a> <b>]</b>`,
     "2": `A. T. Miller and P. K. Allen. Graspit! a versatile simulator for robotic grasping. IEEE Robotics
     & Automation Magazine, 11(4):110–122, 2004. <b>[</b> <a target="_blank" href="https://github.com/graspit-simulator">Official Code</a> <b>]</b>`,
     "3": `I. A. Sucan, M. Moll, and L. E. Kavraki. The open motion planning library. IEEE Robotics &
     Automation Magazine, 19(4):72–82, 2012. <b>[</b> <a target="_blank" href="https://github.com/ompl/ompl">Official Code</a> <b>]</b>`,
     "4": `Y. Xiang, T. Schmidt, V. Narayanan, and D. Fox. Posecnn: A convolutional neural network for
     6d object pose estimation in cluttered scenes. arXiv preprint arXiv:1711.00199, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseCNN-PyTorch">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/PoseCNN-PyTorch-NV-Release">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/PoseCNN-PyTorch">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/PoseCNN-PyTorch-NV-Release">VLAReplica Version</a> <b>]</b>`,
     "5": `Y. Xiang, C. Xie, A. Mousavian, and D. Fox. Learning rgb-d feature embeddings for unseen
     object instance segmentation. In Conference on Robot Learning, pages 461–470. PMLR, 2021.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/UnseenObjectClustering">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/UnseenObjectClustering">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/UnseenObjectClustering">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/UnseenObjectClustering">VLAReplica Version</a> <b>]</b>`,
     "6": `A. Mousavian, C. Eppner, and D. Fox. 6-dof graspnet: Variational grasp generation for object
     manipulation. In Proceedings of the IEEE/CVF International Conference on Computer Vision,
     pages 2901–2910, 2019.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/6dof-graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/pytorch_6dof-graspnet">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/6dof-graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/pytorch_6dof-graspnet">VLAReplica Version</a> <b>]</b>`,
     "7": `M. Sundermeyer, A. Mousavian, R. Triebel, and D. Fox. Contact-graspnet: Efficient 6-dof
     grasp generation in cluttered scenes. In 2021 IEEE International Conference on Robotics and
     Automation (ICRA), pages 13438–13444. IEEE, 2021.
-    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/contact_graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/contact_graspnet">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/NVlabs/contact_graspnet">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/contact_graspnet">VLAReplica Version</a> <b>]</b>`,
     "8": `Y. Lu, Y. Chen, N. Ruozzi, and Y. Xiang. Mean shift mask transformer for unseen object    instance segmentation. arXiv preprint arXiv:2211.11679, 2022.
     <b>[</b> <a target="_blank" href="https://github.com/YoungSean/UnseenObjectsWithMeanShift">Official Code</a> <b>]</b>`,
     "9": `G. Wang, F. Manhardt, F. Tombari, and X. Ji, 
     GDR-Net: Geometry-guided direct regression network for monocular 6d object pose estimation, 
     in IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), June 2021, pp. 16 611–16 62
-    <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/shanice-l/gdrnpp_bop2022">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gdrnpp_bop2022">VLAReplica Version</a> <b>]</b>`,
     "10": `J. Mahler, J. Liang, S. Niyaz, M. Laskey, R. Doan, X. Liu, J. A. Ojea,
     and K. Goldberg, “Dex-net 2.0: Deep learning to plan robust grasps
     with synthetic point clouds and analytic grasp metrics”, arXiv preprint
     arXiv:1703.09312, 2017.
-    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/BerkeleyAutomation/gqcnn">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/gqcnn">VLAReplica Version</a> <b>]</b>`,
     "11": `Y. Xiang, S.H. Allu, R. Peddi, T. Summers, V. Gogate, “Grasping Trajectory Optimization with Point Clouds”, arXiv preprint
     arXiv:2403.05466, 2024.
-    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/gto_planning">SceneReplica Version</a> <b>]</b>`,
+    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/GraspTrajOpt">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/gto_planning">VLAReplica Version</a> <b>]</b>`,
     "12": `N. Khargonkar, L.F. Casas, B. Prabhakaran, Y. Xiang, “RobotFingerPrint: Unified Gripper Coordinate Space for Multi-Gripper Grasp Synthesis”, arXiv preprint arXiv:2409.14519 2024.
-    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/robot-finger-print">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/ros_package">SceneReplica Version</a> <b>]</b>`
+    <b>[</b> <a target="_blank" href="https://github.com/IRVLUTD/robot-finger-print">Official Code</a> | <a target="_blank" href="https://github.com/IRVLUTD/SceneReplica/tree/ros_package">VLAReplica Version</a> <b>]</b>`
 }
 
 const video_links = {

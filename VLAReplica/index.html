@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta id="meta-desc" name="description" content="Web home for SceneReplica Benchmark for Robotics">
-  <meta id="meta-author" name="author" content="Ninad Khargonkar, Sai Haneesh Allu, Yangxiao Lu, Jishnu Jaykumar P, Balakrishnan Prabhakaran, Yu Xiang">
-  <meta id="meta-keywords" name="keywords" content="Robot Manipulation, Benchmarking, Real Scene Replication, UTD, IRVL, IRVLUTD, Robotics">
-  <title id="title" project-name="VLAReplica"></title>
+  <meta id="meta-desc" name="description" content="Web home for VLAReplica Benchmark for Robotics">
+  <meta id="meta-author" name="author" content="">
+  <meta id="meta-keywords" name="keywords" content="Robot Manipulation, Vision-Language_Action Models, Benchmarking, Real Scene Replication">
+  <title id="title" project-name="VLAReplica">VLAReplica</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
@@ -37,81 +37,6 @@
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 id="project-name" class="title is-2 publication-title"></h1>
-            <!-- <div class="is-size-5 publication-authors">
-
-              <div id="author-content" class="columns is-centered is-gapless">
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://kninad.github.io"><img
-                          class="display-image author-image center" src="../assets/images/authors/ninad.khargonkar.webp"><br><span class="is-size-6">Ninad<br>Khargonkar<sup class="eq-contri">*</sup></span></a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://www.linkedin.com/in/sai-haneesh-allu"><img
-                          class="display-image author-image center" src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai Haneesh<br>Allu<sup class="eq-contri">*</sup></span></a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://youngsean.github.io/"><img
-                          class="display-image author-image center" src="../assets/images/authors/yangxiao_lu.webp"><br><span class="is-size-6">Yangxiao<br>Lu</span></a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://jishnujayakumar.github.io">
-                        <img class="display-image author-image center"
-                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br><span class="is-size-6">Jishnu<br>Jaykumar
-                            P</span></a>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://personal.utdallas.edu/~praba/"><img
-                          class="display-image author-image center" src="../assets/images/authors/balakrishnan_prabhakaran.webp"><br><span class="is-size-6">Balakrishnan<br>Prabhakaran</span></a>                    </div>
-                  </div>
-                </div>
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
-                          src="../assets/images/authors/yu_xiang.webp"><br><span class="is-size-6">Yu<br>Xiang</span></a>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-
-            </div> -->
-            
-            <div class="is-size-6 publication-authors author-meta-info">
-              <span class="author-block eq-contri"><sup>*</sup> Equal Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <br> <br><span id="accepted-conference" class="author-block">IEEE International Conference on Robotics and Automation (ICRA), 2024</span>
-            </div>
-            
 
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -216,16 +141,19 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              We present a new reproducible benchmark for evaluating robot manipulation in the real world, specifically
-              focusing on the task of pick-and-place. Our benchmark uses the YCB objects, a commonly used dataset in the
-              robotics community, to ensure that our results are comparable to other studies.
-              Additionally, the benchmark is designed to be easily reproducible in the real world, making it accessible
-              for researchers and practitioners. We also provide our experimental results and analyses for model-based
-              and model-free 6D robotic grasping on the benchmark, where representative algorithms for object
-              perception, grasping planning and motion planning are evaluated. We believe that our benchmark will be a
-              valuable tool for advancing the field of robot manipulation.
-              By providing a standardized evaluation framework, researchers can more easily compare different techniques
-              and algorithms, leading to faster progress in developing robot manipulation methods.
+              Vision-Language-Action (VLA) models have shown strong promise for general-purpose robotic manipulation, 
+              but their real-world evaluation remains limited by a lack of accessible, 
+              reproducible, and consistent benchmarks. Simulation benchmarks fail to capture real-world complexity, 
+              while existing real-world benchmarks often require expensive hardware, 
+              centralized evaluation, or are limited in task diversity. We introduce VLA-REPLICA, a low-cost, 
+              easily reproducible real-world benchmark for evaluating VLA models. 
+              Built from off-the-shelf components, our system can be quickly assembled and replicated across 
+              laboratories, providing a consistent environment for policy evaluation anywhere in the world. 
+              VLA-REPLICA includes a diverse suite of manipulation tasks and a small-scale demonstration dataset 
+              for target-domain adaptation, with real-world evaluation protocols for both in-distribution and 
+              out-of-distribution settings. Experiments with imitation learning and state-of-the-art VLA models 
+              reveal model strengths and limitations, while consistent results across independently constructed setups 
+              demonstrate the reproducibility of our benchmark.
             </p>
           </div>
         </div>
@@ -241,8 +169,8 @@
         <div class="column">
           <h2 class="title is-3">Scenes</h2>
           <div class="content has-text-justified">
-            <img src="assets/images/scene-replica-scenes.png" alt="20 scenes in our SceneReplica benchmark with 5 YCB objects in each scene">
-            <p class="center">20 scenes in our <span class="small-caps">SceneReplica</span> benchmark with 5 YCB objects in each scene</p>
+            <img src="" alt="">
+            <p class="center">20 scenes in our <span class="small-caps">VLAReplica</span> benchmark with 5 YCB objects in each scene</p>
           </div>
         </div>
       </div>
@@ -259,8 +187,8 @@
           <div class="content has-text-justified">
             <div class="column">
               <div class="publication-video">
-                <iframe src="https://www.youtube.com/embed/6IkSk0D3GME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
+                <iframe src="" title="YouTube video player" frameborder="0" allow="accelerometer; autod-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>play; clipboard-write; encrypte
               <p class="center">The process of replicating a scene in the real world. The reference scene image is overlaid
                 to the real camera image to guide how to place objects into the real-world scene.</p>
             </div>
@@ -283,7 +211,7 @@
               <div class="card">
                   <div class="card-image">
                       <figure class="image irn-scene-set-fig is-covered">
-                          <img class="carousel-img" src="./assets/images/modelbased-grasping.png" alt="model-based-grasping" />
+                          <img class="carousel-img" src="" alt="" />
                       </figure>
                   </div>
                   <div class="card-content slider-text">
@@ -295,7 +223,7 @@
               <div class="card">
                 <div class="card-image">
                     <figure class="image irn-scene-set-fig is-covered">
-                        <img class="carousel-img" src="./assets/images/modelfree-grapsing.png" alt="model-based-grasping" />
+                        <img class="carousel-img" src="" alt="" />
                     </figure>
                 </div>
                 <div class="card-content slider-text">
@@ -354,7 +282,7 @@
         <div class="column">
           <h2 class="title is-3">References</h2>
           <span><strong>Official Code</strong>: Source code from the authors of the method <br> </span>
-          <span><strong>SceneReplica Version</strong>: Our maintained version (upgrade dependencies, add ROS interface, etc.) </span>
+          <span><strong>VLAReplica Version</strong>: Our maintained version (upgrade dependencies, add ROS interface, etc.) </span>
           <div class="content has-text-justified">
             <ol id="references"></ol>
           </div>
@@ -366,10 +294,10 @@
 
 
   <!-- BibTeX -->
-  <section class="section" id="BibTeX">
+  <!-- <section class="section" id="BibTeX">
     <div class="container is-max-desktop">
       <h2 class="title">BibTeX</h2>
-      <span>Please cite <span class="small-caps"><b>SceneReplica</b></span> if it helps your research:</span>
+      <span>Please cite <span class="small-caps"><b>VLAReplica</b></span> if it helps your research:</span>
       <div class="bib-container">
         <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@article@inproceedings{khargonkar2024scenereplica,
   title={SceneReplica: Benchmarking Real-World Robot Manipulation by Creating Replicable Scenes},
@@ -379,19 +307,19 @@
   year={2024},
   organization={IEEE}}</code></pre>
       </div>
-  </section>
+  </section> -->
 
   <!-- Contact -->
-  <section class="section" id="contact">
+  <!-- <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
       
       <h2 class="title">Contact</h2>
         <p>Send any comments or questions to Ninad | Sai: <br><a target="_blank" href="mailto:ninadarun.khargonkar@utdallas.edu">ninadarun.khargonkar@utdallas.edu</a> | <a target="_blank" href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> </p>
     </div>
-  </section>
+  </section> -->
 
   <!-- Acknowledgements -->
-  <section class="section">
+  <!-- <section class="section">
     <div class="container is-max-desktop content has-text-centered">
       <h2 class="title">Acknowledgements</h2>
     <div class="is-vcentered interpolation-panel">
@@ -402,7 +330,7 @@
       </div>
     </div>
     </div>  
-  </section>
+  </section> -->
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
