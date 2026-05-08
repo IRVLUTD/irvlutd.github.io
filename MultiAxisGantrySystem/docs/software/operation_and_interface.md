@@ -1,33 +1,53 @@
 # Operation and Interface
 
-## Operating Modes
+![type:video](../videos/overview.mp4)
 
-### Calibration (`C`)
+## HMI Web Interface
 
-1. Homes all active motors to their respective limit switches.
+A browser-based control panel connecting to the Arduino via the **Web Serial API** (Chrome/Edge only). If this page is closed at anytime, we need to connect again and home the system before using it. The interface provides access to the following functionalities: 
+
+1. Home: Homes all the motors to their respective limit switches.
+2. Calibration: Calibrates all the motors to their respective limit switches.
+3. Manual Positioning: Moves the motors to the desired position.
+4. Auto Stepping: Moves the motors in a snake/zigzag pattern across the entire grid.
+5. Emergency Stop: Stops all the motors.
+6. Camera Feed: Streams live video from a connected webcam.
+7. Video Recording: Records camera feed to `.webm` files with timestamped filenames.
+8. Grid update: Updates the grid dynamically according to user input.
+9. Transmission Log: Logs all the transmission data between the Arduino and the drivers.
+
+![interface](../images/interface.png)
+
+## Functionalities
+When the system is powered on for the first time, calibration needs to be performed first. After that regular operations can be performed. Once calibrated, the calibration data is saved to EEPROM and can be retrieved later. From next time onwards, we can just home the system and use it. Click on **connect** button and connect to the Arduino. 
+
+> **⚠ Warning:** Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.
+
+### 1. Homing (`H`)
+
+1. Homes all motors to their respective limit switches.
+2. Zeros positions.
+
+### 2. Calibration (`C`)
+
+1. Homes all active motors to their respective lower limit switches.
 2. Zeros all position counters.
-3. Simultaneously jogs all motors toward their opposite (far) limits.
-4. Records far limit positions and computes Motor C's travel range.
+3. Simultaneously jogs all motors toward their upper limit switches.
+4. Records upper limit positions and computes travel range for the X and Z axes.
 5. Saves calibration data to EEPROM.
 6. Re-homes all motors and zeros positions again.
-7. Computes Motor C's time-per-step from its calibrated range.
 
-### Homing (`H`)
+### 3. Manual Positioning (`RC`)
 
-1. Loads previously saved calibration from EEPROM.
-2. Homes all motors to their respective limit switches.
-3. Zeros positions and computes Motor C's time-per-step.
-4. System is ready for positioning commands without re-calibrating.
+Two-digit serial command: first digit = **row** (Z axis - Motors A/B), second digit = **column** (X axis - Motor C).
 
-### Manual Positioning (`RC`)
+- Example: `23` → move to Row 2, Column 3.
+- Motors A/B move to the desired row position through vertical motion.
+- Motor C moves to the desired column position through horizontal motion.
 
-Two-digit serial command: first digit = **row** (Motors A/B), second digit = **column** (Motor C).
+After Motor C reaches the desired colum position, the valve is activated for a duration set in the config file.
 
-- Example: `03` → move to Row 0, Column 3.
-- Motors A/B move via closed-loop absolute position commands.
-- Motor C moves via time-based velocity jog (duration computed from step difference and calibrated range).
-
-### Auto Stepping (`A`)
+### 4. Auto Stepping (`A`)
 
 Performs a snake/zigzag sweep across the entire grid:
 
@@ -36,62 +56,47 @@ Row 1:  C5 ← C4 ← C3 ← C2 ← C1 ← C0    (backward sweep)
 Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
 ```
 
-- Supports pause/resume: pressing `X` saves current position.
-- Pressing `A` again resumes from where it stopped.
-- Any other command (`C`, `H`, `RC`) resets the auto sequence.
+After Motor C reaches each of the sequential column positions, the valve is activated for a duration set in the config file. 
 
-## LED Signaling System
+### 5. Stop (`X`)
 
-The LED indicator uses Motor C's digital output **SO1** configured as **CMD_OK** (PA4.11 = 32):
+Stops all the motors immediately. Motor C will complete its current move before stopping. (So it doesnt loose track of its position, since it operates in velocity mode).
 
-| State | CMD_OK | LED | How |
-|:------|:------:|:---:|:----|
-| Drive idle (no active command) | HIGH | **ON** | `quickStop()` → command register cleared |
-| Command running (velocity jog) | LOW | **OFF** | `signalLedOff()` → 0 RPM velocity jog |
-| Blink sequence | HIGH→LOW | ON→OFF | `blinkLed()` → ON for duration, then OFF |
+### 6. Camera Feed
 
-> **Design Note:** `signalLedOff()` starts a 0 RPM velocity jog to keep the drive in a "busy" state, forcing CMD_OK LOW. This prevents the LED from turning on unexpectedly during idle periods.
+This provides a live feed from the webcam connected to the system. It is useful for monitoring the system and ensuring that it is operating correctly. It also facilitates the recording of videos and saving them immediately to the system.
 
-## Emergency Stop Behavior
+- Click on the **start camera** button to start the camera feed. It shows the cameras available to stream. Select the desired camera. (Currently supports usb webcams and laptop cameras).
+![Camera Feed](../images/cam_start.png) 
 
-| Mode | Motors A/B | Motor C | System State |
-|:-----|:-----------|:--------|:-------------|
-| **Calibration** | Stop immediately | Finishes current move | Aborted — must restart with `C` |
-| **Homing** | Stop immediately | Finishes current move | Aborted — must restart with `H` |
-| **Manual Position** | Stop immediately | Finishes column move | Remains calibrated |
-| **Auto Stepping** | Stop immediately | Finishes column move | Saves position; `A` resumes |
-| **Idle** | Stop immediately | No effect | No change |
+### 7. Video Recording
 
-> Motor C always completes its current move because it has no encoder — stopping mid-move would lose track of its position.
+- Click on the **record** button to start recording the camera feed. Recording icon will be visible in the top left corner of the video feed.
+- Click on the **stop rec** button to stop recording the camera feed. The video will be saved to the default download directory of the browser.
 
----
-
-## HMI Web Interface (HMI/)
-
-A browser-based control panel connecting to the Arduino via the **Web Serial API** (Chrome/Edge only).
-
-https://github.com/user-attachments/assets/815b3fdb-c31c-4e8e-97d4-50450c9b956b
-
-### Features
-
-| Feature | Description |
-|:--------|:------------|
-| **Serial Connection** | Connect/disconnect to Arduino at 38400 baud |
-| **Command Buttons** | Calibrate & Home, Home, Auto, Emergency Stop |
-| **Dynamic Position Grid** | Configurable rows × columns grid; click any R*x*-C*y* button to send position command |
-| **LED Signal Toggle** | Enable/disable the SO1 LED blink feature |
-| **Transmission Log** | Live feed of all TX (sent) and RX (received) serial messages |
-| **Camera Feed** | Streams live video from a connected webcam |
-| **Video Recording** | Record camera feed to `.webm` files with timestamped filenames |
-
-https://github.com/user-attachments/assets/2300ad33-0bbf-4218-a0a2-44df9f3044bd
-
-**LED ON/OFF** — Nozzle simulated via LED signaling:
-
-https://github.com/user-attachments/assets/69bd8a09-ef32-48e5-af23-948bd1f90b90
+![Camera Feed](../images/cam_working.png)   
 
 > **Tip:** Set your browser's default download directory to a `recordings/` folder for organized video storage.
 
-> **⚠ Warning:** Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.
+### 8. Grid Update
+
+- Change the rows and columns values in the grid. Then, click on the **update grid** button to update the grid. The grid will be updated dynamically according to user input, both on the Interface and the code variables. By default the grid is set to 5x5. Below is an example of deafult grid updated to 8x8.
+
+![Grid Update](../images/grid_update.png)
+
+> <font color="red">**⚠ Important:** </font> When grid is updated on the Interface, (i.e., after clicking **update grid** button), Home the system again before using it, for the changes to take place correctly.  The transmission log window will display the updated grid values. Look for "=======HOME COMPLETE========" message in the transmission log after homing. Then you can use the system.
+
+![Grid Update](../images/homing.png)
+
+---
+
+### 9. Transmission Log
+
+This provides a live feed of all the transmission data between the Arduino and the drivers. It is useful for monitoring the system and ensuring that it is operating correctly. 
+
+![Transmission Log](../images/initial_logs.png) 
+
+
+
 
 ---
