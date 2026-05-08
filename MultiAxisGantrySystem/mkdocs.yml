@@ -16,3 +16,4 @@ nav:
       - Troubleshooting: software/troubleshooting.md
 plugins:
     - mkdocs-video
+    - mermaid2
