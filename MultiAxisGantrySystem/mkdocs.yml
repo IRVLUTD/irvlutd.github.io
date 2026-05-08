@@ -14,3 +14,5 @@ nav:
       - Code Files and API: software/code_files_and_API.md
       - Operation and Interface: software/operation_and_interface.md
       - Troubleshooting: software/troubleshooting.md
+plugins:
+    - mkdocs-video
