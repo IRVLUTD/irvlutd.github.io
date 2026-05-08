@@ -4,6 +4,8 @@ Connect to each driver individually via RS232 cable and configure the following 
 
 > **⚠ Warning:** Ensure **Adaptive Baudrate** is **unchecked** while connecting to the drivers. All drivers are supposed to be configured at **38400 baud**.
 
+
+
 ### Parameter Settings
 
 
@@ -61,6 +63,10 @@ We have pre-set parameter files for each motor. You can load them using the **Re
 
 | Motor | Parameter File |
 |:------|:---------------|
-| Motor A | [Motor A.par](Motor_A.par) |
-| Motor B | [Motor B.par](Motor_B.par) |
-| Motor C | [Motor C.par](Motor_C.par) |    
+| Motor 1 | [Motor 1.lsr](../param_files/motor1.lsr) |
+| Motor 2 | [Motor 2.lsr](../param_files/motor2.lsr) |
+| Motor 3 | [Motor 3.lsr](../param_files/motor3.lsr) |    
+
+Motors have the following IDs assigned in this project:
+
+![Motor IDs](../images/id_assign_motors.png)
