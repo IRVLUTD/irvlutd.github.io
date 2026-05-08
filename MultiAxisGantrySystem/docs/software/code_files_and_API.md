@@ -34,15 +34,15 @@ Flash the main.ino file to the arduino using the arduino IDE.
 | Parameter                |   Default    | Description                                  |
 | :----------------------- | :----------: | :------------------------------------------- |
 | `ACTIVE_MOTORS`          | `MOTORS_ABC` | Active motor set                             |
-| `NUM_STEPS_ROWS`         |      2       | Vertical (A/B) grid divisions                |
-| `NUM_STEPS_COLUMNS`      |      6       | Horizontal (C) grid divisions                |
-| `MOTOR_C_BUFFER`         |     5000     | Safety margin from C limit switches (pulses) |
+| `NUM_STEPS_ROWS`         |      5       | Num of steps along Z axis for the lifting mechanism |
+| `NUM_STEPS_COLUMNS`      |      5       | Num of steps along X axis for the end effector movement |
 | `MOTOR_C_PULSES_PER_REV` |    10000     | Motor C encoder resolution                   |
-| `LED_ON_DURATION_MS`     |     1000     | LED blink duration after reaching position   |
+| `MOTOR_C_RANGE_RATIO`    |     0.9     | Consider 90% of the total range for the movement.  |
+| `VALVE_ON_DURATION_MS`   |     1000     | Duration (in ms) for which the valve is open.  |
 
 ## MotorDriver API
 
-The `MotorDriver` class provides a comprehensive interface for controlling the Leadshine motor drivers via Modbus RTU. The API is categorized by functionality below.
+The `MotorDriver` class provides a comprehensive interface for controlling the Leadshine motor drivers via Modbus RTU. The API is categorized by some of the key functionality below.
 
 #### Initialization
 
@@ -98,6 +98,6 @@ The `MotorDriver` class provides a comprehensive interface for controlling the L
 
 | Method                | Description                                               |
 | :-------------------- | :-------------------------------------------------------- |
-| `void signalLedOn()`  | Activates the SO1 output pin (turns on LED/Valve).        |
-| `void signalLedOff()` | Deactivates the SO1 output pin (turns off LED/Valve).     |
-| `void blinkLed(...)`  | Flashes the output sequentially for a given `durationMs`. |
+| `void turnValveOn()`  | Activates the SO1 output pin (turns on Valve).        |
+| `void turnValveOff()` | Deactivates the SO1 output pin (turns off Valve).     |
+| `void activateValve(long durationMs)`  | Activates the valve for a given `durationMs`. |
