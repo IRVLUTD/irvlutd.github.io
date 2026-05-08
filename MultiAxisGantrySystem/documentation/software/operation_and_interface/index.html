@@ -31,11 +31,7 @@
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
           <a href="../.." class="icon icon-home"> MultiAxisGantrySystem
-        </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
-</div>
+        </a>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
@@ -64,19 +60,19 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#operating-modes">Operating Modes</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#calibration-c">Calibration (C)</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#homing-h">Homing (H)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#calibration-c">Calibration (C)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#manual-positioning-rc">Manual Positioning (RC)</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#auto-stepping-a">Auto Stepping (A)</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#stop-x">Stop (X)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#camera-feed">Camera Feed</a>
+    </li>
         </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#led-signaling-system">LED Signaling System</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#emergency-stop-behavior">Emergency Stop Behavior</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#hmi-web-interface-hmi">HMI Web Interface (HMI/)</a>
         <ul>
@@ -113,127 +109,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="operation-and-interface">Operation and Interface</h1>
+                <div><h1 id="operation-and-interface">Operation and Interface</h1>
+<p>Below is the overview video of the working of the system. The system has several key functionalities that help the system perform reliably and efficiently.
+- 1. Home: Homes all the motors to their respective limit switches.
+- 2. Calibration: Calibrates all the motors to their respective limit switches.
+- 3. Manual Positioning: Moves the motors to the desired position.
+- 4. Auto Stepping: Moves the motors in a snake/zigzag pattern across the entire grid.
+- 5. Emergency Stop: Stops all the motors.
+- 6. Camera Feed: Streams live video from a connected webcam.
+- 7. Video Recording: Records camera feed to <code>.webm</code> files with timestamped filenames.
+- 8. Grid update: Updates the grid dynamically according to user input.
+- 9. Transmission Log: Logs all the transmission data between the Arduino and the drivers.</p>
+<p><div class="video-container"><iframe src="../../videos/overview.mp4" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p>
 <h2 id="operating-modes">Operating Modes</h2>
-<h3 id="calibration-c">Calibration (<code>C</code>)</h3>
-<ol>
-<li>Homes all active motors to their respective limit switches.</li>
-<li>Zeros all position counters.</li>
-<li>Simultaneously jogs all motors toward their opposite (far) limits.</li>
-<li>Records far limit positions and computes Motor C's travel range.</li>
-<li>Saves calibration data to EEPROM.</li>
-<li>Re-homes all motors and zeros positions again.</li>
-<li>Computes Motor C's time-per-step from its calibrated range.</li>
-</ol>
+<p>The interface provides access to the following operating modes:</p>
 <h3 id="homing-h">Homing (<code>H</code>)</h3>
 <ol>
-<li>Loads previously saved calibration from EEPROM.</li>
 <li>Homes all motors to their respective limit switches.</li>
-<li>Zeros positions and computes Motor C's time-per-step.</li>
-<li>System is ready for positioning commands without re-calibrating.</li>
+<li>Zeros positions.</li>
+</ol>
+<h3 id="calibration-c">Calibration (<code>C</code>)</h3>
+<ol>
+<li>Homes all active motors to their respective lower limit switches.</li>
+<li>Zeros all position counters.</li>
+<li>Simultaneously jogs all motors toward their upper limit switches.</li>
+<li>Records upper limit positions and computes travel range for the X and Z axes.</li>
+<li>Saves calibration data to EEPROM.</li>
+<li>Re-homes all motors and zeros positions again.</li>
 </ol>
 <h3 id="manual-positioning-rc">Manual Positioning (<code>RC</code>)</h3>
-<p>Two-digit serial command: first digit = <strong>row</strong> (Motors A/B), second digit = <strong>column</strong> (Motor C).</p>
+<p>Two-digit serial command: first digit = <strong>row</strong> (Z axis - Motors A/B), second digit = <strong>column</strong> (X axis - Motor C).</p>
 <ul>
-<li>Example: <code>03</code> → move to Row 0, Column 3.</li>
-<li>Motors A/B move via closed-loop absolute position commands.</li>
-<li>Motor C moves via time-based velocity jog (duration computed from step difference and calibrated range).</li>
+<li>Example: <code>23</code> → move to Row 2, Column 3.</li>
+<li>Motors A/B move to the desired row position through vertical motion.</li>
+<li>Motor C moves to the desired column position through horizontal motion.</li>
 </ul>
 <h3 id="auto-stepping-a">Auto Stepping (<code>A</code>)</h3>
 <p>Performs a snake/zigzag sweep across the entire grid:</p>
 <pre><code>Row 1:  C5 ← C4 ← C3 ← C2 ← C1 ← C0    (backward sweep)
 Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
 </code></pre>
-<ul>
-<li>Supports pause/resume: pressing <code>X</code> saves current position.</li>
-<li>Pressing <code>A</code> again resumes from where it stopped.</li>
-<li>Any other command (<code>C</code>, <code>H</code>, <code>RC</code>) resets the auto sequence.</li>
-</ul>
-<h2 id="led-signaling-system">LED Signaling System</h2>
-<p>The LED indicator uses Motor C's digital output <strong>SO1</strong> configured as <strong>CMD_OK</strong> (PA4.11 = 32):</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">State</th>
-<th style="text-align: center;">CMD_OK</th>
-<th style="text-align: center;">LED</th>
-<th style="text-align: left;">How</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Drive idle (no active command)</td>
-<td style="text-align: center;">HIGH</td>
-<td style="text-align: center;"><strong>ON</strong></td>
-<td style="text-align: left;"><code>quickStop()</code> → command register cleared</td>
-</tr>
-<tr>
-<td style="text-align: left;">Command running (velocity jog)</td>
-<td style="text-align: center;">LOW</td>
-<td style="text-align: center;"><strong>OFF</strong></td>
-<td style="text-align: left;"><code>signalLedOff()</code> → 0 RPM velocity jog</td>
-</tr>
-<tr>
-<td style="text-align: left;">Blink sequence</td>
-<td style="text-align: center;">HIGH→LOW</td>
-<td style="text-align: center;">ON→OFF</td>
-<td style="text-align: left;"><code>blinkLed()</code> → ON for duration, then OFF</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>Design Note:</strong> <code>signalLedOff()</code> starts a 0 RPM velocity jog to keep the drive in a "busy" state, forcing CMD_OK LOW. This prevents the LED from turning on unexpectedly during idle periods.</p>
-</blockquote>
-<h2 id="emergency-stop-behavior">Emergency Stop Behavior</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Mode</th>
-<th style="text-align: left;">Motors A/B</th>
-<th style="text-align: left;">Motor C</th>
-<th style="text-align: left;">System State</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Calibration</strong></td>
-<td style="text-align: left;">Stop immediately</td>
-<td style="text-align: left;">Finishes current move</td>
-<td style="text-align: left;">Aborted — must restart with <code>C</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Homing</strong></td>
-<td style="text-align: left;">Stop immediately</td>
-<td style="text-align: left;">Finishes current move</td>
-<td style="text-align: left;">Aborted — must restart with <code>H</code></td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Manual Position</strong></td>
-<td style="text-align: left;">Stop immediately</td>
-<td style="text-align: left;">Finishes column move</td>
-<td style="text-align: left;">Remains calibrated</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Auto Stepping</strong></td>
-<td style="text-align: left;">Stop immediately</td>
-<td style="text-align: left;">Finishes column move</td>
-<td style="text-align: left;">Saves position; <code>A</code> resumes</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Idle</strong></td>
-<td style="text-align: left;">Stop immediately</td>
-<td style="text-align: left;">No effect</td>
-<td style="text-align: left;">No change</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>Motor C always completes its current move because it has no encoder — stopping mid-move would lose track of its position.</p>
-</blockquote>
-<hr />
+<h3 id="stop-x">Stop (<code>X</code>)</h3>
+<p>Stops all the motors immediately. Motor C will complete its current move before stopping. (So it doesnt loose track of its position, since it operates in velocity mode).</p>
+<h3 id="camera-feed">Camera Feed</h3>
+<p>This provides a live feed from the webcam connected to the system. It is useful for monitoring the system and ensuring that it is operating correctly. It also facilitates the recording of videos and saving them immediately to the system.</p>
+<hr>
 <h2 id="hmi-web-interface-hmi">HMI Web Interface (HMI/)</h2>
 <p>A browser-based control panel connecting to the Arduino via the <strong>Web Serial API</strong> (Chrome/Edge only).</p>
-<p>https://github.com/user-attachments/assets/815b3fdb-c31c-4e8e-97d4-50450c9b956b</p>
+<p><img alt="interface" src="../../images/interface.png"></p>
 <h3 id="features">Features</h3>
 <table>
 <thead>
@@ -280,7 +203,7 @@ Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
 <p><strong>Tip:</strong> Set your browser's default download directory to a <code>recordings/</code> folder for organized video storage.</p>
 <p><strong>⚠ Warning:</strong> Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.</p>
 </blockquote>
-<hr />
+<hr></div>
               
             </div>
           </div><footer>
@@ -320,7 +243,6 @@ Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
     <script>var base_url = "../..";</script>
     <script src="../../js/theme_extra.js"></script>
     <script src="../../js/theme.js"></script>
-      <script src="../../search/main.js"></script>
     <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
