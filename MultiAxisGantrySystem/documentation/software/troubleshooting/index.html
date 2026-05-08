@@ -105,22 +105,12 @@
 <tr>
 <td style="text-align: left;">Homing never completes</td>
 <td style="text-align: left;">Limit switch not configured</td>
-<td style="text-align: left;">Set SI7/SI8 in Motion Studio I/O settings</td>
+<td style="text-align: left;">Set SI6/SI7 in Motion Studio I/O settings</td>
 </tr>
 <tr>
 <td style="text-align: left;">Motor C drifts after stopping</td>
 <td style="text-align: left;">Open-loop position error</td>
 <td style="text-align: left;">Re-calibrate with <code>C</code>; check <code>MOTOR_C_PULSES_PER_REV</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">LED stays ON after homing</td>
-<td style="text-align: left;">CMD_OK goes HIGH on idle</td>
-<td style="text-align: left;">Add <code>signalLedOff()</code> after homing sequence</td>
-</tr>
-<tr>
-<td style="text-align: left;">LED doesn't turn OFF at limits</td>
-<td style="text-align: left;">Drive faults block <code>signalLedOff()</code></td>
-<td style="text-align: left;">Call <code>clearFault()</code> before <code>signalLedOff()</code></td>
 </tr>
 <tr>
 <td style="text-align: left;">Lock Shaft Alarm on Motor C</td>
@@ -136,11 +126,6 @@
 <td style="text-align: left;">Arduino resets on HMI connect</td>
 <td style="text-align: left;">Serial port conflict</td>
 <td style="text-align: left;">Close Arduino Serial Monitor before using HMI</td>
-</tr>
-<tr>
-<td style="text-align: left;">Auto-step resumes from wrong position</td>
-<td style="text-align: left;">Motor C position lost</td>
-<td style="text-align: left;">Re-home with <code>H</code> to re-z</td>
 </tr>
 </tbody>
 </table></div>

@@ -245,18 +245,13 @@
 </tr>
 <tr>
 <td style="text-align: left;"><code>NUM_STEPS_ROWS</code></td>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">Vertical (A/B) grid divisions</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Num of steps along Z axis for the lifting mechanism</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>NUM_STEPS_COLUMNS</code></td>
-<td style="text-align: center;">6</td>
-<td style="text-align: left;">Horizontal (C) grid divisions</td>
-</tr>
-<tr>
-<td style="text-align: left;"><code>MOTOR_C_BUFFER</code></td>
-<td style="text-align: center;">5000</td>
-<td style="text-align: left;">Safety margin from C limit switches (pulses)</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">Num of steps along X axis for the end effector movement</td>
 </tr>
 <tr>
 <td style="text-align: left;"><code>MOTOR_C_PULSES_PER_REV</code></td>
@@ -264,14 +259,19 @@
 <td style="text-align: left;">Motor C encoder resolution</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>LED_ON_DURATION_MS</code></td>
+<td style="text-align: left;"><code>MOTOR_C_RANGE_RATIO</code></td>
+<td style="text-align: center;">0.9</td>
+<td style="text-align: left;">Consider 90% of the total range for the movement.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>VALVE_ON_DURATION_MS</code></td>
 <td style="text-align: center;">1000</td>
-<td style="text-align: left;">LED blink duration after reaching position</td>
+<td style="text-align: left;">Duration (in ms) for which the valve is open.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="motordriver-api">MotorDriver API</h2>
-<p>The <code>MotorDriver</code> class provides a comprehensive interface for controlling the Leadshine motor drivers via Modbus RTU. The API is categorized by functionality below.</p>
+<p>The <code>MotorDriver</code> class provides a comprehensive interface for controlling the Leadshine motor drivers via Modbus RTU. The API is categorized by some of the key functionality below.</p>
 <h4 id="initialization">Initialization</h4>
 <table>
 <thead>
@@ -437,16 +437,16 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><code>void signalLedOn()</code></td>
-<td style="text-align: left;">Activates the SO1 output pin (turns on LED/Valve).</td>
+<td style="text-align: left;"><code>void turnValveOn()</code></td>
+<td style="text-align: left;">Activates the SO1 output pin (turns on Valve).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>void signalLedOff()</code></td>
-<td style="text-align: left;">Deactivates the SO1 output pin (turns off LED/Valve).</td>
+<td style="text-align: left;"><code>void turnValveOff()</code></td>
+<td style="text-align: left;">Deactivates the SO1 output pin (turns off Valve).</td>
 </tr>
 <tr>
-<td style="text-align: left;"><code>void blinkLed(...)</code></td>
-<td style="text-align: left;">Flashes the output sequentially for a given <code>durationMs</code>.</td>
+<td style="text-align: left;"><code>void activateValve(long durationMs)</code></td>
+<td style="text-align: left;">Activates the valve for a given <code>durationMs</code>.</td>
 </tr>
 </tbody>
 </table></div>

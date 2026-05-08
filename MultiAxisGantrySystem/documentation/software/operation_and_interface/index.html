@@ -58,25 +58,27 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Operation and Interface</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#operating-modes">Operating Modes</a>
+    <li class="toctree-l2"><a class="reference internal" href="#hmi-web-interface">HMI Web Interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#functionalities">Functionalities</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#homing-h">Homing (H)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#1-homing-h">1. Homing (H)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#calibration-c">Calibration (C)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#2-calibration-c">2. Calibration (C)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#manual-positioning-rc">Manual Positioning (RC)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#3-manual-positioning-rc">3. Manual Positioning (RC)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#auto-stepping-a">Auto Stepping (A)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#4-auto-stepping-a">4. Auto Stepping (A)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#stop-x">Stop (X)</a>
+    <li class="toctree-l3"><a class="reference internal" href="#5-stop-x">5. Stop (X)</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#camera-feed">Camera Feed</a>
+    <li class="toctree-l3"><a class="reference internal" href="#6-camera-feed">6. Camera Feed</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#7-video-recording">7. Video Recording</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#hmi-web-interface-hmi">HMI Web Interface (HMI/)</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#features">Features</a>
+    <li class="toctree-l3"><a class="reference internal" href="#8-grid-update">8. Grid Update</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#9-transmission-log">9. Transmission Log</a>
     </li>
         </ul>
     </li>
@@ -110,25 +112,32 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h1 id="operation-and-interface">Operation and Interface</h1>
-<p>Below is the overview video of the working of the system. The system has several key functionalities that help the system perform reliably and efficiently.
-- 1. Home: Homes all the motors to their respective limit switches.
-- 2. Calibration: Calibrates all the motors to their respective limit switches.
-- 3. Manual Positioning: Moves the motors to the desired position.
-- 4. Auto Stepping: Moves the motors in a snake/zigzag pattern across the entire grid.
-- 5. Emergency Stop: Stops all the motors.
-- 6. Camera Feed: Streams live video from a connected webcam.
-- 7. Video Recording: Records camera feed to <code>.webm</code> files with timestamped filenames.
-- 8. Grid update: Updates the grid dynamically according to user input.
-- 9. Transmission Log: Logs all the transmission data between the Arduino and the drivers.</p>
 <p><div class="video-container"><iframe src="../../videos/overview.mp4" style="position:relative;width:100%;height:22.172vw" frameborder="0" allowfullscreen alt="type:video"></iframe></div></p>
-<h2 id="operating-modes">Operating Modes</h2>
-<p>The interface provides access to the following operating modes:</p>
-<h3 id="homing-h">Homing (<code>H</code>)</h3>
+<h2 id="hmi-web-interface">HMI Web Interface</h2>
+<p>A browser-based control panel connecting to the Arduino via the <strong>Web Serial API</strong> (Chrome/Edge only). If this page is closed at anytime, we need to connect again and home the system before using it. The interface provides access to the following functionalities: </p>
+<ol>
+<li>Home: Homes all the motors to their respective limit switches.</li>
+<li>Calibration: Calibrates all the motors to their respective limit switches.</li>
+<li>Manual Positioning: Moves the motors to the desired position.</li>
+<li>Auto Stepping: Moves the motors in a snake/zigzag pattern across the entire grid.</li>
+<li>Emergency Stop: Stops all the motors.</li>
+<li>Camera Feed: Streams live video from a connected webcam.</li>
+<li>Video Recording: Records camera feed to <code>.webm</code> files with timestamped filenames.</li>
+<li>Grid update: Updates the grid dynamically according to user input.</li>
+<li>Transmission Log: Logs all the transmission data between the Arduino and the drivers.</li>
+</ol>
+<p><img alt="interface" src="../../images/interface.png"></p>
+<h2 id="functionalities">Functionalities</h2>
+<p>When the system is powered on for the first time, calibration needs to be performed first. After that regular operations can be performed. Once calibrated, the calibration data is saved to EEPROM and can be retrieved later. From next time onwards, we can just home the system and use it. Click on <strong>connect</strong> button and connect to the Arduino. </p>
+<blockquote>
+<p><strong>⚠ Warning:</strong> Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.</p>
+</blockquote>
+<h3 id="1-homing-h">1. Homing (<code>H</code>)</h3>
 <ol>
 <li>Homes all motors to their respective limit switches.</li>
 <li>Zeros positions.</li>
 </ol>
-<h3 id="calibration-c">Calibration (<code>C</code>)</h3>
+<h3 id="2-calibration-c">2. Calibration (<code>C</code>)</h3>
 <ol>
 <li>Homes all active motors to their respective lower limit switches.</li>
 <li>Zeros all position counters.</li>
@@ -137,72 +146,50 @@
 <li>Saves calibration data to EEPROM.</li>
 <li>Re-homes all motors and zeros positions again.</li>
 </ol>
-<h3 id="manual-positioning-rc">Manual Positioning (<code>RC</code>)</h3>
+<h3 id="3-manual-positioning-rc">3. Manual Positioning (<code>RC</code>)</h3>
 <p>Two-digit serial command: first digit = <strong>row</strong> (Z axis - Motors A/B), second digit = <strong>column</strong> (X axis - Motor C).</p>
 <ul>
 <li>Example: <code>23</code> → move to Row 2, Column 3.</li>
 <li>Motors A/B move to the desired row position through vertical motion.</li>
 <li>Motor C moves to the desired column position through horizontal motion.</li>
 </ul>
-<h3 id="auto-stepping-a">Auto Stepping (<code>A</code>)</h3>
+<p>After Motor C reaches the desired colum position, the valve is activated for a duration set in the config file.</p>
+<h3 id="4-auto-stepping-a">4. Auto Stepping (<code>A</code>)</h3>
 <p>Performs a snake/zigzag sweep across the entire grid:</p>
 <pre><code>Row 1:  C5 ← C4 ← C3 ← C2 ← C1 ← C0    (backward sweep)
 Row 0:  C0 → C1 → C2 → C3 → C4 → C5    (forward sweep)
 </code></pre>
-<h3 id="stop-x">Stop (<code>X</code>)</h3>
+<p>After Motor C reaches each of the sequential column positions, the valve is activated for a duration set in the config file. </p>
+<h3 id="5-stop-x">5. Stop (<code>X</code>)</h3>
 <p>Stops all the motors immediately. Motor C will complete its current move before stopping. (So it doesnt loose track of its position, since it operates in velocity mode).</p>
-<h3 id="camera-feed">Camera Feed</h3>
+<h3 id="6-camera-feed">6. Camera Feed</h3>
 <p>This provides a live feed from the webcam connected to the system. It is useful for monitoring the system and ensuring that it is operating correctly. It also facilitates the recording of videos and saving them immediately to the system.</p>
-<hr>
-<h2 id="hmi-web-interface-hmi">HMI Web Interface (HMI/)</h2>
-<p>A browser-based control panel connecting to the Arduino via the <strong>Web Serial API</strong> (Chrome/Edge only).</p>
-<p><img alt="interface" src="../../images/interface.png"></p>
-<h3 id="features">Features</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">Feature</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;"><strong>Serial Connection</strong></td>
-<td style="text-align: left;">Connect/disconnect to Arduino at 38400 baud</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Command Buttons</strong></td>
-<td style="text-align: left;">Calibrate &amp; Home, Home, Auto, Emergency Stop</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Dynamic Position Grid</strong></td>
-<td style="text-align: left;">Configurable rows × columns grid; click any R<em>x</em>-C<em>y</em> button to send position command</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>LED Signal Toggle</strong></td>
-<td style="text-align: left;">Enable/disable the SO1 LED blink feature</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Transmission Log</strong></td>
-<td style="text-align: left;">Live feed of all TX (sent) and RX (received) serial messages</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Camera Feed</strong></td>
-<td style="text-align: left;">Streams live video from a connected webcam</td>
-</tr>
-<tr>
-<td style="text-align: left;"><strong>Video Recording</strong></td>
-<td style="text-align: left;">Record camera feed to <code>.webm</code> files with timestamped filenames</td>
-</tr>
-</tbody>
-</table>
-<p>https://github.com/user-attachments/assets/2300ad33-0bbf-4218-a0a2-44df9f3044bd</p>
-<p><strong>LED ON/OFF</strong> — Nozzle simulated via LED signaling:</p>
-<p>https://github.com/user-attachments/assets/69bd8a09-ef32-48e5-af23-948bd1f90b90</p>
+<ul>
+<li>Click on the <strong>start camera</strong> button to start the camera feed. It shows the cameras available to stream. Select the desired camera. (Currently supports usb webcams and laptop cameras).
+<img alt="Camera Feed" src="../../images/cam_start.png"> </li>
+</ul>
+<h3 id="7-video-recording">7. Video Recording</h3>
+<ul>
+<li>Click on the <strong>record</strong> button to start recording the camera feed. Recording icon will be visible in the top left corner of the video feed.</li>
+<li>Click on the <strong>stop rec</strong> button to stop recording the camera feed. The video will be saved to the default download directory of the browser.</li>
+</ul>
+<p><img alt="Camera Feed" src="../../images/cam_working.png">   </p>
 <blockquote>
 <p><strong>Tip:</strong> Set your browser's default download directory to a <code>recordings/</code> folder for organized video storage.</p>
-<p><strong>⚠ Warning:</strong> Opening the Arduino Serial Monitor while the HMI is connected (or vice versa) will reset the Arduino. Use one interface at a time.</p>
 </blockquote>
+<h3 id="8-grid-update">8. Grid Update</h3>
+<ul>
+<li>Change the rows and columns values in the grid. Then, click on the <strong>update grid</strong> button to update the grid. The grid will be updated dynamically according to user input, both on the Interface and the code variables. By default the grid is set to 5x5. Below is an example of deafult grid updated to 8x8.</li>
+</ul>
+<p><img alt="Grid Update" src="../../images/grid_update.png"></p>
+<blockquote>
+<p><font color="red"><strong>⚠ Important:</strong> </font> When grid is updated on the Interface, (i.e., after clicking <strong>update grid</strong> button), Home the system again before using it, for the changes to take place correctly.  The transmission log window will display the updated grid values. Look for "=======HOME COMPLETE========" message in the transmission log after homing. Then you can use the system.</p>
+</blockquote>
+<p><img alt="Grid Update" src="../../images/homing.png"></p>
+<hr>
+<h3 id="9-transmission-log">9. Transmission Log</h3>
+<p>This provides a live feed of all the transmission data between the Arduino and the drivers. It is useful for monitoring the system and ensuring that it is operating correctly. </p>
+<p><img alt="Transmission Log" src="../../images/initial_logs.png"> </p>
 <hr></div>
               
             </div>
