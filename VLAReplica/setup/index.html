@@ -1,390 +1,185 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="VLA-REPLICA setup and documentation guide">
-  <title>VLA-REPLICA Setup Guide</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="../assets/css/bulma.min.css">
-  <link rel="stylesheet" href="../assets/css/index.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://irvlutd.github.io/VLAReplica/setup/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Overview & prerequisites - VLA-REPLICA Setup Guide</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview \u0026 prerequisites";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/VLAReplica/setup/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
-<body>
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop has-text-centered">
-        <p class="publication-venue">VLA-REPLICA Documentation</p>
-        <h1 class="title is-2 publication-title">Setup Guide</h1>
-        <p class="content">
-          Step-by-step instructions to reproduce the VLA-REPLICA benchmark environment,
-          from hardware assembly to calibration and evaluation.
-        </p>
-        <div class="buttons is-centered">
-          <a class="button is-normal is-rounded is-dark" href="../index.html">Back to Project Page</a>
-          <a class="button is-normal is-rounded is-dark" href="#toc">Jump to Contents</a>
-        </div>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> VLA-REPLICA Setup Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Setup Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview & prerequisites</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#start-here">Start here</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview-prerequisites">Overview &amp; prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-covered">What is covered</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-notes">Quick notes</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="bill-of-materials/">Bill of materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="hardware-assembly/">Hardware assembly</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="software-installation/">Software installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="calibration/">Calibration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="running-evaluations/">Running evaluations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="task-reference/">Task reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="troubleshooting/">Troubleshooting & checklists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="reproducibility/">Reproducing across sites</a>
+                  </li>
+              </ul>
       </div>
     </div>
-  </section>
+    </nav>
 
-  <section id="toc" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3 has-text-centered">Contents</h2>
-          <div class="box">
-            <div class="tags is-centered are-medium">
-              <a class="tag is-link is-light" href="#overview">Environment overview</a>
-              <a class="tag is-link is-light" href="#parts">Parts list</a>
-              <a class="tag is-link is-light" href="#camera-mounts">Assemble camera mounts</a>
-              <a class="tag is-link is-light" href="#so101">SO-101 and wrist camera</a>
-              <a class="tag is-link is-light" href="#light-box">Light box setup</a>
-              <a class="tag is-link is-light" href="#arm-apriltag">Mount arm and AprilTag</a>
-              <a class="tag is-link is-light" href="#software">Software install</a>
-              <a class="tag is-link is-light" href="#calibration">Camera calibration</a>
-              <a class="tag is-link is-light" href="#arm-calibration">Arm calibration</a>
-              <a class="tag is-link is-light" href="#evaluation">Policy evaluation</a>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">VLA-REPLICA Setup Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Setup Guide</li>
+      <li class="breadcrumb-item active">Overview & prerequisites</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/IRVLUTD/VLAReplica/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vla-replica-setup-guide">VLA-REPLICA Setup Guide</h1>
+<p><a href="../index.html">Back to project page</a></p>
+<h2 id="start-here">Start here</h2>
+<p>This documentation is organized into separate pages so the setup flow is easier to follow:</p>
+<ul>
+<li><a href="bill-of-materials/">Bill of materials</a></li>
+<li><a href="hardware-assembly/">Hardware assembly</a></li>
+<li><a href="software-installation/">Software installation</a></li>
+<li><a href="calibration/">Calibration</a></li>
+<li><a href="running-evaluations/">Running evaluations</a></li>
+<li><a href="task-reference/">Task reference</a></li>
+<li><a href="troubleshooting/">Troubleshooting &amp; checklists</a></li>
+<li><a href="reproducibility/">Reproducing across sites</a></li>
+</ul>
+<h2 id="overview-prerequisites">Overview &amp; prerequisites</h2>
+<p>VLA-REPLICA is a low-cost, reproducible real-world benchmark for evaluating vision-language-action
+policies on tabletop manipulation tasks. It uses an SO-101 follower arm, a top RealSense camera,
+and a wrist RGB camera inside a standardized light box setup.</p>
+<ul>
+<li>Estimated setup time: about 1 hour for the core software + calibration workflow.</li>
+<li>Required background: none; the guide is written for non-experts.</li>
+<li>System requirements: use Table F.1 from the paper for OS, compute, and GPU recommendations.</li>
+</ul>
+<h2 id="what-is-covered">What is covered</h2>
+<p>This guide covers the full workflow from hardware assembly through policy evaluation:</p>
+<ol>
+<li>Gather the hardware and printed parts.</li>
+<li>Assemble the cameras, light box, and SO-101 platform.</li>
+<li>Install software and find device indices.</li>
+<li>Calibrate the arm and cameras.</li>
+<li>Run benchmark evaluations and compare results.</li>
+</ol>
+<h2 id="quick-notes">Quick notes</h2>
+<ul>
+<li>Keep lighting, camera angles, and the background sheet consistent.</li>
+<li>Follow the calibration targets exactly before evaluating policies.</li>
+<li>Use the task reference and troubleshooting pages when setting up scenes.</li>
+</ul>
+              
             </div>
-          </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="bill-of-materials/" class="btn btn-neutral float-right" title="Bill of materials">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="overview" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Environment overview</h2>
-          <div class="content has-text-justified">
-            <p>
-              The benchmark uses a low-cost SO-101 follower arm inside a 32x32 in light box
-              with a top camera (RealSense D455) and a wrist RGB camera. An AprilTag provides
-              camera pose alignment for consistent scene replication across labs.
-            </p>
-            <ul>
-              <li>Keep lighting, camera angles, and background sheet consistent.</li>
-              <li>Read each checklist item before moving to the next section.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="parts" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Parts list</h2>
-          <div class="table-container">
-            <table class="table is-fullwidth">
-              <thead>
-                <tr>
-                  <th>Qty</th>
-                  <th>Item</th>
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Glendan 32x32 in box set</td>
-                  <td>Box tarp, PVC pipes, edge connectors, background sheet, diffuser sheet, 3 LED panels</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>Intel RealSense D455</td>
-                  <td>Top camera</td>
-                </tr>
-                <tr>
-                  <td>1 set</td>
-                  <td>3D printed camera mount</td>
-                  <td>Backplate, 2 snap-hooks, M3/M4 screws, M3 nut</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>SO-101 follower arm + wrist camera mount + RGB camera</td>
-                  <td>Wrist mount and Vinmooog webcam</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>4 cm AprilTag (tag36h11)</td>
-                  <td>Generate with AprilTag tools</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Clamps</td>
-                  <td>For arm and background sheet</td>
-                </tr>
-                <tr>
-                  <td>1 roll</td>
-                  <td>Rubber grip tape</td>
-                  <td>Prevents mount sliding</td>
-                </tr>
-                <tr>
-                  <td>1 (optional)</td>
-                  <td>SO-101 leader arm + 6 V adaptor</td>
-                  <td>For teleoperation reset</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="content">Source links are in the paper appendix; add vendor links here if you want them on the site.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
-  <section id="camera-mounts" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Assemble camera mounts (top camera)</h2>
-          <div class="content">
-            <ol>
-              <li>3D print two snap-hooks (Part1.stl) and one backplate (Part2.stl) in PLA/PETG, 15% infill, 0.4 mm.</li>
-              <li>Attach both snap-hooks to the backplate with M3x6 mm screws (assembled part = Part3).</li>
-              <li>Mount Part3 onto the D455 rear holes using two M4x6 mm screws.</li>
-              <li>Add rubber grip tape inside each hook to prevent sliding.</li>
-            </ol>
-            <article class="message is-warning is-light">
-              <div class="message-body">
-                <strong>Checklist</strong>
-                <ul>
-                  <li>Hooks sit flush against the backplate.</li>
-                  <li>Camera is secure and does not wobble.</li>
-                  <li>Grip tape is applied inside both hooks.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IRVLUTD/VLAReplica" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="bill-of-materials/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
 
-  <section id="so101" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">SO-101 and wrist camera setup</h2>
-          <div class="content">
-            <ol>
-              <li>Assemble the SO-101 follower arm per LeRobot docs (do not calibrate yet).</li>
-              <li>Print and install the wrist camera mount (TheRobotStudio guide).</li>
-              <li>Secure the wrist mount to the end-effector with an M3x12 mm screw and M3 nut.</li>
-            </ol>
-            <ul>
-              <li><a href="https://huggingface.co/docs/lerobot/so101" target="_blank" rel="noreferrer">LeRobot SO-101 documentation</a></li>
-              <li><a href="https://github.com/TheRobotStudio/SO-ARM100/tree/main/Optional/Wrist_Cam_Mount_Vinmooog_Webcam" target="_blank" rel="noreferrer">Wrist camera mount guide</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="light-box" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Light box setup</h2>
-          <div class="content has-text-justified">
-            <p>
-              Assemble the 32x32 in light box before adding the tarp. Orient the box so the
-              open face is -y, the top is +z, and the workspace floor is -z.
-            </p>
-            <ol>
-              <li>Build the PVC frame with 12 pipes and 8 edge connectors.</li>
-              <li>Attach the diffuser sheet to the +z face with velcro, taut and centered.</li>
-              <li>Mount LED panels: two on +z face (center ~7.5 in from -y and +y), one on +y face (center ~8 in from +z).</li>
-              <li>Mount the front-view camera at the +z/+y internal junction; camera midpoint ~7.5 in from -x.</li>
-              <li>Slide the zipper tarp over the frame, aligning the -y face with the zipper side.</li>
-              <li>Attach the white background sheet to the +y face and tuck under the -z pipes.</li>
-              <li>Clamp the overhanging background sheet to the table on both sides.</li>
-            </ol>
-            <article class="message is-warning is-light">
-              <div class="message-body">
-                <strong>Checklist</strong>
-                <ul>
-                  <li>LED panels are powered and set to max brightness (~5600K).</li>
-                  <li>Diffuser sheet is taut with no sag.</li>
-                  <li>Background sheet is flat with no wrinkles in the camera view.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="arm-apriltag" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Mount the SO-101 follower arm and place AprilTag</h2>
-          <div class="content">
-            <ol>
-              <li>Clamp both sides of the SO-101 base to the table. The base front edge touches the PVC pipe between -z and -y.</li>
-              <li>Align the base center ~16.5 in from the -x face of the box.</li>
-              <li>Attach the 12 V power adaptor to the SO-101 arm.</li>
-              <li>Place the 4 cm AprilTag on the right side of the base.</li>
-              <li>Align the tag: northwest corner touches the vertical edge; south border aligns with the base bottom.</li>
-            </ol>
-            <article class="message is-warning is-light">
-              <div class="message-body">
-                <strong>Checklist</strong>
-                <ul>
-                  <li>Base center is 16.5 in from the -x face.</li>
-                  <li>Base front edge is flush against the -z/-y PVC pipe.</li>
-                  <li>AprilTag is flat with no wrinkles or lifted corners.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="software" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Software install</h2>
-          <div class="content">
-            <pre><code>git clone https://github.com/IRVLUTD/VLAReplica.git
-cd VLAReplica
-conda env create -f environment.yml
-conda activate vlareplica
-
-lerobot-find-cameras</code></pre>
-            <p>Record the camera indices from the output for calibration.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="calibration" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Camera calibration</h2>
-          <div class="content has-text-justified">
-            <p>
-              Run the AprilTag calibration script and adjust the front-view camera until
-              the pose values match the targets below (within tolerance).
-            </p>
-          </div>
-          <div class="table-container">
-            <table class="table is-fullwidth">
-              <thead>
-                <tr>
-                  <th>X (m)</th>
-                  <th>Y (m)</th>
-                  <th>Z (m)</th>
-                  <th>R (deg)</th>
-                  <th>P (deg)</th>
-                  <th>Y (deg)</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>-0.06 +- 0.01</td>
-                  <td>-0.39 +- 0.01</td>
-                  <td>1.25 +- 0.01</td>
-                  <td>-18.5 +- 1.0</td>
-                  <td>3.0 +- 1.0</td>
-                  <td>2.5 +- 1.0</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="content">
-            <pre><code>python calibration/camera/detect_apriltag.py</code></pre>
-            <ol>
-              <li>If no feed appears, update the device index in the script.</li>
-              <li>Physically slide or tilt the camera until the pose values match.</li>
-              <li>Press <strong>q</strong> to exit once aligned.</li>
-              <li>Run overlay matching for top and wrist cameras:</li>
-            </ol>
-            <pre><code>python calibration/camera/overlay.py --base-cam &lt;id&gt; --top-cam
-python calibration/camera/overlay.py --base-cam &lt;id&gt; --wrist-cam</code></pre>
-            <article class="message is-warning is-light">
-              <div class="message-body">
-                <strong>Checklist</strong>
-                <ul>
-                  <li>All six pose values match the targets within tolerance.</li>
-                  <li>Overlay images match closely for top and wrist cameras.</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="arm-calibration" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Calibrate the SO-101 arm</h2>
-          <div class="content">
-            <ol>
-              <li>Follow LeRobot SO-101 calibration steps and ensure motors are centered.</li>
-              <li>Find the calibration file created by LeRobot:</li>
-            </ol>
-            <pre><code>~/.cache/huggingface/lerobot/calibration/robots/so_follower</code></pre>
-            <ol>
-              <li>Copy the JSON file to <strong>VLAReplica/calibration/robots/so101_follower</strong>.</li>
-              <li>Rename it to <strong>so101_follower_arm.json</strong>.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="evaluation" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Policy evaluation (benchmark.py)</h2>
-          <div class="content">
-            <p>Use the CLI below to evaluate a policy across tasks.</p>
-            <pre><code>python benchmark.py \
-  --policy-type pi0 \
-  --policy-path lerobot/pi0_base \
-  --policy-from-hub \
-  --run-all-tasks \
-  --task-subset ID \
-  --iterations 5 \
-  --eval-follower-calib-dirs calibration/robots/so101_follower \
-  --eval-follower-ports /dev/ttyACM1 \
-  --eval-follower-ids so101_follower_arm \
-  --eval-top-indexes 4 \
-  --eval-wrist-indexes 14 \
-  --reset-mode fixed \
-  --reset-action-file arm_reset.json</code></pre>
-            <ul>
-              <li>Match the live video feed to the overlay image before pressing Enter.</li>
-              <li>Each iteration runs for up to 90 seconds, or ends early if the task completes.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>VLA-REPLICA setup guide based on the paper appendix. Update links and images as needed.</p>
-    </div>
-  </footer>
 </body>
 </html>

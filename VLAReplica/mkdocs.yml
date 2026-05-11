@@ -1,0 +1,20 @@
+site_name: VLA-REPLICA Setup Guide
+site_url: https://irvlutd.github.io/VLAReplica/setup/
+repo_url: https://github.com/IRVLUTD/VLAReplica
+theme:
+  name: readthedocs
+extra_css:
+  - css/custom.css
+nav:
+  - Setup Guide:
+      - Overview & prerequisites: index.md
+      - Bill of materials: bill-of-materials.md
+      - Hardware assembly: hardware-assembly.md
+      - Software installation: software-installation.md
+      - Calibration: calibration.md
+      - Running evaluations: running-evaluations.md
+      - Task reference: task-reference.md
+      - Troubleshooting & checklists: troubleshooting.md
+      - Reproducing across sites: reproducibility.md
+docs_dir: setup-docs
+site_dir: setup
