@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://irvlutd.github.io/VLAReplica/setup/running-evaluations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Running evaluations - VLA-REPLICA Setup Guide</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Running evaluations";
+        var mkdocs_page_input_path = "running-evaluations.md";
+        var mkdocs_page_url = "/VLAReplica/setup/running-evaluations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> VLA-REPLICA Setup Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Setup Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Overview & prerequisites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bill-of-materials/">Bill of materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hardware-assembly/">Hardware assembly</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../software-installation/">Software installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../calibration/">Calibration</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running evaluations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#benchmarkpy">benchmark.py</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#evaluation-loop">Evaluation loop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#id-versus-ood-evaluation">ID versus OOD evaluation</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../task-reference/">Task reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting & checklists</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../reproducibility/">Reproducing across sites</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">VLA-REPLICA Setup Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Setup Guide</li>
+      <li class="breadcrumb-item active">Running evaluations</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/IRVLUTD/VLAReplica/edit/master/docs/running-evaluations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="running-evaluations">Running evaluations</h1>
+<p><a href="../../index.html">Back to project page</a></p>
+<h2 id="benchmarkpy">benchmark.py</h2>
+<p>Use the evaluation script to run a policy across ID or OOD tasks.</p>
+<pre><code>python benchmark.py \
+  --policy-type pi0 \
+  --policy-path lerobot/pi0_base \
+  --policy-from-hub \
+  --run-all-tasks \
+  --task-subset ID \
+  --iterations 5 \
+  --eval-follower-calib-dirs calibration/robots/so101_follower \
+  --eval-follower-ports /dev/ttyACM1 \
+  --eval-follower-ids so101_follower_arm \
+  --eval-top-indexes 4 \
+  --eval-wrist-indexes 14 \
+  --reset-mode fixed \
+  --reset-action-file arm_reset.json
+</code></pre>
+<h2 id="evaluation-loop">Evaluation loop</h2>
+<ol>
+<li>Set up the test scene using the reference image.</li>
+<li>Match the live top-camera view to the overlay.</li>
+<li>Press Enter to start the policy.</li>
+<li>Let the policy run for up to 90 seconds.</li>
+<li>Log success, failure, and reset behavior for each iteration.</li>
+</ol>
+<h2 id="id-versus-ood-evaluation">ID versus OOD evaluation</h2>
+<ul>
+<li>ID tasks use scene layouts close to the training distribution.</li>
+<li>OOD tasks test color, count, or object-layout generalization.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../calibration/" class="btn btn-neutral float-left" title="Calibration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../task-reference/" class="btn btn-neutral float-right" title="Task reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IRVLUTD/VLAReplica" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../calibration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../task-reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
