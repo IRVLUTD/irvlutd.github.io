@@ -2,6 +2,15 @@
 
 [Back to project page](../../index.html)
 
+**Please read and follow these instructions carefully. Careful inspection of the photos and videos is crucial for creating a reproducible and precise environment.**
+
+
+## Environment Overview
+
+The benchmark comprises of the components listed in Table A.1. The cameras, after calibration, handle RGB observation, while the SO-101 follower arm executes manipulation tasks.
+
+*insert figures here*
+
 ## Camera mount assembly
 
 ### Top D455 mount

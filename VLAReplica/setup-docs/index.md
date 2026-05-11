@@ -23,7 +23,7 @@ and a wrist RGB camera inside a standardized light box setup.
 
 - Estimated setup time: about 1 hour for the core software + calibration workflow.
 - Required background: none; the guide is written for non-experts.
-- System requirements: use Table F.1 from the paper for OS, compute, and GPU recommendations.
+- System requirements: Our system utilizes an i9-10900X, 64GB RAM, and Nvidia A5000 (24GB VRAM). At least 24GB VRAM is recommended for real-time VLA inference, especially with pi0/pi0.5.
 
 ## What is covered
 
