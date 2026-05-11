@@ -1,6 +1,6 @@
 # Bill of materials
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Core hardware
 
@@ -11,6 +11,8 @@
 | Wrist RGB webcam | Varies | Wrist-mounted camera |
 | Light box kit | Varies | PVC frame, diffuser, LED panels, background sheet |
 | Clamps, cables, tape | Varies | Supporting hardware |
+
+<embed src="../images/VLAReplica_flow_cropped.pdf" type="application/pdf" width="100%" height="500px">
 
 ## Object set
 

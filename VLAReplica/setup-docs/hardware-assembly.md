@@ -1,6 +1,6 @@
 # Hardware assembly
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Camera mount assembly
 

@@ -1,6 +1,6 @@
 # Task reference
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Main task families
 

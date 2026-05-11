@@ -1,6 +1,6 @@
 # VLA-REPLICA Setup Guide
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Start here
 

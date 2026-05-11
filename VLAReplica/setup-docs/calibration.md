@@ -1,6 +1,6 @@
 # Calibration
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## SO-101 arm calibration
 

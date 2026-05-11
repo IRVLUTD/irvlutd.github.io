@@ -1,6 +1,6 @@
 # Troubleshooting & checklists
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Common failure points
 

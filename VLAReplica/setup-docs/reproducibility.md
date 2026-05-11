@@ -1,6 +1,6 @@
 # Reproducing across sites
 
-[Back to project page](../index.html)
+[Back to project page](../../index.html)
 
 ## Transferring a policy to a new arm
 
