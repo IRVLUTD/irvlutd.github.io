@@ -19,17 +19,19 @@ conda activate vlareplica
 
 ## Detect camera and USB indices
 
-Since the camera indices on every computer can vary, utilize leRobot's find-cameras command to list out the corresponding index numbers for the RealSense and Vinmooog cameras:
+Since the camera indices on every computer can vary, utilize leRobot's find-cameras command to list out the corresponding index numbers for the RealSense and Vinmooog cameras (run in terminal):
 ```
 lerobot-find-cameras
 ```
 Record the camera indices for two cameras.
 
-Since the USB serial port on every computer can vary, utilize leRobot's find-port command to list out the corresponding serial port of the SO-101 follower arm. Run the following command:
+Since the USB serial port on every computer can vary, utilize leRobot's find-port command to list out the corresponding serial port of the SO-101 follower arm. Run the following command in a terminal:
 ```
 lerobot-find-port
 ```
 and then unplug the SO-101 USB cable from the computer, and then press ```Enter```. 
+
+The terminal will output something like: ```Device port: /dev/ttyACM1```. 
 
 Record the serial port (e.g. ```/dev/ttyACM1```) for the follower arm.
 

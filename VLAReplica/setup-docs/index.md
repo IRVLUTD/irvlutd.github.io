@@ -13,7 +13,6 @@ This documentation is organized into separate pages so the setup flow is easier 
 - [Running evaluations](running-evaluations.md)
 - [Task reference](task-reference.md)
 - [Troubleshooting & checklists](troubleshooting.md)
-- [Reproducing across sites](reproducibility.md)
 
 ## Overview & prerequisites
 
@@ -24,6 +23,13 @@ and a wrist RGB camera inside a standardized light box setup.
 - Estimated setup time: about 1 hour for the core software + calibration workflow.
 - Required background: none; the guide is written for non-experts.
 - System requirements: Our system utilizes an i9-10900X, 64GB RAM, and Nvidia A5000 (24GB VRAM). At least 24GB VRAM is recommended for real-time VLA inference, especially with pi0/pi0.5.
+
+<figure style="text-align: center; margin: 20px auto;">
+  <img src="images/app/overview.png" width="600" alt="System overview diagram">
+  <figcaption style=" color: #555; margin-top: 8px;">
+    Benchmark environment. Physical workspace showing the SO-101 follower arm, 32×32 in light box, LED panel, white background sheet, and AprilTag.
+  </figcaption>
+</figure>
 
 ## What is covered
 

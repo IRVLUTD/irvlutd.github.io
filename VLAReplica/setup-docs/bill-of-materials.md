@@ -16,7 +16,9 @@
 
 <!-- <embed src="../images/VLAReplica_flow_cropped.pdf" type="application/pdf" width="100%" height="500px"> -->
 
-## 3D printing requirements
+## Printing & 3D-printing requirements
+
+- 4cm AprilTag (36h11 family)
 
 - Top camera mount parts: backplate + snap-hooks for the D455 mount.
 - Wrist camera mount for the SO-101 end-effector.
@@ -25,7 +27,12 @@
 - Typical settings: 15% infill, 0.4 mm nozzle.
 - Print these files before assembly:
 
-| Part | Print Quantity | Notes | Link |
+| Paper Print Part | Paper Print Quantity | Notes | Link |
+| --- | --- | --- | --- |
+| 4cm AprilTag (36h11 family)| x1 | For camera calibration, print on standard 8.5x11 paper, 100% scale | [Box](https://utdallas.box.com/s/xqv9ngdhm41o1oyr0tvh1z94zvw9ih7q) |
+
+
+| 3D Part | 3D-Print Quantity | Notes | Link |
 | --- | --- | --- | --- |
 | Part 1 (snap-hooks) | x2 | Hooks for top camera mount | [Box](https://utdallas.box.com/s/us6poai696dsp02hwfdcjaed1dey2v6p) |
 | Part 2 (backplate) | x1 | Backplate for top camera mount | [Box](https://utdallas.box.com/s/us6poai696dsp02hwfdcjaed1dey2v6p) |
