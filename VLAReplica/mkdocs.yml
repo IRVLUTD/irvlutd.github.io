@@ -11,10 +11,17 @@ nav:
       - Bill of materials: bill-of-materials.md
       - Hardware assembly: hardware-assembly.md
       - Software installation: software-installation.md
-      - Calibration: calibration.md
+      - System Calibration: system-calibration.md
       - Running evaluations: running-evaluations.md
       - Task reference: task-reference.md
       - Troubleshooting & checklists: troubleshooting.md
-      - Reproducing across sites: reproducibility.md
 docs_dir: setup-docs
 site_dir: setup
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
