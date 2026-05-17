@@ -84,3 +84,4 @@ The full list of tasks is located under [Task Reference](../task-reference)
 | Collect blocks | Put all blocks into the correct box | All blocks are in the target box and the arm returns home |
 
 __Next Step: Task Reference ➜__
+ 
