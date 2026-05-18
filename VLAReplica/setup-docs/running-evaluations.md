@@ -55,7 +55,7 @@ python benchmark.py \
       </figure>
 
 3. When the live video feed and overlay image match almost exactly, press `Enter` on the keyboard to start policy inference.
-    * During policy evaluations for the VLA-REPLICA paper, each policy is given 90 seconds to complete the task before the iteration ends.
+    * During policy evaluations for the VLA-REPLICA paper, each policy is given 90 seconds to complete the task before the iteration ends.  
     * If the policy completes the task before 90 seconds, press `right arrow (➜)` to skip to the setup phase of the next iteration. The SO-101 arm will reset back to the start position.
 4. Log success and/or failure behavior for each iteration corresponding to that specific task. The full list of tasks and criteron are listed below.
 

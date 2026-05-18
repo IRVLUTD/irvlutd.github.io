@@ -1,5 +1,5 @@
 site_name: VLA-REPLICA Setup Guide
-site_url: https://irvlutd.github.io/VLAReplica/setup/
+site_url: https://irvlutd.github.io/VLAReplica/setup-docs/
 repo_url: https://github.com/IRVLUTD/VLAReplica
 theme:
   name: readthedocs
@@ -16,7 +16,7 @@ nav:
       - Task reference: task-reference.md
       - Troubleshooting & checklists: troubleshooting.md
 docs_dir: setup-docs
-site_dir: setup
+site_dir: setup-docs
 
 markdown_extensions:
   - pymdownx.arithmatex:
