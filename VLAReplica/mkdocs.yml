@@ -1,5 +1,4 @@
 site_name: VLA-REPLICA Setup Guide
-site_url: https://irvlutd.github.io/VLAReplica/setup-docs/
 repo_url: https://github.com/IRVLUTD/VLAReplica
 theme:
   name: readthedocs
@@ -15,8 +14,15 @@ nav:
       - Running evaluations: running-evaluations.md
       - Task reference: task-reference.md
       - Troubleshooting & checklists: troubleshooting.md
+site_url: https://irvlutd.github.io/VLAReplica/setup-docs/
+
 docs_dir: setup-docs
-site_dir: setup-docs
+# Output the built site to the repository root `setup-docs` directory
+# (one level up from this config file). This keeps the source docs in
+# `VLAReplica/setup-docs` and writes the static site to
+# `/irvlutd.github.io/setup-docs` so GitHub Pages can serve it at
+# `/VLAReplica/setup-docs/`.
+site_dir: ../setup-docs
 
 markdown_extensions:
   - pymdownx.arithmatex:
