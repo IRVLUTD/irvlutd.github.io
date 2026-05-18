@@ -1,6 +1,6 @@
 # Bill of materials
 
-[Back to project page](../../index.html)
+[Back to project page](../index.html)
 
 ## Core hardware
 

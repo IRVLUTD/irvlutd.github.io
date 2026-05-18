@@ -16,13 +16,10 @@ nav:
       - Troubleshooting & checklists: troubleshooting.md
 site_url: https://irvlutd.github.io/VLAReplica/setup-docs/
 
-docs_dir: VLAReplica/setup-docs
-# Output the built site to the repository root `setup-docs` directory
-# (one level up from this config file). This keeps the source docs in
-# `VLAReplica/setup-docs` and writes the static site to
-# `/irvlutd.github.io/setup-docs` so GitHub Pages can serve it at
-# `/VLAReplica/setup-docs/`.
-site_dir: ../setup-docs
+docs_dir: setup-docs-src
+# Output the built site into `VLAReplica/setup-docs` so GitHub Pages serves it
+# at `https://irvlutd.github.io/VLAReplica/setup-docs/`.
+site_dir: setup-docs
 
 markdown_extensions:
   - pymdownx.arithmatex:
