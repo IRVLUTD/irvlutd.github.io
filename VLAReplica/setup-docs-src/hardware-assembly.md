@@ -1,6 +1,6 @@
 # Hardware assembly
 
-[Back to project page](../../index.html)
+[Back to project page](../index.html)
 
 **Please read and follow these instructions carefully. Careful inspection of the photos and videos is crucial for creating a reproducible and precise environment.**
 
