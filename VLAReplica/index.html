@@ -333,49 +333,52 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
 
   <section id="leaderboard" class="section">
     <div class="container is-max-desktop">
-      <!-- LeaderBoard. -->
-      <div class="columns">
-        <div class="columns is-centered has-text-centered">
+      <div class="columns is-centered has-text-centered">
           <div class="column">
-            <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"><img
-                  src="./assets/images/winner-icon.png" alt="medal"></span>&nbsp;LeaderBoard</h2>
-            <span><strong>Adding your results</strong>: There are two ways to add your results to the leaderboard. (1) Use the 20 scenes to run grasping experiments and then provide us videos of these experiments to verify your results. (2) Provide source code of your method and we will run grasping experiments for you. Please contact the authors if you are interested in.</span>
-            <div class="content has-text-justified"></div>
-            <div class="table-container">
-            <table id="leaderboard-table" class="table">
-              <thead>
-                <tr>
-                  <th><abbr title="Click to Sort | Method#">#</abbr></th>
-                  <th><abbr title="Click to Sort">Perception</abbr></th>
-                  <th><abbr title="Click to Sort">Grasp Planning</abbr></th>
-                  <th><abbr title="Click to Sort">Motion Planning</abbr></th>
-                  <th><abbr title="Click to Sort">Control</abbr></th>
-                  <th><abbr title="Click to Sort">Ordering</abbr></th>
-                  <th><abbr title="Click to Sort">Grasping Type</abbr></th>
-                  <th><abbr title="Click to Sort">Pick & Place Success&nbsp;<span id="leader-board-metric-icon"
-                        class="icon"><img src="./assets/images/medal.png" alt="medal"></span></abbr></th>
-                  <th><abbr title="Click to Sort">Grasping Success</abbr></th>
-                  <th><abbr title="Click to Sort">Videos</abbr></th>
-                </tr>
-              </thead>
-              <tbody id="leaderboard-body"></tbody>
-            </table>
+            <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"><img src="./assets/images/winner-icon.png" alt="trophy"></span>&nbsp;Leaderboard</h2>
+            <div class="content has-text-justified">
+              <p>
+                Policy evaluation success rates on the VLA-Replica benchmark are shown below for
+                in-distribution and out-of-distribution evaluation.
+              </p>
+              <p>
+                There are two ways to submit results to the leaderboard:
+                (1) Run the 20 benchmark scenes and share verification videos.
+                (2) Submit a model checkpoint through Hugging Face for evaluation.
+                Contact the authors if you want to add your method.
+              </p>
+            </div>
+
+            <div class="dataset-switch">
+              <button class="dataset-pill active" data-dataset="id">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>VLA-Replica-ID</span>
+              </button>
+
+              <button class="dataset-pill" data-dataset="ood">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>VLA-Replica-OOD</span>
+              </button>
+            </div>
+
+            <div class="table-container leaderboard-table-container">
+              <table id="leaderboard-table" class="table is-fullwidth">
+                <thead id="leaderboard-head"></thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
             </div>
           </div>
         </div>
-        <!--/ LeaderBoard. -->
       </div>
   </section>
 
 
-  <section class="section">
+  <section id="references-section" class="section">
     <div class="container is-max-desktop">
       <!-- References. -->
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">References</h2>
-          <span><strong>Official Code</strong>: Source code from the authors of the method <br> </span>
-          <span><strong>VLAReplica Version</strong>: Our maintained version (upgrade dependencies, add ROS interface, etc.) </span>
           <div class="content has-text-justified">
             <ol id="references"></ol>
           </div>
