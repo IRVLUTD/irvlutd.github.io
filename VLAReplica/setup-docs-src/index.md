@@ -9,7 +9,7 @@ This documentation is organized into separate pages so the setup flow is easier 
 - [Bill of materials](bill-of-materials.md)
 - [Hardware assembly](hardware-assembly.md)
 - [Software installation](software-installation.md)
-- [Calibration](calibration.md)
+- [System Calibration](calibration.md)
 - [Running evaluations](running-evaluations.md)
 - [Task reference](task-reference.md)
 - [Troubleshooting & checklists](troubleshooting.md)
