@@ -2,6 +2,17 @@ function parseLeaderboardValue(value) {
     return parseFloat(value) || 0;
 }
 
+function renderMethodLabel(method) {
+    return `
+        <span class="leaderboard-method-inner">
+            <span class="leaderboard-method-name">${method.label}</span>
+            <a href="#ref-${method.ref}" class="leaderboard-ref-link leaderboard-method-badge">
+                <span class="leaderboard-ref-box">${method.ref}</span>
+            </a>
+        </span>
+    `;
+}
+
 function renderLeaderboard(datasetKey, sortKey = 'average') {
     const tableHead = document.getElementById('leaderboard-head');
     const tableBody = document.getElementById('leaderboard-body');
@@ -43,7 +54,7 @@ function renderLeaderboard(datasetKey, sortKey = 'average') {
     tableBody.innerHTML = rankedMethods.map((entry, index) => `
         <tr class="${index === 0 ? 'leaderboard-top-row' : ''}">
             <td class="leaderboard-rank-cell">${index + 1}</td>
-            <td class="leaderboard-method-cell">${entry.method}</td>
+            <td class="leaderboard-method-cell">${renderMethodLabel(entry.method)}</td>
             <td class="leaderboard-average-cell">${entry.average}</td>
             ${entry.values.map((value) => `<td>${value}</td>`).join('')}
         </tr>

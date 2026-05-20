@@ -285,10 +285,26 @@ font-style: italic;
 }
 
 .leaderboard-method-cell {
-  text-align: left !important;
+  text-align: center !important;
   white-space: nowrap;
   font-weight: 600;
   min-width: 132px;
+}
+
+.leaderboard-method-inner {
+  position: relative;
+  display: inline-block;
+}
+
+.leaderboard-method-name {
+  display: inline-block;
+}
+
+.leaderboard-method-badge {
+  position: absolute;
+  left: calc(100% + 0.35rem);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .leaderboard-average-cell {
