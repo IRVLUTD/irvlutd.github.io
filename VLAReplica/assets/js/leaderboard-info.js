@@ -12,13 +12,13 @@ const methodHeaders = [
 ];
 
 const leaderboardMethods = [
-    { label: 'ACT', ref: 1 },
-    { label: 'DiT-D', ref: 2 },
-    { label: 'DiT-F', ref: 2 },
-    { label: 'SmolVLA', ref: 3 },
-    { label: 'X-VLA', ref: 4 },
-    { label: '&pi;<sub>0</sub>', ref: 5 },
-    { label: '&pi;<sub>0.5</sub>', ref: 6 }
+    { label: 'ACT', ref: 1, slug: 'act' },
+    { label: 'DiT-D', ref: 2, slug: 'dit-d' },
+    { label: 'DiT-F', ref: 2, slug: 'dit-f' },
+    { label: 'SmolVLA', ref: 3, slug: 'smolvla' },
+    { label: 'X-VLA', ref: 4, slug: 'x-vla' },
+    { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
+    { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' }
 ];
 
 const leaderboardData = {
@@ -92,3 +92,36 @@ const references = {
     '5': 'Black, Kevin, Noah Brown, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, et al. <a target="_blank" href="https://arxiv.org/abs/2410.24164">"&pi;<sub>0</sub>: A Vision-Language-Action Flow Model for General Robot Control."</a> <i>arXiv preprint arXiv:2410.24164</i>, 2024.',
     '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.'
 };
+
+const videoLinkOverrides = {};
+
+function buildVideoEntries(datasetKey, taskRows, methodSlug) {
+    return taskRows.flatMap((row) => {
+        return Array.from({ length: 5 }, (_, index) => {
+            const runNumber = index + 1;
+            const overrideKey = `${row.taskNumber}-${runNumber}`;
+            const override = videoLinkOverrides?.[`${datasetKey}-${methodSlug}`]?.[overrideKey];
+
+            return {
+                annotation: `${row.task} | Run ${runNumber}`,
+                url: override ? override.url : '#'
+            };
+        });
+    });
+}
+
+const video_links = Object.fromEntries(
+    ['id', 'ood'].flatMap((datasetKey) => {
+        const datasetTitle = datasetKey === 'id' ? 'VLA-Replica-ID' : 'VLA-Replica-OOD';
+        const taskRows = leaderboardData[datasetKey].groups.flatMap((group) => group.rows);
+
+        return leaderboardMethods.map((method) => {
+            const pageKey = `${datasetKey}-${method.slug}`;
+
+            return [pageKey, {
+                title: `${datasetTitle} | ${method.label.replace(/<[^>]+>/g, '')}`,
+                videos: buildVideoEntries(datasetKey, taskRows, method.slug)
+            }];
+        });
+    })
+);
