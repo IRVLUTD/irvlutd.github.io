@@ -12,13 +12,13 @@ const methodHeaders = [
 ];
 
 const leaderboardMethods = [
-    'ACT <a href="#ref-1" class="leaderboard-ref-link"><span class="leaderboard-ref-box">1</span></a>',
-    'DiT-D <a href="#ref-2" class="leaderboard-ref-link"><span class="leaderboard-ref-box">2</span></a>',
-    'DiT-F <a href="#ref-2" class="leaderboard-ref-link"><span class="leaderboard-ref-box">2</span></a>',
-    'SmolVLA <a href="#ref-3" class="leaderboard-ref-link"><span class="leaderboard-ref-box">3</span></a>',
-    'X-VLA <a href="#ref-4" class="leaderboard-ref-link"><span class="leaderboard-ref-box">4</span></a>',
-    '&pi;<sub>0</sub> <a href="#ref-5" class="leaderboard-ref-link"><span class="leaderboard-ref-box">5</span></a>',
-    '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>'
+    { label: 'ACT', ref: 1 },
+    { label: 'DiT-D', ref: 2 },
+    { label: 'DiT-F', ref: 2 },
+    { label: 'SmolVLA', ref: 3 },
+    { label: 'X-VLA', ref: 4 },
+    { label: '&pi;<sub>0</sub>', ref: 5 },
+    { label: '&pi;<sub>0.5</sub>', ref: 6 }
 ];
 
 const leaderboardData = {
