@@ -1,4 +1,66 @@
 $(document).ready(function () {
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    const fileName = pathParts[pathParts.length - 1] || 'index.html';
+    const leaderboardPageKey = fileName !== 'index.html' ? fileName.replace(/\.html$/, '') : null;
+
+    if (leaderboardPageKey && video_links[leaderboardPageKey]) {
+        const methodVideo = video_links[leaderboardPageKey];
+        const title = methodVideo.title;
+        const videos = methodVideo.videos || [];
+
+        $('#page-title').html(title);
+
+        if (!videos.length) {
+            $('#vid-items').html(`<div class="notification is-warning is-light center"><i class="fa fa-info-circle"></i> Video coming soon.</div>`);
+            return;
+        }
+
+        const normalizeGoogleDriveUrl = (url) => {
+            if (!url || url === '#') {
+                return null;
+            }
+
+            if (url.includes('drive.google.com')) {
+                const fileMatch = url.match(/\/file\/d\/([^/]+)/);
+                if (fileMatch) {
+                    return `https://drive.google.com/file/d/${fileMatch[1]}/preview`;
+                }
+
+                const idMatch = url.match(/[?&]id=([^&]+)/);
+                if (idMatch) {
+                    return `https://drive.google.com/file/d/${idMatch[1]}/preview`;
+                }
+            }
+
+            return url;
+        };
+
+        const renderVideoCard = (video) => {
+            const embedUrl = normalizeGoogleDriveUrl(video.url);
+
+            return `
+                <div class="video-grid-card">
+                    <div class="video-grid-frame">
+                        ${embedUrl ? `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>` : `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`}
+                    </div>
+                    <p class="video-grid-caption">${video.annotation}</p>
+                </div>
+            `;
+        };
+
+        const rowHtml = [];
+        for (let index = 0; index < videos.length; index += 5) {
+            rowHtml.push(`
+                <div class="video-grid-row">
+                    ${videos.slice(index, index + 5).map(renderVideoCard).join('')}
+                </div>
+            `);
+        }
+
+        $('#vid-items').html(`<div class="video-grid-wrapper">${rowHtml.join('')}</div>`);
+        return;
+    }
+
     if (window.localStorage.getItem('cat') === null ||  window.localStorage.getItem('id') === null || window.localStorage.getItem('vli') === null){
         window.localStorage.setItem('cat', 'Near-to-Far')
         window.localStorage.setItem('id', 1)

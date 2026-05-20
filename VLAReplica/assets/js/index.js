@@ -13,6 +13,14 @@ function renderMethodLabel(method) {
     `;
 }
 
+function renderVideoLink(datasetKey, method) {
+    return `
+        <a class="icon scene-video-link" href="./scene-videos/${datasetKey}-${method.slug}.html" aria-label="Open videos for ${method.label.replace(/<[^>]+>/g, '')}">
+            <i class="fas fa-link"></i>
+        </a>
+    `;
+}
+
 function renderLeaderboard(datasetKey, sortKey = 'average') {
     const tableHead = document.getElementById('leaderboard-head');
     const tableBody = document.getElementById('leaderboard-body');
@@ -48,6 +56,7 @@ function renderLeaderboard(datasetKey, sortKey = 'average') {
             <th>Method</th>
             <th class="leaderboard-sortable-header ${sortKey === 'average' ? 'is-active' : ''}" data-sort-key="average">Average</th>
             ${taskRows.map((row, index) => `<th class="leaderboard-task-header leaderboard-sortable-header ${sortKey === index ? 'is-active' : ''}" data-sort-key="${index}">${row.task}</th>`).join('')}
+            <th>Video</th>
         </tr>
     `;
 
@@ -57,6 +66,7 @@ function renderLeaderboard(datasetKey, sortKey = 'average') {
             <td class="leaderboard-method-cell">${renderMethodLabel(entry.method)}</td>
             <td class="leaderboard-average-cell">${entry.average}</td>
             ${entry.values.map((value) => `<td>${value}</td>`).join('')}
+            <td class="leaderboard-video-cell">${renderVideoLink(datasetKey, entry.method)}</td>
         </tr>
     `).join('');
 
