@@ -86,7 +86,7 @@
             
             <div class="is-size-6 publication-authors author-meta-info">
               <span class="author-block eq-contri"><sup>*</sup> Equal Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
               <!-- <br> <br><span id="accepted-conference" class="author-block">IEEE International Conference on Robotics and Automation (ICRA), 2024</span> -->
             </div>            
 
@@ -165,16 +165,6 @@
                   </a>
                 </span>
 
-                <!-- Appendices. -->
-                <span class="link-block">
-                  <a href="#appendix-objects" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-book"></i>
-                    </span>
-                    <span>Appendices</span>
-                  </a>
-                </span>
-
               </div>
             </div>
           </div>
@@ -183,7 +173,7 @@
     </div>
   </section>
 
-  <section id="scenes" class="section">
+  <section id="video" class="section">
     <div class="container is-max-desktop">
       <!-- 20xScenes. -->
       <div class="columns is-centered has-text-centered">
@@ -236,6 +226,111 @@
   </section>
 
 
+  <section id="overview" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/VLAReplica_overview.jpg" alt="Overview our VLA-Replica benchmark">
+            <p class="center">Overview of the VLA-Replica benchmark. (a)1. Hardware components. (a)2. Our
+assembled platform with the leader arm, the follower arm, the light box, the cameras, and the
+manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="tasks" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Manipulation Tasks</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/tasks.png"
+     alt="10 tasks in our VLA-Replica benchmark"
+     style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+            <p class="center">Task definitions and examples for training/ID and OOD evaluation</p>
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>    
+
+
+  <section id="overview" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Expert Demonstrations</h2>
+          <div class="content has-text-justified">
+            <p class="center">Examples of expert demonstrations collected in our dataset. We provide 50 demonstrations for each task, which can be used for training or fine-tuning.</p> 
+            <img src="assets/images/demonstrations.png" alt="Expert demonstrations in our VLA-Replica benchmark"
+            style="max-width:600px; width:100%; height:auto; display:block; margin:auto;">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+  <section id="scenes" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Test Scene Reference Images</h2>
+          <p class="content">All 90 test scene reference images are provided below. For all tasks, the first row includes ID
+(in-distribution) tasks, and the second row includes OOD (out-of-distribution) tasks (except 5 & 6).</p>
+          <div class="columns is-multiline">
+            <div class="column is-one-third">
+              <img src="assets/images/task01.png" alt="Task 1 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 1: Put bread on plate</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task02.png" alt="Task 2 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 2: Put bowl on coaster</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task03.png" alt="Task 3 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 3: Stack blocks</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task04.png" alt="Task 4 reference images">
+              <p class="has-text-centered">Task 4: Fold towel</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task05.png" alt="Task 5 reference images">
+              <p class="has-text-centered">Task 5: Open oven</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task06.png" alt="Task 6 reference images">
+              <p class="has-text-centered">Task 6: Clean whiteboard</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task07.png" alt="Task 7 reference images">
+              <p class="has-text-centered">Task 7: Pour pepper</p>
+            </div>       
+            <div class="column is-one-third">
+              <img src="assets/images/task08.png" alt="Task 8 reference images">
+              <p class="has-text-centered">Task 8: Lift bowl</p>
+            </div>                    
+            <div class="column is-one-third">
+              <img src="assets/images/task09.png" alt="Task 9 reference images">
+              <p class="has-text-centered">Task 9: Press button</p>
+            </div>               
+            <div class="column is-one-third">
+              <img src="assets/images/task10.png" alt="Task 10 reference images">
+              <p class="has-text-centered">Task 10: Collect blocks</p>
+            </div>               
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
   <section id="leaderboard" class="section">
     <div class="container is-max-desktop">
       <!-- LeaderBoard. -->
@@ -273,250 +368,6 @@
   </section>
 
 
-  <section id="appendix-objects" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Appendix B: Dataset Objects</h2>
-          <details>
-            <summary class="content"><strong>Show objects and bill of materials</strong></summary>
-            <div class="table-container">
-              <table class="table is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>Object</th>
-                    <th>Variations</th>
-                    <th>Price (USD)</th>
-                    <th>Link</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Button</td>
-                    <td>N/A</td>
-                    <td>9.99</td>
-                    <td><a href="">Add link</a></td>
-                  </tr>
-                  <tr>
-                    <td>Pen cup</td>
-                    <td>N/A</td>
-                    <td>5.99</td>
-                    <td><a href="">Add link</a></td>
-                  </tr>
-                  <tr>
-                    <td>Colored towels</td>
-                    <td>Pink, yellow, blue</td>
-                    <td>7.49</td>
-                    <td><a href="">Add link</a></td>
-                  </tr>
-                  <tr>
-                    <td>Oven</td>
-                    <td>N/A</td>
-                    <td>34.98</td>
-                    <td><a href="">Add link</a></td>
-                  </tr>
-                  <tr>
-                    <td>Colored plates</td>
-                    <td>Red, blue</td>
-                    <td>19.99</td>
-                    <td><a href="">Add link</a></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="content">Add the remaining objects and vendor links from the appendix.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="appendix-tasks" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Appendix C: Task Variants and Success Criteria</h2>
-          <details>
-            <summary class="content"><strong>Show task variants table</strong></summary>
-            <div class="table-container">
-              <table class="table is-fullwidth">
-                <thead>
-                  <tr>
-                    <th>Task</th>
-                    <th>Variant</th>
-                    <th>Distribution</th>
-                    <th>Success criterion</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Put bread on plate</td>
-                    <td>Put A bread on the red plate</td>
-                    <td>ID</td>
-                    <td>Bread rests on correct plate; arm returns home</td>
-                  </tr>
-                  <tr>
-                    <td>Put bowl on coaster</td>
-                    <td>Put red bowl on green coaster</td>
-                    <td>ID</td>
-                    <td>Correct bowl on correct coaster; arm returns home</td>
-                  </tr>
-                  <tr>
-                    <td>Stack blocks</td>
-                    <td>Stack red block on blue block</td>
-                    <td>ID</td>
-                    <td>Top block rests on target block for 2+ seconds</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <p class="content">Add the full 90-variant table from the appendix.</p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="appendix-placements" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Appendix D: Demonstration Object Placements</h2>
-          <details>
-            <summary class="content"><strong>Show placement heatmaps</strong></summary>
-            <p class="content">
-              Placement heatmaps for the 10 tasks, built from expert demonstration annotations.
-            </p>
-            <div class="columns is-multiline">
-              <div class="column is-half">
-                <figure class="image is-4by3">
-                  <img src="" alt="Task 1-2 placements">
-                </figure>
-                <p class="has-text-centered">Tasks 1-2 placements</p>
-              </div>
-              <div class="column is-half">
-                <figure class="image is-4by3">
-                  <img src="" alt="Task 3-4 placements">
-                </figure>
-                <p class="has-text-centered">Tasks 3-4 placements</p>
-              </div>
-              <div class="column is-half">
-                <figure class="image is-4by3">
-                  <img src="" alt="Task 5-6 placements">
-                </figure>
-                <p class="has-text-centered">Tasks 5-6 placements</p>
-              </div>
-              <div class="column is-half">
-                <figure class="image is-4by3">
-                  <img src="" alt="Task 7-8 placements">
-                </figure>
-                <p class="has-text-centered">Tasks 7-8 placements</p>
-              </div>
-              <div class="column is-half">
-                <figure class="image is-4by3">
-                  <img src="" alt="Task 9-10 placements">
-                </figure>
-                <p class="has-text-centered">Tasks 9-10 placements</p>
-              </div>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="appendix-reference" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Appendix E: Test Scene Reference Images</h2>
-          <p class="content">Reference images for all 90 ID/OOD test scenes.</p>
-          <div class="columns is-multiline">
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 1 reference images">
-              </figure>
-              <p class="has-text-centered">Task 1: Put bread on plate</p>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 2 reference images">
-              </figure>
-              <p class="has-text-centered">Task 2: Put bowl on coaster</p>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 3 reference images">
-              </figure>
-              <p class="has-text-centered">Task 3: Stack blocks</p>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 4 reference images">
-              </figure>
-              <p class="has-text-centered">Task 4: Fold towel</p>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 5 reference images">
-              </figure>
-              <p class="has-text-centered">Task 5: Open oven</p>
-            </div>
-            <div class="column is-one-third">
-              <figure class="image is-4by3">
-                <img src="" alt="Task 6 reference images">
-              </figure>
-              <p class="has-text-centered">Task 6: Clean whiteboard</p>
-            </div>
-          </div>
-          <p class="content">Add images for Tasks 7-10 and OOD rows.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section id="evaluation-videos" class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column">
-          <h2 class="title is-3">Evaluation Videos</h2>
-          <p class="content">Placeholder slots for evaluation videos (ID and OOD).</p>
-          <div class="columns is-multiline">
-            <div class="column is-half">
-              <div class="publication-video">
-                <iframe src="" title="Evaluation video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <p class="has-text-centered">ID evaluation - example 1</p>
-            </div>
-            <div class="column is-half">
-              <div class="publication-video">
-                <iframe src="" title="Evaluation video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <p class="has-text-centered">ID evaluation - example 2</p>
-            </div>
-            <div class="column is-half">
-              <div class="publication-video">
-                <iframe src="" title="Evaluation video 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <p class="has-text-centered">OOD evaluation - example 1</p>
-            </div>
-            <div class="column is-half">
-              <div class="publication-video">
-                <iframe src="" title="Evaluation video 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <p class="has-text-centered">OOD evaluation - example 2</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
   <section class="section">
     <div class="container is-max-desktop">
       <!-- References. -->
@@ -533,6 +384,36 @@
       <!--/ References. -->
     </div>
   </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+          <!-- Code. -->
+          <div class="columns is-centered has-text-justified">
+            <div class="column">
+              <h2 id="code" class="title is-3">Code</h2>
+              <!-- Toolkit Code. -->
+              <div class="content has-text-justified">
+                <h2 class="title is-3">
+                  <span class="link-block">
+                    <a target="_blank" href="https://github.com/IRVLUTD/VLAReplica"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                          <i class="fab fa-github"></i>
+                      </span>
+                      <span> <span class="small-caps">VLAReplica</span>
+                      </a>
+                  </span>
+                </h2>
+                <p>
+  
+                </p>
+              </div>
+
+            </div>
+          </div>
+    </div>
+  </section>  
 
 
   <!-- BibTeX -->
