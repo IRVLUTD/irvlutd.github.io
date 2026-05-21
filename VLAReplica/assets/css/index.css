@@ -145,6 +145,11 @@ font-style: italic;
     height: 100%;
 }
 
+.assembly-video {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .publication-body img {
 }
 
