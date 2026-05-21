@@ -93,21 +93,169 @@ const references = {
     '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.'
 };
 
+const datasetAnnotationFiles = {
+    id: [
+        'put_the_bread_on_the_red_plate_ep_1.mp4',
+        'put_the_bread_on_the_blue_plate_ep_2.mp4',
+        'put_the_bread_on_the_blue_plate_ep_3.mp4',
+        'put_the_bread_on_the_red_plate_ep_4.mp4',
+        'put_the_bread_on_the_red_plate_ep_5.mp4',
+        'put_the_red_bowl_on_the_green_coaster_ep_1.mp4',
+        'put_the_blue_bowl_on_the_orange_coaster_ep_2.mp4',
+        'put_the_blue_bowl_on_the_green_coaster_ep_3.mp4',
+        'put_the_red_bowl_on_the_purple_coaster_ep_4.mp4',
+        'put_the_yellow_bowl_on_the_purple_coaster_ep_5.mp4',
+        'stack_the_red_block_on_the_blue_block_ep_1.mp4',
+        'stack_the_yellow_block_on_the_blue_block_ep_2.mp4',
+        'stack_the_blue_block_on_the_yellow_block_ep_3.mp4',
+        'stack_the_blue_block_on_the_red_block_ep_4.mp4',
+        'stack_the_red_block_on_the_yellow_block_ep_5.mp4',
+        'collect_2_blocks_into_the_blue_box_ep_1.mp4',
+        'collect_2_blocks_into_the_yellow_box_ep_2.mp4',
+        'collect_3_blocks_into_the_blue_box_ep_3.mp4',
+        'collect_3_blocks_into_the_yellow_box_ep_4.mp4',
+        'collect_4_blocks_into_the_blue_box_ep_5.mp4',
+        'fold_the_pink_towel_in_half_ep_1.mp4',
+        'fold_the_yellow_towel_in_half_ep_2.mp4',
+        'fold_the_pink_towel_in_half_ep_3.mp4',
+        'fold_the_yellow_towel_in_half_ep_4.mp4',
+        'fold_the_pink_towel_in_half_ep_5.mp4',
+        'open_the_oven_ep_1.mp4',
+        'open_the_oven_ep_2.mp4',
+        'open_the_oven_ep_3.mp4',
+        'open_the_oven_ep_4.mp4',
+        'open_the_oven_ep_5.mp4',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_1.mp4',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_2.mp4',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_3.mp4',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_4.mp4',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_5.mp4',
+        'pour_1_shake_of_pepper_into_the_red_plate_ep_1.mp4',
+        'pour_3_shakes_of_pepper_into_the_red_plate_ep_2.mp4',
+        'pour_2_shakes_of_pepper_into_the_red_plate_ep_3.mp4',
+        'pour_1_shake_of_pepper_into_the_red_plate_ep_4.mp4',
+        'pour_3_shakes_of_pepper_into_the_red_plate_ep_5.mp4',
+        'lift_the_green_bowl_one_time_ep_1.mp4',
+        'lift_the_blue_bowl_one_time_ep_2.mp4',
+        'lift_the_red_bowl_three_times_ep_3.mp4',
+        'lift_the_green_bowl_three_times_ep_4.mp4',
+        'lift_the_blue_bowl_three_times_ep_5.mp4',
+        'press_the_button_one_time_ep_1.mp4',
+        'press_the_button_three_times_ep_2.mp4',
+        'press_the_button_one_time_ep_3.mp4',
+        'press_the_button_three_times_ep_4.mp4',
+        'press_the_button_three_times_ep_5.mp4'
+    ],
+    ood: [
+        'put_the_bread_on_the_red_plate_ep_1.mp4',
+        'put_the_bread_on_the_blue_plate_ep_2.mp4',
+        'put_the_bread_on_the_yellow_plate_ep_3.mp4',
+        'put_the_bread_on_the_yellow_plate_ep_4.mp4',
+        'put_the_bread_on_the_yellow_plate_ep_5.mp4',
+        'put_the_blue_bowl_on_the_purple_coaster_ep_1.mp4',
+        'put_the_red_bowl_on_the_orange_coaster_ep_2.mp4',
+        'put_the_yellow_bowl_on_the_green_coaster_ep_3.mp4',
+        'put_the_yellow_bowl_on_the_orange_coaster_ep_4.mp4',
+        'put_the_green_bowl_on_the_yellow_coaster_ep_5.mp4',
+        'stack_the_yellow_block_on_the_red_block_ep_1.mp4',
+        'stack_the_blue_block_on_the_blue_block_ep_2.mp4',
+        'stack_the_red_block_on_the_green_block_ep_3.mp4',
+        'stack_the_green_block_on_the_yellow_block_ep_4.mp4',
+        'stack_the_green_block_on_the_green_block_ep_5.mp4',
+        'collect_2_blocks_into_the_pink_box_ep_1.mp4',
+        'collect_3_blocks_into_the_pink_box_ep_2.mp4',
+        'collect_5_blocks_into_the_blue_box_ep_3.mp4',
+        'collect_5_blocks_into_the_yellow_box_ep_4.mp4',
+        'collect_5_blocks_into_the_pink_box_ep_5.mp4',
+        'fold_the_blue_towel_in_half_ep_1.mp4',
+        'fold_the_blue_towel_in_half_ep_2.mp4',
+        'fold_the_blue_towel_in_half_ep_3.mp4',
+        'fold_the_blue_towel_in_half_ep_4.mp4',
+        'fold_the_blue_towel_in_half_ep_5.mp4',
+        'pour_4_shakes_of_pepper_into_the_red_plate_ep_1.mp4',
+        'pour_5_shakes_of_pepper_into_the_red_plate_ep_2.mp4',
+        'pour_1_shake_of_pepper_into_the_blue_plate_ep_3.mp4',
+        'pour_3_shakes_of_pepper_into_the_blue_plate_ep_4.mp4',
+        'pour_5_shakes_of_pepper_into_the_blue_plate_ep_5.mp4',
+        'lift_the_green_bowl_two_times_ep_1.mp4',
+        'lift_the_blue_bowl_two_times_ep_2.mp4',
+        'lift_the_red_bowl_two_times_ep_3.mp4',
+        'lift_the_yellow_bowl_two_times_ep_4.mp4',
+        'lift_the_yellow_bowl_four_times_ep_5.mp4',
+        'press_the_button_two_times_ep_1.mp4',
+        'press_the_button_four_times_ep_2.mp4',
+        'press_the_button_two_times_ep_3.mp4',
+        'press_the_button_four_times_ep_4.mp4',
+        'press_the_button_five_times_ep_5.mp4'
+    ]
+};
+
 const videoLinkOverrides = {};
 
+const annotationColorNames = ['blue', 'red', 'yellow', 'green', 'pink', 'purple', 'orange', 'white'];
+const annotationNumberWords = ['one', 'two', 'three', 'four', 'five'];
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function capitalizeFirstLetter(value) {
+    return value.replace(/^[a-z]/, (letter) => letter.toUpperCase());
+}
+
+function highlightAnnotationWords(value) {
+    const emphasisPattern = new RegExp(`\\b(${[...annotationColorNames, ...annotationNumberWords, '\\d+'].join('|')})\\b`, 'gi');
+
+    return value.replace(emphasisPattern, (match) => {
+        const normalized = match.toLowerCase();
+        const classes = ['annotation-token'];
+
+        if (annotationColorNames.includes(normalized)) {
+            classes.push('annotation-color', `annotation-color-${normalized}`);
+        }
+
+        if (annotationNumberWords.includes(normalized) || /^\d+$/.test(normalized)) {
+            classes.push('annotation-number');
+        }
+
+        return `<strong class="${classes.join(' ')}">${match}</strong>`;
+    });
+}
+
+function formatVideoAnnotation(fileName) {
+    const plainAnnotation = fileName
+        .replace(/\.mp4$/i, '')
+        .replace(/_ep_\d+$/i, '')
+        .replace(/_/g, ' ');
+
+    return highlightAnnotationWords(capitalizeFirstLetter(escapeHtml(plainAnnotation)));
+}
+
 function buildVideoEntries(datasetKey, taskRows, methodSlug) {
-    return taskRows.flatMap((row) => {
-        return Array.from({ length: 5 }, (_, index) => {
-            const runNumber = index + 1;
+    const annotationFiles = datasetAnnotationFiles[datasetKey] || [];
+    const methodKey = `${datasetKey}-${methodSlug}`;
+
+    return taskRows
+        .flatMap((row) => {
+            return Array.from({ length: 5 }, (_, index) => ({
+                row,
+                runNumber: index + 1
+            }));
+        })
+        .map(({ row, runNumber }, index) => {
             const overrideKey = `${row.taskNumber}-${runNumber}`;
-            const override = videoLinkOverrides?.[`${datasetKey}-${methodSlug}`]?.[overrideKey];
+            const override = videoLinkOverrides?.[methodKey]?.[overrideKey];
 
             return {
-                annotation: `${row.task} | Run ${runNumber}`,
+                annotation: annotationFiles[index] ? formatVideoAnnotation(annotationFiles[index]) : `${row.task} | Run ${runNumber}`,
                 url: override ? override.url : '#'
             };
         });
-    });
 }
 
 const video_links = Object.fromEntries(
