@@ -60,6 +60,48 @@
 	color: #243247;
 }
 
+.annotation-token {
+	font-weight: 700;
+}
+
+.annotation-number {
+	color: #0f172a;
+}
+
+.annotation-color-blue {
+	color: #2563eb;
+}
+
+.annotation-color-red {
+	color: #dc2626;
+}
+
+.annotation-color-yellow {
+	color: #ca8a04;
+}
+
+.annotation-color-green {
+	color: #16a34a;
+}
+
+.annotation-color-pink {
+	color: #db2777;
+}
+
+.annotation-color-purple {
+	color: #7c3aed;
+}
+
+.annotation-color-orange {
+	color: #ea580c;
+}
+
+.annotation-color-white {
+	color: #ffffff;
+	-webkit-text-stroke: 1px #64748b;
+	text-shadow: 0 0 1px #64748b;
+}
+
 @media screen and (max-width: 1200px) {
 	.video-grid-row {
 		gap: 0.75rem;
