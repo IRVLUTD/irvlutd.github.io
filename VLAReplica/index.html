@@ -244,7 +244,7 @@
           <div class="content has-text-justified">
             <img src="assets/images/VLAReplica_overview.jpg" alt="Overview our VLA-Replica benchmark">
             <p class="center">Overview of the VLA-Replica benchmark. (a)1. Hardware components. (a)2. Our
-assembled platform with the leader arm, the follower arm, the light box, the cameras, and the
+assembled platform with the SO-101 follower arm, the light box, the cameras, and the
 manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
           </div>
         </div>
@@ -258,7 +258,8 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
         <div class="column">
           <h2 class="title is-3">Building the Platform</h2>
           <div class="content has-text-justified">
-            <p class="center">A user with no prior knowledge of the benchmark was able to build the setup within one hour.</p>
+            <p class="center">A user with no prior knowledge of the benchmark was able to build the setup within one hour. <br>
+              Follow the <a href="setup-docs/">Setup Guide</a> to build yours!</p>
             <div class="publication-video assembly-video">
               <iframe
                 src="https://drive.google.com/file/d/1D-gRK6pmiQf9aZj19-dRUEYke9cQNFLQ/preview"
@@ -287,7 +288,7 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
             <img src="assets/images/tasks.png"
      alt="10 tasks in our VLA-Replica benchmark"
      style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
-            <p class="center">Task definitions and examples for training/ID and OOD evaluation</p>
+            <p class="center">Task definitions and examples for training/ID (in-distribution) and OOD (out-of-distribution) evaluation</p>
           </div>
         </div>
       </div>
@@ -302,7 +303,9 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
         <div class="column">
           <h2 class="title is-3">Expert Demonstrations</h2>
           <div class="content has-text-justified">
-            <p class="center">Examples of expert demonstrations collected in our dataset. We provide 50 demonstrations for each task, which can be used for training or fine-tuning.</p> 
+            <p class="center">Examples of expert demonstrations collected in our dataset. We provide 50 demonstrations for each task, which can be used for training or fine-tuning.
+              The dataset can be downloaded from <a target="_blank" href="https://huggingface.co/datasets/HenryZhang/VLAReplica_SFT_data">huggingface</a>.
+            </p> 
             <img src="assets/images/demonstrations.png" alt="Expert demonstrations in our VLA-Replica benchmark"
             style="max-width:600px; width:100%; height:auto; display:block; margin:auto;">
             
@@ -318,8 +321,9 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
       <div class="columns is-centered has-text-centered">
         <div class="column">
           <h2 class="title is-3">Test Scene Reference Images</h2>
-          <p class="content">All 90 test scene reference images are provided below. For all tasks, the first row includes ID
-(in-distribution) tasks, and the second row includes OOD (out-of-distribution) tasks (except 5 & 6).</p>
+          <p class="content">We provide 90 test scene reference images as shown below. For all tasks, the first row includes ID
+(in-distribution) tasks, and the second row includes OOD (out-of-distribution) tasks (except 5 & 6). Details of these tasks can be found <a target="_blank" href="setup-docs/task-reference/">here</a>.
+</p>
           <div class="columns is-multiline">
             <div class="column is-one-third">
               <img src="assets/images/task01.png" alt="Task 1 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
@@ -379,8 +383,8 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
               </p>
               <p>
                 There are two ways to submit results to the leaderboard:
-                (1) Run the VLA-Replica-ID and VLA-Replica-OOD benchmark scenes and share verification videos.
-                (2) Submit a model checkpoint through Hugging Face for evaluation.
+                (1) Run the VLA-Replica-ID and VLA-Replica-OOD benchmark scenes and share your evaluation videos with the authors.
+                (2) Submit a model checkpoint through Hugging Face, and the authors will evaluate your checkpoint.
                 Contact the authors if you want to add your method.
               </p>
             </div>
@@ -432,6 +436,7 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
             <div class="column">
               <h2 id="code" class="title is-3">Code</h2>
               <!-- Toolkit Code. -->
+              <p> To run evaluation with the benchmark, please check the code below.</p>
               <div class="content has-text-justified">
                 <h2 class="title is-3">
                   <span class="link-block">
@@ -469,7 +474,8 @@ manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
         eprint={2605.20774},
         archivePrefix={arXiv},
         primaryClass={cs.RO},
-        url={https://arxiv.org/abs/2605.20774}, }
+        url={https://arxiv.org/abs/2605.20774} 
+      }
 </code></pre>
       </div>
   </section>
