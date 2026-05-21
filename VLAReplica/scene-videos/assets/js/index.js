@@ -20,15 +20,17 @@ $(document).ready(function () {
                 return null;
             }
 
+            const drivePreviewSuffix = '?rm=minimal';
+
             if (url.includes('drive.google.com')) {
                 const fileMatch = url.match(/\/file\/d\/([^/]+)/);
                 if (fileMatch) {
-                    return `https://drive.google.com/file/d/${fileMatch[1]}/preview`;
+                    return `https://drive.google.com/file/d/${fileMatch[1]}/preview${drivePreviewSuffix}`;
                 }
 
                 const idMatch = url.match(/[?&]id=([^&]+)/);
                 if (idMatch) {
-                    return `https://drive.google.com/file/d/${idMatch[1]}/preview`;
+                    return `https://drive.google.com/file/d/${idMatch[1]}/preview${drivePreviewSuffix}`;
                 }
             }
 
@@ -46,6 +48,10 @@ $(document).ready(function () {
         };
 
         const renderVideoCard = (video) => {
+            if (video.hidden) {
+                return '';
+            }
+
             const embedUrl = normalizeEmbedUrl(video.url);
 
             return `
