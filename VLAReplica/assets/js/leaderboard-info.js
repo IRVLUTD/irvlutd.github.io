@@ -190,7 +190,13 @@ const datasetAnnotationFiles = {
     ]
 };
 
-const videoLinkOverrides = {};
+const videoLinkOverrides = {
+    'ood-dit-d': {
+        '2-5': {
+            url: 'https://utdallas.box.com/s/q50ozaagqbuebvgrmr6v38r2oqevdu8j'
+        }
+    }
+};
 
 const annotationColorNames = ['blue', 'red', 'yellow', 'green', 'pink', 'purple', 'orange', 'white'];
 const annotationNumberWords = ['one', 'two', 'three', 'four', 'five'];

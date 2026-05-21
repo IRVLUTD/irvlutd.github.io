@@ -15,7 +15,7 @@ $(document).ready(function () {
             return;
         }
 
-        const normalizeGoogleDriveUrl = (url) => {
+        const normalizeEmbedUrl = (url) => {
             if (!url || url === '#') {
                 return null;
             }
@@ -32,11 +32,21 @@ $(document).ready(function () {
                 }
             }
 
+            const boxMatch = url.match(/^https:\/\/([^.]+)\.box\.com\/s\/([^/?#]+)/i);
+            if (boxMatch) {
+                return `https://${boxMatch[1]}.app.box.com/embed/s/${boxMatch[2]}`;
+            }
+
+            const boxEmbedMatch = url.match(/^https:\/\/([^.]+\.)?app\.box\.com\/embed\/s\/([^/?#]+)/i);
+            if (boxEmbedMatch) {
+                return url;
+            }
+
             return url;
         };
 
         const renderVideoCard = (video) => {
-            const embedUrl = normalizeGoogleDriveUrl(video.url);
+            const embedUrl = normalizeEmbedUrl(video.url);
 
             return `
                 <div class="video-grid-card">
