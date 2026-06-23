@@ -1,0 +1,116 @@
+.hero .container.is-max-desktop,
+.section .container.is-max-desktop {
+	max-width: 1600px !important;
+}
+
+#vid-items {
+	margin-top: 1.5rem;
+}
+
+.video-grid-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.video-grid-row {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.video-grid-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+
+.video-grid-frame {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	border-radius: 12px;
+	overflow: hidden;
+	background: #f7f9fc;
+	border: 1px solid #dbe3ee;
+}
+
+.video-grid-frame iframe {
+	position: absolute;
+	top: -14%;
+	left: -4%;
+	width: 108%;
+	height: 124%;
+}
+
+.video-grid-placeholder {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	padding: 0.75rem;
+	color: #5b6573;
+	font-size: 0.9rem;
+	line-height: 1.4;
+	text-align: center;
+}
+
+.video-grid-caption {
+	margin: 0;
+	font-size: 0.9rem;
+	line-height: 1.35;
+	text-align: center;
+	color: #243247;
+}
+
+.annotation-token {
+	font-weight: 700;
+}
+
+.annotation-number {
+	color: #0f172a;
+}
+
+.annotation-color-blue {
+	color: #2563eb;
+}
+
+.annotation-color-red {
+	color: #dc2626;
+}
+
+.annotation-color-yellow {
+	color: #ca8a04;
+}
+
+.annotation-color-green {
+	color: #16a34a;
+}
+
+.annotation-color-pink {
+	color: #db2777;
+}
+
+.annotation-color-purple {
+	color: #7c3aed;
+}
+
+.annotation-color-orange {
+	color: #ea580c;
+}
+
+.annotation-color-white {
+	color: #ffffff;
+	-webkit-text-stroke: 1px #64748b;
+	text-shadow: 0 0 1px #64748b;
+}
+
+@media screen and (max-width: 1200px) {
+	.video-grid-row {
+		gap: 0.75rem;
+	}
+
+	.video-grid-caption {
+		font-size: 0.82rem;
+	}
+}

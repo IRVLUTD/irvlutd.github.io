@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description" content="Web home for VLAReplica Benchmark for Robotics">
+  <meta id="meta-author" name="author" content="">
+  <meta id="meta-keywords" name="keywords" content="Robot Manipulation, Vision-Language_Action Models, Benchmarking, Real Scene Replication">
+  <title id="title" project-name="VLA-Replica">VLA-Replica</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title"></h1>
+
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://alexhuang1029.github.io/"><img
+                          class="display-image author-image center" src="../assets/images/authors/alex_huang.webp"><br><span class="is-size-6">Alex S. Huang<sup class="eq-contri">*</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://jiahui-3205.github.io/"><img
+                          class="display-image author-image center" src="../assets/images/authors/jiahui_zhang.webp"><br><span class="is-size-6">Jiahui Zhang<sup class="eq-contri">*</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://openreview.net/profile?id=~Shiqing_Tang2"><img
+                          class="display-image author-image center" src="../assets/images/authors/shiqing_tang.webp"><br><span class="is-size-6">Shiqing Tang</span></a>                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br><span class="is-size-6">Yu Xiang</span></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block eq-contri"><sup>*</sup> Equal Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <!-- <br> <br><span id="accepted-conference" class="author-block">IEEE International Conference on Robotics and Automation (ICRA), 2024</span> -->
+            </div>            
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2605.20774" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./assets/pdf/VLAReplica.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/VLAReplica" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+                <!-- Scene Link. -->
+                <span class="link-block">
+                  <a href="#scenes" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-image"></i>
+                    </span>
+                    <span>Scenes</span>
+                  </a>
+                </span>
+
+                <!-- Leaserboard. -->
+                <span class="link-block">
+                  <a href="#leaderboard" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-trophy"></i>
+                    </span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span>
+
+                <br>
+
+                <!-- Demonstration Data Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://huggingface.co/datasets/HenryZhang/VLAReplica_SFT_data" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-database"></i>
+                    </span>
+                    <span>Demonstration Data</span>
+                  </a>
+                </span>
+
+                <!-- Model Checkpoints Link. -->
+                <span class="link-block">
+                  <a href="model-checkpoints/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-download"></i>
+                    </span>
+                    <span>Model Checkpoints</span>
+                  </a>
+                </span>
+ 
+                <!-- Purchase Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://irvlutd.github.io/VLAReplica/setup-docs/bill-of-materials/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-link"></i>
+                    </span>
+                    <span>Purchase Link</span>
+                  </a>
+                </span>
+
+                <!-- Setup Guide. -->
+                <span class="link-block">
+                  <a target="_blank" href="setup-docs/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-tools"></i>
+                    </span>
+                    <span>Setup Guide</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="video" class="section">
+    <div class="container is-max-desktop">
+      <!-- 20xScenes. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <!-- <h2 class="title is-3">Scenes</h2> -->
+          <div class="content has-text-justified">
+            <video class="scene-video" controls autoplay muted loop playsinline>
+              <source src="assets/videos/VLAReplica.mp4" type="video/mp4">
+            </video>
+          
+            <!-- <p class="center">
+              20 scenes in our <span class="small-caps">VLAReplica</span> benchmark with 5 YCB objects in each scene
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Vision-Language-Action (VLA) models have shown strong promise for general-purpose robotic manipulation, 
+              but their real-world evaluation remains limited by a lack of accessible, 
+              reproducible, and consistent benchmarks. Simulation benchmarks fail to capture real-world complexity, 
+              while existing real-world benchmarks often require expensive hardware, 
+              centralized evaluation, or are limited in task diversity. We introduce VLA-REPLICA, a low-cost, 
+              easily reproducible real-world benchmark for evaluating VLA models. 
+              Built from off-the-shelf components, our system can be quickly assembled and replicated across 
+              laboratories, providing a consistent environment for policy evaluation anywhere in the world. 
+              VLA-REPLICA includes a diverse suite of manipulation tasks and a small-scale demonstration dataset 
+              for target-domain adaptation, with real-world evaluation protocols for both in-distribution and 
+              out-of-distribution settings. Experiments with imitation learning and state-of-the-art VLA models 
+              reveal model strengths and limitations, while consistent results across independently constructed setups 
+              demonstrate the reproducibility of our benchmark.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+
+  <section id="overview" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/VLAReplica_overview.jpg" alt="Overview our VLA-Replica benchmark">
+            <p class="center">Overview of the VLA-Replica benchmark. (a)1. Hardware components. (a)2. Our
+assembled platform with the SO-101 follower arm, the light box, the cameras, and the
+manipulation workspace. (b) 10 manipulation tasks in the benchmark.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="assembly" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Building the Platform</h2>
+          <div class="content has-text-justified">
+            <p class="center">A user with no prior knowledge of the benchmark was able to build the setup within one hour. <br>
+              Follow the <a target="_blank" href="setup-docs/">Setup Guide</a> to build yours!</p>
+            <div class="publication-video assembly-video">
+              <iframe
+                src="https://drive.google.com/file/d/1D-gRK6pmiQf9aZj19-dRUEYke9cQNFLQ/preview"
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <p class="center assembly-video-fallback">
+              If the embedded player does not start, <a target="_blank" rel="noopener noreferrer" href="https://drive.google.com/file/d/1D-gRK6pmiQf9aZj19-dRUEYke9cQNFLQ/view">open the video in Google Drive</a>
+              or <a target="_blank" rel="noopener noreferrer" href="https://drive.usercontent.google.com/download?id=1D-gRK6pmiQf9aZj19-dRUEYke9cQNFLQ&export=download">download the MP4</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>      
+  
+  <section id="tasks" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Manipulation Tasks</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/tasks.png"
+     alt="10 tasks in our VLA-Replica benchmark"
+     style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+            <p class="center">Task definitions and examples for training/ID (in-distribution) and OOD (out-of-distribution) evaluation</p>
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>    
+
+
+  <section id="overview" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Expert Demonstrations</h2>
+          <div class="content has-text-justified">
+            <p class="center">Examples of expert demonstrations collected in our dataset. We provide 50 demonstrations for each task, which can be used for training or fine-tuning.
+              The dataset can be downloaded from <a target="_blank" href="https://huggingface.co/datasets/HenryZhang/VLAReplica_SFT_data">huggingface</a>.
+            </p> 
+            <img src="assets/images/demonstrations.png" alt="Expert demonstrations in our VLA-Replica benchmark"
+            style="max-width:600px; width:100%; height:auto; display:block; margin:auto;">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+  <section id="scenes" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Test Scene Reference Images</h2>
+          <p class="content">We provide 90 test scene reference images as shown below. For all tasks, the first row includes ID
+(in-distribution) tasks, and the second row includes OOD (out-of-distribution) tasks (except 5 & 6). Details of these tasks can be found <a target="_blank" href="setup-docs/task-reference/">here</a>.
+These reference images are already included in <a target="_blank" href="https://github.com/IRVLUTD/VLAReplica">our github repo</a> for evaluation.
+</p>
+          <div class="columns is-multiline">
+            <div class="column is-one-third">
+              <img src="assets/images/task01.png" alt="Task 1 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 1: Put bread on plate</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task02.png" alt="Task 2 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 2: Put bowl on coaster</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task03.png" alt="Task 3 reference images" style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="has-text-centered">Task 3: Stack blocks</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task04.png" alt="Task 4 reference images">
+              <p class="has-text-centered">Task 4: Fold towel</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task05.png" alt="Task 5 reference images">
+              <p class="has-text-centered">Task 5: Open oven</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task06.png" alt="Task 6 reference images">
+              <p class="has-text-centered">Task 6: Clean whiteboard</p>
+            </div>
+            <div class="column is-one-third">
+              <img src="assets/images/task07.png" alt="Task 7 reference images">
+              <p class="has-text-centered">Task 7: Pour pepper</p>
+            </div>       
+            <div class="column is-one-third">
+              <img src="assets/images/task08.png" alt="Task 8 reference images">
+              <p class="has-text-centered">Task 8: Lift bowl</p>
+            </div>                    
+            <div class="column is-one-third">
+              <img src="assets/images/task09.png" alt="Task 9 reference images">
+              <p class="has-text-centered">Task 9: Press button</p>
+            </div>               
+            <div class="column is-one-third">
+              <img src="assets/images/task10.png" alt="Task 10 reference images">
+              <p class="has-text-centered">Task 10: Collect blocks</p>
+            </div>               
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+  <section id="leaderboard" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <h2 class="title is-3"><span id="leaderboard-trophy-icon" class="icon"><img src="./assets/images/winner-icon.png" alt="trophy"></span>&nbsp;Leaderboard</h2>
+            <div class="content has-text-justified">
+              <p>
+                Policy evaluation success rates on the VLA-Replica benchmark are shown below for
+                in-distribution and out-of-distribution evaluation.
+              </p>
+              <p>
+                There are two ways to submit results to the leaderboard:
+                (1) Run the VLA-Replica-ID and VLA-Replica-OOD benchmark scenes and share your evaluation videos with the authors.
+                (2) Submit a model checkpoint through Hugging Face, and the authors will evaluate your checkpoint.
+                Contact the authors if you want to add your method.
+              </p>
+            </div>
+
+            <div class="dataset-switch">
+              <button class="dataset-pill active" data-dataset="id">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>VLA-Replica-ID</span>
+              </button>
+
+              <button class="dataset-pill" data-dataset="ood">
+                <span class="icon"><i class="fas fa-database"></i></span>
+                <span>VLA-Replica-OOD</span>
+              </button>
+            </div>
+
+            <div class="table-container leaderboard-table-container">
+              <table id="leaderboard-table" class="table is-fullwidth">
+                <thead id="leaderboard-head"></thead>
+                <tbody id="leaderboard-body"></tbody>
+              </table>
+            </div>
+
+            <div class="content has-text-justified">
+              <img src="assets/images/training_details.png"
+                alt="10 tasks in our VLA-Replica benchmark"
+                style="max-width:800px; width:100%; height:auto; display:block; margin:auto;">
+              <p class="center">Training and fine-tuning details for the evaluated policies</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </section>
+
+
+  <section id="references-section" class="section">
+    <div class="container is-max-desktop">
+      <!-- References. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">References</h2>
+
+          <div class="content has-text-justified">
+            <ol id="references"></ol>
+          </div>
+        </div>
+      </div>
+      <!--/ References. -->
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+          <!-- Code. -->
+          <div class="columns is-centered has-text-justified">
+            <div class="column">
+              <h2 id="code" class="title is-3">Code</h2>
+              <!-- Toolkit Code. -->
+              <p> To run evaluation with the benchmark, please check the code below.</p>
+              <div class="content has-text-justified">
+                <h2 class="title is-3">
+                  <span class="link-block">
+                    <a target="_blank" href="https://github.com/IRVLUTD/VLAReplica"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                          <i class="fab fa-github"></i>
+                      </span>
+                      <span> <span class="small-caps">VLAReplica</span>
+                      </a>
+                  </span>
+                </h2>
+                <p>
+  
+                </p>
+              </div>
+
+            </div>
+          </div>
+    </div>
+  </section>  
+
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop">
+      <h2 class="title">BibTeX</h2>
+      <span>Please cite <span class="small-caps"><b>VLA-Replica</b></span> if it helps your research:</span>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>
+      @misc{huang2026vlareplicalowcostreproduciblebenchmark,
+        title={VLA-REPLICA: A Low-Cost, Reproducible Benchmark for Real-World Evaluation of Vision-Language-Action Models}, 
+        author={Alex S. Huang and Jiahui Zhang and Shiqing Tang and Yu Xiang},
+        year={2026},
+        eprint={2605.20774},
+        archivePrefix={arXiv},
+        primaryClass={cs.RO},
+        url={https://arxiv.org/abs/2605.20774} 
+      }
+</code></pre>
+      </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+      
+      <h2 class="title">Contact</h2>
+        <p>Send any comments or questions to Alex Huang | Jiahui Zhang: <br><a target="_blank" href="mailto:alex.huang@utdallas.edu">alex.huang@utdallas.edu</a> | <a target="_blank" href="mailto:jiahui.zhang@utdallas.edu">jiahui.zhang@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="title">Acknowledgements</h2>
+    <div class="is-vcentered interpolation-panel">
+      <div class="container content">
+        <p style="font-size: 16px">
+          This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, the NVIDIA Academic Grant Program Award, and a gift funding from XPeng.
+        </p>
+      </div>
+    </div>
+    </div>  
+  </section>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<script src="./assets/js/leaderboard-info.js"></script>
+<script src="./assets/js/index.js"></script>
+</html>

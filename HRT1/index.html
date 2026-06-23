@@ -4,12 +4,190 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta id="meta-desc" name="description" content="Web home for HRT1: Mobile Manipulation via One-Shot Human-to-Robot Trajectory Transfer.">
-  <meta id="meta-author" name="author" content="Sai Haneesh Allu, Jishnu Jaykumar P, Ninad Khargonkar, Jian Yao, Tyler Summers, Yu Xiang">
-  <meta id="meta-keywords" name="keywords" content="One Shot, Mobile Manipulation, UTD, IRVL, IRVLUTD, Robotics">
+  <meta id="meta-desc" name="description"
+    content="HRT1 is a one-shot human-to-robot trajectory transfer system for mobile manipulation. A mobile manipulator watches a single MR-headset human demonstration, extracts a 3D human-hand trajectory, transfers it to a robot end-effector, and executes the task in a new scene via trajectory optimization. Validated on 16 real-world tasks × 3 trials on a Fetch robot.">
+  <meta id="meta-author" name="author"
+    content="Sai Haneesh Allu, Jishnu Jaykumar P, Ninad Khargonkar, Tyler Summers, Jian Yao, Yu Xiang">
+  <meta id="meta-keywords" name="keywords"
+    content="HRT1, human-to-robot trajectory transfer, one-shot imitation, mobile manipulation, learning from demonstration, learning from humans, MR headset, mixed reality, 3D hand trajectory, trajectory optimization, robot manipulation, Fetch robot, AR headset, human demonstration video, IRVL, IRVLUTD, UT Dallas, The University of Texas at Dallas, XPeng, Yu Xiang, Sai Haneesh Allu, Jishnu Jaykumar, Ninad Khargonkar, Tyler Summers, Jian Yao, robotics, computer vision, arXiv 2510.21026">
+  <meta name="robots"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot"   content="index, follow">
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://irvlutd.github.io/HRT1/">
+
+  <!-- Google Scholar / Highwire Press citation metadata -->
+  <meta name="citation_title" content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta name="citation_author" content="Allu, Sai Haneesh">
+  <meta name="citation_author" content="Jaykumar P, Jishnu">
+  <meta name="citation_author" content="Khargonkar, Ninad">
+  <meta name="citation_author" content="Summers, Tyler">
+  <meta name="citation_author" content="Yao, Jian">
+  <meta name="citation_author" content="Xiang, Yu">
+  <meta name="citation_publication_date" content="2025">
+  <meta name="citation_online_date"      content="2025">
+  <meta name="citation_arxiv_id"         content="2510.21026">
+  <meta name="citation_pdf_url"          content="https://arxiv.org/pdf/2510.21026">
+  <meta name="citation_public_url"       content="https://irvlutd.github.io/HRT1/">
+  <meta name="citation_language"         content="en">
+  <meta name="citation_keywords"         content="one-shot imitation; human-to-robot transfer; mobile manipulation; learning from demonstration; trajectory optimization; mixed reality">
+
+  <!-- Dublin Core -->
+  <meta name="DC.title"       content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta name="DC.creator"     content="Sai Haneesh Allu">
+  <meta name="DC.creator"     content="Jishnu Jaykumar P">
+  <meta name="DC.creator"     content="Ninad Khargonkar">
+  <meta name="DC.creator"     content="Tyler Summers">
+  <meta name="DC.creator"     content="Jian Yao">
+  <meta name="DC.creator"     content="Yu Xiang">
+  <meta name="DC.subject"     content="Human-to-robot trajectory transfer; One-shot imitation; Mobile manipulation; Trajectory optimization; Mixed reality">
+  <meta name="DC.description" content="HRT1 lets a mobile manipulator watch one MR-headset human demo and repeat the task in a new scene via 3D hand-trajectory extraction, hand-to-end-effector transfer, and trajectory optimization.">
+  <meta name="DC.publisher"   content="Intelligent Robotics and Vision Lab, The University of Texas at Dallas">
+  <meta name="DC.date"        content="2025">
+  <meta name="DC.type"        content="Text.Article">
+  <meta name="DC.language"    content="en">
+  <meta name="DC.identifier"  content="https://irvlutd.github.io/HRT1/">
+  <meta name="DC.rights"      content="© 2025 IRVL, UT Dallas">
+
+  <!-- Open Graph -->
+  <meta property="og:locale"      content="en_US">
+  <meta property="og:site_name"   content="HRT1 — IRVL · UT Dallas">
+  <meta property="og:title"       content="HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation">
+  <meta property="og:description" content="Watch one MR-headset human demo → robot repeats the task in a new scene. 16 real-world tasks × 3 trials on a Fetch mobile manipulator. arXiv 2025.">
+  <meta property="og:image"       content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta property="og:image:secure_url" content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta property="og:image:alt"   content="HRT1 four-module pipeline: MR-headset demo capture, video understanding, trajectory transfer, trajectory optimization.">
+  <meta property="og:url"         content="https://irvlutd.github.io/HRT1/">
+  <meta property="og:type"        content="article">
+  <meta property="og:video"       content="https://irvlutd.github.io/HRT1/assets/videos/overview.mp4">
+  <meta property="og:video:type"  content="video/mp4">
+  <meta property="article:published_time" content="2025-10-24">
+  <meta property="article:author" content="Sai Haneesh Allu">
+  <meta property="article:author" content="Jishnu Jaykumar P">
+  <meta property="article:section" content="Robotics">
+  <meta property="article:tag"    content="One-Shot Imitation">
+  <meta property="article:tag"    content="Mobile Manipulation">
+  <meta property="article:tag"    content="Human-to-Robot Transfer">
+  <meta property="article:tag"    content="arXiv 2025">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@utdallas">
+  <meta name="twitter:creator"     content="@JishnuJPadal">
+  <meta name="twitter:title"       content="HRT1 — One-Shot Human-to-Robot Trajectory Transfer">
+  <meta name="twitter:description" content="Watch one MR-headset demo → robot repeats the task in a new scene. 16 real-world tasks × 3 trials on Fetch. arXiv 2025.">
+  <meta name="twitter:image"       content="https://irvlutd.github.io/HRT1/assets/overview.png">
+  <meta name="twitter:image:alt"   content="HRT1 four-module pipeline overview.">
+
   <title id="title" project-name="HRT1"></title>
 
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://irvlutd.github.io/HRT1/#article",
+    "headline": "HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation",
+    "name":     "HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation",
+    "datePublished": "2025-10-24",
+    "dateModified":  "2025-10-24",
+    "inLanguage":    "en",
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "arXiv", "value": "2510.21026" }
+    ],
+    "abstract": "We introduce a novel system for human-to-robot trajectory transfer that enables robots to manipulate objects by learning from human demonstration videos. The system has four modules: MR-headset data collection, video understanding that extracts 3D human-hand trajectories, hand-to-end-effector trajectory transfer, and trajectory optimization in the robot configuration space. A robot watches one human demonstration video and repeats the same mobile manipulation task in new environments, even with different object placements.",
+    "description": "One-shot human-to-robot trajectory transfer for mobile manipulation from a single MR-headset human demo.",
+    "keywords": "one-shot imitation; human-to-robot transfer; mobile manipulation; trajectory optimization; mixed reality; 3D hand trajectory",
+    "author": [
+      {"@type": "Person", "name": "Sai Haneesh Allu", "url": "https://saihaneeshallu.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jishnu Jaykumar P", "url": "https://jishnujayakumar.github.io",     "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Ninad Khargonkar",   "url": "https://kninad.github.io",              "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Tyler Summers",      "url": "https://personal.utdallas.edu/~tyler.summers/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jian Yao",           "affiliation": {"@type": "Organization", "name": "XPeng"}},
+      {"@type": "Person", "name": "Yu Xiang",           "url": "https://yuxng.github.io",               "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}}
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas",
+      "url":  "https://labs.utdallas.edu/irvl"
+    },
+    "url": "https://irvlutd.github.io/HRT1/",
+    "mainEntityOfPage": "https://irvlutd.github.io/HRT1/",
+    "image": {
+      "@type": "ImageObject",
+      "url":   "https://irvlutd.github.io/HRT1/assets/overview.png"
+    },
+    "codeRepository": "https://github.com/IRVLUTD/HRT1",
+    "sameAs": [
+      "https://github.com/IRVLUTD/HRT1",
+      "https://arxiv.org/abs/2510.21026"
+    ],
+    "funding": [
+      {"@type": "Grant", "identifier": "2346528",
+       "funder": {"@type": "Organization", "name": "National Science Foundation"}},
+      {"@type": "Grant", "identifier": "2520553",
+       "funder": {"@type": "Organization", "name": "National Science Foundation"}},
+      {"@type": "MonetaryGrant",
+       "funder": {"@type": "Organization", "name": "NVIDIA Academic Grant Program"}},
+      {"@type": "MonetaryGrant",
+       "funder": {"@type": "Organization", "name": "XPeng"}}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "HRT1",
+    "codeRepository": "https://github.com/IRVLUTD/HRT1",
+    "programmingLanguage": "Python",
+    "description": "Reference implementation of HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation.",
+    "author": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://irvlutd.github.io/HRT1/#overview-video",
+    "name": "HRT1 — System Walkthrough",
+    "description": "Four-module HRT1 pipeline: MR-headset capture, video understanding, hand-to-end-effector trajectory transfer, and trajectory optimization.",
+    "thumbnailUrl": "https://irvlutd.github.io/HRT1/assets/overview.png",
+    "uploadDate": "2025-10-24",
+    "contentUrl": "https://irvlutd.github.io/HRT1/assets/videos/overview.mp4",
+    "publisher":  {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "IRVL", "item": "https://irvlutd.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "HRT1", "item": "https://irvlutd.github.io/HRT1/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "HRT1 — IRVL · UT Dallas",
+    "url":  "https://irvlutd.github.io/HRT1/",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
@@ -18,12 +196,14 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
+  <link rel="stylesheet" href="../assets/css/clap-theme.css">
   <link rel="icon" href="#">
   <!-- Google tag (gtag.js) -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script> -->
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     // gtag('config', 'G-RR17MKXYJG');
@@ -31,12 +211,47 @@
 </head>
 
 <body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="aurora-container"><div class="aurora"></div></div>
+  <div class="grain-overlay"></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" id="lightbox">
+    <button class="lightbox-close" aria-label="Close enlarged figure">×</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- Progress sidebar (≥1200px) -->
+  <nav class="progress-sidebar" aria-label="Page progress">
+    <div class="progress-track">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" id="progress-fill"></div>
+      <div class="progress-item" data-section="abstract">
+        <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
+      </div>
+      <div class="progress-item" data-section="overview">
+        <a href="#overview"><span class="progress-dot"></span><span class="progress-label">Overview</span></a>
+      </div>
+      <div class="progress-item" data-section="demo">
+        <a href="#demo"><span class="progress-dot"></span><span class="progress-label">Real-World</span></a>
+      </div>
+      <div class="progress-item" data-section="citation">
+        <a href="#citation"><span class="progress-dot"></span><span class="progress-label">BibTeX</span></a>
+      </div>
+      <div class="progress-item" data-section="contact">
+        <a href="#contact"><span class="progress-dot"></span><span class="progress-label">Contact</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <a id="main" tabindex="-1"></a>
+
   <section class="hero">
     <div class="hero-body pad-zero">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 id="project-name" class="title is-2 publication-title"></h1>
+            <h1 id="project-name" class="title is-2 publication-title royal-theme"></h1>
+            <div class="title-line"></div>
             <div class="is-size-5 publication-authors">
 
               <div id="author-content" class="columns is-centered is-gapless">
@@ -44,8 +259,9 @@
                 <div class="column">
                   <div class="center">
                     <div>
-                      <a target="_blank" href="https://www.linkedin.com/in/sai-haneesh-allu"><img
-                          class="display-image author-image center" src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai Haneesh<br>Allu<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                      <a target="_blank" href="https://saihaneeshallu.github.io"><img
+                          class="display-image author-image center"
+                          src="../assets/images/authors/sai-haneesh-allu.webp"><br><span class="is-size-6">Sai Haneesh Allu<sup>1</sup><sup class="eq-contri">*</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -55,8 +271,9 @@
                     <div>
                       <a target="_blank" href="https://jishnujayakumar.github.io">
                         <img class="display-image author-image center"
-                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br><span class="is-size-6">Jishnu<br>Jaykumar
-                            P<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br><span
+                          class="is-size-6">Jishnu Jaykumar
+                          P<sup>1</sup><sup class="eq-contri">*</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -65,8 +282,20 @@
                 <div class="column">
                   <div class="center">
                     <div>
-                      <a target="_blank" href="https://kninad.github.io"><img
-                          class="display-image author-image center" src="../assets/images/authors/ninad.khargonkar.webp"><br><span class="is-size-6">Ninad<br>Khargonkar<sup>1</sup></span></a>
+                      <a target="_blank" href="https://kninad.github.io"><img class="display-image author-image center"
+                          src="../assets/images/authors/ninad.khargonkar.webp"><br><span
+                          class="is-size-6">Ninad Khargonkar<sup>1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/"><img
+                          class="display-image author-image center"
+                          src="../assets/images/authors/tyler_summers.webp"><br><span
+                          class="is-size-6">Tyler Summers<sup>1</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -75,18 +304,10 @@
                   <div class="center">
                     <div>
                       <a target="_blank" href="https://scholar.google.com/citations?user=V3kGMXUAAAAJ&hl=en"><img
-                          class="display-image author-image center" src="../assets/images/authors/jian_yao.webp"><br><span class="is-size-6">Jian<br>Yao<sup>2</sup></span></a>
+                          class="display-image author-image center"
+                          src="../assets/images/authors/jian_yao.webp"><br><span
+                          class="is-size-6">Jian Yao<sup>2</sup></span></a>
                     </div>
-                  </div>
-                </div>
-
-
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://personal.utdallas.edu/~tyler.summers/"><img
-                          class="display-image author-image center" src="../assets/images/authors/tyler_summers.webp"><br><span class="is-size-6">Tyler<br>Summers<sup>1</sup></span></a>                    </div>
                   </div>
                 </div>
 
@@ -94,7 +315,8 @@
                   <div class="center">
                     <div>
                       <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center"
-                          src="../assets/images/authors/yu_xiang.webp"><br><span class="is-size-6">Yu<br>Xiang<sup>1</sup></span></a>
+                          src="../assets/images/authors/yu_xiang.webp"><br><span
+                          class="is-size-6">Yu Xiang<sup>1</sup></span></a>
                     </div>
                   </div>
                 </div>
@@ -102,33 +324,35 @@
               </div>
 
             </div>
-            
+
             <div class="is-size-6 publication-authors author-meta-info">
-              <span class="author-block eq-contri"><sup>*</sup> Equal Contribution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank" href="https://utdallas.edu"><sup>1</sup>The University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span class="author-block"> <a target="_blank" href="https://www.xpeng.com/"><sup>2</sup>XPeng</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <!-- <br> <br><span id="accepted-conference" class="author-block"></span> -->
+              <span class="author-block affil-inline"><span class="eq-contri"><sup>*</sup>&nbsp;Equal contribution</span>&nbsp;&nbsp;<sup>1</sup><a class="href-link" target="_blank" href="https://utdallas.edu">The University of Texas at Dallas</a>&nbsp;&nbsp;<sup>2</sup><a class="href-link" target="_blank" href="https://www.xpeng.com/">XPeng</a></span>
             </div>
-            
+
+            <p id="accepted-conference" class="venue-line">
+              <b>arXiv 2025</b>
+            </p>
+
 
             <div class="column has-text-centered">
               <div class="publication-links">
 
                 <!-- Arxiv Link. -->
-                <!-- <span class="link-block">
-                  <a target="_blank" href="" class="external-link button is-normal is-rounded is-dark">
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2510.21026"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
                     <span>Arxiv</span>
                   </a>
-                </span> -->
+                </span>
 
-                
+
 
                 <!-- Arxiv Link. -->
                 <!-- <span class="link-block">
-                  <a target="_blank" href="" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="" class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -137,24 +361,35 @@
                 </span> -->
 
                 <!-- Code Link. -->
-                <!-- <span class="link-block">
-                  <a target="_blank" href="https://github.com/IRVLUTD/HRT1" class="external-link button is-normal is-rounded is-dark">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/HRT1"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code</span>
                   </a>
-                </span> -->
-              
-                <!-- Scene Link. -->
-                <!-- <span class="link-block">
-                  <a href="#scenes" class="external-link button is-normal is-rounded is-dark">
+                </span>
+
+                <!-- Real World Demo Link. -->
+                <span class="link-block">
+                  <a href="#demo" class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
-                      <i class="fas fa-image"></i>
+                      <i class="fas fa-globe"></i>
                     </span>
-                    <span>Scenes</span>
+                    <span>Real World Demo</span>
                   </a>
-                </span> -->
+                </span>
+
+                <!-- BibTeX Link. -->
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-quote-right fa-w-16" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="quote-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg><!-- <i class="fa fa-quote-right"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Citation</span>
+                  </a>
+                </span>
 
                 <br>
 
@@ -166,31 +401,51 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" id="abstract-wrap">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
+      <div id="abstract" class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Abstract</h2>
+
+          <div class="tldr tldr-hrt1">
+            <div class="tldr-head">
+              <span class="tldr-label">TL;DR</span>
+              <span class="tldr-lede">Watch <b>one</b> human demo → robot repeats the task in a <b>new scene</b>.</span>
+            </div>
+
+            <ol class="tldr-chain" aria-label="Pipeline">
+              <li><span class="tc-tag">01</span><span class="tc-text">MR-headset<br>human demo</span></li>
+              <li><span class="tc-tag">02</span><span class="tc-text">3D hand<br>trajectory</span></li>
+              <li><span class="tc-tag">03</span><span class="tc-text">Robot<br>end-effector</span></li>
+              <li><span class="tc-tag">04</span><span class="tc-text">Trajectory<br>execution</span></li>
+            </ol>
+
+            <p class="tldr-foot">
+              Validated on <b>16 real-world tasks</b> · <b>3 trials each</b> on a Fetch mobile manipulator.
+            </p>
+          </div>
+
+          <h2 class="title is-3 royal-theme has-text-centered">Abstract</h2>
+          <div class="title-line"></div>
           <div class="content has-text-justified">
             <p>
               We introduce a novel system for human-to-robot
-trajectory transfer that enables robots to manipulate objects
-by learning from human demonstration videos. The system
-consists of three modules. The first module is a video under-
-standing module that detects objects and extracts human hand
-trajectories from demonstration videos. The second module
-transfers a human-hand trajectory into a reference trajectory
-of a robot end-effector in the task space. The last module
-utilizes a trajectory optimization algorithm to solve a trajectory
-in the configuration space that can follow the end-effector
-trajectory transferred from the human demonstration. Con-
-sequently, these modules enable a robot to watch a human
-demonstration and then repeat the same manipulation task as
-in the demonstration, even when objects are placed differently
-from the demonstration. Experiments of different manipulation
-tasks are conducted on a mobile manipulator to verify the
-effectiveness of our system.
+              trajectory transfer that enables robots to manipulate objects by
+              learning from human demonstration videos. The system consists
+              of four modules. The first module is a data collection module
+              that is designed to collect human demonstration videos from
+              the point of view of a robot using an MR headset. The second
+              module is a video understanding module that detects objects
+              and extracts 3D human-hand trajectories from demonstration
+              videos. The third module transfers a human-hand trajectory
+              into a reference trajectory of a robot end-effector in 3D space.
+              The last module utilizes a trajectory optimization algorithm
+              to solve a trajectory in the robot configuration space that can
+              follow the end-effector trajectory transferred from the human
+              demonstration. Consequently, these modules enable a robot to
+              watch a human demonstration video once and then repeat the
+              same mobile manipulation task in different environments, even
+              when objects are placed differently from the demonstrations.
             </p>
           </div>
         </div>
@@ -199,38 +454,182 @@ effectiveness of our system.
     </div>
   </section>
 
-  <!-- BibTeX -->
-  <section class="section" id="BibTeX">
+
+  <section class="section" id="overview">
     <div class="container is-max-desktop">
-      <h2 class="title">BibTeX</h2>
-      <span>Please cite our work if it helps your research:</span>
-      <div class="bib-container">
-        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>Coming soon...</code></pre>
+      <h2 class="title is-3 royal-theme has-text-centered"><span class="small-caps">HRT1</span> Overview</h2>
+      <div class="title-line"></div>
+      <div class="paper-fig"><img src="assets/overview.png" alt="HRT1 system overview"></div>
+      <div class="hrt1-modules-wrap" aria-label="Four-stage pipeline">
+        <ol class="hrt1-modules">
+          <li>
+            <span class="hm-num">Stage-1</span>
+            <span class="hm-name">MR-Headset<br>Capture</span>
+          </li>
+          <li>
+            <span class="hm-num">Stage-2</span>
+            <span class="hm-name">Video<br>Understanding</span>
+          </li>
+          <li>
+            <span class="hm-num">Stage-3</span>
+            <span class="hm-name">Trajectory<br>Transfer</span>
+          </li>
+          <li>
+            <span class="hm-num">Stage-4</span>
+            <span class="hm-name">Trajectory<br>Optimization</span>
+          </li>
+        </ol>
       </div>
+
+      <div class="clap-player" data-clap-player>
+        <span class="cp-label"><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;System&nbsp;Walkthrough</span>
+        <div class="cp-stage">
+          <video class="cp-video" autoplay loop muted playsinline preload="auto" poster="assets/overview.png">
+            <source src="assets/videos/overview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <button class="cp-center-play" type="button" aria-label="Play video">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="cp-controls" role="toolbar" aria-label="Video controls">
+          <button class="cp-btn cp-play" type="button" aria-label="Play / Pause (Space)">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+          <button class="cp-btn cp-back" type="button" aria-label="Back 10 seconds (←)">
+            <i class="fas fa-backward" aria-hidden="true"></i>
+            <span class="cp-sm">10</span>
+          </button>
+          <button class="cp-btn cp-fwd" type="button" aria-label="Forward 10 seconds (→)">
+            <span class="cp-sm">10</span>
+            <i class="fas fa-forward" aria-hidden="true"></i>
+          </button>
+
+          <div class="cp-scrub">
+            <input class="cp-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
+          </div>
+
+          <span class="cp-time" aria-live="off"><span class="cp-cur">0:00</span>&nbsp;/&nbsp;<span class="cp-dur">0:00</span></span>
+
+          <div class="cp-volume">
+            <button class="cp-btn cp-mute" type="button" aria-label="Mute / Unmute (M)">
+              <i class="fas fa-volume-up" aria-hidden="true"></i>
+            </button>
+            <input class="cp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+          </div>
+          <button class="cp-btn cp-fs" type="button" aria-label="Fullscreen (F)">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Real-World Execution</h2>
+      <div class="title-line"></div>
+
+      <!-- 4 compact stat tiles: tasks · trials · speeds · success rates -->
+      <div class="rw-stats">
+        <div class="rw-stat"><div class="rw-n">16</div><div class="rw-l">tasks</div></div>
+        <div class="rw-stat"><div class="rw-n">3</div><div class="rw-l">trials each</div></div>
+        <div class="rw-stat"><div class="rw-n">5× / 1×</div><div class="rw-l">base&nbsp;/&nbsp;execution speed</div></div>
+        <div class="rw-stat"><div class="rw-n">98% / 92%</div><div class="rw-l">grasp&nbsp;/&nbsp;task success</div></div>
+      </div>
+
+      <!-- Trial tabs — refined pill row with gold icons + active highlight -->
+      <div class="trial-tabs">
+        <ul>
+          <li id="trial-0" class="is-active demo-video-iframe">
+            <a><span class="icon is-small"><i class="fas fa-user" aria-hidden="true"></i></span><span>Human Demo</span></a>
+          </li>
+          <li id="trial-1" class="demo-video-iframe">
+            <a><span class="trial-tag">01</span><span>Robot Trial</span></a>
+          </li>
+          <li id="trial-2" class="demo-video-iframe">
+            <a><span class="trial-tag">02</span><span>Robot Trial</span></a>
+          </li>
+          <li id="trial-3" class="demo-video-iframe">
+            <a><span class="trial-tag">03</span><span>Robot Trial</span></a>
+          </li>
+        </ul>
+      </div>
+
+      <div id="demo-vid-iframe" class="demo-video-wrap">
+        <div class="iframe-container"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">BibTeX</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Please cite our work if it helps your research.</p>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()" aria-label="Copy BibTeX to clipboard" title="Copy BibTeX"><i class="fas fa-copy copy-highlight" aria-hidden="true"></i> <span class="copy-label">Copy</span></button><code>@misc{2025hrt1,
+  title         = {HRT1: One-Shot Human-to-Robot Trajectory Transfer for Mobile Manipulation},
+  author        = {Sai Haneesh Allu and Jishnu Jaykumar P and Ninad Khargonkar and Tyler Summers and Jian Yao and Yu Xiang},
+  year          = {2025},
+  eprint        = {2510.21026},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2510.21026}
+}</code></pre>
+      </div>
+    </div>
   </section>
 
   <!-- Contact -->
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
-      
-      <h2 class="title">Contact</h2>
-        <p>Send any comments or questions to Sai | Jishnu: <br><a target="_blank" href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> | <a target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
+      <h2 class="title is-3 royal-theme has-text-centered">Contact</h2>
+      <div class="title-line"></div>
+      <p class="section-lede contact-line">Send any comments or questions to Sai or Jishnu — <a class="href-link" target="_blank" href="mailto:saihaneesh.allu@utdallas.edu">saihaneesh.allu@utdallas.edu</a> · <a class="href-link" target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a></p>
     </div>
   </section>
 
   <!-- Acknowledgements -->
-  <section class="section">
-    <div class="container is-max-desktop content has-text-centered">
-      <h2 class="title">Acknowledgements</h2>
-    <div class="is-vcentered interpolation-panel">
-      <div class="container content">
-        <p style="font-size: 16px">
-          This work was supported by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the XPeng Research Award Program, and the National Science Foundation (NSF) under Grant No.2346528.
-        </p>
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Acknowledgements</h2>
+      <div class="title-line"></div>
+
+      <p class="ack-eyebrow">Supported by</p>
+      <div class="ack-grid">
+        <div class="ack-card">
+          <div class="ack-org">NSF</div>
+          <div class="ack-prog">National Science Foundation</div>
+          <div class="ack-id">2346528 · 2520553</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">NVIDIA</div>
+          <div class="ack-prog">Academic Grant Program Award</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">XPeng</div>
+          <div class="ack-prog">Gift funding</div>
+        </div>
       </div>
     </div>
-    </div>  
   </section>
+
+  <footer class="site-footer">
+    <div class="container is-max-desktop">
+      <div class="footer-rule"></div>
+      <div class="footer-row">
+        <span class="footer-brand"><span class="small-caps">HRT1</span> · IRVL · UT Dallas</span>
+        <span class="footer-sep">·</span>
+        <span id="website-template-credits" class="footer-meta">
+          Last updated <span id="last-updated"></span>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-meta">Template inspired by <a class="href-link" target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps">FewSOL</span></a></span>
+      </div>
+    </div>
+  </footer>
 
 
 </body>
@@ -241,4 +640,7 @@ effectiveness of our system.
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
 <script src="./assets/js/global-index.js"></script>
+<script src="../assets/scripts/clap-page.js" defer></script>
+<script src="./assets/js/video_config.js"></script>
+<script src="./assets/js/index.js"></script>
 </html>

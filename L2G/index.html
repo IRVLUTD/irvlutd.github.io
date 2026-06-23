@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="L2G-Det, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Instance Detection, Instance Segmentation, Novel Instance">
+  <meta name="description" content="From Local Matches to Global Masks: Template-Guided Instance Detection and Segmentation in Open-World Scenes">
+  <meta name="author" content="Qifan Zhang, Sai Haneesh Allu, Jikai Wang, Yangxiao Lu, Yu Xiang">
+  <title id="title" project-name="L2G">L2G</title>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CFGPJHLM4C"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CFGPJHLM4C');
+</script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body pad-zero">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"> <span>From Local Matches to Global Masks: Template-Guided Instance Detection and Segmentation in Open-World Scenes</h1>
+            <div class="is-size-6 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                  <div class="column">
+                    <div class="center">
+                      <div>
+                        <a target="_blank" href="https://qfantastic.github.io/">
+                          <img class="display-image author-image center"
+                            src="assets/images/qifan.webp"> <br>Qifan Zhang</a></span>
+                      </div>
+                    </div>
+                  </div>
+                <div class="column">
+                  <div class="center">
+
+
+                    <div>
+                      <a target="_blank" href="https://saihaneeshallu.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/sai-haneesh-allu.webp"> <br>Sai Haneesh Allu</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+
+                    <div>
+                      <a target="_blank" href="https://jwroboticsvision.github.io/">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/jikai_wang.webp"> <br>Jikai Wang</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+                    
+                    <div>
+                      <a target="_blank" href="https://youngsean.github.io">
+                        <img class="display-image author-image center"
+                          src="../assets/images/authors/yangxiao_lu.webp"> <br>Yangxiao Lu</a></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
+                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><br><a target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a></span><br>
+            <span id="accepted-conference" class="author-block">Robotics: Science and Systems (RSS) 2026<br></span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- Arxiv Link. -->
+              <span class="link-block">
+                <a target="_blank" href="https://arxiv.org/abs/2603.03577"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> 
+
+
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/IRVLUTD/L2G"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/abom0cfjdr82b4wf38fd6f6ehxjdv96b"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Datasets</span>
+                  </a>
+              </span>
+
+              <!-- Results Link. -->
+              <span class="link-block">
+                <a href="https://utdallas.box.com/s/3cc1gcohdluudc37ezcebf5nj9szdur9"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Results</span>
+                  </a>
+              </span>
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Detecting and segmenting novel object instances in open-world environments is a fundamental 
+            problem in robotic perception. Given only a small set of template images, a robot must locate 
+            and segment a specific object instance in a cluttered, previously unseen scene. 
+            Existing proposal-based approaches are highly sensitive to proposal quality and often fail 
+            under occlusion and background clutter. We propose L2G-Det, a local-to-global instance detection 
+            framework that bypasses explicit object proposals by leveraging dense patch-level matching between 
+            templates and the query image. Locally matched patches generate candidate points, which are refined 
+            through a candidate selection module to suppress false positives. The filtered points are then 
+            used to prompt an augmented Segment Anything Model (SAM) with instance-specific object tokens, 
+            enabling reliable reconstruction of complete instance masks. Experiments demonstrate improved 
+            performance over proposal-based methods in challenging open-world settings.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+  </div>
+</section>
+
+<section id="framework" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">L2G-Net</h2>
+
+        <div class="content has-text-justified">
+          <p>Conceptual comparison between object proposal-based instance detection 
+          methods and our local-to-global instance detection.</p>
+          <img src="assets/images/intro_V4.png" alt="gto">
+        </div>
+
+        <br>
+        <br>
+
+        <div class="content has-text-justified">
+          <p>Overview of our L2G-Det framework for novel instance detection.It consists of a candidate selection module and an augmented SAM module. 
+            Only the adapters and object-tokens are learnable, while all other components are frozen.</p>
+          
+          <img src="assets/images/Framework.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+
+<section id="detection" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Detection Examples</h2>
+        <div class="content has-text-justified">
+          <img src="assets/images/RoboTools.png" alt="gto">
+        </div>
+        <div class="content has-text-justified">
+          <img src="assets/images/High_Res.png" alt="gto">
+        </div>
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+<section id="Real_world" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Experiment Results</h2>
+        <div class="content has-text-justified">
+          <p>
+          L2G-Det consistently outperforms existing detectors on both the 
+          High-Resolution dataset <a href="#ref14">[14]</a> 
+          and RoboTools dataset <a href="#ref4">[4]</a>, 
+          achieving significant improvements in Precision.
+          </p>
+        </div>
+
+        <!-- Dataset switch buttons -->
+        <!-- <div class="dataset-switch">
+
+          <button class="dataset-pill active" data-target="table-hr">
+            <span class="icon">
+              <i class="fas fa-database"></i>
+            </span>
+            <span>High_Resolution</span>
+          </button>
+
+          <button class="dataset-pill" data-target="table-robo">
+            <span class="icon">
+              <i class="fas fa-database"></i>
+            </span>
+            <span>RoboTools</span>
+          </button>
+
+        </div> -->
+
+        <div class="dataset-switch">
+
+          <button class="dataset-pill active" data-dataset="robo">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>RoboTools</span>
+          </button>
+
+          <button class="dataset-pill" data-dataset="hr">
+            <span class="icon"><i class="fas fa-database"></i></span>
+            <span>High_Resolution</span>
+          </button>
+
+
+        </div>
+
+        <div class="table-container">
+          <table id="leaderboard-table" class="table is-fullwidth">
+            <thead id="leaderboard-head"></thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+
+
+   
+
+
+
+
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+
+<section id="Real_world" class="section">
+  <div class="container is-max-desktop">
+    <!-- 20xScenes. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Real-World Robotic Experiments</h2>
+        <div class="content has-text-justified">
+          <p>A Fetch robot equipped with L2G-Det autonomously navigates cluttered indoor environments 
+            and stops upon detecting novel target objects in real time, demonstrating robust performance 
+            across 8 objects. Demo videos are shown below:</p>
+        </div>
+
+        <!-- Paper video. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column">
+            <div class="publication-video">
+          <!-- &lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/Hf1dJ-FqGFQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt; -->
+              <iframe src="https://www.youtube.com/embed/b9lV50FqkfA"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        
+         <!--&lt;!&ndash;            <iframe width="560" height="315" src="https://www.youtube.com/embed/aFTrF7NIihI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>&ndash;&gt;-->
+            </div>
+          </div>
+        </div>
+        <!--/ Paper video. -->
+
+
+      </div>
+    </div>
+    <!--/ 20xScenes. -->
+  </div>
+</section>
+
+
+<section id="references" class="section">
+<div class="container is-max-desktop">
+<h2 class="title is-3">References</h2>
+
+<div class="references-inner">
+
+<ol class="references">
+
+<li id="ref1">
+Anton Osokin, Denis Sumin, and Vasily Lomakin. 
+OS2D: One-Stage One-Shot Object Detection by Matching Anchor Features. 
+ECCV, 2020.
+</li>
+
+<li id="ref2">
+Jean-Philippe Mercier, Mathieu Garon, Philippe Giguere, and Jean-Francois Lalonde. 
+Deep Template-Based Object Instance Detection. 
+WACV, 2021.
+</li>
+
+<li id="ref3">
+Dahun Kim, Tsung-Yi Lin, Anelia Angelova, In So Kweon, and Weicheng Kuo. 
+Learning Open-World Object Proposals without Learning to Classify. 
+IEEE RA-L, 2022.
+</li>
+
+<li id="ref4">
+Bowen Li, Jiashun Wang, Yaoyu Hu, Chen Wang, and Sebastian Scherer. 
+VoxDet: Voxel Learning for Novel Instance Detection. 
+NeurIPS, 2024.
+</li>
+
+<li id="ref5">
+Qianqian Shen et al. 
+Solving Instance Detection from an Open-World Perspective. 
+CVPR, 2025.
+</li>
+
+<li id="ref6">
+Yangxiao Lu, Jishnu Jaykumar P, Yunhui Guo, Nicholas Ruozzi, and Yu Xiang. 
+Adapting Pre-trained Vision Models for Novel Instance Detection and Segmentation. 
+2024.
+</li>
+
+<li id="ref7">
+Shaoqing Ren, Kaiming He, Ross Girshick, and Jian Sun. 
+Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks. 
+NeurIPS, 2015.
+</li>
+
+<li id="ref8">
+Tsung-Yi Lin et al. 
+Focal Loss for Dense Object Detection. 
+ICCV, 2017.
+</li>
+
+<li id="ref9">
+Xingyi Zhou, Dequan Wang, and Philipp Krähenbühl. 
+Objects as Points. 
+arXiv:1904.07850, 2019.
+</li>
+
+<li id="ref10">
+Zhi Tian et al. 
+FCOS: Fully Convolutional One-Stage Object Detection. 
+ICCV, 2019.
+</li>
+
+<li id="ref11">
+Feng Li et al. 
+DINO: DETR with Improved DeNoising Anchor Boxes for End-to-End Object Detection. 
+ICLR, 2023.
+</li>
+
+<li id="ref12">
+Alexander Kirillov et al. 
+Segment Anything. 
+ICCV, 2023.
+</li>
+
+<li id="ref13">
+Maxime Oquab et al. 
+DINOv2: Learning Robust Visual Features without Supervision. 
+2023.
+</li>
+
+<li id="ref14">
+Qianqian Shen et al. 
+A High-Resolution Dataset for Instance Detection with Multi-View Instance Capture. 
+NeurIPS Datasets and Benchmarks, 2023.
+</li>
+
+
+
+</ol>
+
+</div>
+</div>
+</section>
+
+
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+        <!-- Code. -->
+        <div class="columns is-centered has-text-justified">
+          <div class="column">
+            <h2 id="code" class="title is-3">Code</h2>
+            <!-- Toolkit Code. -->
+            <div class="content has-text-justified">
+              <h2 class="title is-3">
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/L2G"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span> <span class="small-caps">L2G-Net</span>
+                    </a>
+                </span>
+              </h2>
+              <p>
+ 
+              </p>
+            </div>
+
+          </div>
+        </div>
+  </div>
+</section>
+
+
+
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop">
+    <h2 id="BibTeX" class="title is-3">Citation</h2>
+    <span>Please cite <span class="small-caps">L2G-Net</span> if it helps your research:</span>
+    <div class="bib-container">
+    <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{zhang2026localmatches,
+  title        = {From Local Matches to Global Masks: Template-Guided Instance Detection and Segmentation in Open-World Scenes},
+  author       = {Zhang, Qifan and Allu, Sai Haneesh and Wang, Jikai and Lu, Yangxiao and Xiang, Yu},
+  year         = {2026},
+  eprint       = {2603.03577},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CV},
+  doi          = {10.48550/arXiv.2603.03577},
+  url          = {https://arxiv.org/abs/2603.03577}
+}</code></pre>
+    </div>
+</div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container is-max-desktop">
+    
+    <h2 class="title">Contact</h2>
+      <p>Send any comments or questions to Qifan Zhang: <a target="_blank" href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a> </p>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+  <div class="is-vcentered interpolation-panel">
+    <div class="container content">
+      <p style="font-size: 16px">
+        This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, and the NVIDIA Academic Grant Program Award.
+      </p>
+    </div>
+  </div>
+</div>  
+</section>
+
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p id="website-template-credits">
+        Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+    </div>
+  </div>
+</footer> -->
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/index.js"></script>
+<script src="./assets/js/global-index.js"></script>
+<!-- <script src="./assets/js/leaderboard-info.js"></script> -->
+
+<script>
+const leaderboardData = {
+
+  hr: {
+    headers: ["Method", "AP_avg", "AP_hard", "AP_easy", "AP50", "AP75"],
+    rows: [
+
+      ['FasterRCNN <a href="#ref7">[7]</a>', "19.5", "10.3", "23.8", "29.2", "23.3"],
+
+      ['RetinaNet <a href="#ref8">[8]</a>', "22.2", "14.9", "26.5", "31.2", "25.0"],
+
+      ['CenterNet <a href="#ref9">[9]</a>', "21.1", "11.8", "25.7", "32.7", "23.6"],
+
+      ['FCOS <a href="#ref10">[10]</a>', "22.4", "13.2", "28.7", "32.8", "25.5"],
+
+      ['DINO <a href="#ref11">[11]</a>', "28.0", "17.9", "32.6", "39.6", "32.2"],
+
+      ['SAM + DINO <a href="#ref12">[12]</a>, <a href="#ref13">[13]</a>', 
+        "37.0", "22.4", "43.9", "44.1", "40.4"],
+
+      ['SAM + DINOv2 <a href="#ref12">[12]</a>, <a href="#ref13">[13]</a>', 
+        "41.6", "28.0", "47.6", "49.1", "46.0"],
+
+      ['NIDS-Net <a href="#ref6">[6]</a>', 
+        "63.9", "43.4", "72.7", "76.6", "70.6"],
+
+      ['<b>L2G-Det (Ours)</b>', 
+        "76.2", "61.0", "81.2", "80.6", "77.9"]
+    ]
+  },
+
+  robo: {
+    headers: ["Method", "AP", "AP50", "AP75"],
+    rows: [
+
+      ['OS2D <a href="#ref1">[1]</a>', "2.9", "6.5", "2.0"],
+
+      ['DTOID <a href="#ref2">[2]</a>', "3.6", "9.0", "2.0"],
+
+      ['OLNCorr. <a href="#ref3">[3]</a>', "14.4", "18.1", "15.7"],
+
+      ['VoxDet <a href="#ref4">[4]</a>', "18.7", "23.6", "20.5"],
+
+      ['OTS-FM <a href="#ref5">[5]</a>', "56.7", "64.8", "59.0"],
+
+      ['IDOW <a href="#ref5">[5]</a>', "59.4", "67.8", "61.8"],
+
+      ['NIDS-Net <a href="#ref6">[6]</a>', "64.9", "79.4", "70.8"],
+
+      ['<b>L2G-Det (Ours)</b>', "71.9", "84.6", "77.2"]
+    ]
+  }
+
+};
+</script>
+
+
+<!-- <script>
+  function renderLeaderboard(datasetKey) {
+    const tableHead = document.getElementById("leaderboard-head");
+    const tableBody = document.getElementById("leaderboard-body");
+    const dataset = leaderboardData[datasetKey];
+
+    // Render head
+    tableHead.innerHTML = `
+      <tr>
+        ${dataset.headers.map(h => `<th>${h}</th>`).join("")}
+      </tr>
+    `;
+
+    // Render body
+    tableBody.innerHTML = dataset.rows.map(row => `
+      <tr>
+        ${row.map((cell, idx) => {
+          // Last row bold
+          const isLastRow = row[0].includes("L2G-Det");
+          return `<td${isLastRow ? ' style="font-weight: 700;"' : ""}>${cell}</td>`;
+        }).join("")}
+      </tr>
+    `).join("");
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const buttons = document.querySelectorAll(".dataset-pill");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", function () {
+        buttons.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        renderLeaderboard(this.dataset.dataset);
+      });
+    });
+
+    // Default
+    renderLeaderboard("robo");
+  });
+</script> -->
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  function convertCitations(element) {
+
+    const regex = /\[(\d+(?:\s*,\s*\d+)*)\]/g;
+
+    element.innerHTML = element.innerHTML.replace(regex, function(match, nums) {
+
+      return nums.split(",").map(n => {
+        const num = n.trim();
+        return `<a href="#ref-${num}">[${num}]</a>`;
+      }).join(", ");
+
+    });
+
+  }
+
+
+  const table = document.getElementById("leaderboard-table");
+
+  if (table) {
+    convertCitations(table);
+  }
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+function renderLeaderboard(datasetKey) {
+  const tableHead = document.getElementById("leaderboard-head");
+  const tableBody = document.getElementById("leaderboard-body");
+  const dataset = leaderboardData[datasetKey];
+
+  tableHead.innerHTML = `
+    <tr>
+      ${dataset.headers.map(h => `<th>${h}</th>`).join("")}
+    </tr>
+  `;
+
+  tableBody.innerHTML = dataset.rows.map(row => `
+    <tr>
+      ${row.map(cell => `<td>${cell}</td>`).join("")}
+    </tr>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll(".dataset-pill");
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+      buttons.forEach(b => b.classList.remove("active"));
+      this.classList.add("active");
+      renderLeaderboard(this.dataset.dataset);
+    });
+  });
+
+  const activeBtn = document.querySelector(".dataset-pill.active");
+  if (activeBtn) {
+    renderLeaderboard(activeBtn.dataset.dataset);
+  }
+});
+</script>
+
+
+
+
+
+
+
+
+
+</html>

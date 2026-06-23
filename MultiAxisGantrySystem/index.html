@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="MultiAxisGantrySystem">
+  <meta name="keywords" content="MultiAxisGantrySystem">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MultiAxisGantrySystem</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+
+  <style>
+    /* ── Buttons ── */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .hero-buttons .button {
+      min-width: 148px;
+      height: 44px;
+      font-size: 0.97rem;
+      font-weight: 600;
+      font-family: 'Google Sans', sans-serif;
+      padding: 0 1.4em;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-filled {
+      background-color: #1a1a1a;
+      color: #fff !important;
+      border: 2px solid #1a1a1a;
+    }
+
+    .btn-filled:hover {
+      background-color: #333;
+      border-color: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-outline {
+      background-color: #fff;
+      color: #1a1a1a !important;
+      border: 2px solid #1a1a1a;
+    }
+
+    .btn-outline:hover {
+      background-color: #1a1a1a;
+      color: #fff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Video Placeholder ── */
+    .video-placeholder {
+      background-color: #f2f2f2;
+      border: 2px dashed #bbb;
+      border-radius: 10px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      gap: 0.75rem;
+    }
+
+    .video-placeholder i {
+      font-size: 3.5rem;
+      color: #ccc;
+    }
+
+    .video-placeholder p {
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Google Sans', sans-serif;
+    }
+
+    /* ── Feature Cards ── */
+    .feature-card {
+      background: #fafafa;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 1.5rem;
+      height: 100%;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      background: #1a1a1a;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.9rem;
+    }
+
+    .feature-icon i {
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #111;
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Funding Banner ── */
+    .funding-banner {
+      background: #f7f7f7;
+      border-left: 4px solid #1a1a1a;
+      border-radius: 4px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .funding-banner i {
+      font-size: 1.5rem;
+      color: #1a1a1a;
+      flex-shrink: 0;
+    }
+
+    .funding-banner p {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* ── Contact Cards ── */
+    .contact-card {
+      background: #fafafa;
+      border: 1px solid #e8e8e8;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-avatar {
+      width: 46px;
+      height: 46px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-avatar i {
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .contact-info h4 {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin: 0 0 0.2rem 0;
+      color: #111;
+    }
+
+    .contact-info a {
+      font-size: 0.85rem;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      color: #1a1a1a;
+      text-decoration: underline;
+    }
+
+    /* ── Dividers ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid #ececec;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">MultiAxisGantrySystem</h1>
+            <p class="subtitle is-5" style="color: #555; margin-top: 0.5rem; margin-bottom: 0;">
+              A 2-axis automated gantry system for mining machine maintenance
+            </p>
+
+            <div class="hero-buttons">
+              <a href="./documentation/" class="button btn-filled">
+                <i class="fas fa-book"></i>
+                <span>Documentation</span>
+              </a>
+              <a href="https://github.com/IRVLUTD/gantry_system" target="_blank" class="button btn-outline">
+                <i class="fab fa-github"></i>
+                <span>Code</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Overview Video ── -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 2.5rem;">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <h2 class="title is-3 has-text-centered">Overview</h2>
+        <div class="publication-video">
+          <video controls playsinline height="100%" style="display: block; margin: 0 auto;">
+            <source src="./docs/videos/overview.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <hr class="section-divider">
+
+
+  <!-- ── About ── -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+          <h2 class="title is-3">About</h2>
+          <div class="content has-text-justified" style="font-size: 1.05rem; line-height: 1.85; color: #333;">
+            <p>
+              The <strong>MultiAxisGantrySystem</strong> is a 2-axis automated gantry system designed specifically
+              for mining environments. Its primary purpose is to systematically clear miners and their equipment
+              of debris and dust using directed compressed air, improving safety and reducing manual cleaning
+              time on the job site.
+            </p>
+            <p>
+              The system coordinates three stepper motors (Motors A, B, and C) over Modbus RTU via RS485.
+              Motors A and B drive the gantry along the primary travel axes, while Motor C controls the lateral
+              sweep. A solenoid valve delivers timed compressed-air pulses at each grid position, triggered
+              automatically by the drive's digital output signal.
+            </p>
+            <p>
+              The documentation covers all hardware and software aspects of the system, including wiring
+              diagrams, register mappings, calibration procedures, firmware code, and full operating instructions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <hr class="section-divider">
+
+
+  <!-- ── Key Features ── -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered" style="margin-bottom: 2rem;">Key Features</h2>
+      <div class="columns is-multiline">
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>2-Axis Motion</h3>
+            <p>Coordinated control of three independent motor axes for full grid coverage across the target area.</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>Automated Air Blast</h3>
+            <p>Solenoid valve triggered at each grid position delivers a timed compressed-air pulse to clear dust and
+              debris.</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>HMI Serial Control</h3>
+            <p>Operated via a web-based HMI over serial. Supports calibration, homing, auto-step, manual positioning,
+              and emergency stop.</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>Auto Calibration &amp; Homing</h3>
+            <p>Automatic limit-switch homing and travel-range calibration stored in EEPROM for reliable repeatable
+              motion.</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>Configurable Grid</h3>
+            <p>Grid dimensions (rows × columns) are configurable at runtime via HMI command, with snake-pattern
+              auto-sweep.</p>
+          </div>
+        </div>
+
+        <div class="column is-half">
+          <div class="feature-card">
+            <h3>Modbus RTU over RS485</h3>
+            <p>All motor drives communicate on a shared RS485 bus using Modbus RTU at 38400 baud — robust and
+              industrial-grade.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <hr class="section-divider">
+
+
+  <!-- ── Funding ── -->
+  <section class="section" style="padding-bottom: 1.5rem;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="funding-banner">
+            <i class="fas fa-award"></i>
+            <p>
+              This project is funded by <strong>Frontier Mining</strong>. We gratefully acknowledge their
+              support in enabling the development and deployment of this system.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Contact ── -->
+  <section class="section" style="padding-top: 1.5rem;">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-4 has-text-centered">Contact</h2>
+          <p class="has-text-centered" style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">
+            For technical queries or support regarding this project, please reach out to the team.
+          </p>
+          <div class="columns">
+            <div class="column">
+              <div class="contact-card">
+                <div class="contact-avatar"><i class="fas fa-user"></i></div>
+                <div class="contact-info">
+                  <h4>Luis Felipe Casas Murillo</h4>
+                  <a href="mailto:[Luis.CasasMurillo@UTDallas.edu]">Luis.CasasMurillo@UTDallas.edu</a>
+                </div>
+              </div>
+            </div>
+            <div class="column">
+              <div class="contact-card">
+                <div class="contact-avatar"><i class="fas fa-user"></i></div>
+                <div class="contact-info">
+                  <h4>Sai Haneesh Allu</h4>
+                  <a href="mailto:[SaiHaneesh.Allu@UTDallas.edu]">SaiHaneesh.Allu@UTDallas.edu</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>Template borrowed from <a href="https://nerfies.github.io">Nerfies</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(document).ready(function () {
+      $(".navbar-burger").click(function () {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,50 +1,265 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords"
-    content="iTeach, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, Robot Perception, Object Recognition, Dataset Construction, DoorHandle, Interactive Learning, Mixed Reality">
-  <meta name="description" content="iTeach: Interactive Teaching for Robot Perception using Mixed Reality">
+  <meta name="description"
+    content="iTeach is a failure-driven, co-located interactive teaching framework for adapting robot perception in the wild. A short HumanPlay interaction plus Few-Shot Semi-Supervised (FS3) eye-gaze and voice labeling lifts pretrained MSMFormer UOIS from 26.1 to 80.7 (3.1× gain) and improves real-robot grasping (+3) and pick-and-place (+7) on the SceneReplica benchmark.">
   <meta name="author" content="Jishnu Jaykumar P, Cole Salvato, Vinaya Bomnale, Jikai Wang, Yu Xiang">
-  <title id="title" project-name="iTeach">iTeach: Interactive Teaching for Robot Perception using Mixed Reality</title>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <!-- Google tag (gtag.js) -->
+  <meta name="keywords"
+    content="iTeach, interactive teaching, robot perception, failure-driven adaptation, in the wild adaptation, deployment-time adaptation, human-in-the-loop robotics, UOIS, unseen object instance segmentation, MSMFormer, SAM2, SceneReplica, Contact-GraspNet, GTO, grasping, pick-and-place, HumanPlay, Few-Shot Semi-Supervised, FS3, eye-gaze annotation, voice annotation, Microsoft HoloLens 2, mixed reality, RGB-D, Fetch robot, robot learning, IRVL, IRVLUTD, UT Dallas, University of Texas at Dallas, Yu Xiang, Jishnu Jaykumar, robotics, computer vision, deep learning, RA-L 2026">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://irvlutd.github.io/iTeach/">
+
+  <!-- Google Scholar / Highwire Press citation metadata -->
+  <meta name="citation_title" content="iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception">
+  <meta name="citation_author" content="Jaykumar P, Jishnu">
+  <meta name="citation_author" content="Salvato, Cole">
+  <meta name="citation_author" content="Bomnale, Vinaya">
+  <meta name="citation_author" content="Wang, Jikai">
+  <meta name="citation_author" content="Xiang, Yu">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_online_date" content="2026">
+  <meta name="citation_arxiv_id" content="2410.09072">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2410.09072">
+  <meta name="citation_public_url" content="https://irvlutd.github.io/iTeach/">
+  <meta name="citation_language" content="en">
+  <meta name="citation_keywords" content="robot perception; failure-driven adaptation; unseen object instance segmentation; UOIS; human-in-the-loop; mixed reality; SAM2; SceneReplica">
+
+  <!-- Dublin Core -->
+  <meta name="DC.title" content="iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception">
+  <meta name="DC.creator" content="Jishnu Jaykumar P">
+  <meta name="DC.creator" content="Cole Salvato">
+  <meta name="DC.creator" content="Vinaya Bomnale">
+  <meta name="DC.creator" content="Jikai Wang">
+  <meta name="DC.creator" content="Yu Xiang">
+  <meta name="DC.subject" content="Robot perception; Human-in-the-loop learning; UOIS; MSMFormer; SceneReplica; Mixed reality">
+  <meta name="DC.description" content="A failure-driven, co-located interactive teaching framework that adapts robot perception in the wild via short HumanPlay interactions, FS3 eye-gaze and voice labeling, and iterative fine-tuning.">
+  <meta name="DC.publisher" content="Intelligent Robotics and Vision Lab, The University of Texas at Dallas">
+  <meta name="DC.date" content="2026-04-15">
+  <meta name="DC.type" content="Text.Article">
+  <meta name="DC.language" content="en">
+  <meta name="DC.identifier" content="https://irvlutd.github.io/iTeach/">
+  <meta name="DC.rights" content="© 2026 IRVL, UT Dallas">
+
+  <!-- Open Graph -->
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="iTeach — IRVL · UT Dallas">
+  <meta property="og:title" content="iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception">
+  <meta property="og:description" content="Failure-driven, co-located interactive teaching adapts robot perception in the wild — lifts MSMFormer UOIS 26.1 → 80.7 (3.1×) and boosts real-robot pick-and-place by +7 on SceneReplica.">
+  <meta property="og:image" content="https://irvlutd.github.io/iTeach/assets/images/iteach/ral/intro.webp">
+  <meta property="og:image:secure_url" content="https://irvlutd.github.io/iTeach/assets/images/iteach/ral/intro.webp">
+  <meta property="og:image:type" content="image/webp">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="iTeach overview figure: a co-located human performs HumanPlay while the robot observes and the FS3 labeling pipeline produces dense supervision.">
+  <meta property="og:url" content="https://irvlutd.github.io/iTeach/">
+  <meta property="og:type" content="article">
+  <meta property="og:video" content="https://www.youtube.com/embed/J380k96szSM">
+  <meta property="og:video:url" content="https://www.youtube.com/embed/J380k96szSM">
+  <meta property="og:video:secure_url" content="https://www.youtube.com/embed/J380k96szSM">
+  <meta property="og:video:type" content="text/html">
+  <meta property="article:published_time" content="2026-04-15">
+  <meta property="article:modified_time" content="2026-04-15">
+  <meta property="article:author" content="Jishnu Jaykumar P">
+  <meta property="article:section" content="Robotics">
+  <meta property="article:tag" content="Robot Perception">
+  <meta property="article:tag" content="Human-in-the-Loop">
+  <meta property="article:tag" content="UOIS">
+  <meta property="article:tag" content="Mixed Reality">
+  <meta property="article:tag" content="RA-L 2026">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@utdallas">
+  <meta name="twitter:creator" content="@JishnuJPadal">
+  <meta name="twitter:title" content="iTeach — In the Wild Interactive Teaching for Robot Perception">
+  <meta name="twitter:description" content="Failure-driven, co-located teaching lifts pretrained UOIS by 3.1× and boosts real-robot pick-and-place by +7 on SceneReplica.">
+  <meta name="twitter:image" content="https://irvlutd.github.io/iTeach/assets/images/iteach/ral/intro.webp">
+  <meta name="twitter:image:alt" content="iTeach overview figure.">
+
+  <title id="title" project-name="iTeach">iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception | IRVL UT Dallas</title>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://irvlutd.github.io/iTeach/#article",
+    "headline": "iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception",
+    "name": "iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception",
+    "alternativeHeadline": "Failure-driven, co-located interactive teaching for robot perception",
+    "datePublished": "2026-04-15",
+    "dateModified": "2026-04-15",
+    "inLanguage": "en",
+    "abstract": "Robotic perception models often fail when deployed in real-world environments due to clutter, occlusion, and novel object instances. iTeach is a failure-driven interactive teaching framework for adapting robot perception in the wild. A co-located human performs short human-object interaction (HumanPlay) to expose informative configurations, labels a single final frame via hands-free eye-gaze and voice, and propagates dense masks with SAM2. Iterative fine-tuning on these samples lifts MSMFormer UOIS from 26.1 to 80.7 combined score and improves real-robot grasping (+3) and pick-and-place (+7) on SceneReplica.",
+    "description": "A failure-driven, co-located interactive teaching framework for adapting robot perception in the wild using short HumanPlay interactions, FS3 eye-gaze and voice labeling, and iterative fine-tuning.",
+    "keywords": "robot perception; failure-driven adaptation; UOIS; MSMFormer; SAM2; SceneReplica; HumanPlay; FS3; human-in-the-loop robotics; mixed reality",
+    "author": [
+      {"@type": "Person", "name": "Jishnu Jaykumar P", "givenName": "Jishnu", "familyName": "Jaykumar P", "url": "https://jishnujayakumar.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Cole Salvato", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Vinaya Bomnale", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jikai Wang", "url": "https://jwroboticsvision.github.io/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Yu Xiang", "url": "https://yuxng.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}}
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas",
+      "url": "https://labs.utdallas.edu/irvl",
+      "logo": "https://labs.utdallas.edu/irvl/favicon.ico"
+    },
+    "url": "https://irvlutd.github.io/iTeach/",
+    "mainEntityOfPage": "https://irvlutd.github.io/iTeach/",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://irvlutd.github.io/iTeach/assets/images/iteach/ral/intro.webp",
+      "width": 1600,
+      "height": 900
+    },
+    "codeRepository": [
+      "https://github.com/IRVLUTD/iTeach",
+      "https://github.com/IRVLUTD/iTeach-UOIS",
+      "https://github.com/IRVLUTD/iTeachSkillsApp"
+    ],
+    "sameAs": [
+      "https://github.com/IRVLUTD/iTeach",
+      "https://github.com/IRVLUTD/iTeach-UOIS",
+      "https://github.com/IRVLUTD/iTeachSkillsApp",
+      "https://arxiv.org/abs/2410.09072",
+      "https://www.youtube.com/watch?v=J380k96szSM"
+    ],
+    "funding": [
+      {"@type": "Grant", "identifier": "HR00112220005", "funder": {"@type": "Organization", "name": "DARPA Perceptually-enabled Task Guidance (PTG) Program"}},
+      {"@type": "MonetaryGrant", "funder": {"@type": "Organization", "name": "Sony Research Award Program"}},
+      {"@type": "Grant", "identifier": "2346528", "funder": {"@type": "Organization", "name": "National Science Foundation"}}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://irvlutd.github.io/iTeach/#video",
+    "name": "iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception",
+    "description": "Overview video demonstrating failure-driven adaptation of robot perception in the wild: a co-located human triggers HumanPlay, labels a single frame with eye-gaze and voice, SAM2 propagates masks across the RGB-D sequence, and iterative fine-tuning lifts MSMFormer UOIS performance and real-robot grasping on SceneReplica.",
+    "thumbnailUrl": [
+      "https://i.ytimg.com/vi/J380k96szSM/maxresdefault.jpg",
+      "https://i.ytimg.com/vi/J380k96szSM/hqdefault.jpg"
+    ],
+    "uploadDate": "2026-04-15",
+    "embedUrl": "https://www.youtube-nocookie.com/embed/J380k96szSM",
+    "contentUrl": "https://www.youtube.com/watch?v=J380k96szSM",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "IRVL", "item": "https://irvlutd.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "iTeach", "item": "https://irvlutd.github.io/iTeach/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "iTeach — IRVL · UT Dallas",
+    "url": "https://irvlutd.github.io/iTeach/",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-CGSXFW1SJ3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-CGSXFW1SJ3');
+    gtag('js', new Date()); gtag('config', 'G-CGSXFW1SJ3');
   </script>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- IRVL shared skeleton (same as HRT1 / FewSOL) -->
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./assets/css/iv-viewer.css" />
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
   <link rel="icon" href="#">
+
+  <!-- Critical assets: preloaded so the browser starts fetching immediately -->
+  <link rel="preload" href="./assets/css/iteach.css" as="style">
+  <link rel="preload" href="./assets/js/iteach.js"  as="script">
+
+  <!-- Project page theme (CLAP-inspired, sits on top of Bulma + royal-theme) -->
+  <link rel="stylesheet" href="./assets/css/iteach.css">
 </head>
 
 <body>
 
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="aurora-container"><div class="aurora"></div></div>
+  <div class="grain-overlay"></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" id="lightbox">
+    <button class="lightbox-close" aria-label="Close enlarged figure">×</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- Progress sidebar (wide screens) -->
+  <nav class="progress-sidebar" aria-label="Page progress">
+    <div class="progress-track">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" id="progress-fill"></div>
+      <div class="progress-item" data-section="abstract">
+        <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
+      </div>
+      <div class="progress-item" data-section="overview">
+        <a href="#overview"><span class="progress-dot"></span><span class="progress-label">Overview</span></a>
+      </div>
+      <div class="progress-item" data-section="system">
+        <a href="#system"><span class="progress-dot"></span><span class="progress-label">System</span></a>
+      </div>
+      <div class="progress-item" data-section="fs3">
+        <a href="#fs3"><span class="progress-dot"></span><span class="progress-label">FS3 Labeling</span></a>
+      </div>
+      <div class="progress-item" data-section="results">
+        <a href="#results"><span class="progress-dot"></span><span class="progress-label">Results</span></a>
+      </div>
+      <div class="progress-item" data-section="resources">
+        <a href="#resources"><span class="progress-dot"></span><span class="progress-label">Code &amp; Data</span></a>
+      </div>
+      <div class="progress-item" data-section="citation">
+        <a href="#citation"><span class="progress-dot"></span><span class="progress-label">BibTeX</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- IRVL shared navbar — populated by ../assets/scripts/script.js -->
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavMenu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </a>
     </div>
-    <div style="text-align: center;" class="navbar-menu">
-      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+    <div id="mainNavMenu" style="text-align: center;" class="navbar-menu">
+      <div class="navbar-start royal-theme" style="flex-grow: 1; justify-content: center;">
         <a id="related-research-home" class="navbar-item" href="" target="_blank">
           <span class="icon" style="text-align: center;">
             <svg class="svg-inline--fa fa-home fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas"
@@ -52,588 +267,517 @@
               <path fill="currentColor"
                 d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
               </path>
-            </svg><!-- <i class="fas fa-home"></i> Font Awesome fontawesome.com -->
+            </svg>
           </span>
         </a>
-
         <div class="navbar-item has-dropdown is-hoverable">
           <a id="related-research" class="navbar-link"></a>
           <div id="related-research-dropdown" class="navbar-dropdown"></div>
         </div>
       </div>
-
     </div>
   </nav>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-body pad-zero">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title"><i>iTeach:</i> Interactive Teaching for Robot Perception using Mixed Reality</h1>
-            <div class="is-size-6 publication-authors">
+
+            <!-- Populate once accepted:
+            <span class="eyebrow">Under Review · IEEE RA-L 2026</span>
+            -->
+
+            <h1 id="project-name" class="title is-2 publication-title">
+              <em>iTeach</em><span class="title-sep">:</span> In the Wild <b>Interactive Teaching</b><br>
+              for Failure-Driven Adaptation of Robot Perception
+            </h1>
+            <div class="title-line"></div>
+
+            <!-- Authors (HRT1 skeleton) -->
+            <div class="is-size-5 publication-authors">
               <div id="author-content" class="columns is-centered is-gapless">
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://jishnujayakumar.github.io">
-                        <img class="display-image author-image center"
-                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar P</a></span>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://labs.utdallas.edu/irvl/people/"><img
-                          class="author-image center" src="../assets/images/authors/cole_salvato.webp"><br>Cole Salvato</a></span>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://jishnujayakumar.github.io">
+                    <img class="display-image author-image center" src="../assets/images/authors/jishnu_padalunkal.webp">
+                    <br><span class="is-size-6">Jishnu Jaykumar P</span></a>
+                </div></div></div>
 
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://labs.utdallas.edu/irvl/people/">
+                    <img class="display-image author-image center" src="../assets/images/authors/cole_salvato.webp">
+                    <br><span class="is-size-6">Cole Salvato</span></a>
+                </div></div></div>
 
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://labs.utdallas.edu/irvl/people/"><img class="author-image center"
-                          src="../assets/images/authors/vinaya_bomnale.webp"><br>Vinaya Bomnale</a>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://labs.utdallas.edu/irvl/people/">
+                    <img class="display-image author-image center" src="../assets/images/authors/vinaya_bomnale.webp">
+                    <br><span class="is-size-6">Vinaya Bomnale</span></a>
+                </div></div></div>
 
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://jwroboticsvision.github.io/">
+                    <img class="display-image author-image center" src="../assets/images/authors/jikai_wang.webp">
+                    <br><span class="is-size-6">Jikai Wang</span></a>
+                </div></div></div>
 
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://labs.utdallas.edu/irvl/people/"><img class="author-image center"
-                          src="../assets/images/authors/jikai_wang.webp"><br>Jikai Wang</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="column">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
-                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://yuxng.github.io">
+                    <img class="display-image author-image center" src="../assets/images/authors/yu_xiang.webp">
+                    <br><span class="is-size-6">Yu Xiang</span></a>
+                </div></div></div>
 
               </div>
             </div>
 
-            <div class="is-size-5 publication-authors affiliation">
-              <span class="author-block"><a target="_blank" href="https://labs.utdallas.edu/irvl">The
-                  University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <!-- <span id="accepted-conference" class="author-block"><br>IEEE International Conference on Robotics and Automation (ICRA), 2023</span> -->
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block">
+                <a class="href-link" target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab · The University of Texas at Dallas</a>
+              </span>
             </div>
+
+            <p id="accepted-conference" class="venue-line">
+              <b>Under Submission</b>
+            </p>
+
             <div class="column has-text-centered">
               <div class="publication-links">
 
-            <!-- Arxiv Link. -->
-            <span class="link-block">
-              <a target="_blank" href="https://arxiv.org/abs/2410.09072"
-                class="external-link button is-normal is-rounded is-dark">
-                <span class="icon">
-                  <i class="ai ai-arxiv"></i>
-                </span>
-                <span>arXiv</span>
-              </a>
-            </span> 
-
-
-                <!-- Ar5iv Link. -->
-                <!-- <span class="link-block">
-                <a target="_blank" href="https://ar5iv.labs.arxiv.org/html/2207.03333"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <img src="assets/images/ar5iv-logo.png" width="25px" height="18px">
-                  </span>
-                  <span>ar5iv</span>
-                </a>
-              </span>  -->
-
-
-              <!-- Supplementary Link. -->
-              <span class="link-block">
-                <a target="_blank" href="https://arxiv.org/src/2410.09072v1/anc/iTeach_supp.pdf"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Supplementary</span>
-                </a>
-              </span>
-
-
-
-                <!-- Dataset Link. -->
                 <span class="link-block">
-                  <a target="_blank" href="#data" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span>Data</span>
-                  </a>
-                </span>
-
-                <!-- Code Link. -->
-                <span class="link-block">
-                  <a target="_blank" href="#code"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <br>
-
-
-                <!-- Exp-Setup Link. -->
-                <span class="link-block">
-                  <a target="_blank" href="#exp-setup"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-cog"></i>
-                    </span>
-                    <span>Exp-Setup</span>
-                  </a>
-                </span>
-
-                <!-- Real World Demo Link. -->
-                <span class="link-block">
-                  <a href="#demo" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-video"></i>
-                    </span>
-                    <span>Real World Demo</span>
-                  </a>
-                </span>
-
-
-                <!--Hugging Face. -->
-                <span class="link-block">
-                  <a target="_blank" href="https://huggingface.co/spaces/IRVLUTD/DH-YOLO" class="external-link button is-normal is-rounded is-dark">
-                    <span>🤗 HuggingFace Demo</span>
-                  </a>
-                </span>
-
-                <!-- PapersWithCode Link. -->
-                <!-- <span class="link-block">
-                  <a target="_blank" href="#"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <img src="assets/images/paperswithcode-logo.png" width="18px" height="18px">
-                    </span>
-                    <span>paperswithcode (coming soon..)</span>
-                  </a>
-                </span> -->
-
-                <!-- FAQs. -->
-                <!-- <span class="link-block">
-                  <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-question"></i>
-                    </span>
-                    <span>FAQs</span>
-                  </a>
-                </span> -->
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-  <section class="section">
-    <div class="container is-max-desktop">
-
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">📝 Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              We introduce <i><b>iTeach</b></i>, a Mixed Reality (MR)
-framework to improve robot perception through real-time interactive teaching. By allowing human instructors to dynamically label robot RGB data, <i><b>iTeach</b></i> improves both the accuracy
-and adaptability of robot perception to new scenarios. The
-framework supports on-the-fly data collection and labeling,
-enhancing model performance, and generalization. Applied
-to door and handle detection for household tasks, <i><b>iTeach</b></i>
-integrates a HoloLens app with an interactive YOLO model.
-Furthermore, we introduce the IRVLUTD DoorHandle dataset.
-DH-YOLO, our efficient detection model, significantly enhances
-the accuracy and efficiency of door and handle detection,
-highlighting the potential of MR to make robotic systems more
-capable and adaptive in real-world environments.
-            </p>
-          </div>
-
-          <div class="hero-body has-text-centered">
-            <h1 class="title">🔍 Overview</h1>
-            <img class="center" src="./assets/images/iteach/iteach-overview.webp" alt=""><br><br>
-            <p class="has-text-justified">
-              <b>🤖 iTeach system overview.</b>
-              (i) A Robot views a scene. 🌄 (ii) A model (here DH-YOLO) predicts predefined objects (here door/handle) 🚪🖐️. (iii) Scene image with predictions overlayed (SIP) are sent to HoloLens POV 🥽. (iv) User wearing HoloLens sees the same scene image (SIP) and annotates the correct labels ✍️. (v) The annotated labels with scene images are sent to a trainable model for fine-tuning ⚙️. (vi) <b>Goal🎯:</b> The predictions improve based on interactive teaching.
-          </p>
-
-
-          </div>
-
-
-          <div class="hero-body has-text-centered">
-            <h1 class="title">🚀 System Workflow</h1><br>
-            <img class="center" src="./assets/images/iteach/iteach-detailed-system-flow-chart.webp" alt=""><br><br>
-            <p class="has-text-justified">🛠️ Detailed workflow of the system. ✅ Correct predictions are outlined in green, and ❌ incorrect predictions are marked in red borders.</p>
-            
-
-          </div>
-
-        </div>
-      </div>
-      <!--/ Abstract. -->
-    </div>
-    <!-- <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Video Coming Soon...</h2>
-        <div class="publication-video"></div>
-      </div>
-    </div> -->
-    <!-- / Paper video. -->
-
-  </section>
-
-
-  <!-- Demo -->
-  <section class="" id="demo">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">🌍 Real World Demo</h2>
-        <p>🎥 Demo video showing human interaction and learning</p>
-      </div>
-    </div>
-    <div class="container is-max-desktop">
-
-
-      <div id="demo-vid-iframe" class="hero-body">
-        <div class="iframe-container"><iframe src="https://www.youtube.com/embed/fusb4CkM_IE?rel=0&amp;showinfo=0&amp;vq=hd1080" frameborder="0"
-          allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-      </div>
-  </section>
-  <!-- Demo -->
-
-  <br>
-  <br>
-  <br>
-  <!-- Our experiment setup -->
-  <section class="section" id="exp-setup">
-    <div class="hero-body">
-      <div class="columns is-centered has-text-centered">
-        <div class="container is-max-desktop">
-          <h2 class="title is-3">🔬 Our Experiment Setup 🛠️</h2>
-          <img src="assets/images/iteach/iTeach-exp-setup-with-captions.webp" alt="">
-          <p class="has-text-justified">🤖 Our experimental setup included a Fetch mobile robot, a HoloLens 2 device 🥽, a Lenovo Legion Pro 7 laptop 💻 equipped with an RTX 4090 GPU, and a human instructor 👤. The laptop environment is configured with Python 3.8.10 and PyTorch 2.4.0, utilizing CUDA 12.1 and an NVIDIA GeForce RTX 4090 Laptop GPU, which has approximately 16 GB of memory.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Our experiment setup -->
-
-  <!-- HoloLens 2 app -->
-  <section class="section" id="hololens-2-app">
-    <div class="">
-      <div class="container is-max-desktop">
-        <div class="column has-text-centered text-primary">
-          <h2 class="title is-3">🥽 HoloLens 2 App</h2>
-          <p class="title is-5">(i) The user interface flow of our labelling app from the startup phase to the main menu.</p>
-          <img src="assets/images/iteach/iteach-app-select-to-main-menu-2x2.webp" alt=""><br><br><br>
-          <p class="title is-5">(ii) Description of the main menu options in the <i>iTeachlabeller</i> app.</p>
-          <img src="assets/images/iteach/iTeach-main.menu.jpg" alt=""><br><br><br>
-          <p class="has-text-justified is-3">✨ We are providing a build <a href="https://utdallas.box.com/v/iTeachLabellerApp" target="_blank" rel="noopener noreferrer">here</a> to help you get started easily 🚀, without the need to set up the environment or go through the building process again 🔧.</p>
-
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- HoloLens 2 app -->
-
-  <!-- User Sample Capture Diversity -->
-  <section class="section" id="data-collection-diversity">
-    <div class="">
-      <div class="container is-max-desktop">
-        <div class="column has-text-centered text-primary">
-          <h2 class="title is-3">🌟 Sample Scenarios for Data Collection</h2>
-          <p class="title is-5">(i) Diverse samples from different locations.</p>
-          <img src="assets/images/iteach/iteach-diff-places-diverse-samples.webp" alt=""><br><br>
-          <p class="title is-5">(ii) Different samples from the same location.</p>
-          <img src="assets/images/iteach/iteach-same-loc-diff-samples.webp" alt=""><br><br><br>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- User Sample Capture Diversity -->
-
-  <!-- Practical challenges -->
-  <section class="section" id="practical-challenges">
-    <div class="">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">⚠️ Practical Challenges Encountered During Experiments</h2>
-        </div>
-      </div>
-      <div class="container is-max-desktop">
-        <img src="assets/images/iteach/iteach-practical-challenges-encountered.webp" alt="">
-        <p class="has-text-justified">⚙️ Each of these challenges comes with corresponding benefits that enhance the overall use case of the system. In summary, these challenges are manageable, as demonstrated by our fully functional system ✅.</p>
-    </div>
-  </section>
-  <!-- Practical challenges -->
-    
-   
-    <section class="section">
-      <div class="container is-max-desktop">
-  
-        <!-- Data. -->
-        <div class="columns is-centered has-text-justified">
-          <div class="column">
-            <h2 id="data" class="title is-3 has-text-centered"></h2>
-            <div class="column has-text-centered">
-              <img src="assets/images/iteach/iTeach-IRVLUTD-DoorHandle-Dataset-Banner.webp" alt="">
-              <img src="assets/images/iteach/area-covered-for-irvlutd-doorhandle-dataset-creation.webp" alt="">
-            <h3>🆕 We introduce a new  dataset collected from the <a href="https://www.utdallas.edu/" target="_blank" rel="noopener noreferrer">UT Dallas</a> campus consisting of both indoor 🏢 and outdoor 🌳 scenes.</h3>
-          </div>
-            <!-- iTeach Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3 has-text-centered">
-                <span class="link-block">
-                  <a target="_blank" href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-Dataset"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-images"></i>
-                    </span>
-                    <span>IRVLUTD-DoorHandle-Dataset 🔥</span>
+                  <a target="_blank" href="https://arxiv.org/abs/2410.09072"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
                   </a>
                 </span>
                 <span class="link-block">
-                  <a target="_blank" href="https://utdallas.box.com/v/iTeach-Experiment-Datasets"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fa fa-images"></i>
-                    </span>
-                    <span><i>iTeach</i>-Experiment-Datasets</span>
+                  <a target="_blank" href="https://arxiv.org/pdf/2410.09072"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span><span>PDF</span>
                   </a>
                 </span>
-              </h2>
-              <!-- <span class="has-text-centered">iTeach</span> is licensed under <span class="underline">MIT license</span>. -->
-              <p>
-  
-              Once you successfully download and extract the dataset, you should have a folder with the following
-              structure:
-  
-              <pre><code>├── IRVLUTD-DoorHandle-Dataset/
-                    ├── train/
-                          ├── train.524.zip
-                          ├── train.1008.zip
-                          ├── train.1532.zip
-                    ├── test_dataset.256.zip
-                    ├── hololens.finetuning.data.100.zip
-                    └── <span class="red bold">README.md</span></code></pre>
-                    <!-- ├── README.md -->
-              </p>
-  
-              <p>More information can be found in the <a class="red bold"
-                  href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-DS-README" target="_blank">README.md</a>. For instructions
-                about using the dataset please see the <span><a target="_blank"
-                    href="https://pypi.org/project/IRVLUTDDoorHandleDataset" target="_blank">PyTorch Dataloader</a></span>.</p>
-              <p class="italic">
-                <span class="bold">Note</span>: Use <a target="_blank"
-                  href="https://utdallas.box.com/v/iTeach-Experiment-Datasets"><span
-                    class="">iTeach</span>-experiment-datasets</a> for experiments mentioned in the paper.
-              </p>
-            </div>
-            <!--/ iTeach Code. -->
-          </div>
-        </div>
-        <!--/ Data. -->
-  
-    </section>
-  
-    <section class="section">
-      <div class="container is-max-desktop">
-  
-        <!-- Code. -->
-        <div class="columns is-centered has-text-justified">
-          <div class="column">
-            <h2 id="code" class="title is-3">Code</h2>
-  
-  
-            <!-- iTeach Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
+                <span class="link-block">
+                  <a href="#video" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fab fa-youtube"></i></span><span>Video</span>
+                  </a>
+                </span>
                 <span class="link-block">
                   <a target="_blank" href="https://github.com/IRVLUTD/iTeach"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span> <span class=""><i>iTeach</i></span></span>
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                   </a>
                 </span>
-              </h2>
-              <p>
-                The code for (i) iTeachLabeller app, (ii) iTeach system, and (iii) iTeach experiments. 🔧
-            </p>
-            
-            </div>
-            <!--/ iTeach Code. -->
-  
-            <!-- Toolkit Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
                 <span class="link-block">
-                  <a target="_blank" href="https://pypi.org/project/iteach-toolkit"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span> <span class=""><i>iTeach</i></span> Toolkit</span>
+                  <a href="#resources" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fas fa-database"></i></span><span>Data</span>
                   </a>
                 </span>
-              </h2>
-              <p>
-                A toolkit for the <span class="">iTeach</span> containing inference code for DH-YOLO.
-              </p>
-            </div>
-            <!--/ Toolkit Code. -->
-  
-            <!-- HuggingFace Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
                 <span class="link-block">
-                  <a target="_blank" href="https://huggingface.co/spaces/IRVLUTD/DH-YOLO/tree/main"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span>🤗 HuggingFace Demo</span>
+                  <a href="#citation" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span><span>Citation</span>
                   </a>
                 </span>
-              </h2>
-              <p>
-                The code for 🤗 space.
-              </p>
+
+              </div>
             </div>
-            <!--/ HuggingFace Code. -->
-  
-            <!-- Dataloader Code. -->
-            <div class="content has-text-justified">
-              <h2 class="title is-3">
-                <span class="link-block">
-                  <a target="_blank" href="https://pypi.org/project/IRVLUTDDoorHandleDataset"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span> <span class=""><i>iTeach</i></span> PyTorch Dataloader</span>
-                  </a>
-                </span>
-              </h2>
-              <p>
-                A PyTorch dataloader for the <a target="_blank" href="https://utdallas.box.com/v/IRVLUTD-DoorHandle-Dataset" class="external-link is-normal is-rounded is-dark">
-                  <span>IRVLUTD-DoorHandle-Dataset</span></a>.
-              </p>
-            </div>
-            <!--/ Dataloader Code. -->
-  
           </div>
         </div>
-        <!--/ Code. -->
-  
-  
       </div>
-    </section>
-  
-  
-
-  <section class="section" id="BibTeX"> 
-    <div class="container is-max-desktop">
-      <h2 class="title  has-text-centered">BibTeX</h2>
-      <span>Please cite <i><b>iTeach</b></i></span> if it helps your research 🙌:</span>
-      <div class="bib-container">
-        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@misc{padalunkal2024iteach,
-    title={{iTeach: Interactive Teaching for Robot Perception using Mixed Reality}},
-    author={Jishnu Jaykumar P and Cole Salvato and Vinaya Bomnale and Jikai Wang and Yu Xiang},
-    year={2024},
-    eprint={2410.09072},
-    archivePrefix={arXiv},
-    primaryClass={cs.RO}
-}</code></pre>
-      </div>
-      
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <div class="container is-max-desktop has-text-centered">
-  
-      <h2 class="title">Contact</h2>
-      <p>
-        <ul>
-          Inform an <a href="https://github.com/IRVLUTD/iTeach/issues">issue</a> 📝
-        </ul>
-  
-        <ul>
-          Join the <a href="https://github.com/IRVLUTD/iTeach/discussions">discussion forum</a> 💬
-        </ul>
-  
-        <ul>
-          Send any comments or questions to Jishnu: <a target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>📧
-        </ul>
-  
-      </div>
-  </section>
-  
+  <a id="main" tabindex="-1"></a>
 
-  <section class="section">
-    <div class="container is-max-desktop content">
-      <h2 class="title has-text-centered">🙏 Acknowledgements</h2>
-      <div class="is-vcentered interpolation-panel">
-        <div class="container content">
-          <p style="font-size: 16px">
-            This work was supported by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract number HR00112220005, the Sony Research Award Program, and the National Science Foundation (NSF) under Grant No.2346528. We thank <a href="https://saihaneeshallu.github.io" target="_blank" rel="noopener noreferrer">Sai Haneesh Allu</a> for his assistance with the real-world experiments. 🙌
-          </p>
+  <!-- TL;DR first — the headline idea above the fold -->
+  <section class="section" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+    <div class="container is-max-desktop">
+      <div class="tldr">
+        <span class="tldr-label">TL;DR</span>
+        When a pretrained perception model <i>fails in the wild</i>, a co-located human performs a short <i>HumanPlay</i>
+        to clean the scene, then labels just the <b>final frame</b> hands-free with <b>eye-gaze + voice</b>. SAM2 converts the
+        gaze points into bounding boxes and propagates masks backwards across the short RGB-D clip — turning one annotation
+        into dense supervision. These failure-driven samples iteratively fine-tune <b>MSMFormer</b>, lifting UOIS accuracy by
+        <b>+54.2</b> combined score and improving real-robot grasping and pick-and-place success on the <b>SceneReplica</b>
+        benchmark by <b>+3</b> and <b>+7</b>, respectively.
+      </div>
+    </div>
+  </section>
+
+  <!-- Section TOC (narrow screens; sidebar handles wide) -->
+  <div class="container is-max-desktop">
+    <nav class="page-nav" aria-label="Sections">
+      <a href="#abstract">Abstract</a>
+      <a href="#overview">Overview</a>
+      <a href="#system">System</a>
+      <a href="#fs3">FS3 Labeling</a>
+      <a href="#results">Results</a>
+      <a href="#resources">Code &amp; Data</a>
+      <a href="#citation">BibTeX</a>
+    </nav>
+  </div>
+
+  <!-- Overview video — click-to-play facade (no iframe until activated) -->
+  <section class="section" id="video" style="padding-top: 0.5rem; padding-bottom: 1rem;">
+    <div class="container is-max-desktop">
+      <div class="publication-video">
+        <div class="yt-facade" role="button" tabindex="0" aria-label="Play iTeach overview video"
+             data-video-id="J380k96szSM" data-autoplay="muted">
+          <img src="https://i.ytimg.com/vi/J380k96szSM/hqdefault.jpg"
+               alt="iTeach overview video thumbnail" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
   </section>
-  
 
+  <!-- Abstract -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column">
+          <h2 class="title is-3 royal-theme has-text-centered">Abstract</h2>
+          <div class="title-line"></div>
+          <div class="content has-text-justified">
+            <p>
+              Robotic perception models often fail in the real world due to clutter, occlusion, and novel objects. Existing
+              approaches rely on offline data collection and retraining — slow, and blind to deployment-time failures. We propose
+              <b><i>iTeach</i></b>, a failure-driven interactive teaching framework that adapts robot perception <i>in the wild</i>.
+              A co-located human observes live predictions, triggers a short <i>HumanPlay</i> interaction on a failed object, and
+              records an RGB-D sequence. Our <b>Few-Shot Semi-Supervised (FS3)</b> labeling annotates only the final frame using
+              hands-free eye-gaze and voice; SAM2 propagates the mask across the sequence for dense supervision. Iterative
+              fine-tuning on these samples progressively improves an <b>MSMFormer</b> UOIS model, translating into higher grasping
+              and pick-and-place success on the <b>SceneReplica</b> benchmark and real-robot experiments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
-        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
-        </a> -->
-        <!-- <br> -->
-        <p id="website-template-credits">
-          Last updated on: <span id="last-updated"></span> | Page template borrowed from 🌐
+  <!-- Overview -->
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Overview</h2>
+      <div class="title-line"></div>
+      <div class="paper-fig"><img src="./assets/images/iteach/ral/intro.webp" alt="iTeach overview"></div>
+      <p class="fig-caption">
+        A pretrained perception model fails in the wild under clutter, occlusion, and novel objects. A co-located human performs
+        a short <i>HumanPlay</i> interaction, annotates a single frame with eye-gaze + voice, and we propagate the label across
+        the short RGB-D sequence. Failure-driven samples feed an iterative fine-tuning loop; the best checkpoint is redeployed.
+      </p>
+    </div>
+  </section>
+
+  <!-- System Architecture -->
+  <section class="section" id="system">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">System Architecture</h2>
+      <div class="title-line"></div>
+      <div class="paper-fig"><img src="./assets/images/iteach/ral/iteach-sys-setup-compressed.webp" alt="iTeach system setup"></div>
+      <p class="fig-caption">
+        <b>Hardware.</b> Fetch mobile manipulator (RGB-D) · Microsoft HoloLens 2 (gaze + voice annotation, live prediction
+        overlay) · Lenovo Legion Pro 7 laptop with RTX 4090 (inference, SAM2 propagation, fine-tuning). All compute runs
+        onboard; the robot is driven by the human with a PS4 controller for scene exploration. RGB-D streams to the laptop
+        over wired Ethernet; the HoloLens connects over a laptop-hosted Wi-Fi hotspot via the ROS-TCP connector.
+      </p>
+    </div>
+  </section>
+
+  <!-- FS3 Labeling -->
+  <section class="section" id="fs3">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">FS3 Labeling</h2>
+      <div class="title-line"></div>
+      <div class="fs3-flow">
+        <figure class="fs3-step">
+          <div class="fs3-head">
+            <span class="fs3-num">01</span>
+            <span class="fs3-name">HumanPlay</span>
+          </div>
+          <div class="paper-fig"><img src="./assets/images/iteach/ral/humanplay.gif" alt="HumanPlay interaction"></div>
+          <figcaption>The human rearranges objects to reduce occlusion and produce a clean final frame while a short 5–10 s RGB-D sequence is recorded.</figcaption>
+        </figure>
+
+        <figure class="fs3-step">
+          <div class="fs3-head">
+            <span class="fs3-num">02</span>
+            <span class="fs3-name">Hands-free annotation</span>
+          </div>
+          <div class="paper-fig"><img src="./assets/images/iteach/ral/iteach-uois-annotation.webp" alt="FS3 annotation via eye-gaze and voice"></div>
+          <figcaption>Eye-gaze places point prompts on the final frame; a voice command triggers SAM2 to convert them into bounding-box object labels.</figcaption>
+        </figure>
+
+        <figure class="fs3-step">
+          <div class="fs3-head">
+            <span class="fs3-num">03</span>
+            <span class="fs3-name">Label propagation</span>
+          </div>
+          <div class="paper-fig"><img src="./assets/images/iteach/ral/sam2-mask-prop.webp" alt="SAM2 label propagation"></div>
+          <figcaption>SAM2 (video mode) propagates masks <i>backwards</i> from the final annotated frame to all earlier frames, producing dense per-frame supervision.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Results</h2>
+      <div class="title-line"></div>
+      <p class="results-sub">Perception improves · Manipulation follows.</p>
+
+      <!-- ====== 1. Perception Adaptation (UOIS) ====== -->
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>Perception adaptation</div>
+        <div class="result-grid">
+          <article class="kpi-card kpi-card-hero">
+            <div class="kpi-tag">UOIS · Combined Score</div>
+            <div class="kpi-stat">
+              <span class="kpi-big">3.1<span class="kpi-x">×</span></span>
+              <span class="kpi-delta">+54.6</span>
+            </div>
+            <div class="kpi-title">Perception quality lift</div>
+            <div class="kpi-bar" aria-hidden="true">
+              <span class="kpi-bar-seg kpi-bar-before" style="flex: 26.1;"></span>
+              <span class="kpi-bar-seg kpi-bar-after"  style="flex: 54.6;"></span>
+            </div>
+            <div class="kpi-ba">
+              <span class="kpi-ba-l"><em>before</em>26.1</span>
+              <span class="kpi-ba-arrow">→</span>
+              <span class="kpi-ba-r"><em>after</em><b>80.7</b></span>
+            </div>
+          </article>
+
+          <figure class="result-fig">
+            <div class="paper-fig"><img src="./assets/images/iteach/ral/iteach-uois-qual.webp" alt="UOIS qualitative comparison across iTeach fine-tuning stages"></div>
+            <figcaption class="fig-caption">
+              <b>Qualitative UOIS.</b> Left → right: ground truth, pretrained MSMFormer, and iTeach fine-tuning rounds FT1, FT3, FT5.
+              iTeach recovers missed instances and cleans up over-segmentation across tabletop, shelves, sofas, stairs, and floor-level scenes.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- ====== 2. Downstream Manipulation (SceneReplica + Real robot) ====== -->
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>iTeach-UOIS on SceneReplica &amp; real robots</div>
+
+        <!-- Shared pipeline: stage 02 = only thing we change -->
+        <ol class="rr-pipeline" aria-label="Manipulation pipeline">
+          <li><span class="rr-n">01</span><span class="rr-t">RGB-D input</span></li>
+          <li class="rr-hi"><span class="rr-n">02</span><span class="rr-t">iTeach-UOIS<br>segmentation</span></li>
+          <li><span class="rr-n">03</span><span class="rr-t">Contact-GraspNet<br>proposals</span></li>
+          <li><span class="rr-n">04</span><span class="rr-t">GTO motion<br>planning</span></li>
+          <li><span class="rr-n">05</span><span class="rr-t">Grasp<br>execution</span></li>
+        </ol>
+        <p class="fig-caption" style="margin: 0.5rem 0 1.25rem;">
+          Only stage <b>02</b> differs across comparisons — everything else is held fixed.
         </p>
+
+      <!-- Visual comparison: one grouped horizontal bar chart per metric -->
+      <div class="metric-cards">
+        <div class="metric-card">
+          <div class="metric-hd">
+            <span class="metric-name">Grasping success</span>
+            <span class="metric-scale">/ 100</span>
+          </div>
+          <div class="metric-rows">
+            <div class="mrow"><span class="mrow-l">Prior best <em>(MSMFormer)</em></span><span class="mrow-bar"><i style="width:71%"></i></span><span class="mrow-v">71</span></div>
+            <div class="mrow mrow-ours"><span class="mrow-l"><b>iTeach-UOIS</b></span><span class="mrow-bar"><i style="width:74%"></i></span><span class="mrow-v">74&nbsp;<span class="delta">+3</span></span></div>
+          </div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-hd">
+            <span class="metric-name">Pick &amp; Place success</span>
+            <span class="metric-scale">/ 100</span>
+          </div>
+          <div class="metric-rows">
+            <div class="mrow"><span class="mrow-l">Prior best <em>(MSMFormer)</em></span><span class="mrow-bar"><i style="width:65%"></i></span><span class="mrow-v">65</span></div>
+            <div class="mrow mrow-ours"><span class="mrow-l"><b>iTeach-UOIS</b></span><span class="mrow-bar"><i style="width:72%"></i></span><span class="mrow-v">72&nbsp;<span class="delta">+7</span></span></div>
+          </div>
+        </div>
+      </div>
+
+        <div class="paper-fig" style="margin-top: 1.5rem;">
+          <img src="./assets/images/iteach/ral/realworld-with-gto.webp" alt="Real-world pick-and-place with GTO">
+        </div>
+        <p class="fig-caption">
+          Swap in <b>iTeach-UOIS</b> and the same real-robot pipeline starts handling clutter and unseen objects the pretrained
+          baseline fails on — turning perception gains into reliable picks and places in the wild.
+        </p>
+      </div>
+
+      <!-- ====== 3. Dataset snapshot ====== -->
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>iTeach-HumanPlay Dataset</div>
+
+        <div class="ds-stats">
+          <div class="ds-stat">
+            <div class="ds-n">48</div>
+            <div class="ds-l">scenes</div>
+            <div class="ds-sub">45 train · 3 test</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-n">~13 K</div>
+            <div class="ds-l">training samples</div>
+            <div class="ds-sub">dense masks via FS3</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-n">902</div>
+            <div class="ds-l">test samples</div>
+            <div class="ds-sub">held-out scenes</div>
+          </div>
+          <div class="ds-stat">
+            <div class="ds-n">5–10 s</div>
+            <div class="ds-l">per sequence</div>
+            <div class="ds-sub">RGB-D · 640 × 480</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources -->
+  <section class="section" id="resources">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Code &amp; Data</h2>
+      <div class="title-line"></div>
+      <div class="resource-grid">
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon"><i class="fab fa-github" aria-hidden="true"></i></span>Code</header>
+          <a class="rc-chip" target="_blank" href="https://github.com/IRVLUTD/iTeach/tree/main/src">
+            <span class="rc-name">iTeach</span>
+            <span class="rc-sub">System glue: ROS bridge, HoloLens I/O, data rebroadcast &amp; collection</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://github.com/IRVLUTD/iTeach-UOIS">
+            <span class="rc-name">iTeach-UOIS</span>
+            <span class="rc-sub">Failure-driven MSMFormer fine-tuning</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://github.com/IRVLUTD/iTeachSkillsApp">
+            <span class="rc-name">iTeachSkillsApp</span>
+            <span class="rc-sub">HoloLens 2 gaze + voice app</span>
+          </a>
+        </section>
+
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon"><i class="fas fa-database" aria-hidden="true"></i></span>Data · iTeach-HumanPlay</header>
+          <a class="rc-chip" target="_blank" href="https://utdallas.box.com/v/iTeach-HumanPlay-D5">
+            <span class="rc-name">D5 · controlled</span>
+            <span class="rc-sub">5 scenes · RGB-D + FS3</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://utdallas.box.com/v/iTeach-HumanPlay-D40">
+            <span class="rc-name">D40 · scaling</span>
+            <span class="rc-sub">40 scenes · RGB-D + FS3</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://utdallas.box.com/v/iTeach-HumanPlay-Test">
+            <span class="rc-name">Test</span>
+            <span class="rc-sub">902 held-out samples</span>
+          </a>
+        </section>
+
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon"><i class="fas fa-cube" aria-hidden="true"></i></span>Checkpoints · iTeach-UOIS</header>
+          <a class="rc-chip" target="_blank" href="https://utdallas.box.com/v/iTeach-UOIS-D5-ckpts">
+            <span class="rc-name">D5 ckpts</span>
+            <span class="rc-sub">MSMFormer, one per round</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://utdallas.box.com/v/iTeach-UOIS-D40-ckpts">
+            <span class="rc-name">D40 ckpts</span>
+            <span class="rc-sub">MSMFormer, one per round</span>
+          </a>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">BibTeX</h2>
+      <div class="title-line"></div>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()" aria-label="Copy BibTeX to clipboard" title="Copy BibTeX"><i class="fas fa-copy copy-highlight" aria-hidden="true"></i> <span class="copy-label">Copy</span></button><code>@misc{p2026iteachwildinteractiveteaching,
+  title         = {iTeach: In the Wild Interactive Teaching for Failure-Driven Adaptation of Robot Perception},
+  author        = {Jishnu Jaykumar P and Cole Salvato and Vinaya Bomnale and Jikai Wang and Yu Xiang},
+  year          = {2026},
+  eprint        = {2410.09072},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.RO},
+  url           = {https://arxiv.org/abs/2410.09072}
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3 royal-theme">Contact</h2>
+      <p class="fig-caption centered" style="max-width: 760px; margin: 0.5rem auto;">
+        Send any comments or questions to Jishnu:
+        <a class="href-link" target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Acknowledgements</h2>
+      <div class="title-line"></div>
+
+      <p class="ack-eyebrow">Supported by</p>
+      <div class="ack-grid">
+        <div class="ack-card">
+          <div class="ack-org">DARPA</div>
+          <div class="ack-prog">Perceptually-enabled Task Guidance</div>
+          <div class="ack-id">HR00112220005</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">Sony</div>
+          <div class="ack-prog">Research Award Program</div>
+        </div>
+        <div class="ack-card">
+          <div class="ack-org">NSF</div>
+          <div class="ack-prog">National Science Foundation</div>
+          <div class="ack-id">Grant&nbsp;No.&nbsp;2346528</div>
+        </div>
+      </div>
+
+      <p class="ack-thanks">
+        Thanks to
+        <a class="href-link" href="https://saihaneeshallu.github.io" target="_blank" rel="noopener noreferrer">Sai&nbsp;Haneesh&nbsp;Allu</a>
+        for assistance with the real-robot experiments.
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container is-max-desktop">
+      <div class="footer-rule"></div>
+      <div class="footer-row">
+        <span class="footer-brand"><i>iTeach</i> · IRVL · UT Dallas</span>
+        <span class="footer-sep">·</span>
+        <span id="website-template-credits" class="footer-meta">
+          Last updated <span id="last-updated"></span>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-meta">Template inspired by <a class="href-link" target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps">FewSOL</span></a></span>
       </div>
     </div>
   </footer>
-  
+
 </body>
+
+<!-- IRVL shared scripts (same as HRT1) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script defer src="./assets/js/fontawesome.all.min.js"></script>
 <script src="./assets/js/bulma-carousel.min.js"></script>
 <script src="./assets/js/bulma-slider.min.js"></script>
-<script src="./assets/js/index.js"></script>
-<script src="./assets/js/iv-viewer.js"></script>
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="./assets/js/iteach.js" defer></script>
 
 </html>

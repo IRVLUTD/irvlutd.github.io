@@ -4,12 +4,189 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords"
-    content="Proto-CLIP, IRVLUTD, IRVL, Intelligent Robotics and Vision Lab, The University of Texas at Dallas, NVIDIA, Robot Perception, Object Recognition, Few-Shot Learning, MetaLearning, Prototypical Networks, Multi-modal, Vision-Language">
-  <meta name="description" content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta name="description"
+    content="Proto-CLIP is a vision-language prototypical network for few-shot learning. It freezes CLIP's image and text encoders and learns aligned image and text prototypes via memory banks and an adapter — beating unimodal prototypical networks and zero-shot CLIP on standard few-shot benchmarks and powering user-command robot grasping on FewSOL (198 classes). Published at IEEE/RSJ IROS 2024.">
   <meta name="author" content="Jishnu Jaykumar P, Kamalesh Palanisamy, Yu-Wei Chao, Xinya Du, Yu Xiang">
-  <title id="title" project-name="Proto-CLIP">Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning
-  </title>
+  <meta name="keywords"
+    content="Proto-CLIP, CLIP, prototypical networks, few-shot learning, meta-learning, vision-language models, multi-modal learning, image prototypes, text prototypes, cross-modal alignment, adapter, memory bank, FewSOL, ImageNet, robot perception, user-command robot grasping, real-world robotics, few-shot classification, IRVL, IRVLUTD, UT Dallas, The University of Texas at Dallas, NVIDIA, Yu Xiang, Yu-Wei Chao, Jishnu Jaykumar, Xinya Du, Kamalesh Palanisamy, IROS 2024, robotics, computer vision, deep learning">
+  <meta name="robots"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot"   content="index, follow">
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://irvlutd.github.io/Proto-CLIP/">
+
+  <!-- Google Scholar / Highwire Press citation metadata -->
+  <meta name="citation_title" content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta name="citation_author" content="Jaykumar P, Jishnu">
+  <meta name="citation_author" content="Palanisamy, Kamalesh">
+  <meta name="citation_author" content="Chao, Yu-Wei">
+  <meta name="citation_author" content="Du, Xinya">
+  <meta name="citation_author" content="Xiang, Yu">
+  <meta name="citation_conference_title" content="IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)">
+  <meta name="citation_publication_date" content="2024">
+  <meta name="citation_online_date"      content="2024">
+  <meta name="citation_doi"              content="10.1109/IROS58592.2024.10801660">
+  <meta name="citation_firstpage"        content="2594">
+  <meta name="citation_lastpage"         content="2601">
+  <meta name="citation_public_url"       content="https://irvlutd.github.io/Proto-CLIP/">
+  <meta name="citation_language"         content="en">
+  <meta name="citation_keywords"         content="Proto-CLIP; CLIP; prototypical networks; few-shot learning; vision-language; cross-modal alignment; robot grasping">
+
+  <!-- Dublin Core -->
+  <meta name="DC.title"       content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta name="DC.creator"     content="Jishnu Jaykumar P">
+  <meta name="DC.creator"     content="Kamalesh Palanisamy">
+  <meta name="DC.creator"     content="Yu-Wei Chao">
+  <meta name="DC.creator"     content="Xinya Du">
+  <meta name="DC.creator"     content="Yu Xiang">
+  <meta name="DC.subject"     content="CLIP; Prototypical Networks; Few-shot Learning; Vision-Language Models; Robotic Perception">
+  <meta name="DC.description" content="Proto-CLIP freezes CLIP's encoders and learns aligned image and text prototypes via memory banks and an adapter for few-shot learning and real-world robot grasping.">
+  <meta name="DC.publisher"   content="Intelligent Robotics and Vision Lab, The University of Texas at Dallas">
+  <meta name="DC.date"        content="2024">
+  <meta name="DC.type"        content="Text.Article">
+  <meta name="DC.language"    content="en">
+  <meta name="DC.identifier"  content="https://irvlutd.github.io/Proto-CLIP/">
+  <meta name="DC.rights"      content="© 2024 IRVL, UT Dallas">
+
+  <!-- Open Graph -->
+  <meta property="og:locale"      content="en_US">
+  <meta property="og:site_name"   content="Proto-CLIP — IRVL · UT Dallas">
+  <meta property="og:title"       content="Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta property="og:description" content="Frozen CLIP + learned image & text prototypes + cross-modal alignment — a few-shot learner that powers real-world robot grasping on FewSOL (198 classes). IROS 2024.">
+  <meta property="og:image"       content="https://irvlutd.github.io/Proto-CLIP/assets/images/proto-clip/eagle-eye-proto-clip.webp">
+  <meta property="og:image:secure_url" content="https://irvlutd.github.io/Proto-CLIP/assets/images/proto-clip/eagle-eye-proto-clip.webp">
+  <meta property="og:image:type"  content="image/webp">
+  <meta property="og:image:alt"   content="Proto-CLIP overview: frozen CLIP encoders plus learned image and text prototypes aligned by an adapter for few-shot classification.">
+  <meta property="og:url"         content="https://irvlutd.github.io/Proto-CLIP/">
+  <meta property="og:type"        content="article">
+  <meta property="article:published_time" content="2024-10-14">
+  <meta property="article:author" content="Jishnu Jaykumar P">
+  <meta property="article:section" content="Robotics">
+  <meta property="article:tag"    content="Few-Shot Learning">
+  <meta property="article:tag"    content="Vision-Language">
+  <meta property="article:tag"    content="Prototypical Networks">
+  <meta property="article:tag"    content="IROS 2024">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@utdallas">
+  <meta name="twitter:creator"     content="@JishnuJPadal">
+  <meta name="twitter:title"       content="Proto-CLIP — Vision-Language Prototypical Network for Few-Shot Learning">
+  <meta name="twitter:description" content="Frozen CLIP + aligned image & text prototypes. Beats unimodal prototypical networks and zero-shot CLIP; powers real-world robot grasping on FewSOL (198 classes). IROS 2024.">
+  <meta name="twitter:image"       content="https://irvlutd.github.io/Proto-CLIP/assets/images/proto-clip/eagle-eye-proto-clip.webp">
+  <meta name="twitter:image:alt"   content="Proto-CLIP overview figure.">
+
+  <title id="title" project-name="Proto-CLIP">Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning | IRVL UT Dallas</title>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://irvlutd.github.io/Proto-CLIP/#article",
+    "headline": "Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning",
+    "name": "Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning",
+    "datePublished": "2024-10-14",
+    "dateModified": "2024-10-14",
+    "inLanguage": "en",
+    "isPartOf": {
+      "@type": "PublicationEvent",
+      "name": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) 2024"
+    },
+    "identifier": [
+      { "@type": "PropertyValue", "propertyID": "DOI", "value": "10.1109/IROS58592.2024.10801660" }
+    ],
+    "pageStart": "2594",
+    "pageEnd":   "2601",
+    "abstract": "We propose Proto-CLIP, a vision-language prototypical network for few-shot learning. Proto-CLIP freezes CLIP's image and text encoders and learns image and text memory banks plus an adapter that aligns image and text prototypes per class. From a handful of examples per class, both prototypes vote on the label; the cross-modal alignment consistently improves over unimodal prototypical networks and zero-shot CLIP on standard few-shot benchmarks and transfers directly to user-command robot grasping on FewSOL (198 classes) in the real world.",
+    "description": "A vision-language prototypical network that aligns image and text prototypes on top of a frozen CLIP backbone for few-shot learning and real-world robot perception.",
+    "keywords": "Proto-CLIP; CLIP; prototypical networks; few-shot learning; vision-language; cross-modal alignment; robot grasping",
+    "author": [
+      {"@type": "Person", "name": "Jishnu Jaykumar P", "url": "https://jishnujayakumar.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Kamalesh Palanisamy", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Yu-Wei Chao", "affiliation": {"@type": "Organization", "name": "NVIDIA"}},
+      {"@type": "Person", "name": "Xinya Du", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Yu Xiang", "url": "https://yuxng.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}}
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas",
+      "url":  "https://labs.utdallas.edu/irvl"
+    },
+    "url": "https://irvlutd.github.io/Proto-CLIP/",
+    "mainEntityOfPage": "https://irvlutd.github.io/Proto-CLIP/",
+    "image": {
+      "@type": "ImageObject",
+      "url":   "https://irvlutd.github.io/Proto-CLIP/assets/images/proto-clip/eagle-eye-proto-clip.webp"
+    },
+    "codeRepository": [
+      "https://github.com/IRVLUTD/Proto-CLIP"
+    ],
+    "sameAs": [
+      "https://github.com/IRVLUTD/Proto-CLIP",
+      "https://doi.org/10.1109/IROS58592.2024.10801660",
+      "https://www.youtube.com/watch?v=CisrACRE7qE"
+    ],
+    "funding": [
+      {"@type": "Grant", "identifier": "HR00112220005",
+       "funder": {"@type": "Organization", "name": "DARPA Perceptually-enabled Task Guidance (PTG) Program"}}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "Proto-CLIP",
+    "codeRepository": "https://github.com/IRVLUTD/Proto-CLIP",
+    "programmingLanguage": "Python",
+    "description": "Reference implementation of Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning.",
+    "author": {"@type": "Person", "name": "Jishnu Jaykumar P"},
+    "license": "https://github.com/IRVLUTD/Proto-CLIP/blob/main/LICENSE"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://irvlutd.github.io/Proto-CLIP/#video",
+    "name": "Proto-CLIP — Real-World Demo",
+    "description": "User-command oriented robot grasping using Proto-CLIP predictions in the real world across four scenes.",
+    "thumbnailUrl": [
+      "https://i.ytimg.com/vi/CisrACRE7qE/maxresdefault.jpg",
+      "https://i.ytimg.com/vi/CisrACRE7qE/hqdefault.jpg"
+    ],
+    "uploadDate": "2024-10-14",
+    "embedUrl":   "https://www.youtube.com/embed/CisrACRE7qE",
+    "contentUrl": "https://www.youtube.com/watch?v=CisrACRE7qE",
+    "publisher":  {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "IRVL",     "item": "https://irvlutd.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "Proto-CLIP", "item": "https://irvlutd.github.io/Proto-CLIP/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Proto-CLIP — IRVL · UT Dallas",
+    "url":  "https://irvlutd.github.io/Proto-CLIP/",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
 
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -23,6 +200,10 @@
   </script>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
@@ -31,10 +212,55 @@
   <link rel="stylesheet" href="./assets/css/iv-viewer.css" />
   <link rel="stylesheet" href="../assets/css/index.css">
   <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
+  <link rel="stylesheet" href="../assets/css/clap-theme.css">
+
   <link rel="icon" href="#">
 </head>
 
 <body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="aurora-container"><div class="aurora"></div></div>
+  <div class="grain-overlay"></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" id="lightbox">
+    <button class="lightbox-close" aria-label="Close enlarged figure">×</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- Progress sidebar (≥1200px) -->
+  <nav class="progress-sidebar" aria-label="Page progress">
+    <div class="progress-track">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" id="progress-fill"></div>
+      <div class="progress-item" data-section="abstract">
+        <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
+      </div>
+      <div class="progress-item" data-section="overview">
+        <a href="#overview"><span class="progress-dot"></span><span class="progress-label">Overview</span></a>
+      </div>
+      <div class="progress-item" data-section="demo">
+        <a href="#demo"><span class="progress-dot"></span><span class="progress-label">Demo</span></a>
+      </div>
+      <div class="progress-item" data-section="jos-fsc">
+        <a href="#jos-fsc"><span class="progress-dot"></span><span class="progress-label">Joint Seg + FSC</span></a>
+      </div>
+      <div class="progress-item" data-section="t-sne">
+        <a href="#t-sne"><span class="progress-dot"></span><span class="progress-label">t-SNE</span></a>
+      </div>
+      <div class="progress-item" data-section="FAQs">
+        <a href="#FAQs"><span class="progress-dot"></span><span class="progress-label">FAQs</span></a>
+      </div>
+      <div class="progress-item" data-section="bibtex">
+        <a href="#bibtex"><span class="progress-dot"></span><span class="progress-label">BibTeX</span></a>
+      </div>
+      <div class="progress-item" data-section="contact">
+        <a href="#contact"><span class="progress-dot"></span><span class="progress-label">Contact</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <a id="main" tabindex="-1"></a>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -71,80 +297,58 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-2 publication-title"> <span class="small-caps">Proto-CLIP</span>: Vision-Language
-              Prototypical Network for Few-Shot Learning</h1>
+            <h1 class="title is-2 publication-title royal-theme"><span class="small-caps">Proto-CLIP</span><span class="title-sep">:</span> Vision-Language Prototypical Network for Few-Shot Learning</h1>
+            <div class="title-line"></div>
             <div class="is-size-6 publication-authors">
-              <div id="author-content" class="columns is-centered">
-                <div class="column is-variable is-max-desktop">
-                  <div class="center">
-                    <div>
-                      <a target="_blank" href="https://jishnujayakumar.github.io">
-                        <img class="display-image author-image center"
-                          src="../assets/images/authors/jishnu_padalunkal.webp"> <br>Jishnu Jaykumar
-                        P</a><sup>1</sup></span>
-                    </div>
-                  </div>
-                </div>
+              <div id="author-content" class="columns is-centered is-gapless">
 
-                <div class="column is-variable is-max-desktop">
-                  <div class="center">
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://jishnujayakumar.github.io">
+                    <img class="display-image author-image center" src="../assets/images/authors/jishnu_padalunkal.webp">
+                    <br><span class="is-size-6">Jishnu Jaykumar P<sup>1</sup></span></a>
+                </div></div></div>
 
-                    <div>
-                      <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ"><img
-                          class="author-image center" src="../assets/images/authors/kamalesh_palanisamy.webp">
-                        <br>Kamalesh
-                        Palanisamy</a><sup>1</sup></span>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://scholar.google.com/citations?user=wPO_ZgUAAAAJ">
+                    <img class="display-image author-image center" src="../assets/images/authors/kamalesh_palanisamy.webp">
+                    <br><span class="is-size-6">Kamalesh Palanisamy<sup>1</sup></span></a>
+                </div></div></div>
 
-                <div class="column is-variable is-max-desktop">
-                  <div class="center">
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en">
+                    <img class="display-image author-image center" src="../assets/images/authors/yu-wei_chao.webp">
+                    <br><span class="is-size-6">Yu-Wei Chao<sup>2</sup></span></a>
+                </div></div></div>
 
-                    <div>
-                      <a target="_blank" href="https://scholar.google.com/citations?user=48Y9F-YAAAAJ&hl=en"><img
-                          class="author-image center" src="../assets/images/authors/yu-wei_chao.webp"><br>Yu-Wei
-                        Chao</a><sup>2</sup></span>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://xinyadu.github.io">
+                    <img class="display-image author-image center" src="../assets/images/authors/xinya_du.webp">
+                    <br><span class="is-size-6">Xinya Du<sup>1</sup></span></a>
+                </div></div></div>
 
-                <div class="column is-variable is-max-desktop">
-                  <div class="center">
-
-                    <div>
-                      <a target="_blank" href="https://xinyadu.github.io"><img class="author-image center"
-                          src="../assets/images/authors/xinya_du.webp"> <br>Xinya
-                        Du</a><sup>1</sup></span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="column is-variable is-max-desktop">
-                  <div class="center">
-
-                    <div>
-                      <a target="_blank" href="https://yuxng.github.io"><img class="author-image center"
-                          src="../assets/images/authors/yu_xiang.webp"><br>Yu Xiang</a><sup>1</sup>
-                    </div>
-                  </div>
-                </div>
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://yuxng.github.io">
+                    <img class="display-image author-image center" src="../assets/images/authors/yu_xiang.webp">
+                    <br><span class="is-size-6">Yu Xiang<sup>1</sup></span></a>
+                </div></div></div>
 
               </div>
             </div>
-            <div class="is-size-6 publication-authors affiliation">
-              <span class="author-block"><sup>1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">The
-                  University of Texas at Dallas</a></span>&nbsp;&nbsp;&nbsp;&nbsp;
-              <span class="author-block"><sup>2</sup><a target="_blank"
-                  href="https://www.nvidia.com/en-us">NVIDIA</a></span><br>
-              <span id="accepted-conference" class="author-block"><br>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2024</span>
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block affil-inline"><sup>1</sup><a class="href-link" target="_blank" href="https://labs.utdallas.edu/irvl">The University of Texas at Dallas</a>&nbsp;&nbsp;<sup>2</sup><a class="href-link" target="_blank" href="https://www.nvidia.com/en-us">NVIDIA</a></span>
             </div>
+
+            <p id="accepted-conference" class="venue-line">
+              <em>IEEE/RSJ International Conference on Intelligent Robots and Systems</em>
+              <span class="venue-dot">·</span>
+              <b>IROS 2024</b>
+            </p>
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <!-- Publication Link. -->
                 <span class="link-block">
-                  <a target="_blank" href="https://ieeexplore.ieee.org/document/10801660" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="https://ieeexplore.ieee.org/document/10801660" class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <svg class="svg-inline--fa fa-link fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="link" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"></path></svg><!-- <i class="fas fa-link"></i> Font Awesome fontawesome.com -->
                     </span>
@@ -154,7 +358,7 @@
                 <!-- Arxiv Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://arxiv.org/abs/2307.03073"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -165,7 +369,7 @@
                 <!-- Ar5iv Link. -->
                 <!-- <span class="link-block">
                 <a target="_blank" href="https://ar5iv.labs.arxiv.org/html/2207.03333"
-                   class="external-link button is-normal is-rounded is-dark">
+                   class="external-link button is-normal is-rounded royal-theme-btn">
                   <span class="icon">
                     <img src="assets/images/ar5iv-logo.png" width="25px" height="18px">
                   </span>
@@ -176,7 +380,7 @@
                 <!-- Supplementary Link. -->
                 <span class="link-block">
                   <a target="_blank" href="https://arxiv.org/src/2307.03073v1/anc/Proto_CLIP_supp.pdf"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
                     </span>
@@ -187,7 +391,7 @@
                 <!-- Code Link. -->
                 <span class="link-block">
                   <a href="https://github.com/IRVLUTD/Proto-CLIP"
-                    class="external-link button is-normal is-rounded is-dark" target="_blank">
+                    class="external-link button is-normal is-rounded royal-theme-btn" target="_blank">
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
@@ -197,20 +401,20 @@
                 <br>
 
                 <!-- PapersWithCode Link. -->
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a target="_blank" href="https://paperswithcode.com/paper/proto-clip-vision-language-prototypical"
-                    class="external-link button is-normal is-rounded is-dark">
+                    class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <img src="assets/images/paperswithcode-logo.png" width="18px" height="18px">
                     </span>
                     <span>paperswithcode</span>
                   </a>
-                </span>
+                </span> -->
 
 
                 <!-- Real World Demo Link. -->
                 <span class="link-block">
-                  <a target="_blank" href="#demo" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="#demo" class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="fas fa-globe"></i>
                     </span>
@@ -220,11 +424,21 @@
 
                 <!-- FAQs. -->
                 <span class="link-block">
-                  <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded is-dark">
+                  <a target="_blank" href="#FAQs" class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon">
                       <i class="fas fa-question"></i>
                     </span>
                     <span>FAQs</span>
+                  </a>
+                </span>
+
+                <!-- Citation Link. -->
+                <span class="link-block">
+                  <a href="#bibtex" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">
+                      <svg class="svg-inline--fa fa-quote-right fa-w-16" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="quote-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M464 32H336c-26.5 0-48 21.5-48 48v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48zm-288 0H48C21.5 32 0 53.5 0 80v128c0 26.5 21.5 48 48 48h80v64c0 35.3-28.7 64-64 64h-8c-13.3 0-24 10.7-24 24v48c0 13.3 10.7 24 24 24h8c88.4 0 160-71.6 160-160V80c0-26.5-21.5-48-48-48z"></path></svg><!-- <i class="fa fa-quote-right"></i> Font Awesome fontawesome.com -->
+                    </span>
+                    <span>Citation</span>
                   </a>
                 </span>
               </div>
@@ -241,43 +455,62 @@
     <div class="container is-max-desktop">
 
       <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
+      <div id="abstract" class="columns is-centered">
         <div class="column">
-          <h2 class="title is-3">Abstract</h2>
 
-          <div class="content has-text-justified">
-            <div class="hero-body has-text-centered" style="padding: 1em;">
-              <img src="./assets/images/proto-clip/eagle-eye-proto-clip.webp" alt="abstract-image-for-proto-clip">
-            </div>
-            <span>
-              We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such
-              as CLIP. Motivated by the unimodal prototypical networks for few-shot learning, we introduce <span
-                class="small-caps">Proto-CLIP</span> that utilizes image prototypes and text prototypes for few-shot
-              learning. Specifically, <span class="small-caps">Proto-CLIP</span> adapts the image encoder and text
-              encoder in CLIP in a joint fashion using few-shot examples. The two encoders are used to compute
-              prototypes of image classes for classification. During adaptation, we propose aligning the image and text
-              prototypes of corresponding classes. Such a proposed alignment is beneficial for few-shot classification
-              due to the contributions from both types of prototypes. We demonstrate the effectiveness of our method by
-              conducting experiments on benchmark datasets for few-shot learning as well as in the real world for robot
-              perception.
-            </span>
-
+          <div class="tldr">
+            <span class="tldr-label">TL;DR</span>
+            <span class="small-caps"><b>Proto-CLIP</b></span> freezes <b>CLIP's</b> image and text encoders and learns
+            tiny <b>image &amp; text memory banks</b> plus an <b>adapter</b> that <i>aligns</i> the two modalities per class.
+            From just a handful of examples per class, both prototypes vote on the label — the cross-modal alignment
+            consistently beats unimodal prototypical networks and zero-shot CLIP on standard few-shot benchmarks
+            (<span class="small-caps">ImageNet</span>, Cifar, Caltech, Food, Flowers, …) and transfers directly to
+            <b>user-command robot grasping</b> on <a class="href-link" href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>
+            (<b>198 classes</b>) in the real world.
           </div>
 
-          <div class="hero-body has-text-centered">
-            <h1 class="title">Model Overview</h1>
-            <img class="center" src="./assets/images/proto-clip/proto_clip.webp" alt="">
+          <h2 class="title is-3 royal-theme has-text-centered">Abstract</h2>
+          <div class="title-line"></div>
+
+          <div class="paper-fig" style="max-width: 760px; margin: 0 auto 1.25rem;">
+            <img src="./assets/images/proto-clip/eagle-eye-proto-clip.webp" alt="Proto-CLIP at a glance">
+          </div>
+
+          <div class="content has-text-justified abstract-prose">
             <p>
-              The CLIP image encoder and text encoder are frozen during training. The image memory, the text memory and
-              the adapter network are learned.
-              <span>Given a class name, &tau;<sub>i</sub> returns the i<sup>th</sup> out of <span class="tilde">K</span>
-                predefined text prompts.</span>
+              We propose a novel framework for <b>few-shot learning</b> by leveraging large-scale vision–language models
+              such as <b>CLIP</b>. Motivated by unimodal prototypical networks, we introduce
+              <span class="small-caps"><b>Proto-CLIP</b></span> — which uses both <b>image prototypes</b> and
+              <b>text prototypes</b> for few-shot classification.
+            </p>
+            <p>
+              <span class="small-caps">Proto-CLIP</span> adapts CLIP's image and text encoders <b>jointly</b> from a handful
+              of few-shot examples and explicitly <b>aligns image and text prototypes</b> of corresponding classes. This
+              cross-modal alignment is where the gain comes from — both modalities contribute to the final decision.
+            </p>
+            <p>
+              We validate the method on standard few-shot benchmarks and in the real world for <b>robot perception</b>.
             </p>
           </div>
-
         </div>
       </div>
       <!--/ Abstract. -->
+    </div>
+  </section>
+
+  <!-- Model Overview -->
+  <section class="section" id="overview">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Model Overview</h2>
+      <div class="title-line"></div>
+      <div class="paper-fig">
+        <img src="./assets/images/proto-clip/proto_clip.webp" alt="Proto-CLIP model overview">
+      </div>
+      <p class="fig-caption">
+        The <b>CLIP image</b> and <b>text encoders</b> are frozen during training; the <b>image memory</b>, <b>text memory</b>,
+        and <b>adapter network</b> are learned. Given a class name, &tau;<sub>i</sub> returns the <i>i</i><sup>th</sup> of
+        <span class="tilde">K</span> predefined text prompts.
+      </p>
     </div>
     <!-- <div class="columns is-centered has-text-centered">
       <div class="column">
@@ -290,62 +523,53 @@
   </section>
 
 
-  <section class="" id="demo">
-    <div class="columns is-centered has-text-centered">
-      <div class="column">
-        <h2 class="title is-3">Demo</h2>
-        <p>User command oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the
-          real world. <strong>[ 4 Scenes ]</strong></p>
-      </div>
-    </div>
+  <section class="section" id="demo">
     <div class="container is-max-desktop">
-      <div class="tabs is-centered">
+      <h2 class="title is-3 royal-theme has-text-centered">Real-World Demo</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">
+        User-command-oriented robot grasping using <span class="small-caps">Proto-CLIP</span> predictions in the real world
+        — <b>4 scenes</b>.
+      </p>
+
+      <div class="scene-tabs">
         <ul>
           <li id="scene-1" class="is-active demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Scene-1</span>
-            </a>
+            <a><span class="scene-tag">01</span><span class="scene-name">Scene&nbsp;1</span></a>
           </li>
           <li id="scene-2" class="demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Scene-2</span>
-            </a>
+            <a><span class="scene-tag">02</span><span class="scene-name">Scene&nbsp;2</span></a>
           </li>
           <li id="scene-3" class="demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Scene-3</span>
-            </a>
+            <a><span class="scene-tag">03</span><span class="scene-name">Scene&nbsp;3</span></a>
           </li>
-          <li>
           <li id="scene-4" class="demo-video-iframe">
-            <a>
-              <span class="icon is-small"><i class="fas fa-video" aria-hidden="true"></i></span>
-              <span>Scene-4</span>
-            </a>
+            <a><span class="scene-tag">04</span><span class="scene-name">Scene&nbsp;4</span></a>
           </li>
         </ul>
       </div>
 
-      <div id="demo-vid-iframe" class="hero-body">
-        <div class="iframe-container"><iframe src="https://www.youtube.com/embed/CisrACRE7qE" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe></div>
+      <div id="demo-vid-iframe" class="demo-video-wrap">
+        <div class="yt-facade" role="button" tabindex="0"
+             aria-label="Play Proto-CLIP Scene 1 demo"
+             data-video-id="CisrACRE7qE" data-autoplay="muted">
+          <img src="https://i.ytimg.com/vi/CisrACRE7qE/hqdefault.jpg"
+               alt="Proto-CLIP Scene 1 demo thumbnail" loading="lazy" decoding="async">
+        </div>
       </div>
+    </div>
   </section>
 
 
 
   <section class="section" id="jos-fsc">
-    <div class="hero-body">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title is-3">Joint Object Segmentation and Few-Shot Classification <br> in the Real World</h2>
-        </div>
-      </div>
-      <div class="container is-max-desktop">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Joint Object Segmentation &amp; Few-Shot Classification</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">
+        Eight real-world scenes — swipe or use the arrows to browse <span class="small-caps">Proto-CLIP</span> predictions in the wild.
+      </p>
+      <div class="rw-scene-slider">
         <div id="results-carousel" class="carousel results-carousel">
           <div id="slider">
             <div class="card">
@@ -447,188 +671,199 @@
           </div>
         </div>
       </div>
+    </div>
   </section>
 
   <!-- CLIP vs Proto-CLIP -->
-  <section id="clip-vs-proto-clip-t-sne">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title">CLIP vs <span class="small-caps">Proto-CLIP</span></h2>
-      <div class="image-container clip-vs-t-sne">
-        <img id="t-sne-image" src="./assets/images/proto-clip/clip-vs-proto-clip-t-sne.webp"
-          alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks">
-      </div>
-      <p> <strong>(a)</strong> <span class="red bold"> Image and text
-          prototypes from zero-shot CLIP, which are not aligned</span> <br> <strong>(b)</strong> <span
-          class="green bold">Aligned image and
-          text prototypes from
-          fine-tuned <span class="small-caps">Proto-CLIP</span></span></p>
-  </section>
+  <section class="section" id="clip-vs-proto-clip-t-sne">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">CLIP vs <span class="small-caps">Proto-CLIP</span></h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Image and text prototypes before and after fine-tuning.</p>
 
+      <div class="paper-fig">
+        <img src="./assets/images/proto-clip/clip-vs-proto-clip-t-sne.webp"
+             alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks">
+      </div>
+      <p class="fig-caption" style="text-align:center;">
+        <b class="tsne-marker">(a)</b>
+        <span class="tsne-bad">Image and text prototypes from zero-shot CLIP are not aligned.</span>
+        <br>
+        <b class="tsne-marker">(b)</b>
+        <span class="tsne-good">Aligned image and text prototypes from fine-tuned <span class="small-caps">Proto-CLIP</span>.</span>
+      </p>
+    </div>
+  </section>
 
   <!-- t-SNE -->
   <section class="section" id="t-sne">
-    <div class="container is-max-desktop has-text-centered">
-      <h2 class="title">t-SNE</h2>
-      <p class="is-size-8">Barnes-Hut t-SNE visualization using fine-tuned <span class="small-caps">Proto-CLIP</span>
-        trained on <a href="https://irvlutd.github.io/FewSOL" target="_blank" rel="noopener noreferrer"><span
-            class="small-caps"><strong>FewSOL</strong></span></a> [198 classes] dataset.<br>Here, image and text prototypes
-        are aligned closer to each other. Objects with similar shapes are closer.<br>Semantics are captured as well, e.g.
-        vegetables/fruits are closer to each other.<br><span class="highlight-red-shade"><b>Zoom-In</b></span> to take a closer look.
-      <div class="image-container t-sne-zoom-canvas">
-        <img id="t-sne-image" src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.webp"
-          alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">t-SNE</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">
+        Barnes–Hut t-SNE visualization using fine-tuned <span class="small-caps">Proto-CLIP</span> trained on
+        <a class="href-link" href="https://irvlutd.github.io/FewSOL" target="_blank" rel="noopener noreferrer"><span class="small-caps"><b>FewSOL</b></span></a>
+        [198 classes]. Image and text prototypes are aligned; shape-similar and semantically-similar objects cluster together
+        (e.g. vegetables and fruits). Click the figure to zoom in.
+      </p>
+
+      <div class="paper-fig t-sne-zoom-canvas">
+        <img src="./assets/images/proto-clip/t-sne-plot-after-fewsol-198-training.webp"
+             alt="Proto-CLIP FewSOL-198 t-SNE plot after training the learnable image and text memory banks" class="t-sne">
+
+        <!-- Zoom affordance — discoverable hint, dismissible on first interaction -->
+        <div class="zoom-hint" aria-hidden="true">
+          <span class="zoom-ico">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              <line x1="11" y1="8" x2="11" y2="14"/>
+              <line x1="8"  y1="11" x2="14" y2="11"/>
+            </svg>
+          </span>
+          <span class="zoom-text"><b>Scroll</b> to zoom · <b>Drag</b> to pan</span>
+        </div>
       </div>
+    </div>
   </section>
 
 
   <!-- FAQs -->
   <section class="section" id="FAQs">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">FAQs</h2>
+      <h2 class="title is-3 royal-theme has-text-centered">FAQs</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Click a question to expand.</p>
 
-      <div class="qa-container">
-        <div class="question has-text-black bold">Why has <a href="https://irvlutd.github.io/FewSOL"
-            target="_blank"><span class="small-caps">FewSOL</span></a> been used for real world experiments?</div>
-        <div class="answer">For a robot to work in human environments like kitchen, living room etc., it has to interact
-          with various daily objects. <a href="https://irvlutd.github.io/FewSOL" target="_blank"><span
-              class="small-caps">FewSOL</span></a> comes in handy when thinking of learning good representations of
-          daily objects for manipulation tasks. Hence, we chose to experiment with <a
-            href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>.</div>
+      <div class="faq-list">
+        <details class="faq">
+          <summary>Why has <span class="small-caps">FewSOL</span> been used for real-world experiments?</summary>
+          <div class="faq-body">
+            For a robot to work in human environments like the kitchen or living room, it needs to interact with a
+            variety of daily objects.
+            <a class="href-link" href="https://irvlutd.github.io/FewSOL" target="_blank"><span class="small-caps">FewSOL</span></a>
+            is well suited for learning good representations of daily objects for manipulation tasks, which is why we
+            chose it for our experiments.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Any specific observations during inference?</summary>
+          <div class="faq-body">
+            Object segmentation and orientation matter. Segmentation is the more critical of the two — in cluttered
+            scenes, bad segmentation propagates into bad classification. Lighting conditions also play a key role,
+            especially for shiny objects.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>In the real-world demo, why is ASR invoked after <span class="small-caps">Proto-CLIP</span> inference?</summary>
+          <div class="faq-body">
+            The ASR package is designed as a streamlined function that can be integrated right after
+            <span class="small-caps">Proto-CLIP</span> predictions, or alternatively as a separate ROS node. In the
+            demo we invoke ASR immediately after the predictions, which avoids the <span class="small-caps">Proto-CLIP</span>
+            node waiting on a trigger event.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>Can the real-world system handle scene changes during inference?</summary>
+          <div class="faq-body">
+            The current architecture assumes a static scene throughout <span class="small-caps">Proto-CLIP</span>
+            inference. Detecting scene changes and re-running inference would require significant modifications to the
+            pipeline.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>What is <span class="small-caps">Proto-CLIP</span>-Toolkit?</summary>
+          <div class="faq-body">
+            A Python package bundling the utilities used for the
+            <a class="href-link" href="#demo">real-world demo</a>:
+            <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#part-of-speech-taggingpos">POS</a>
+            tagging,
+            <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#automatic-speech-recognitionasr">ASR</a>,
+            <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#tsne">t-SNE</a>
+            plots, and
+            <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#out-of-distribution-ood-datasets-test">OOD</a>
+            testing for <a class="href-link" href="https://www.image-net.org/">ImageNet</a>. Grab it from
+            <a class="href-link" href="https://pypi.org/project/proto-clip-toolkit/" target="_blank">PyPI</a> and see the
+            <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md">sample code</a>.
+          </div>
+        </details>
+
+        <details class="faq">
+          <summary>How many text prompts are used in the experiments?</summary>
+          <div class="faq-body">
+            All datasets except <b>ImageNet</b> use a single text-prompt template; ImageNet uses 7 (following
+            <a class="href-link" href="https://arxiv.org/pdf/2207.09519.pdf" target="_blank">Tip-Adapter</a> for direct
+            comparison). More prompts can be used without any code change.
+          </div>
+        </details>
       </div>
-
-      <div class="qa-container">
-        <div class="question">
-          Any specific observations during inference?
-        </div>
-        <div class="answer">
-          Object segmentation and orientation matters. Segmentation is more important as in clutter scenes a bad
-          segmentation can cause problems in classification. Moreover, lighting conditions also play a key role as it
-          impacts classification of shiny objects.
-        </div>
-      </div>
-
-      <div class="qa-container">
-        <div class="question">
-          In the real world demo, why do you invoke the ASR after running <span class="small-caps">Proto-CLIP</span>
-          inference?
-        </div>
-        <div class="answer">
-
-          The ASR package has been designed as a streamlined function that can be seamlessly integrated following <span
-            class="small-caps">Proto-CLIP</span> predictions or alternatively incorporated into a distinct file, thereby
-          enabling the creation of a ROS node to publish the ASR output. During our demonstration, we opted to invoke
-          the ASR promptly after acquiring the <span class="small-caps">Proto-CLIP</span> predictions, mitigating any
-          concerns related to the <span class="small-caps">Proto-CLIP</span> node awaiting a trigger event.
-
-        </div>
-      </div>
-
-      <div class="qa-container">
-        <div class="question">
-          Can the real world system handle changes to the scene during inference?
-        </div>
-        <div class="answer">
-
-          The current system architecture is predicated on the premise that the scene remains constant throughout
-          <span class="small-caps">Proto-CLIP</span> inference. Should there arise a need to identify scene alterations
-          and perform subsequent
-          inference, it would necessitate significant modifications to the existing system.
-        </div>
-      </div>
-
-      <div class="qa-container">
-        <div class="question">
-          What is <span class="small-caps">Proto-CLIP</span>-Toolkit?
-        </div>
-        <div class="answer">
-          <span class="small-caps">Proto-CLIP</span>-Toolkit is a python package which contains the functionalities
-          for the <a href="#demo">real world demo</a> such as <a
-            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#part-of-speech-taggingpos">POS</a>
-          tagging and
-          <a
-            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#automatic-speech-recognitionasr">ASR</a>,
-          <a href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#tsne">t-SNE</a> plots, and <a
-            href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md#out-of-distribution-ood-datasets-test">OOD</a>
-          test for <a href="https://www.image-net.org/">ImageNet</a> dataset. To use it, please check the <a
-            href="https://pypi.org/project/proto-clip-toolkit/" target="_blank">pypi</a> and <a href="https://github.com/IRVLUTD/Proto-CLIP/blob/main/toolkit/README.md">sample codes</a>.
-        </div>
-      </div>
-
-      <div class="qa-container">
-        <div class="question">
-          How many text prompts have been used in the experiments?
-        </div>
-        <div class="answer">
-          All datasets except <b>ImageNet</b> have a single text prompt template. <b>ImageNet</b> uses 7. For comparison purpose, this setting has been borrowed from <a href="https://arxiv.org/pdf/2207.09519.pdf" target="_blank">Tip-Adapter</a>. More text prompts can be used.
-        </div>
-      </div>
-
     </div>
   </section>
 
 
-  <section class="section" id="BibTeX">
+  <section class="section" id="bibtex">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">BibTeX</h2>
-      <span>Please cite <span class="small-caps"><b>Proto-CLIP</b></span> if it helps your research:</span>
+      <h2 class="title is-3 royal-theme has-text-centered">BibTeX</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Please cite <span class="small-caps"><b>Proto-CLIP</b></span> if it helps your research.</p>
       <div class="bib-container">
-      <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>@INPROCEEDINGS{padalunkal2024protoclip,
-  author={P, Jishnu Jaykumar and Palanisamy, Kamalesh and Chao, Yu-Wei and Du, Xinya and Xiang, Yu},
-  booktitle={2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, 
-  title={{Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning}}, 
-  doi={10.1109/IROS58592.2024.10801660},
-  pages={2594-2601},
-  year={2024}
+        <pre><button id="copy-btn" onclick="copyToClipboard()" aria-label="Copy BibTeX to clipboard" title="Copy BibTeX"><i class="fas fa-copy copy-highlight" aria-hidden="true"></i> <span class="copy-label">Copy</span></button><code>@INPROCEEDINGS{padalunkal2024protoclip,
+  title     = {{Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning}},
+  author    = {P, Jishnu Jaykumar and Palanisamy, Kamalesh and Chao, Yu-Wei and Du, Xinya and Xiang, Yu},
+  booktitle = {2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)},
+  doi       = {10.1109/IROS58592.2024.10801660},
+  pages     = {2594--2601},
+  year      = {2024}
 }</code></pre>
+      </div>
     </div>
-  </div>
   </section>
 
   <section class="section" id="contact">
     <div class="container is-max-desktop has-text-centered">
-
-      <h2 class="title">Contact</h2>
-      <p>
-      <ul>
-        Inform an <a href="https://github.com/IRVLUTD/Proto-CLIP/issues">issue</a></p>
-      </ul>
-
-      <ul>
-        Join the <a href="https://github.com/IRVLUTD/Proto-CLIP/discussions">discussion forum</a>
-      </ul>
-
-      <ul>
-        Send any comments or questions to Jishnu: <a target="_blank"
-          href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
-      </ul>
-
+      <h2 class="title is-3 royal-theme has-text-centered">Contact</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">
+        Open an <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/issues">issue</a>,
+        join the <a class="href-link" href="https://github.com/IRVLUTD/Proto-CLIP/discussions">discussion forum</a>,
+        or email Jishnu —
+        <a class="href-link" target="_blank" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
+      </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container is-max-desktop content has-text-centered">
-      <h2 class="title">Acknowledgements</h2>
-      <div class="is-vcentered interpolation-panel">
-        <div class="container content">
-          <p style="font-size: 16px">
-            This work was supported in part by the DARPA Perceptually-enabled Task Guidance (PTG) Program under contract
-            number HR00112220005.
-          </p>
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Acknowledgements</h2>
+      <div class="title-line"></div>
+
+      <p class="ack-eyebrow">Supported by</p>
+      <div class="ack-grid ack-grid-1">
+        <div class="ack-card">
+          <div class="ack-org">DARPA</div>
+          <div class="ack-prog">Perceptually-enabled Task Guidance</div>
+          <div class="ack-id">HR00112220005</div>
         </div>
       </div>
     </div>
   </section>
 
 
-  <footer class="footer">
-    <div class="container">
-      <div class="content has-text-centered">
-        <!-- <a target="_blank" href="https://arxiv.org/pdf/2207.03333.pdf" class="large-font bottom_buttons black-font">
-        <svg class="svg-inline--fa fa-file-pdf fa-w-12" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="file-pdf" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M181.9 256.1c-5-16-4.9-46.9-2-46.9 8.4 0 7.6 36.9 2 46.9zm-1.7 47.2c-7.7 20.2-17.3 43.3-28.4 62.7 18.3-7 39-17.2 62.9-21.9-12.7-9.6-24.9-23.4-34.5-40.8zM86.1 428.1c0 .8 13.2-5.4 34.9-40.2-6.7 6.3-29.1 24.5-34.9 40.2zM248 160h136v328c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V24C0 10.7 10.7 0 24 0h200v136c0 13.2 10.8 24 24 24zm-8 171.8c-20-12.2-33.3-29-42.7-53.8 4.5-18.5 11.6-46.6 6.2-64.2-4.7-29.4-42.4-26.5-47.8-6.8-5 18.3-.4 44.1 8.1 77-11.6 27.6-28.7 64.6-40.8 85.8-.1 0-.1.1-.2.1-27.1 13.9-73.6 44.5-54.5 68 5.6 6.9 16 10 21.5 10 17.9 0 35.7-18 61.1-61.8 25.8-8.5 54.1-19.1 79-23.2 21.7 11.8 47.1 19.5 64 19.5 29.2 0 31.2-32 19.7-43.4-13.9-13.6-54.3-9.7-73.6-7.2zM377 105L279 7c-4.5-4.5-10.6-7-17-7h-6v128h128v-6.1c0-6.3-2.5-12.4-7-16.9zm-74.1 255.3c4.1-2.7-2.5-11.9-42.8-9 37.1 15.8 42.8 9 42.8 9z"></path></svg>
-      </a> -->
-        <!-- <br> -->
-        <p id="website-template-credits">
-          Last updated on: <span id="last-updated"></span> | Page template borrowed from </p>
+  <footer class="site-footer">
+    <div class="container is-max-desktop">
+      <div class="footer-rule"></div>
+      <div class="footer-row">
+        <span class="footer-brand"><span class="small-caps">Proto-CLIP</span> · IRVL · UT Dallas</span>
+        <span class="footer-sep">·</span>
+        <span id="website-template-credits" class="footer-meta">
+          Last updated <span id="last-updated"></span>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-meta">Template inspired by <a class="href-link" target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps">FewSOL</span></a></span>
       </div>
     </div>
   </footer>
@@ -642,6 +877,7 @@
 <script src="./assets/js/iv-viewer.js"></script>
 <script src="../assets/scripts/script.js"></script>
 <script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="../assets/scripts/clap-page.js" defer></script>
 <script>
   // carousel
   bulmaCarousel.attach('#slider', {
