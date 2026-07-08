@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description" content="Web home for Unified Hand Action Space">
+  <meta id="meta-author" name="author" content="">
+  <meta id="meta-keywords" name="keywords" content="Cross-Embodiment Manipulation, Unified Action Space, Reinforcement Learning, In-Hand Manipulation">
+  <title id="title" project-name="UHAS">UHAS</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="icon" href="#">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title">Cross-Embodiment Robot Manipulation via a Unified Hand Action Space</h1>
+
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://lfcasas71.wixsite.com/luis-felipe-casas"><img class="display-image author-image center" src="./assets/images/Luis-Felipe-Casas.jpg" alt="Luis Felipe Casas"><br><span class="is-size-6">Luis Felipe Casas<sup class="eq-contri">1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://www.linkedin.com/in/roberttealdev/"><img class="display-image author-image center" src="./assets/images/Robert_Teal.jpeg" alt="Robert Teal"><br><span class="is-size-6">Robert Teal<sup class="eq-contri">1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://www.linkedin.com/in/kevalshah2005/"><img class="display-image author-image center" src="./assets/images/Keval-Shah.jpg" alt="Keval Shah"><br><span class="is-size-6">Keval Shah<sup class="eq-contri">1</sup></span></a>                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://www.linkedin.com/in/abhijittadepalli/"><img class="display-image author-image center" src="./assets/images/Vamsi-Sai-Abhijit-Tadepalli.jpg" alt="Abhijit Tadepalli"><br><span class="is-size-6">Abhijit Tadepalli<sup class="eq-contri">2</sup></span></a>                    </div>
+                  </div>
+                </div>
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://irislab.tech/"><img class="display-image author-image center" src="./assets/images/wanxin_jin.jpeg" alt="Wanxin Jin"><br><span class="is-size-6">Wanxin Jin<sup class="eq-contri">2</sup></span></a>                    </div>
+                  </div>
+                </div>
+
+
+                <div class="column">
+                  <div class="center">
+                    <div>
+                      <a target="_blank" href="https://yuxng.github.io"><img class="display-image author-image center" src="./assets/images/yu_xiang.webp" alt="Yu Xiang"><br><span class="is-size-6">Yu Xiang<sup class="eq-contri">1</sup></span></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block"> <sup class="eq-contri">1</sup> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"> <sup class="eq-contri">2</sup> <a target="_blank" href="https://irislab.tech/">Intelligent Robotics and Interactive Systems Lab at Arizona State University</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <br> <br><span id="accepted-conference" class="author-block"><a target="_blank" href="https://dex-manipulation.github.io/rss2026/">4th Workshop on Dexterous Manipulation</a> at Robotics: Science and Systems (RSS), 2026</span>
+            </div>            
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://arxiv.org/abs/2607.03570" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Arxiv</span>
+                  </a>
+                </span>
+
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="./assets/pdf/UHAS.pdf" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>PDF</span>
+                  </a>
+                </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/UGAS_sim/tree/felipe/public_release" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="teaser-video" class="section">
+    <div class="container is-max-desktop">
+      <!-- 20xScenes. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <!-- <h2 class="title is-3">Scenes</h2> -->
+          <div class="content has-text-justified">
+            <video class="scene-video" controls autoplay muted loop playsinline>
+              <source src="assets/videos/UHAS.mp4" type="video/mp4">
+            </video>
+          
+            <!-- <p class="center">
+              20 scenes in our <span class="small-caps">VLAReplica</span> benchmark with 5 YCB objects in each scene
+            </p> -->
+          </div>
+        </div>
+      </div>
+      <!--/ 20xScenes. -->
+    </div>
+  </section>
+
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Robot manipulation policies are typically tied to specific robotic
+              hand embodiments, limiting the transfer of learned behaviors across platforms
+              with different kinematic structures. In this work, we propose the Unified Hand
+              Action Space (UHAS), a sphere-based unified action representation for cross-
+              embodiment dexterous manipulation. UHAS represents robotic hand actions as
+              geometric deformations of a canonical sphere and uses a Cascade Inverse Kine-
+              matics (CIK) algorithm to map the shared representation to embodiment-specific
+              joint configurations. Using reinforcement learning, we train dexterous manipula-
+              tion policies directly in the proposed action space for in-hand cube reorientation
+              tasks. We evaluate our method in both simulation and real-world experiments
+              across multiple robotic hands, including the Allegro Hand, LEAP Hand, Shadow
+              Hand, and MANO Human Hand. Experimental results demonstrate effective dex-
+              terous manipulation, zero-shot transfer to unseen hands, rapid finetuning across
+              embodiments, and successful real-world deployment. Our experiments show that
+              the proposed UHAS representation enables stable dexterous control and cross-
+              embodiment policy transfer across robotic hands.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </div>
+  </section>
+
+
+  <section id="overview" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/overview.png" alt="Overview our VLA-Replica benchmark">
+            <p class="center">In our unified hand action space, an action is represented as the deformation of a canonical sphere. 
+              A deformed sphere is mapped to hand configurations of various embodiments (LEAP, Allegro, MANO Human and Shadow).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sphere_creation" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Automatic Sphere Creation for a Robotic Hand</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/sphere_creation.jpg" alt="Sphere Creation">
+            <p class="center">Illustration of the process of creating a sphere for a robotic hand given its URDF.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>    
+  
+ <section id="correspondence" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Unified Hand Surface Correspondence</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/sphere_correspondence.jpg" alt="Sphere Creation">
+            <p class="center">Construction of the unified hand surface correspondence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+ <section id="deformation" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Sphere Deformation Action Space</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/sphere_deformation.png" alt="Sphere Creation">
+            <p class="center">Sphere deformation parameterization in the Unified Hand Action Space (UHAS). (a) Initial configuration of four driving planes. (b) Rotating the driving planes controls the lateral deformation &Delta;&theta;. (c) Radial displacement of the driving vectors controls &Delta;r. (d) The final deformed sphere reconstructed through interpolation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+  <section id="kinematics" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Cascade Inverse Kinematics</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/CIK.jpg" alt="Sphere Creation">
+            <p class="center">We classify hand joints into (a) lateral joints and (b) encompassing joints and; (c) Illustra-
+tion of the cascade inverse kinematics algorithm on a deformed sphere.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+
+
+  <section id="experiments" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Experiments</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/experiments.png"
+     alt="Sphere Creation"
+     style="display: block; width: 70%; height: auto; margin: 0 auto;">
+            <p class="center">We evaluate our method on the task of in-hand cube reorientation in both simulation and
+the real world.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  
+
+   <section id="simulation" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Simulation Result</h2>
+          <div class="content has-text-justified">
+            <img src="assets/images/simulation.png"
+     alt="Sphere Creation"
+     style="display: block; width: 70%; height: auto; margin: 0 auto;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>   
+
+  <section id="sim-to-real-results" class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">In-Hand Manipulation Sim-to-Real Results</h2>
+          <p class="sim-results-intro">
+            We evaluate dexterous manipulation on LEAP Hand and Allegro Hand in real-world in-hand cube reorientation tasks.
+          </p>
+
+          <div class="robot-results">
+            <section class="robot-result-group" aria-labelledby="leap-results-title">
+              <div class="robot-result-heading">
+                <h3 id="leap-results-title" class="title is-4">LEAP Hand</h3>
+              </div>
+              <div class="video-result-grid">
+                <article class="video-result-card video-result-card-wide">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Leap_all_grippers.mp4" type="video/mp4">
+                  </video>
+                  <h4>Training with all four hands: 1.1 MEAN Reposes</h4>
+                </article>
+                <article class="video-result-card video-result-card-wide">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Leap_in_domain.mp4" type="video/mp4">
+                  </video>
+                  <h4>Training on LEAP hand: 2.0 MEAN Reposes</h4>
+                </article>
+                <article class="video-result-card video-result-card-wide">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Leap_out_of_domain.mp4" type="video/mp4">
+                  </video>
+                  <h4>Zero-shot: Training on all hands except the target hand: 0.9 MEAN Reposes</h4>
+                </article>
+                <article class="video-result-card video-result-card-wide">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Leap_baseline.mp4" type="video/mp4">
+                  </video>
+                  <h4>Joint control baseline: 0.6 MEAN Reposes</h4>
+                </article>
+              </div>
+            </section>
+
+            <section class="robot-result-group" aria-labelledby="allegro-results-title">
+              <div class="robot-result-heading">
+                <h3 id="allegro-results-title" class="title is-4">Allegro Hand</h3>
+              </div>
+              <div class="video-result-grid">
+                <article class="video-result-card">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Allegro_all_grippers.mp4" type="video/mp4">
+                  </video>
+                  <h4>Training with all four hands: 2.l MEAN Reposes</h4>
+                </article>
+                <article class="video-result-card">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Allegro_in_domain.mp4" type="video/mp4">
+                  </video>
+                  <h4>Training on Allegro hand: 2.1 MEAN Reposes</h4>
+                </article>
+                <article class="video-result-card">
+                  <video class="result-video" controls muted loop playsinline preload="metadata">
+                    <source src="assets/videos/UHAS_Allegro_out_of_domain.mp4" type="video/mp4">
+                  </video>
+                  <h4>Zero-shot: Training on all hands except the target hand: 0.8 MEAN Reposes</h4>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+
+          <!-- Code. -->
+          <div class="columns is-centered has-text-justified">
+            <div class="column">
+              <h2 id="code" class="title is-3">Code</h2>
+              <!-- Toolkit Code. -->
+              <p> Please check the code below.</p>
+              <div class="content has-text-justified">
+                <h2 class="title is-3">
+                  <span class="link-block">
+                    <a target="_blank" href="https://github.com/IRVLUTD/UGAS_sim/tree/felipe/public_release"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                          <i class="fab fa-github"></i>
+                      </span>
+                      <span> <span class="small-caps">UHAS</span>
+                      </a>
+                  </span>
+                </h2>
+                <p>
+  
+                </p>
+              </div>
+
+            </div>
+          </div>
+    </div>
+  </section>  
+
+
+  <!-- BibTeX -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop">
+      <h2 class="title">BibTeX</h2>
+      <span>Please cite <span class="small-caps"><b>UHAS</b></span> if it helps your research:</span>
+      <div class="bib-container">
+        <pre><button id="copy-btn" onclick="copyToClipboard()"><i class="fas fa-copy copy-highlight"></i></button><code>
+      @misc{casas2026crossembodiment,
+        title={Cross-Embodiment Robot Manipulation via a Unified Hand Action Space}, 
+        author={Luis Felipe Casas and Robert Teal and Keval Shah and Abhijit Tadepalli and Wanxin Jin and Yu Xiang},
+        year={2026},
+        eprint={2607.03570},
+        archivePrefix={arXiv},
+        primaryClass={cs.RO},
+        url={https://arxiv.org/abs/2607.03570} 
+      }
+</code></pre>
+      </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+      
+      <h2 class="title">Contact</h2>
+        <p>Send any comments or questions to Luis Felipe Casas: <br><a target="_blank" href="mailto:Luis.CasasMurillo@utdallas.edu">Luis.CasasMurillo@utdallas.edu</a> </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements -->
+  <section class="section">
+    <div class="container is-max-desktop content has-text-centered">
+      <h2 class="title">Acknowledgements</h2>
+    <div class="is-vcentered interpolation-panel">
+      <div class="container content">
+        <p style="font-size: 16px">
+          This work was supported in part by the National Science Foundation (NSF) under Grant Nos. 2346528 and 2520553, the NVIDIA Academic Grant Program Award, and a gift funding from XPeng.
+        </p>
+      </div>
+    </div>
+    </div>  
+  </section>
+
+</body>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="./assets/js/global-index.js"></script>
+</html>
+
