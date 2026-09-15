@@ -7,7 +7,7 @@ const parameterHeaders = [
     'X-VLA',
     '&pi;<sub>0</sub>',
     '&pi;<sub>0.5</sub>',
-    'MolmoAct2'
+    'MolmoAct2-SO100_101'
 ];
 
 const parameterRows = [

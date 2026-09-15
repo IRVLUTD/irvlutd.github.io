@@ -9,7 +9,7 @@ const methodHeaders = [
     'X-VLA <a href="#ref-4" class="leaderboard-ref-link"><span class="leaderboard-ref-box">4</span></a>',
     '&pi;<sub>0</sub> <a href="#ref-5" class="leaderboard-ref-link"><span class="leaderboard-ref-box">5</span></a>',
     '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>',
-    'MolmoAct2 <a href="#ref-7" class="leaderboard-ref-link"><span class="leaderboard-ref-box">7</span></a>'
+    'MolmoAct2-SO100_101 <a href="#ref-7" class="leaderboard-ref-link"><span class="leaderboard-ref-box">7</span></a>'
 ];
 
 const leaderboardMethods = [
@@ -20,7 +20,7 @@ const leaderboardMethods = [
     { label: 'X-VLA', ref: 4, slug: 'x-vla' },
     { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
     { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' },
-    { label: 'MolmoAct2', ref: 7, slug: 'molmoact2'}
+    { label: 'MolmoAct2-SO100_101', ref: 7, slug: 'molmoact2'}
 ];
 
 const leaderboardData = {
