@@ -8,7 +8,8 @@ const methodHeaders = [
     'SmolVLA <a href="#ref-3" class="leaderboard-ref-link"><span class="leaderboard-ref-box">3</span></a>',
     'X-VLA <a href="#ref-4" class="leaderboard-ref-link"><span class="leaderboard-ref-box">4</span></a>',
     '&pi;<sub>0</sub> <a href="#ref-5" class="leaderboard-ref-link"><span class="leaderboard-ref-box">5</span></a>',
-    '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>'
+    '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>',
+    'MolmoAct2 <a href="#ref-7" class="leaderboard-ref-link"><span class="leaderboard-ref-box">7</span></a>'
 ];
 
 const leaderboardMethods = [
@@ -18,7 +19,8 @@ const leaderboardMethods = [
     { label: 'SmolVLA', ref: 3, slug: 'smolvla' },
     { label: 'X-VLA', ref: 4, slug: 'x-vla' },
     { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
-    { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' }
+    { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' },
+    { label: 'MolmoAct2', ref: 7, slug: 'molmoact2', datasets: ['ood'], videos: false }
 ];
 
 const leaderboardData = {
@@ -54,30 +56,30 @@ const leaderboardData = {
         ]
     },
     ood: {
-        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35'],
+        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35', '0.45'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0', '0.8'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4', '1.0'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0', '0.6'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2', '0.2'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8', '0.8'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0', '0', '0', '0', '0', '0.2', '0.4'] },
-                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0', '0', '0', '0.2', '0', '0', '0'] },
-                    { taskNumber: '8', task: 'Press button n times', values: ['0', '0', '0', '0', '0', '0', '0'] }
+                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0', '0', '0', '0', '0', '0.2', '0.4', '0'] },
+                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0', '0', '0', '0.2', '0', '0', '0', '0.2'] },
+                    { taskNumber: '8', task: 'Press button n times', values: ['0', '0', '0', '0', '0', '0', '0', '0'] }
                 ]
             }
         ]
@@ -90,7 +92,8 @@ const references = {
     '3': 'Shukor, Mustafa, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, et al. <a target="_blank" href="https://arxiv.org/abs/2506.01844">"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics."</a> <i>arXiv preprint arXiv:2506.01844</i>, 2025.',
     '4': 'Zheng, Jinliang, Jianxiong Li, Zhihao Wang, Dongxiu Liu, Xirui Kang, Yuchun Feng, Yinan Zheng, et al. <a target="_blank" href="https://arxiv.org/abs/2510.10274">"X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model."</a> <i>arXiv preprint arXiv:2510.10274</i>, 2025.',
     '5': 'Black, Kevin, Noah Brown, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, et al. <a target="_blank" href="https://arxiv.org/abs/2410.24164">"&pi;<sub>0</sub>: A Vision-Language-Action Flow Model for General Robot Control."</a> <i>arXiv preprint arXiv:2410.24164</i>, 2024.',
-    '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.'
+    '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.',
+    '7': 'Fang, Haoquan, Jiafei Duan, Donovan Clay, Sam Wang, Shuo Liu, Weikai Huang, Xiang Fan, et al. <a target="_blank" href="https://arxiv.org/abs/2605.02881">"MolmoAct2: Action Reasoning Models for Real-world Deployment."</a> <i>arXiv preprint arXiv:2605.02881</i>, 2026.'
 };
 
 const datasetAnnotationFiles = {
@@ -959,7 +962,9 @@ const video_links = Object.fromEntries(
         const datasetTitle = datasetKey === 'id' ? 'VLA-Replica-ID' : 'VLA-Replica-OOD';
         const taskRows = leaderboardData[datasetKey].groups.flatMap((group) => group.rows);
 
-        return leaderboardMethods.map((method) => {
+        return leaderboardMethods
+            .filter((method) => !method.datasets || method.datasets.includes(datasetKey))
+            .map((method) => {
             const pageKey = `${datasetKey}-${method.slug}`;
 
             return [pageKey, {

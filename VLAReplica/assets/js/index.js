@@ -14,6 +14,10 @@ function renderMethodLabel(method) {
 }
 
 function renderVideoLink(datasetKey, method) {
+    if (method.videos === false) {
+        return '—';
+    }
+
     return `
         <a class="icon scene-video-link" href="./scene-videos/${datasetKey}-${method.slug}.html" aria-label="Open videos for ${method.label.replace(/<[^>]+>/g, '')}">
             <i class="fas fa-link"></i>
@@ -31,7 +35,10 @@ function renderLeaderboard(datasetKey, sortKey = 'average') {
     }
 
     const taskRows = dataset.groups.flatMap((group) => group.rows);
-    const rankedMethods = leaderboardMethods.map((method, index) => ({
+    const rankedMethods = leaderboardMethods
+        .map((method, index) => ({ method, index }))
+        .filter(({ method }) => !method.datasets || method.datasets.includes(datasetKey))
+        .map(({ method, index }) => ({
         method,
         average: dataset.average[index],
         values: taskRows.map((row) => row.values[index])
@@ -116,5 +123,3 @@ document.addEventListener('DOMContentLoaded', function () {
     renderLeaderboard(activeDataset);
     renderReferences();
 });
-
-
