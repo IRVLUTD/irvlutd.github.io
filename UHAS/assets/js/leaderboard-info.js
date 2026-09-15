@@ -8,8 +8,7 @@ const methodHeaders = [
     'SmolVLA <a href="#ref-3" class="leaderboard-ref-link"><span class="leaderboard-ref-box">3</span></a>',
     'X-VLA <a href="#ref-4" class="leaderboard-ref-link"><span class="leaderboard-ref-box">4</span></a>',
     '&pi;<sub>0</sub> <a href="#ref-5" class="leaderboard-ref-link"><span class="leaderboard-ref-box">5</span></a>',
-    '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>',
-    'MolmoAct2 <a href="#ref-7" class="leaderboard-ref-link"><span class="leaderboard-ref-box">7</span></a>'
+    '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>'
 ];
 
 const leaderboardMethods = [
@@ -19,8 +18,7 @@ const leaderboardMethods = [
     { label: 'SmolVLA', ref: 3, slug: 'smolvla' },
     { label: 'X-VLA', ref: 4, slug: 'x-vla' },
     { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
-    { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' },
-    { label: 'MolmoAct2', ref: 7, slug: 'molmoact2', datasets: ['ood'], videos: false }
+    { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' }
 ];
 
 const leaderboardData = {
@@ -56,30 +54,30 @@ const leaderboardData = {
         ]
     },
     ood: {
-        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35', '0.45'],
+        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4', '1.0'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0', '0.6'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2', '0.2'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8', '0.8'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0', '0', '0', '0', '0', '0.2', '0.4', '0'] },
-                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0', '0', '0', '0.2', '0', '0', '0', '0.2'] },
-                    { taskNumber: '8', task: 'Press button n times', values: ['0', '0', '0', '0', '0', '0', '0', '0'] }
+                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0', '0', '0', '0', '0', '0.2', '0.4'] },
+                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0', '0', '0', '0.2', '0', '0', '0'] },
+                    { taskNumber: '8', task: 'Press button n times', values: ['0', '0', '0', '0', '0', '0', '0'] }
                 ]
             }
         ]
@@ -92,8 +90,7 @@ const references = {
     '3': 'Shukor, Mustafa, Dana Aubakirova, Francesco Capuano, Pepijn Kooijmans, Steven Palma, Adil Zouitine, Michel Aractingi, et al. <a target="_blank" href="https://arxiv.org/abs/2506.01844">"SmolVLA: A Vision-Language-Action Model for Affordable and Efficient Robotics."</a> <i>arXiv preprint arXiv:2506.01844</i>, 2025.',
     '4': 'Zheng, Jinliang, Jianxiong Li, Zhihao Wang, Dongxiu Liu, Xirui Kang, Yuchun Feng, Yinan Zheng, et al. <a target="_blank" href="https://arxiv.org/abs/2510.10274">"X-VLA: Soft-Prompted Transformer as Scalable Cross-Embodiment Vision-Language-Action Model."</a> <i>arXiv preprint arXiv:2510.10274</i>, 2025.',
     '5': 'Black, Kevin, Noah Brown, Danny Driess, Adnan Esmail, Michael Equi, Chelsea Finn, Niccolo Fusai, et al. <a target="_blank" href="https://arxiv.org/abs/2410.24164">"&pi;<sub>0</sub>: A Vision-Language-Action Flow Model for General Robot Control."</a> <i>arXiv preprint arXiv:2410.24164</i>, 2024.',
-    '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.',
-    '7': 'Fang, Haoquan, Jiafei Duan, Donovan Clay, Sam Wang, Shuo Liu, Weikai Huang, Xiang Fan, et al. <a target="_blank" href="https://arxiv.org/abs/2605.02881">"MolmoAct2: Action Reasoning Models for Real-world Deployment."</a> <i>arXiv preprint arXiv:2605.02881</i>, 2026.'
+    '6': 'Physical Intelligence, Kevin Black, Noah Brown, James Darpinian, Karan Dhabalia, Danny Driess, Adnan Esmail, et al. <a target="_blank" href="https://arxiv.org/abs/2504.16054">"&pi;<sub>0.5</sub>: A Vision-Language-Action Model with Open-World Generalization."</a> <i>arXiv preprint arXiv:2504.16054</i>, 2025.'
 };
 
 const datasetAnnotationFiles = {
@@ -851,101 +848,6 @@ const pageDriveIds = {
         'press_the_button_four_times_ep_4.mp4': '1-WO4C-VRV-OZCJH6dvC-EKbIyM0BItdv',
         'press_the_button_five_times_ep_5.mp4': '1Q-oZbAQKqA6VaH5ph0t2UU9bfwFt15Yf'
     }
-    ,
-    'id-molmoact2': {
-        'put_the_bread_on_the_red_plate_ep_1.mp4': '1KcciWlQpmYW3qcq_bs2WU-bHh9wOQIvZ',
-        'put_the_bread_on_the_blue_plate_ep_2.mp4': '1isjWk3X6sSKfaAzlQlA79l0micuYlCSI',
-        'put_the_bread_on_the_blue_plate_ep_3.mp4': '18uK-6cm0WqILvFNFPzgRyOvxottNNNGO',
-        'put_the_bread_on_the_red_plate_ep_4.mp4': '1zHtNUNaUN9scLW4s13e7Liof25qjpwht',
-        'put_the_bread_on_the_red_plate_ep_5.mp4': '1weOnz2BiXT_NMBpmPWiaOygA563lPFEL',
-        'put_the_red_bowl_on_the_green_coaster_ep_1.mp4': '1hFzBNB-0evjmtxu-MOj57QXrieKF3Sze',
-        'put_the_blue_bowl_on_the_orange_coaster_ep_2.mp4': '14ZGEjWTb49BPalUOEV88x_kL40ue1ALP',
-        'put_the_blue_bowl_on_the_green_coaster_ep_3.mp4': '11wq4PQ3QwFjWDXNviVgfxT7UCtpVz4l8',
-        'put_the_red_bowl_on_the_purple_coaster_ep_4.mp4': '1I4YNiTD4dH4GlEwsoCRBINe_HgokeFlh',
-        'put_the_yellow_bowl_on_the_purple_coaster_ep_5.mp4': '1LDl0avNrEaTVbpmsGUFfk6-OHPfSKLb-',
-        'stack_the_red_block_on_the_blue_block_ep_1.mp4': '1sYyc6jpqJwLRaZSV786lj662HRKgxZSG',
-        'stack_the_yellow_block_on_the_blue_block_ep_2.mp4': '1PPGEt1t1owg4H2izzyD6HlLs7toMXLRX',
-        'stack_the_blue_block_on_the_yellow_block_ep_3.mp4': '1ZUVbUEqPRd16HNNjfPZZoyQ5I04QKOxH',
-        'stack_the_blue_block_on_the_red_block_ep_4.mp4': '1qXy7C-lMjwjCXd0Ck2uX7IyLolV-WyMX',
-        'stack_the_red_block_on_the_yellow_block_ep_5.mp4': '1gmvV6oWVPm-Ux_daC9LD0CfeYbKQkTyZ',
-        'collect_2_blocks_into_the_blue_box_ep_1.mp4': '1HCjreDW8980Hkex-c3CMKXwIiRGvUY-u',
-        'collect_2_blocks_into_the_yellow_box_ep_2.mp4': '13X50ioczyWHdBTjGjnNv91iZBVz3rCcJ',
-        'collect_3_blocks_into_the_blue_box_ep_3.mp4': '17SFSgEoHYyYHsLsESnLYWScwG9D79cJ3',
-        'collect_3_blocks_into_the_yellow_box_ep_4.mp4': '1MFP3wZjgg43FJLKDXRKgGDHNg8yLcOiR',
-        'collect_4_blocks_into_the_blue_box_ep_5.mp4': '1SvIANjqScUao8q9fxleZGHDJA-Gu4M7r',
-        'fold_the_pink_towel_in_half_ep_1.mp4': '1civ6_fT9_-yXIzAS91kD9N0KyRVoKltB',
-        'fold_the_yellow_towel_in_half_ep_2.mp4': '1fCvZeQ3YA0eYB02jlr3IfMb7RlsGkNmB',
-        'fold_the_pink_towel_in_half_ep_3.mp4': '1NI_4EThdhLVI4NEyQmds_oDw6VGGosi4',
-        'fold_the_yellow_towel_in_half_ep_4.mp4': '1nYF-5rIDAB4HPj7pZVDHJhK-7wqSANZb',
-        'fold_the_pink_towel_in_half_ep_5.mp4': '1VuGd7XwnH3Zs21_cbDuKleC1KgvxHbP2',
-        'open_the_oven_ep_1.mp4': '1BIUWrr5gzNQhKVWa2iPIFps2zqld52TX',
-        'open_the_oven_ep_2.mp4': '12qxyCQWjQxPIvrfE8JaJb-ptF9PFuCoI',
-        'open_the_oven_ep_3.mp4': '1wHCjsoB-FHlJfAbv3dXoNty_lf8WF0IB',
-        'open_the_oven_ep_4.mp4': '14LtExCpc6T3EAEKQPM6CnWVLwLdshlhS',
-        'open_the_oven_ep_5.mp4': '1OED_LOspxODl1KEUxbyx8KGLD8vdoH2h',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_1.mp4': '1wlgW68pxpSZIJsx6BvzdfFQEUOkNN84g',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_2.mp4': '19Usf4IYsl3x8F3QvEvZ191rWIBbRRsrL',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_3.mp4': '1sr-FlpXCkrdcGJ-OXYK8vuOfSnDraOlQ',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_4.mp4': '1_qUlPZuHofNCvplJdu5AOTd4cUqUztcY',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_5.mp4': '1nSdslv5kAlgVDeQzOzrN_AcZzMv6W9IG',
-        'pour_1_shake_of_pepper_into_the_red_plate_ep_1.mp4': '1e0GE3Mdg-nZ2m9r2HsIUWDlYHiYKeW97',
-        'pour_3_shakes_of_pepper_into_the_red_plate_ep_2.mp4': '1H6DW7bFtpbaLF2cJtPdokLwUuX1gASvr',
-        'pour_2_shakes_of_pepper_into_the_red_plate_ep_3.mp4': '1FZSGVbDSRnAH943NmkcFT1NFOt1G4fLj',
-        'pour_1_shake_of_pepper_into_the_red_plate_ep_4.mp4': '1au-SY2PuscR2e2zx75dnlig-ic2dVPLD',
-        'pour_3_shakes_of_pepper_into_the_red_plate_ep_5.mp4': '1tIP8T-NcKrlck5bhC8p3HDhORxQdQuOH',
-        'lift_the_green_bowl_one_time_ep_1.mp4': '1vTyEK0L095aQBBmesvjcHIR_LdDvvmyb',
-        'lift_the_blue_bowl_one_time_ep_2.mp4': '1munKHPyPbTLKXrXvjlKPfKv2crqTkkmJ',
-        'lift_the_red_bowl_three_times_ep_3.mp4': '1lrClZ2-jhdCjg9zT8WmIhPehKjyzAjSP',
-        'lift_the_green_bowl_three_times_ep_4.mp4': '1S_dI85oen4TuFTUy2NfV5JN29eTZaSXX',
-        'lift_the_blue_bowl_three_times_ep_5.mp4': '1YI9-i3dzqaox2KmPeKBgI0j8eO-FT1g_',
-        'press_the_button_one_time_ep_1.mp4': '1ws7OnW5QndCb52IEkuo-1MocjS66_0jk',
-        'press_the_button_three_times_ep_2.mp4': '1QkqOcZTIll1Czv4wVX1fkovZZNY7DwTc',
-        'press_the_button_one_time_ep_3.mp4': '1ebmMKKk4be8jbK_tK2WapWG2xbLonJOz',
-        'press_the_button_three_times_ep_4.mp4': '1bAQSm5bWERWL7rT04ZCaBg0gU1M_Q2cU',
-        'press_the_button_three_times_ep_5.mp4': '1BcrRtV-4DkeTHiKxu8HkcyjZVznjrLSV'
-    },
-    'ood-molmoact2': {
-        'collect_2_blocks_into_the_pink_box_ep_1.mp4': '13UpwVZUeWRerahcZzSXLqn2bfwqn2uzT',
-        'collect_3_blocks_into_the_pink_box_ep_2.mp4': '1jCLuAEG1r8FttjY3imt0PtjeXBcjkh60',
-        'collect_5_blocks_into_the_blue_box_ep_3.mp4': '1YCHNYOeu66uZdYL4k3CP9LTuoLrcrFIF',
-        'collect_5_blocks_into_the_pink_box_ep_5.mp4': '1nOEkhlm972_pRAu_VMkjbTynj2xigpwz',
-        'collect_5_blocks_into_the_yellow_box_ep_4.mp4': '1JWae3ktBzWqF9ZE5VcMAmfF08bCuKEcI',
-        'fold_the_blue_towel_in_half_ep_1.mp4': '1v7BCm7AJAgmTHepxysUd9NvYGspWaGQC',
-        'fold_the_blue_towel_in_half_ep_2.mp4': '1w44z1MT3S5jMq1ajFZA9brsbp-b2Rn8T',
-        'fold_the_blue_towel_in_half_ep_3.mp4': '1estWv24ysHoIODQJEJ30S2keQO5bdQwt',
-        'fold_the_blue_towel_in_half_ep_4.mp4': '19VkxzUscVRmYgdhJ-dXpvwtw5wisa1lT',
-        'fold_the_blue_towel_in_half_ep_5.mp4': '1zoYKatSkMhxrldkDTrLVmOjCAY_SxoXB',
-        'lift_the_blue_bowl_two_times_ep_2.mp4': '1Hx4ipmgk1FJ9qlBScD_DWmqUwxmVC3kG',
-        'lift_the_green_bowl_two_times_ep_1.mp4': '1HbFWOENzyA5HkIO24LlRvYIuwBXC1Iyc',
-        'lift_the_red_bowl_two_times_ep_3.mp4': '1s49WqPijm4Mw9W9YxnyQuWwg-9DNQkAA',
-        'lift_the_yellow_bowl_four_times_ep_5.mp4': '1BF3p5NLddubQtKxneqrBrUnWXV3rao6d',
-        'lift_the_yellow_bowl_two_times_ep_4.mp4': '1Vo70rdDgBOslKg8WdafQSrhOCzjAVUHW',
-        'pour_1_shake_of_pepper_into_the_blue_plate_ep_3.mp4': '1DwU4a58FfxY_HJIEi0Jx03wJfCdbCvnJ',
-        'pour_3_shakes_of_pepper_into_the_blue_plate_ep_4.mp4': '1lF39XQ1NIeSPAVnbpZd51bltVOjmYWLb',
-        'pour_4_shakes_of_pepper_into_the_red_plate_ep_1.mp4': '1ZzNhr8oLrv9KU7tA45mdOGXPKfp86owz',
-        'pour_5_shakes_of_pepper_into_the_blue_plate_ep_5.mp4': '1lA9FGlbSsuoRCEwWarA0En8BXf4HqqSS',
-        'pour_5_shakes_of_pepper_into_the_red_plate_ep_2.mp4': '11t050aiUBCyrjrOA8PAGAqnC7_uSVhDE',
-        'press_the_button_five_times_ep_5.mp4': '1OJyenmTgN6h11R--5V5wNuada09EQjux',
-        'press_the_button_four_times_ep_2.mp4': '1lw_JtLshyA4WymP5EJTTCkToP8Yi3Cxy',
-        'press_the_button_four_times_ep_4.mp4': '1oGwOq2YzAUdMS7ibIMNbfWl-kRQIKHob',
-        'press_the_button_two_times_ep_1.mp4': '1BkJ9dtYPL-P7uNxNjrnQZMLy4DtckSXi',
-        'press_the_button_two_times_ep_3.mp4': '1WUYZ9j2Co49RYuKe_qDWc42C5T0qX4Cw',
-        'put_the_blue_bowl_on_the_purple_coaster_ep_1.mp4': '1Ujyy4i6oOBjUAf6R7l_dPrzLoIJOmO0T',
-        'put_the_bread_on_the_blue_plate_ep_2.mp4': '1OIShaFFAjOeJ7IXJPyPTk9rAi_zmLMVW',
-        'put_the_bread_on_the_red_plate_ep_1.mp4': '1xor1CaSgw7wbx5YTQN3P1AJQSmR8J-Zj',
-        'put_the_bread_on_the_yellow_plate_ep_3.mp4': '14PL_ZvnPI3MtbJYIDY1P4VYrEAEdZhKa',
-        'put_the_bread_on_the_yellow_plate_ep_4.mp4': '1qFQDeQxj4ztUDOCrF-NLbKOlS7phuE_Z',
-        'put_the_bread_on_the_yellow_plate_ep_5.mp4': '1N3pGRp7KNF7gk9F5cGSC8Q_pcNPfJRfn',
-        'put_the_green_bowl_on_the_yellow_coaster_ep_5.mp4': '1Ka27fkLEVoUjyluJc4wX5kT7KkR77M0g',
-        'put_the_red_bowl_on_the_orange_coaster_ep_2.mp4': '14bBqjuwRb_QWLQaFlrnmnaqAEQCU2pSo',
-        'put_the_yellow_bowl_on_the_green_coaster_ep_3.mp4': '1pFPlWWjTGtMLMMD3jVm4r7PefD8vEExE',
-        'put_the_yellow_bowl_on_the_orange_coaster_ep_4.mp4': '1MiCE3Rr7LTequhp_5WOJvRZcpdH8fHgT',
-        'stack_the_blue_block_on_the_blue_block_ep_2.mp4': '1v_nZLdDaTXHc4i7CtmGlMt9bziWQFRTT',
-        'stack_the_green_block_on_the_green_block_ep_5.mp4': '1Z8q1HzqcRrIklfXMoVUxX1R-MfHmntQp',
-        'stack_the_green_block_on_the_yellow_block_ep_4.mp4': '1L3AoQeneh6nbahCAQthjemEP8f2JhyCu',
-        'stack_the_red_block_on_the_green_block_ep_3.mp4': '1z3TB3FETLEK3QsfiW477YM11DM6Q1xHA',
-        'stack_the_yellow_block_on_the_red_block_ep_1.mp4': '1AipkuDfNQdcGElroojlcaMsy_fQyeazZ',
-    }
 };
 
 function buildGoogleDriveViewUrl(fileId) {
@@ -1057,9 +959,7 @@ const video_links = Object.fromEntries(
         const datasetTitle = datasetKey === 'id' ? 'VLA-Replica-ID' : 'VLA-Replica-OOD';
         const taskRows = leaderboardData[datasetKey].groups.flatMap((group) => group.rows);
 
-        return leaderboardMethods
-            .filter((method) => !method.datasets || method.datasets.includes(datasetKey))
-            .map((method) => {
+        return leaderboardMethods.map((method) => {
             const pageKey = `${datasetKey}-${method.slug}`;
 
             return [pageKey, {
