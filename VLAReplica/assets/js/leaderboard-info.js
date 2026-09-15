@@ -20,37 +20,37 @@ const leaderboardMethods = [
     { label: 'X-VLA', ref: 4, slug: 'x-vla' },
     { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
     { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' },
-    { label: 'MolmoAct2', ref: 7, slug: 'molmoact2', datasets: ['ood'], videos: false }
+    { label: 'MolmoAct2', ref: 7, slug: 'molmoact2'}
 ];
 
 const leaderboardData = {
     id: {
-        average: ['0.18', '0.16', '0.12', '0.26', '0.14', '0.34', '0.54'],
+        average: ['0.18', '0.16', '0.12', '0.26', '0.14', '0.34', '0.54', '0.46'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0.4', '0.4', '0.6', '0.4', '0.8', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0', '0', '0', '0.2', '0.2', '0.6', '0.8'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0', '0.4'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0.2', '0', '0', '0', '0', '0.4'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0.4', '0.4', '0.6', '0.4', '0.8', '0.8', '1.0'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0', '0', '0', '0.2', '0.2', '0.6', '0.8', '0.8'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0', '0.4', '0.4'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0.2', '0', '0', '0', '0', '0.4', '0.4'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0.4', '0.2', '0.2', '0.6', '0.6', '0.8', '1.0'] },
-                    { taskNumber: '6', task: 'Open oven', values: ['0.4', '0.6', '0.4', '0.4', '0', '0.2', '0.6'] },
-                    { taskNumber: '7', task: 'Erase whiteboard', values: ['0.2', '0.2', '0.2', '0.2', '0', '0.4', '0.4'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0.4', '0.2', '0.2', '0.6', '0.6', '0.8', '1.0', '0.6'] },
+                    { taskNumber: '6', task: 'Open oven', values: ['0.4', '0.6', '0.4', '0.4', '0', '0.2', '0.6', '0.4'] },
+                    { taskNumber: '7', task: 'Erase whiteboard', values: ['0.2', '0.2', '0.2', '0.2', '0', '0.4', '0.4', '0.6'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '8', task: 'Shake pepper n times', values: ['0.2', '0', '0', '0', '0.2', '0.2', '0.4'] },
-                    { taskNumber: '9', task: 'Lift bowl n times', values: ['0.2', '0', '0', '0.2', '0', '0.2', '0.4'] },
-                    { taskNumber: '10', task: 'Press button n times', values: ['0', '0', '0', '0.2', '0', '0.2', '0.2'] }
+                    { taskNumber: '8', task: 'Shake pepper n times', values: ['0.2', '0', '0', '0', '0.2', '0.2', '0.4', '0.2'] },
+                    { taskNumber: '9', task: 'Lift bowl n times', values: ['0.2', '0', '0', '0.2', '0', '0.2', '0.4', '0.2'] },
+                    { taskNumber: '10', task: 'Press button n times', values: ['0', '0', '0', '0.2', '0', '0.2', '0.2', '0'] }
                 ]
             }
         ]
@@ -853,56 +853,56 @@ const pageDriveIds = {
     }
     ,
     'id-molmoact2': {
-        'put_the_bread_on_the_red_plate_ep_1.mp4': '1KcciWlQpmYW3qcq_bs2WU-bHh9wOQIvZ',
-        'put_the_bread_on_the_blue_plate_ep_2.mp4': '1isjWk3X6sSKfaAzlQlA79l0micuYlCSI',
-        'put_the_bread_on_the_blue_plate_ep_3.mp4': '18uK-6cm0WqILvFNFPzgRyOvxottNNNGO',
-        'put_the_bread_on_the_red_plate_ep_4.mp4': '1zHtNUNaUN9scLW4s13e7Liof25qjpwht',
-        'put_the_bread_on_the_red_plate_ep_5.mp4': '1weOnz2BiXT_NMBpmPWiaOygA563lPFEL',
-        'put_the_red_bowl_on_the_green_coaster_ep_1.mp4': '1hFzBNB-0evjmtxu-MOj57QXrieKF3Sze',
-        'put_the_blue_bowl_on_the_orange_coaster_ep_2.mp4': '14ZGEjWTb49BPalUOEV88x_kL40ue1ALP',
-        'put_the_blue_bowl_on_the_green_coaster_ep_3.mp4': '11wq4PQ3QwFjWDXNviVgfxT7UCtpVz4l8',
-        'put_the_red_bowl_on_the_purple_coaster_ep_4.mp4': '1I4YNiTD4dH4GlEwsoCRBINe_HgokeFlh',
-        'put_the_yellow_bowl_on_the_purple_coaster_ep_5.mp4': '1LDl0avNrEaTVbpmsGUFfk6-OHPfSKLb-',
-        'stack_the_red_block_on_the_blue_block_ep_1.mp4': '1sYyc6jpqJwLRaZSV786lj662HRKgxZSG',
-        'stack_the_yellow_block_on_the_blue_block_ep_2.mp4': '1PPGEt1t1owg4H2izzyD6HlLs7toMXLRX',
-        'stack_the_blue_block_on_the_yellow_block_ep_3.mp4': '1ZUVbUEqPRd16HNNjfPZZoyQ5I04QKOxH',
-        'stack_the_blue_block_on_the_red_block_ep_4.mp4': '1qXy7C-lMjwjCXd0Ck2uX7IyLolV-WyMX',
-        'stack_the_red_block_on_the_yellow_block_ep_5.mp4': '1gmvV6oWVPm-Ux_daC9LD0CfeYbKQkTyZ',
-        'collect_2_blocks_into_the_blue_box_ep_1.mp4': '1HCjreDW8980Hkex-c3CMKXwIiRGvUY-u',
-        'collect_2_blocks_into_the_yellow_box_ep_2.mp4': '13X50ioczyWHdBTjGjnNv91iZBVz3rCcJ',
-        'collect_3_blocks_into_the_blue_box_ep_3.mp4': '17SFSgEoHYyYHsLsESnLYWScwG9D79cJ3',
-        'collect_3_blocks_into_the_yellow_box_ep_4.mp4': '1MFP3wZjgg43FJLKDXRKgGDHNg8yLcOiR',
-        'collect_4_blocks_into_the_blue_box_ep_5.mp4': '1SvIANjqScUao8q9fxleZGHDJA-Gu4M7r',
-        'fold_the_pink_towel_in_half_ep_1.mp4': '1civ6_fT9_-yXIzAS91kD9N0KyRVoKltB',
-        'fold_the_yellow_towel_in_half_ep_2.mp4': '1fCvZeQ3YA0eYB02jlr3IfMb7RlsGkNmB',
-        'fold_the_pink_towel_in_half_ep_3.mp4': '1NI_4EThdhLVI4NEyQmds_oDw6VGGosi4',
-        'fold_the_yellow_towel_in_half_ep_4.mp4': '1nYF-5rIDAB4HPj7pZVDHJhK-7wqSANZb',
-        'fold_the_pink_towel_in_half_ep_5.mp4': '1VuGd7XwnH3Zs21_cbDuKleC1KgvxHbP2',
-        'open_the_oven_ep_1.mp4': '1BIUWrr5gzNQhKVWa2iPIFps2zqld52TX',
-        'open_the_oven_ep_2.mp4': '12qxyCQWjQxPIvrfE8JaJb-ptF9PFuCoI',
-        'open_the_oven_ep_3.mp4': '1wHCjsoB-FHlJfAbv3dXoNty_lf8WF0IB',
-        'open_the_oven_ep_4.mp4': '14LtExCpc6T3EAEKQPM6CnWVLwLdshlhS',
-        'open_the_oven_ep_5.mp4': '1OED_LOspxODl1KEUxbyx8KGLD8vdoH2h',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_1.mp4': '1wlgW68pxpSZIJsx6BvzdfFQEUOkNN84g',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_2.mp4': '19Usf4IYsl3x8F3QvEvZ191rWIBbRRsrL',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_3.mp4': '1sr-FlpXCkrdcGJ-OXYK8vuOfSnDraOlQ',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_4.mp4': '1_qUlPZuHofNCvplJdu5AOTd4cUqUztcY',
-        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_5.mp4': '1nSdslv5kAlgVDeQzOzrN_AcZzMv6W9IG',
-        'pour_1_shake_of_pepper_into_the_red_plate_ep_1.mp4': '1e0GE3Mdg-nZ2m9r2HsIUWDlYHiYKeW97',
-        'pour_3_shakes_of_pepper_into_the_red_plate_ep_2.mp4': '1H6DW7bFtpbaLF2cJtPdokLwUuX1gASvr',
-        'pour_2_shakes_of_pepper_into_the_red_plate_ep_3.mp4': '1FZSGVbDSRnAH943NmkcFT1NFOt1G4fLj',
-        'pour_1_shake_of_pepper_into_the_red_plate_ep_4.mp4': '1au-SY2PuscR2e2zx75dnlig-ic2dVPLD',
-        'pour_3_shakes_of_pepper_into_the_red_plate_ep_5.mp4': '1tIP8T-NcKrlck5bhC8p3HDhORxQdQuOH',
-        'lift_the_green_bowl_one_time_ep_1.mp4': '1vTyEK0L095aQBBmesvjcHIR_LdDvvmyb',
-        'lift_the_blue_bowl_one_time_ep_2.mp4': '1munKHPyPbTLKXrXvjlKPfKv2crqTkkmJ',
-        'lift_the_red_bowl_three_times_ep_3.mp4': '1lrClZ2-jhdCjg9zT8WmIhPehKjyzAjSP',
-        'lift_the_green_bowl_three_times_ep_4.mp4': '1S_dI85oen4TuFTUy2NfV5JN29eTZaSXX',
-        'lift_the_blue_bowl_three_times_ep_5.mp4': '1YI9-i3dzqaox2KmPeKBgI0j8eO-FT1g_',
-        'press_the_button_one_time_ep_1.mp4': '1ws7OnW5QndCb52IEkuo-1MocjS66_0jk',
-        'press_the_button_three_times_ep_2.mp4': '1QkqOcZTIll1Czv4wVX1fkovZZNY7DwTc',
-        'press_the_button_one_time_ep_3.mp4': '1ebmMKKk4be8jbK_tK2WapWG2xbLonJOz',
-        'press_the_button_three_times_ep_4.mp4': '1bAQSm5bWERWL7rT04ZCaBg0gU1M_Q2cU',
-        'press_the_button_three_times_ep_5.mp4': '1BcrRtV-4DkeTHiKxu8HkcyjZVznjrLSV'
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_1.mp4': '1b_9no9rdXm6dftPVvvAujSqwFCkO9udV',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_2.mp4': '1UMqcl88-KZg8ql-dkLmWY_--nywKZm36',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_3.mp4': '1e-XHTrdsaizLvpkWEjFoCjbKzomirkTR',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_4.mp4': '1mg7SN--LE3AqOEPrpPBxtRv-_smJE7yj',
+        'clean_the_whiteboard_with_the_whiteboard_eraser_ep_5.mp4': '1gGOqmSobBhq5OSYoaCMogzWLiQAkyO58',
+        'collect_2_blocks_into_the_blue_box_ep_1.mp4': '1gzKpTEz-c6x08rtjh8CVo74MDrySn1dl',
+        'collect_2_blocks_into_the_yellow_box_ep_2.mp4': '1lMxAaJJyhwD2sSQfDw6qHEjIMGBJtzRk',
+        'collect_3_blocks_into_the_blue_box_ep_3.mp4': '1qzuHtSK7UaWBdAz39iV9eshcXTwmzi28',
+        'collect_3_blocks_into_the_yellow_box_ep_4.mp4': '1XWORQwYRhUnJSv8RhBEkZIjef4OmFpH0',
+        'collect_4_blocks_into_the_blue_box_ep_5.mp4': '1Bcc8W0IfFqf_zQOoAWLDUzlsuQjPAUb0',
+        'fold_the_pink_towel_in_half_ep_1.mp4': '1Sqmt86pIPPb7BrtKIz15kxOCZveX3u_p',
+        'fold_the_pink_towel_in_half_ep_3.mp4': '1wYiJGh6YYo0ZMkuODqdRjKYozYGY73yl',
+        'fold_the_pink_towel_in_half_ep_5.mp4': '1aXyUv7wzUudsj-M7rYIuM6rG_j0b8l5g',
+        'fold_the_yellow_towel_in_half_ep_2.mp4': '18cNeduQ91_KqKf8EfHeqs6nRjIDmsTBO',
+        'fold_the_yellow_towel_in_half_ep_4.mp4': '190F8BTJqtY3rwg3hYG4_2c0Dps0IcY_Z',
+        'lift_the_blue_bowl_one_time_ep_2.mp4': '1cUkBZHLcSKskGRMI9Ys_aWtt25IwClXM',
+        'lift_the_blue_bowl_three_times_ep_5.mp4': '1h1WIWS4VSWc1uAzR0BfZqonGDyre1w7c',
+        'lift_the_green_bowl_one_time_ep_1.mp4': '1ga39M3am2P_KmqMoUopaBkGOV1hrDEdq',
+        'lift_the_green_bowl_three_times_ep_4.mp4': '1kVILW3L7muhHyRfBC6xPt_pZx2mTqLdC',
+        'lift_the_red_bowl_three_times_ep_3.mp4': '17AWfYx2vpS71DI4FCaQb2Ki6HX2Ht3Iu',
+        'open_the_oven_ep_1.mp4': '14Wc-OrMbFtP4pV9JIZYW5E_vU_T3Sf_f',
+        'open_the_oven_ep_2.mp4': '15s5HwMf7i1objuW6oVJauJaehELqK4fl',
+        'open_the_oven_ep_3.mp4': '1I91M4n33In5Ng7lWGwOQiQt8Dru0S3Hu',
+        'open_the_oven_ep_4.mp4': '1vlk9GOt7IgRxOwhpAvErIJfM-I89bv-T',
+        'open_the_oven_ep_5.mp4': '1TZ4jd6BGAtQPVtgLw555ihXMYHCCfEIC',
+        'pour_1_shake_of_pepper_into_the_red_plate_ep_1.mp4': '1C7IMfAXu_EnYZ-zOOfCtZK5t-_lX2TR6',
+        'pour_1_shake_of_pepper_into_the_red_plate_ep_4.mp4': '1mkpOzU0ktkgTMVQmUCY1qCrX0GhBPnIH',
+        'pour_2_shakes_of_pepper_into_the_red_plate_ep_3.mp4': '1AbYXl5FhyPw1eZxVTbLEf9hXBJ6jzOkP',
+        'pour_3_shakes_of_pepper_into_the_red_plate_ep_2.mp4': '12awOML4H74Lgueuq7dIlH6M1ZfSZOExe',
+        'pour_3_shakes_of_pepper_into_the_red_plate_ep_5.mp4': '1_8o_VbzvFYChr4J--1MNC9YDlzy1ab3r',
+        'press_the_button_one_time_ep_1.mp4': '13vodDBL-y6bQlMztMRPnGo-lX_ZEvwaT',
+        'press_the_button_one_time_ep_3.mp4': '14cjeF3UwOvP9kep4mRWwWnFRPpPwltML',
+        'press_the_button_three_times_ep_2.mp4': '1455zT3MMu_1ulHh-hTd3PfgLT8umbgyu',
+        'press_the_button_three_times_ep_4.mp4': '1NVrqPPuTjPsL8I7DtRxHeJBCx6beS4ME',
+        'press_the_button_three_times_ep_5.mp4': '1-OWXwVhlXGcTvc7E1mdLgVHEe7rFgJNe',
+        'put_the_blue_bowl_on_the_green_coaster_ep_3.mp4': '1xzlolwGoxKoeIbLdINCRwEHlXA2ePFMc',
+        'put_the_blue_bowl_on_the_orange_coaster_ep_2.mp4': '1goR5pEWCd5_5VzVYKl3_GMI1atHvjro-',
+        'put_the_bread_on_the_blue_plate_ep_2.mp4': '1-rSOwza__Zz_jb53rjBEGlYcXmLXdz2I',
+        'put_the_bread_on_the_blue_plate_ep_3.mp4': '1pszffKmdj0EhhWtWctiGxcrSqJlMqEpz',
+        'put_the_bread_on_the_red_plate_ep_1.mp4': '1Q_kzOCDb3UEdC-scROEbUIRFza1bGy4M',
+        'put_the_bread_on_the_red_plate_ep_4.mp4': '1UIlFgMA_5r3hgQYIxZPcocBTkOXabHrs',
+        'put_the_bread_on_the_red_plate_ep_5.mp4': '1wddoZ8cxfwgWwqqSLFRNqA8ZRSjsvyAy',
+        'put_the_red_bowl_on_the_green_coaster_ep_1.mp4': '1fdWmCfdW5Tl94dIT2xzv-o3NY4jUqcFd',
+        'put_the_red_bowl_on_the_purple_coaster_ep_4.mp4': '13mydMuYn4LAJ8C5pUy3QQjnHW72DSY5p',
+        'put_the_yellow_bowl_on_the_purple_coaster_ep_5.mp4': '1w-Bs4YxgA1jth9-8gQ52csp1NmdS82FT',
+        'stack_the_blue_block_on_the_red_block_ep_4.mp4': '1FUrwAYk5d0dgZdLEbRfKCSVyxySibEES',
+        'stack_the_blue_block_on_the_yellow_block_ep_3.mp4': '1jy_jVotjqMg2lhr8rMMFBDsPhkSh7VnF',
+        'stack_the_red_block_on_the_blue_block_ep_1.mp4': '1BKowE_gOGdsv3RyfZ0ySYLWUgrnPhxdF',
+        'stack_the_red_block_on_the_yellow_block_ep_5.mp4': '1fIM1w7G-6Jg5DfleAMqmM6dsc_6p2GJf',
+        'stack_the_yellow_block_on_the_blue_block_ep_2.mp4': '1cv0vm0tEaaKSLB0mtV2rMqfQO5Euw7pX'
     },
     'ood-molmoact2': {
         'collect_2_blocks_into_the_pink_box_ep_1.mp4': '13UpwVZUeWRerahcZzSXLqn2bfwqn2uzT',
