@@ -47,17 +47,30 @@ $(document).ready(function () {
             return url;
         };
 
-        const renderVideoCard = (video) => {
+        const renderVideoFrame = (video, index) => {
+            const embedUrl = normalizeEmbedUrl(video.url);
+
+            if (!embedUrl) {
+                return `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`;
+            }
+
+            return `
+                <button class="video-grid-load" type="button" data-video-index="${index}">
+                    <i class="fas fa-play"></i>
+                    <span>Load video</span>
+                </button>
+            `;
+        };
+
+        const renderVideoCard = (video, index) => {
             if (video.hidden) {
                 return '';
             }
 
-            const embedUrl = normalizeEmbedUrl(video.url);
-
             return `
                 <div class="video-grid-card">
-                    <div class="video-grid-frame">
-                        ${embedUrl ? `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>` : `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`}
+                    <div class="video-grid-frame" data-video-index="${index}">
+                        ${renderVideoFrame(video, index)}
                     </div>
                     <p class="video-grid-caption">${video.annotation}</p>
                 </div>
@@ -68,12 +81,26 @@ $(document).ready(function () {
         for (let index = 0; index < videos.length; index += 5) {
             rowHtml.push(`
                 <div class="video-grid-row">
-                    ${videos.slice(index, index + 5).map(renderVideoCard).join('')}
+                    ${videos.slice(index, index + 5).map((video, offset) => renderVideoCard(video, index + offset)).join('')}
                 </div>
             `);
         }
 
         $('#vid-items').html(`<div class="video-grid-wrapper">${rowHtml.join('')}</div>`);
+        $('#vid-items').on('click', '.video-grid-load', function () {
+            const videoIndex = Number(this.dataset.videoIndex);
+            const video = videos[videoIndex];
+            const embedUrl = normalizeEmbedUrl(video.url);
+
+            // Only the selected rollout is embedded, avoiding dozens of simultaneous video requests.
+            $('#vid-items .video-grid-frame').each(function () {
+                const frameIndex = Number(this.dataset.videoIndex);
+                this.innerHTML = renderVideoFrame(videos[frameIndex], frameIndex);
+            });
+
+            const selectedFrame = document.querySelector(`.video-grid-frame[data-video-index="${videoIndex}"]`);
+            selectedFrame.innerHTML = `<iframe src="${embedUrl}" title="Video rollout" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+        });
         return;
     }
 
