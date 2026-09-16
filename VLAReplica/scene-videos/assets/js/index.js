@@ -47,30 +47,17 @@ $(document).ready(function () {
             return url;
         };
 
-        const renderVideoFrame = (video, index) => {
-            const embedUrl = normalizeEmbedUrl(video.url);
-
-            if (!embedUrl) {
-                return `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`;
-            }
-
-            return `
-                <button class="video-grid-load" type="button" data-video-index="${index}">
-                    <i class="fas fa-play"></i>
-                    <span>Load video</span>
-                </button>
-            `;
-        };
-
         const renderVideoCard = (video, index) => {
             if (video.hidden) {
                 return '';
             }
 
+            const embedUrl = normalizeEmbedUrl(video.url);
+
             return `
                 <div class="video-grid-card">
                     <div class="video-grid-frame" data-video-index="${index}">
-                        ${renderVideoFrame(video, index)}
+                        ${embedUrl ? '' : `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`}
                     </div>
                     <p class="video-grid-caption">${video.annotation}</p>
                 </div>
@@ -87,20 +74,42 @@ $(document).ready(function () {
         }
 
         $('#vid-items').html(`<div class="video-grid-wrapper">${rowHtml.join('')}</div>`);
-        $('#vid-items').on('click', '.video-grid-load', function () {
-            const videoIndex = Number(this.dataset.videoIndex);
-            const video = videos[videoIndex];
+
+        const videoFrames = Array.from(document.querySelectorAll('.video-grid-frame'));
+        const loadNextVideo = () => {
+            const frame = videoFrames.shift();
+            if (!frame) {
+                return;
+            }
+
+            const video = videos[Number(frame.dataset.videoIndex)];
             const embedUrl = normalizeEmbedUrl(video.url);
+            if (!embedUrl) {
+                loadNextVideo();
+                return;
+            }
 
-            // Only the selected rollout is embedded, avoiding dozens of simultaneous video requests.
-            $('#vid-items .video-grid-frame').each(function () {
-                const frameIndex = Number(this.dataset.videoIndex);
-                this.innerHTML = renderVideoFrame(videos[frameIndex], frameIndex);
-            });
+            const iframe = document.createElement('iframe');
+            iframe.src = embedUrl;
+            iframe.title = 'Video rollout';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
 
-            const selectedFrame = document.querySelector(`.video-grid-frame[data-video-index="${videoIndex}"]`);
-            selectedFrame.innerHTML = `<iframe src="${embedUrl}" title="Video rollout" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
-        });
+            // Start the next embed when this player is ready, with a timeout for unavailable hosts.
+            let nextStarted = false;
+            const startNext = () => {
+                if (!nextStarted) {
+                    nextStarted = true;
+                    loadNextVideo();
+                }
+            };
+            iframe.addEventListener('load', startNext, { once: true });
+            window.setTimeout(startNext, 8000);
+            frame.appendChild(iframe);
+        };
+
+        loadNextVideo();
         return;
     }
 
