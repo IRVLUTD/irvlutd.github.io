@@ -27,7 +27,7 @@ const leaderboardMethods = [
 
 const leaderboardData = {
     id: {
-        average: ['0.18', '0.16', '0.12', '0.26', '0.14', '0.34', '0.54', '0.46', '0.34'],
+        average: ['0.18', '0.16', '0.12', '0.26', '0.14', '0.34', '0.54', '0.46', '0.36'],
         headers: methodHeaders,
         groups: [
             {
