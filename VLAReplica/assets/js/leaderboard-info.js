@@ -58,22 +58,22 @@ const leaderboardData = {
         ]
     },
     ood: {
-        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35', '0.45', '0.425'],
+        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35', '0.45', '0.35'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
                     { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0', '0.8', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4', '1.0', '1.0'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0', '0.6', '0.6'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4', '1.0', '0.8'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0', '0.6', '0.0'] },
                     { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2', '0.2', '0'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8', '0.8', '0.8'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8', '0.8', '1.0'] }
                 ]
             },
             {
