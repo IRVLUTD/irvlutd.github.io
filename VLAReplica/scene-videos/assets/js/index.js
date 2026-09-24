@@ -47,7 +47,7 @@ $(document).ready(function () {
             return url;
         };
 
-        const renderVideoCard = (video) => {
+        const renderVideoCard = (video, index) => {
             if (video.hidden) {
                 return '';
             }
@@ -56,8 +56,8 @@ $(document).ready(function () {
 
             return `
                 <div class="video-grid-card">
-                    <div class="video-grid-frame">
-                        ${embedUrl ? `<iframe src="${embedUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>` : `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`}
+                    <div class="video-grid-frame" data-video-index="${index}">
+                        ${embedUrl ? '' : `<div class="video-grid-placeholder"><span>Google Drive video link coming soon.</span></div>`}
                     </div>
                     <p class="video-grid-caption">${video.annotation}</p>
                 </div>
@@ -68,12 +68,48 @@ $(document).ready(function () {
         for (let index = 0; index < videos.length; index += 5) {
             rowHtml.push(`
                 <div class="video-grid-row">
-                    ${videos.slice(index, index + 5).map(renderVideoCard).join('')}
+                    ${videos.slice(index, index + 5).map((video, offset) => renderVideoCard(video, index + offset)).join('')}
                 </div>
             `);
         }
 
         $('#vid-items').html(`<div class="video-grid-wrapper">${rowHtml.join('')}</div>`);
+
+        const videoFrames = Array.from(document.querySelectorAll('.video-grid-frame'));
+        const loadNextVideo = () => {
+            const frame = videoFrames.shift();
+            if (!frame) {
+                return;
+            }
+
+            const video = videos[Number(frame.dataset.videoIndex)];
+            const embedUrl = normalizeEmbedUrl(video.url);
+            if (!embedUrl) {
+                loadNextVideo();
+                return;
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.src = embedUrl;
+            iframe.title = 'Video rollout';
+            iframe.frameBorder = '0';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+
+            // Start the next embed when this player is ready, with a timeout for unavailable hosts.
+            let nextStarted = false;
+            const startNext = () => {
+                if (!nextStarted) {
+                    nextStarted = true;
+                    loadNextVideo();
+                }
+            };
+            iframe.addEventListener('load', startNext, { once: true });
+            window.setTimeout(startNext, 8000);
+            frame.appendChild(iframe);
+        };
+
+        loadNextVideo();
         return;
     }
 
