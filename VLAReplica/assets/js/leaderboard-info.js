@@ -10,7 +10,7 @@ const methodHeaders = [
     '&pi;<sub>0</sub> <a href="#ref-5" class="leaderboard-ref-link"><span class="leaderboard-ref-box">5</span></a>',
     '&pi;<sub>0.5</sub> <a href="#ref-6" class="leaderboard-ref-link"><span class="leaderboard-ref-box">6</span></a>',
     'MolmoAct2-SO100_101 <a href="#ref-7" class="leaderboard-ref-link"><span class="leaderboard-ref-box">7</span></a>',
-    'GR00T1.7 <a href="#ref-8" class="leaderboard-ref-link"><span class="leaderboard-ref-box">8</span></a>'
+    'GR00T N1.7 <a href="#ref-8" class="leaderboard-ref-link"><span class="leaderboard-ref-box">8</span></a>'
 ];
 
 const leaderboardMethods = [
@@ -22,7 +22,7 @@ const leaderboardMethods = [
     { label: '&pi;<sub>0</sub>', ref: 5, slug: 'pi-0' },
     { label: '&pi;<sub>0.5</sub>', ref: 6, slug: 'pi-0-5' },
     { label: 'MolmoAct2-SO100_101', ref: 7, slug: 'molmoact2'},
-    { label: 'GR00T1.7', ref: 8, slug: 'groot1.7'}
+    { label: 'GR00T N1.7', ref: 8, slug: 'groot1.7'}
 ];
 
 const leaderboardData = {
@@ -58,30 +58,30 @@ const leaderboardData = {
         ]
     },
     ood: {
-        average: ['0.08 &plusmn; 0.01', '0.08 &plusmn; 0.04', '0.04 &plusmn; 0.01', '0.27 &plusmn; 0.04', '0.05 &plusmn; 0.04', '0.30 &plusmn; 0.02', '0.39 &plusmn; 0.10', '0.47 &plusmn; 0.05', '0.35'],
+        average: ['0.08 &plusmn; 0.01', '0.08 &plusmn; 0.04', '0.04 &plusmn; 0.01', '0.27 &plusmn; 0.04', '0.05 &plusmn; 0.04', '0.30 &plusmn; 0.02', '0.39 &plusmn; 0.10', '0.47 &plusmn; 0.05', '0.35 &plusmn; 0.00'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.40 &plusmn; 0.20', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.73 &plusmn; 0.12', '0.33 &plusmn; 0.31', '0.73 &plusmn; 0.12', '0.93 &plusmn; 0.12', '0.87 &plusmn; 0.12', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.27 &plusmn; 0.12', '0.33 &plusmn; 0.23', '0.07 &plusmn; 0.12', '0.33 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.67 &plusmn; 0.12', '0.60 &plusmn; 0.20', '0.87 &plusmn; 0.12', '0.8'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.20 &plusmn; 0.20', '0.60 &plusmn; 0.00', '0.0'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.27 &plusmn; 0.12', '0.20 &plusmn; 0.20', '0'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.40 &plusmn; 0.20', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.73 &plusmn; 0.12', '0.33 &plusmn; 0.31', '0.73 &plusmn; 0.12', '0.93 &plusmn; 0.12', '0.87 &plusmn; 0.12', '0.93 &plusmn; 0.12'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.27 &plusmn; 0.12', '0.33 &plusmn; 0.23', '0.07 &plusmn; 0.12', '0.33 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.67 &plusmn; 0.12', '0.60 &plusmn; 0.20', '0.87 &plusmn; 0.12', '0.67 &plusmn; 0.12'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.20 &plusmn; 0.20', '0.60 &plusmn; 0.00', '0.00 &plusmn; 0.00'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.27 &plusmn; 0.12', '0.20 &plusmn; 0.20', '0.13 &plusmn; 0.12'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.47 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.53 &plusmn; 0.06', '0.80 &plusmn; 0.00', '0.87 &plusmn; 0.12', '1.0'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.47 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.53 &plusmn; 0.06', '0.80 &plusmn; 0.00', '0.87 &plusmn; 0.12', '1.00 &plusmn; 0.00'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.22 &plusmn; 0.03', '0.27 &plusmn; 0.23', '0.13 &plusmn; 0.12', '0'] },
-                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.13 &plusmn; 0.12', '0.2'] },
-                    { taskNumber: '8', task: 'Press button n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0'] }
+                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.22 &plusmn; 0.03', '0.27 &plusmn; 0.23', '0.13 &plusmn; 0.12', '0.00 &plusmn; 0.00'] },
+                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.13 &plusmn; 0.12', '0.07 &plusmn; 0.12'] },
+                    { taskNumber: '8', task: 'Press button n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00'] }
                 ]
             }
         ]
