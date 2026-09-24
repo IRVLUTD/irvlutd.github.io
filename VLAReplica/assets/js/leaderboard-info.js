@@ -27,61 +27,61 @@ const leaderboardMethods = [
 
 const leaderboardData = {
     id: {
-        average: ['0.18', '0.16', '0.12', '0.26', '0.14', '0.34', '0.54', '0.46', '0.36'],
+        average: ['0.21 &plusmn; 0.08', '0.11 &plusmn; 0.05', '0.07 &plusmn; 0.05', '0.29 &plusmn; 0.04', '0.13 &plusmn; 0.02', '0.32 &plusmn; 0.03', '0.53 &plusmn; 0.05', '0.39 &plusmn; 0.06', '0.42 &plusmn; 0.06'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0.4', '0.4', '0.6', '0.4', '0.8', '0.8', '1.0', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0', '0', '0', '0.2', '0.2', '0.6', '0.8', '0.8', '0.8'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0', '0.4', '0.4', '0'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0.2', '0', '0', '0', '0', '0.4', '0.4', '0.2'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.33 &plusmn; 0.12', '0.20 &plusmn; 0.20', '0.13 &plusmn; 0.23', '0.80 &plusmn; 0.20', '0.27 &plusmn; 0.12', '0.67 &plusmn; 0.12', '0.80 &plusmn; 0.20', '0.93 &plusmn; 0.12', '0.80 &plusmn; 0.00'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.13 &plusmn; 0.12', '0.67 &plusmn; 0.31', '0.87 &plusmn; 0.12', '0.73 &plusmn; 0.12', '0.87 &plusmn; 0.12'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.27 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.33 &plusmn; 0.12', '0.27 &plusmn; 0.12', '0.00 &plusmn; 0.00'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.47 &plusmn; 0.12', '0.27 &plusmn; 0.12', '0.29 &plusmn; 0.08'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0.4', '0.2', '0.2', '0.6', '0.6', '0.8', '1.0', '0.6', '1.0'] },
-                    { taskNumber: '6', task: 'Open oven', values: ['0.4', '0.6', '0.4', '0.4', '0', '0.2', '0.6', '0.4', '0.2'] },
-                    { taskNumber: '7', task: 'Erase whiteboard', values: ['0.2', '0.2', '0.2', '0.2', '0', '0.4', '0.4', '0.6', '0.2'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0.60 &plusmn; 0.20', '0.20 &plusmn; 0.00', '0.27 &plusmn; 0.12', '0.73 &plusmn; 0.12', '0.53 &plusmn; 0.12', '0.67 &plusmn; 0.23', '1.00 &plusmn; 0.00', '0.73 &plusmn; 0.12', '1.00 &plusmn; 0.00'] },
+                    { taskNumber: '6', task: 'Open oven', values: ['0.33 &plusmn; 0.12', '0.20 &plusmn; 0.35', '0.13 &plusmn; 0.23', '0.33 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.20 &plusmn; 0.00', '0.53 &plusmn; 0.12', '0.13 &plusmn; 0.23', '0.47 &plusmn; 0.31'] },
+                    { taskNumber: '7', task: 'Erase whiteboard', values: ['0.20 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.13 &plusmn; 0.12', '0.20 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.33 &plusmn; 0.12', '0.33 &plusmn; 0.12', '0.53 &plusmn; 0.12', '0.40 &plusmn; 0.20'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '8', task: 'Shake pepper n times', values: ['0.2', '0', '0', '0', '0.2', '0.2', '0.4', '0.2', '0.2'] },
-                    { taskNumber: '9', task: 'Lift bowl n times', values: ['0.2', '0', '0', '0.2', '0', '0.2', '0.4', '0.2', '0'] },
-                    { taskNumber: '10', task: 'Press button n times', values: ['0', '0', '0', '0.2', '0', '0.2', '0.2', '0', '0.2'] }
+                    { taskNumber: '8', task: 'Shake pepper n times', values: ['0.27 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.27 &plusmn; 0.12', '0.33 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.20 &plusmn; 0.00'] },
+                    { taskNumber: '9', task: 'Lift bowl n times', values: ['0.33 &plusmn; 0.23', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.20 &plusmn; 0.00', '0.40 &plusmn; 0.00', '0.13 &plusmn; 0.12', '0.07 &plusmn; 0.12'] },
+                    { taskNumber: '10', task: 'Press button n times', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.27 &plusmn; 0.31', '0.00 &plusmn; 0.00', '0.13 &plusmn; 0.12'] }
                 ]
             }
         ]
     },
     ood: {
-        average: ['0.075', '0.05', '0.025', '0.3', '0.075', '0.3', '0.35', '0.45', '0.35'],
+        average: ['0.08 &plusmn; 0.01', '0.08 &plusmn; 0.04', '0.04 &plusmn; 0.01', '0.27 &plusmn; 0.04', '0.05 &plusmn; 0.04', '0.30 &plusmn; 0.02', '0.39 &plusmn; 0.10', '0.47 &plusmn; 0.05', '0.35'],
         headers: methodHeaders,
         groups: [
             {
                 type: 'Pick-and-Place',
                 rows: [
-                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.4', '0', '0.2', '0.8', '0.6', '0.8', '1.0', '0.8', '0.8'] },
-                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.2', '0.2', '0', '0.4', '0', '0.6', '0.4', '1.0', '0.8'] },
-                    { taskNumber: '3', task: 'Stack block on block', values: ['0', '0', '0', '0.2', '0', '0.2', '0', '0.6', '0.0'] },
-                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0', '0', '0', '0.2', '0', '0', '0.2', '0.2', '0'] }
+                    { taskNumber: '1', task: 'Put bread on plate', values: ['0.40 &plusmn; 0.20', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.73 &plusmn; 0.12', '0.33 &plusmn; 0.31', '0.73 &plusmn; 0.12', '0.93 &plusmn; 0.12', '0.87 &plusmn; 0.12', '0.8'] },
+                    { taskNumber: '2', task: 'Put bowl on coaster', values: ['0.27 &plusmn; 0.12', '0.33 &plusmn; 0.23', '0.07 &plusmn; 0.12', '0.33 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.67 &plusmn; 0.12', '0.60 &plusmn; 0.20', '0.87 &plusmn; 0.12', '0.8'] },
+                    { taskNumber: '3', task: 'Stack block on block', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.20', '0.20 &plusmn; 0.20', '0.60 &plusmn; 0.00', '0.0'] },
+                    { taskNumber: '4', task: 'Put all blocks into box', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.13 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.27 &plusmn; 0.12', '0.20 &plusmn; 0.20', '0'] }
                 ]
             },
             {
                 type: 'Object Interaction',
                 rows: [
-                    { taskNumber: '5', task: 'Fold towel', values: ['0', '0.2', '0', '0.6', '0', '0.6', '0.8', '0.8', '1.0'] }
+                    { taskNumber: '5', task: 'Fold towel', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.47 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.53 &plusmn; 0.06', '0.80 &plusmn; 0.00', '0.87 &plusmn; 0.12', '1.0'] }
                 ]
             },
             {
                 type: 'Counting / Memory',
                 rows: [
-                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0', '0', '0', '0', '0', '0.2', '0.4', '0', '0'] },
-                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0', '0', '0', '0.2', '0', '0', '0', '0.2', '0.2'] },
-                    { taskNumber: '8', task: 'Press button n times', values: ['0', '0', '0', '0', '0', '0', '0', '0', '0'] }
+                    { taskNumber: '6', task: 'Shake pepper n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.22 &plusmn; 0.03', '0.27 &plusmn; 0.23', '0.13 &plusmn; 0.12', '0'] },
+                    { taskNumber: '7', task: 'Lift bowl n times', values: ['0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.20 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.00 &plusmn; 0.00', '0.13 &plusmn; 0.12', '0.2'] },
+                    { taskNumber: '8', task: 'Press button n times', values: ['0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.00 &plusmn; 0.00', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0.07 &plusmn; 0.12', '0'] }
                 ]
             }
         ]
