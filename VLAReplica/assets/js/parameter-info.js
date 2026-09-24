@@ -8,7 +8,7 @@ const parameterHeaders = [
     '&pi;<sub>0</sub>',
     '&pi;<sub>0.5</sub>',
     'MolmoAct2-SO100_101',
-    'GR00T1.7'
+    'GR00T N1.7'
 ];
 
 const parameterRows = [
