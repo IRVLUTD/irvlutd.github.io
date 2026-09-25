@@ -347,6 +347,7 @@ body > nav, body > section, body > footer, body > main { position: relative; z-i
 .publication-authors .is-size-6 {
   color: var(--text-soft);
   font-family: var(--font-display);
+  font-size: 0.82rem !important;
   font-weight: 500;
   display: inline-block;
   transition:
@@ -363,9 +364,9 @@ body > nav, body > section, body > footer, body > main { position: relative; z-i
 }
 .publication-authors sup { color: var(--accent-primary); }
 .author-image {
-  width: 110px !important;
-  height: 110px !important;
-  max-width: 110px;
+  width: 80px !important;
+  height: 80px !important;
+  max-width: 80px;
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
@@ -1505,12 +1506,142 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   border-radius: 999px;
   margin-left: 0.15rem;
 }
+/* User study: metric cards beside the subscale chart, so the block stays
+   the same visual weight as the other result blocks. */
+.us-split {
+  display: grid;
+  grid-template-columns: 0.82fr 1.18fr;
+  gap: 1rem;
+  align-items: stretch;
+  margin: 1rem 0 0.5rem;
+}
+.us-col { display: flex; flex-direction: column; gap: 0.7rem; }
+.us-col .metric-card { flex: 1; padding: 0.8rem 1rem 0.7rem; }
+.us-col .metric-hd { margin-bottom: 0.55rem; }
+.us-col .metric-note { margin-top: 0.55rem; padding-top: 0.5rem; }
+.us-col .mrow { grid-template-columns: minmax(74px, 1fr) 1fr 62px; }
+.us-split .tlx-chart { margin: 0; }
+@media (max-width: 900px) {
+  .us-split { grid-template-columns: 1fr; }
+}
+
+/* Error whiskers (+/- 1 SEM) drawn on top of a bar track */
+.mrow-bar.has-err, .tlx-track.has-err { overflow: visible; }
+.mrow-bar.has-err .err, .tlx-track.has-err .err {
+  position: absolute;
+  top: -2px; bottom: -2px;
+  border-left: 1.5px solid rgba(255,255,255,0.45);
+  border-right: 1.5px solid rgba(255,255,255,0.45);
+  pointer-events: none;
+}
+.mrow-bar.has-err .err::before, .tlx-track.has-err .err::before {
+  content: ""; position: absolute; top: 50%; left: 0; right: 0;
+  border-top: 1px solid rgba(255,255,255,0.28);
+}
+/* measure groups stacked inside one card */
+.mg + .mg { margin-top: 0.85rem; padding-top: 0.75rem; border-top: 1px solid var(--glass-border); }
+.mg-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+.mg-name {
+  font-family: var(--font-body); font-size: 0.82rem; font-weight: 600;
+  color: var(--text-soft); letter-spacing: 0.01em;
+}
+.mg .mrow { padding: 0.12rem 0; }
+
+/* NASA-TLX subscale breakdown (user study) */
+.tlx-chart {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem 1rem;
+  backdrop-filter: blur(10px);
+  margin: 1rem 0 1.25rem;
+}
+.tlx-hd {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.tlx-legend { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; }
+.tlx-key {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-family: var(--font-body); font-size: 0.78rem; color: var(--text-dim);
+}
+.tlx-sw { width: 14px; height: 7px; border-radius: 999px; display: inline-block; }
+.tlx-row {
+  display: grid;
+  grid-template-columns: minmax(118px, 1fr) 2.4fr 58px;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.3rem 0;
+}
+.tlx-l {
+  font-family: var(--font-body); font-size: 0.85rem; color: var(--text-dim);
+  line-height: 1.25;
+}
+.tlx-bars { display: flex; flex-direction: column; gap: 3px; }
+.tlx-track {
+  position: relative;
+  display: block; height: 7px; border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+}
+.tlx-track i { display: block; height: 100%; border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.2,0.7,0.2,1); }
+i.tlx-e { background: var(--text-faint); }
+i.tlx-n { background: var(--accent-primary); box-shadow: 0 0 10px var(--accent-glow); }
+.tlx-v {
+  display: flex; flex-direction: column; gap: 1px;
+  font-family: var(--mono); font-size: 0.72rem; text-align: right;
+}
+.tlx-v b { font-weight: 500; color: var(--text-soft); line-height: 1.35; }
+.tlx-v b.tlx-vn { color: var(--accent-primary); font-weight: 600; }
+.tlx-chart .metric-note { margin-top: 1rem; }
+@media (max-width: 560px) {
+  .tlx-row { grid-template-columns: minmax(92px, 1fr) 1.6fr 46px; gap: 0.5rem; }
+  .tlx-l { font-size: 0.8rem; }
+}
+
+/* 3-up variant: one card per measure (user study) */
+.metric-cards-3 { grid-template-columns: repeat(3, 1fr); }
+.metric-cards-3 .mrow { grid-template-columns: minmax(78px, 1fr) 1.2fr 62px; }
+.mrow-sd {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: var(--text-faint);
+  font-weight: 400;
+  margin-top: 0.05rem;
+}
+.mrow-ours .mrow-sd { color: var(--text-faint); }
+.metric-note {
+  margin-top: 0.85rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--glass-border);
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: var(--text-faint);
+}
+.ds-stat .ds-unit {
+  font-size: 0.55em;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-left: 0.08em;
+}
+@media (max-width: 1000px) {
+  .metric-cards-3 { grid-template-columns: 1fr 1fr; }
+}
 @media (max-width: 860px) {
   .metric-cards { grid-template-columns: 1fr; }
+  .metric-cards-3 { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .mrow { grid-template-columns: 1fr; }
   .mrow-v { text-align: left; }
+  /* 3-up cards stay on one row at phone width — they fit, and stacking
+     each of six rows would make the block far too tall. */
+  .metric-cards-3 .mrow { grid-template-columns: minmax(70px, 1fr) 1fr 64px; }
+  .metric-cards-3 .mrow-v { text-align: right; }
 }
 
 
@@ -1846,6 +1977,29 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   max-width: 720px;
   font-style: italic;
 }
+.ack-irb {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  color: var(--text-soft);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 1rem auto 0;
+  max-width: 640px;
+  text-wrap: balance;
+}
+.ack-irb-id {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--accent-primary);
+  padding: 0.16rem 0.5rem;
+  border: 1px solid rgba(212,160,58,0.3);
+  border-radius: 999px;
+  background: rgba(212,160,58,0.06);
+  letter-spacing: 0.05em;
+  margin: 0 0.1rem;
+}
 @media (max-width: 760px) {
   .ack-grid { grid-template-columns: 1fr; }
 }
@@ -2081,3 +2235,117 @@ h2.title.is-3 { margin-bottom: 1.25rem !important; font-size: 1.75rem !important
   white-space: nowrap;
 }
 .venue-line .venue-dot { color: var(--accent-primary); opacity: 0.7; }
+
+/* ============================================================================
+   User study — graphical cohort tiles, radar chart
+   ============================================================================ */
+.us-cohort {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0.8rem;
+  margin: 0.75rem 0 1.25rem;
+}
+.uc-tile {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 0.95rem 1rem 0.9rem;
+  backdrop-filter: blur(10px);
+  display: flex; flex-direction: column;
+}
+.uc-viz { margin-bottom: 0.7rem; min-height: 66px; display: flex; align-items: center; }
+.uc-n {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.65rem;
+  line-height: 1.05; color: var(--accent-primary);
+  letter-spacing: -0.02em; text-shadow: 0 0 22px var(--accent-glow);
+}
+.uc-unit { font-size: 0.55em; font-weight: 600; letter-spacing: 0; margin-left: 0.08em; }
+.uc-l {
+  font-family: var(--font-display); font-size: 0.85rem; font-weight: 500;
+  color: var(--text-main); margin-top: 0.2rem;
+}
+.uc-l-lift { margin-top: 0; }
+.uc-sub, .uc-key {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.05em;
+  color: var(--text-dim); margin-top: 0.25rem;
+}
+.uc-key { display: flex; flex-wrap: wrap; gap: 0.15rem 0.7rem; }
+.uc-key span { display: inline-flex; align-items: center; gap: 0.3rem; }
+.uc-key i { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.uc-key i.k-e { background: var(--text-faint); }
+.uc-key i.k-n { background: var(--accent-primary); }
+
+/* pictograph */
+.pic { width: 100%; max-width: 154px; height: auto; }
+.pic .pic-e { fill: var(--text-faint); }
+.pic .pic-n { fill: var(--accent-primary); }
+
+/* annotation dot grid */
+.dotgrid { width: 100%; max-width: 144px; height: auto; }
+.dotgrid rect { fill: var(--accent-primary); opacity: 0.5; }
+
+/* IoU donut */
+.donut { width: 84px; height: 84px; }
+.donut .dn-track { fill: none; stroke: var(--glass-border); stroke-width: 8; }
+.donut .dn-fill {
+  fill: none; stroke: var(--accent-primary); stroke-width: 8; stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+.donut .dn-t {
+  font-family: var(--font-display); font-size: 17px; font-weight: 700;
+  fill: var(--accent-primary);
+}
+.donut .dn-u { font-size: 10px; font-weight: 600; }
+
+/* TLX gauge */
+.gauge { width: 100%; max-width: 150px; height: auto; }
+.gauge .gg-z1 { fill: var(--accent-primary); opacity: 0.55; }
+.gauge .gg-z2 { fill: var(--text-faint); opacity: 0.30; }
+.gauge .gg-z3 { fill: var(--text-faint); opacity: 0.16; }
+.gauge .gg-pin { stroke: var(--text-main); stroke-width: 1.6; opacity: 0.8; }
+.gauge .gg-dot { fill: var(--accent-primary); stroke: var(--bg-dark); stroke-width: 2; }
+.gauge .gg-lbl {
+  font-family: var(--mono); font-size: 7px; letter-spacing: 0.08em;
+  fill: var(--text-dim);
+}
+
+/* radar card */
+.tlx-radar-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem 1rem;
+  backdrop-filter: blur(10px);
+  display: flex; flex-direction: column;
+}
+.rdr-wrap { flex: 1; display: flex; align-items: center; justify-content: center; }
+.rdr { width: 100%; max-width: 480px; height: auto; }
+.rdr .rdr-ring { fill: none; stroke: var(--text-faint); stroke-width: 1; opacity: 0.22; }
+.rdr .rdr-spoke { stroke: var(--text-faint); stroke-width: 1; opacity: 0.14; }
+.rdr .rdr-area-e {
+  fill: none; stroke: var(--text-faint); stroke-width: 2.2; stroke-linejoin: round;
+}
+.rdr .rdr-area-n {
+  fill: none; stroke: var(--accent-primary); stroke-width: 2.6; stroke-linejoin: round;
+  filter: drop-shadow(0 0 7px var(--accent-glow));
+}
+.rdr .rdr-de { fill: var(--text-faint); }
+.rdr .rdr-dn { fill: var(--accent-primary); }
+.rdr .rdr-lbl {
+  font-family: var(--font-display); font-size: 12.5px; font-weight: 500;
+  fill: var(--text-main);
+}
+.rdr .rdr-val { font-family: var(--mono); font-size: 10.5px; }
+.rdr .rdr-ve { fill: var(--text-faint); }
+.rdr .rdr-vn { fill: var(--accent-primary); font-weight: 600; }
+.rdr .rdr-sep { fill: var(--text-faint); opacity: 0.6; }
+.rdr-note { margin-top: 0.6rem; }
+
+.tlx-chart { margin-top: 0.85rem; }
+
+@media (max-width: 860px) { .us-cohort { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .us-cohort { grid-template-columns: 1fr; } }
+.rdr .rdr-tick {
+  font-family: var(--mono); font-size: 8.5px; fill: var(--text-faint); opacity: 0.75;
+}
+.rdr .rdr-band-e { fill: var(--text-faint); fill-opacity: 0.16; }
+.rdr .rdr-band-n { fill: var(--accent-primary); fill-opacity: 0.16; }
