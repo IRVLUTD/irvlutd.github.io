@@ -1,7 +1,9 @@
 $(document).ready(function () {
     const pathParts = window.location.pathname.split('/').filter(Boolean);
     const fileName = pathParts[pathParts.length - 1] || 'index.html';
-    const leaderboardPageKey = fileName !== 'index.html' ? fileName.replace(/\.html$/, '') : null;
+    const basePageKey = fileName !== 'index.html' ? fileName.replace(/\.html$/, '') : null;
+    const requestedRun = new URLSearchParams(window.location.search).get('run') || 'run1';
+    const leaderboardPageKey = basePageKey ? `${basePageKey}-${requestedRun}` : null;
 
     if (leaderboardPageKey && video_links[leaderboardPageKey]) {
         const methodVideo = video_links[leaderboardPageKey];
