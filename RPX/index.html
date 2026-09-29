@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description"
+    content="RPX is a benchmark of 100 real scenes with 70 everyday objects, recorded before, during, and after manipulation. 49 pretrained models evaluated zero-shot on 6 tasks reveal that manipulation breaks perception: depth error grows 2-4x, tracker identity switches multiply 5-11x, and the best in-context grounding reaches only 23%.">
+  <meta id="meta-author" name="author"
+    content="Jishnu Jaykumar P, Itay Kadosh, Narendhiran Vijayakumar, Srinanditha Kamath, Sai Haneesh Allu, Govind Tyagi Rangappa, Animesh Maheshwari, Jikai Wang, Yu Xiang">
+  <meta id="meta-keywords" name="keywords"
+    content="RPX, robot perception, benchmark, embodied perception, foundation models for robotics, scene-state robustness, manipulation-aware evaluation, depth estimation, object tracking, visual question answering, relative pose, VLM, MANOVA, phase robustness, IRVL, IRVLUTD, UT Dallas, The University of Texas at Dallas, Yu Xiang, Jishnu Jaykumar">
+  <meta name="robots"   content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="bingbot"   content="index, follow">
+  <meta name="theme-color" content="#0a0e14">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://irvlutd.github.io/RPX/">
+
+  <!-- Google Scholar / Highwire Press citation metadata -->
+  <meta name="citation_title"            content="Same Scene, Different Story: Evaluating Robot Perception Across Scene Phases in the Wild">
+  <meta name="citation_author"           content="Jaykumar P, Jishnu">
+  <meta name="citation_author"           content="Kadosh, Itay">
+  <meta name="citation_author"           content="Vijayakumar, Narendhiran">
+  <meta name="citation_author"           content="Kamath, Srinanditha">
+  <meta name="citation_author"           content="Allu, Sai Haneesh">
+  <meta name="citation_author"           content="Rangappa, Govind Tyagi">
+  <meta name="citation_author"           content="Maheshwari, Animesh">
+  <meta name="citation_author"           content="Wang, Jikai">
+  <meta name="citation_author"           content="Xiang, Yu">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_online_date"      content="2026">
+  <meta name="citation_public_url"       content="https://irvlutd.github.io/RPX/">
+  <meta name="citation_language"         content="en">
+  <meta name="citation_keywords"         content="embodied perception; scene-state robustness; manipulation-aware evaluation; benchmark; depth estimation; multi-object tracking; visual question answering">
+
+  <!-- Dublin Core -->
+  <meta name="DC.title"       content="Same Scene, Different Story: Evaluating Robot Perception Across Scene Phases in the Wild">
+  <meta name="DC.creator"     content="Jishnu Jaykumar P">
+  <meta name="DC.creator"     content="Itay Kadosh">
+  <meta name="DC.creator"     content="Narendhiran Vijayakumar">
+  <meta name="DC.creator"     content="Srinanditha Kamath">
+  <meta name="DC.creator"     content="Sai Haneesh Allu">
+  <meta name="DC.creator"     content="Govind Tyagi Rangappa">
+  <meta name="DC.creator"     content="Animesh Maheshwari">
+  <meta name="DC.creator"     content="Jikai Wang">
+  <meta name="DC.creator"     content="Yu Xiang">
+  <meta name="DC.subject"     content="Embodied perception; Scene-state robustness; Manipulation-aware evaluation; Benchmark; Foundation models for robotics">
+  <meta name="DC.description" content="RPX measures what happens to perception when a robot changes the scene: 100 scenes and 70 objects captured before, during, and after manipulation, with 49 pretrained models evaluated zero-shot on six tasks.">
+  <meta name="DC.publisher"   content="Intelligent Robotics and Vision Lab, The University of Texas at Dallas">
+  <meta name="DC.date"        content="2026">
+  <meta name="DC.type"        content="Text.Article">
+  <meta name="DC.language"    content="en">
+  <meta name="DC.identifier"  content="https://irvlutd.github.io/RPX/">
+  <meta name="DC.rights"      content="© 2026 IRVL, UT Dallas">
+
+  <!-- Open Graph -->
+  <meta property="og:locale"      content="en_US">
+  <meta property="og:site_name"   content="RPX — IRVL · UT Dallas">
+  <meta property="og:title"       content="RPX — Same Scene, Different Story — Evaluating Robot Perception Across Scene Phases">
+  <meta property="og:description" content="49 models, 6 tasks, 100 scenes before/during/after manipulation. Depth error grows 2-4x, tracker ID switches multiply 5-11x.">
+  <meta property="og:url"         content="https://irvlutd.github.io/RPX/">
+  <meta property="og:type"        content="article">
+  <meta property="og:image"       content="https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg">
+  <meta property="og:image:secure_url" content="https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="670">
+  <meta property="og:image:alt"   content="RPX overview: one benchmark per task today vs. RPX's unified benchmark — six tasks, 49 models, scenes captured in Clutter, Interaction, Clean and Ego views.">
+  <meta property="og:video"       content="https://irvlutd.github.io/RPX/assets/videos/supplementary.mp4">
+  <meta property="og:video:type"  content="video/mp4">
+  <meta property="article:author"  content="Jishnu Jaykumar P">
+  <meta property="article:section" content="Robotics">
+  <meta property="article:tag"     content="Embodied Perception">
+  <meta property="article:tag"     content="Benchmark">
+  <meta property="article:tag"     content="Foundation Models">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:site"        content="@utdallas">
+  <meta name="twitter:creator"     content="@JishnuJPadal">
+  <meta name="twitter:title"       content="RPX — Same Scene, Different Story — Evaluating Robot Perception Across Scene Phases">
+  <meta name="twitter:description" content="49 models, 6 tasks, 100 scenes. Manipulation breaks perception — depth, tracking, grounding all degrade.">
+  <meta name="twitter:image"       content="https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg">
+  <meta name="twitter:image:alt"   content="RPX benchmark overview figure.">
+
+  <title id="title" project-name="RPX">RPX — Same Scene, Different Story: Evaluating Robot Perception Across Scene Phases in the Wild | IRVL UT Dallas</title>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "@id": "https://irvlutd.github.io/RPX/#article",
+    "headline": "Same Scene, Different Story: Evaluating Robot Perception Across Scene Phases in the Wild",
+    "name":     "Same Scene, Different Story: Evaluating Robot Perception Across Scene Phases in the Wild",
+    "datePublished": "2026",
+    "dateModified":  "2026",
+    "inLanguage":    "en",
+    "abstract": "RPX measures what happens to perception when a robot changes the scene. 49 models evaluated zero-shot on 6 tasks across 100 scenes captured before, during, and after manipulation.",
+    "description": "A manipulation-aware perception benchmark: 100 scenes, 70 objects, 125K annotated frames, three capture phases, 49 pretrained models, six tasks.",
+    "keywords": "embodied perception; foundation models for robotics; scene-state robustness; manipulation-aware evaluation",
+    "author": [
+      {"@type": "Person", "name": "Jishnu Jaykumar P", "url": "https://jishnujayakumar.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Itay Kadosh",              "affiliation": {"@type": "Organization", "name": "University of Florida, Gainesville"}},
+      {"@type": "Person", "name": "Narendhiran Vijayakumar", "url": "https://narendhiranv04.github.io", "affiliation": {"@type": "Organization", "name": "IIIT Hyderabad"}},
+      {"@type": "Person", "name": "Srinanditha Kamath", "url": "https://www.linkedin.com/in/srinandithakamath/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Austin"}},
+      {"@type": "Person", "name": "Sai Haneesh Allu", "url": "https://saihaneeshallu.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Govind Tyagi Rangappa", "url": "https://www.linkedin.com/in/govind-rangappa/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Animesh Maheshwari", "url": "https://scholar.google.com/citations?user=slTojVEAAAAJ", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Jikai Wang", "url": "https://jwroboticsvision.github.io/", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
+      {"@type": "Person", "name": "Yu Xiang",   "url": "https://yuxng.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}}
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas",
+      "url":  "https://labs.utdallas.edu/irvl"
+    },
+    "url": "https://irvlutd.github.io/RPX/",
+    "mainEntityOfPage": "https://irvlutd.github.io/RPX/",
+    "codeRepository": "https://github.com/IRVLUTD/RPX",
+    "image": {
+      "@type": "ImageObject",
+      "url":   "https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg",
+      "width": 1200,
+      "height": 670
+    },
+    "sameAs": [
+      "https://github.com/IRVLUTD/RPX",
+      "https://huggingface.co/datasets/IRVLUTD/RPX",
+      "https://pypi.org/project/rpx-benchmark/"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "rpx-benchmark",
+    "codeRepository": "https://github.com/IRVLUTD/RPX",
+    "programmingLanguage": "Python",
+    "runtimePlatform": "Python 3.10-3.12",
+    "license": "https://opensource.org/licenses/MIT",
+    "downloadUrl": "https://pypi.org/project/rpx-benchmark/",
+    "description": "Reference implementation and evaluation toolkit for the RPX manipulation-aware perception benchmark.",
+    "author": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "@id": "https://irvlutd.github.io/RPX/#dataset",
+    "name": "RPX",
+    "description": "100 real scenes with 70 everyday objects captured on robot-grade sensors before (Clutter), during (Interaction) and after (Clean) manipulation, plus a concurrent egocentric stream. 125K annotated frames.",
+    "url": "https://huggingface.co/datasets/IRVLUTD/RPX",
+    "sameAs": "https://huggingface.co/datasets/IRVLUTD/RPX",
+    "license": "https://opensource.org/licenses/MIT",
+    "creator": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, The University of Texas at Dallas"},
+    "keywords": "robot perception; RGB-D; benchmark; depth estimation; multi-object tracking; visual grounding",
+    "distribution": {
+      "@type": "DataDownload",
+      "contentUrl": "https://huggingface.co/datasets/IRVLUTD/RPX",
+      "encodingFormat": "application/parquet"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "@id": "https://irvlutd.github.io/RPX/#supplementary-video",
+    "name": "RPX — Supplementary Video",
+    "description": "Walkthrough of the RPX benchmark: the three-phase capture protocol, the six tasks, and the phase-robustness diagnostics.",
+    "thumbnailUrl": "https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg",
+    "uploadDate": "2026",
+    "duration": "PT3M0S",
+    "contentUrl": "https://irvlutd.github.io/RPX/assets/videos/supplementary.mp4",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
+    "inLanguage": "en"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "IRVL", "item": "https://irvlutd.github.io/"},
+      {"@type": "ListItem", "position": 2, "name": "RPX",  "item": "https://irvlutd.github.io/RPX/"}
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "RPX — IRVL · UT Dallas",
+    "url":  "https://irvlutd.github.io/RPX/",
+    "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"}
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
+  <link rel="stylesheet" href="../assets/css/clap-theme.css">
+  <link rel="stylesheet" href="./assets/css/rpx-theme.css">
+  <link rel="icon" href="#">
+</head>
+
+<body>
+
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <div class="aurora-container"><div class="aurora"></div></div>
+  <div class="grain-overlay"></div>
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure" id="lightbox">
+    <button class="lightbox-close" aria-label="Close enlarged figure">&times;</button>
+    <img src="" alt="">
+  </div>
+
+  <!-- Progress sidebar (wide screens) -->
+  <nav class="progress-sidebar" aria-label="Page progress">
+    <div class="progress-track">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" id="progress-fill"></div>
+      <div class="progress-item" data-section="abstract">
+        <a href="#abstract"><span class="progress-dot"></span><span class="progress-label">Abstract</span></a>
+      </div>
+      <div class="progress-item" data-section="protocol">
+        <a href="#protocol"><span class="progress-dot"></span><span class="progress-label">Protocol</span></a>
+      </div>
+      <div class="progress-item" data-section="tasks">
+        <a href="#tasks"><span class="progress-dot"></span><span class="progress-label">Tasks</span></a>
+      </div>
+      <div class="progress-item" data-section="metrics">
+        <a href="#metrics"><span class="progress-dot"></span><span class="progress-label">Metrics</span></a>
+      </div>
+      <div class="progress-item" data-section="results">
+        <a href="#results"><span class="progress-dot"></span><span class="progress-label">Findings</span></a>
+      </div>
+      <div class="progress-item" data-section="resources">
+        <a href="#resources"><span class="progress-dot"></span><span class="progress-label">Code &amp; Data</span></a>
+      </div>
+      <div class="progress-item" data-section="citation">
+        <a href="#citation"><span class="progress-dot"></span><span class="progress-label">BibTeX</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- IRVL shared navbar — populated by ../assets/scripts/few-shot-research/script.js -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavMenu">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="mainNavMenu" style="text-align: center;" class="navbar-menu">
+      <div class="navbar-start royal-theme" style="flex-grow: 1; justify-content: center;">
+        <a id="related-research-home" class="navbar-item" href="" target="_blank">
+          <span class="icon" style="text-align: center;">
+            <svg class="svg-inline--fa fa-home fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas"
+              data-icon="home" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+              <path fill="currentColor"
+                d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
+              </path>
+            </svg>
+          </span>
+        </a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a id="related-research" class="navbar-link"></a>
+          <div id="related-research-dropdown" class="navbar-dropdown"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 id="project-name" class="title is-2 publication-title">
+              Same Scene, Different Story<span class="title-sep">:</span><br>
+              Evaluating Robot Perception Across <b>Scene Phases</b> in the Wild
+            </h1>
+            <div class="title-line"></div>
+
+            <!-- Authors — shared photo-card skeleton (iTeach / HRT1). -->
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered is-gapless">
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://jishnujayakumar.github.io">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/jishnu_padalunkal.webp" alt="Jishnu Jaykumar P" decoding="async">
+                    <br><span class="is-size-6">Jishnu Jaykumar P<sup>1</sup><sup class="eq-contri">*</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://labs.utdallas.edu/irvl/people/">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/itay_kadosh.webp" alt="Itay Kadosh" decoding="async">
+                    <br><span class="is-size-6">Itay<br>Kadosh<sup>2</sup><sup class="eq-contri">*</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://narendhiranv04.github.io">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/narendhiran_vijayakumar.webp" alt="Narendhiran Vijayakumar" decoding="async">
+                    <br><span class="is-size-6">Narendhiran Vijayakumar<sup>3</sup><sup class="eq-contri">*</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://www.linkedin.com/in/srinandithakamath/">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/srinanditha_kamath.webp" alt="Srinanditha Kamath" decoding="async">
+                    <br><span class="is-size-6">Srinanditha Kamath<sup>4</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://saihaneeshallu.github.io">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/sai-haneesh-allu.webp" alt="Sai Haneesh Allu" decoding="async">
+                    <br><span class="is-size-6">Sai Haneesh Allu<sup>1</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://www.linkedin.com/in/govind-rangappa/">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/govind_tyagi_rangappa.webp" alt="Govind Tyagi Rangappa" decoding="async">
+                    <br><span class="is-size-6">Govind Tyagi Rangappa<sup>1</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://scholar.google.com/citations?user=slTojVEAAAAJ">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/animesh_maheshwari.webp" alt="Animesh Maheshwari" decoding="async">
+                    <br><span class="is-size-6">Animesh Maheshwari<sup>1</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://jwroboticsvision.github.io/">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/jikai_wang.webp" alt="Jikai Wang" decoding="async">
+                    <br><span class="is-size-6">Jikai<br>Wang<sup>1</sup></span></a>
+                </div></div></div>
+
+                <div class="column"><div class="center"><div>
+                  <a target="_blank" href="https://yuxng.github.io">
+                    <img class="display-image author-image center"
+                      src="../assets/images/authors/yu_xiang.webp" alt="Yu Xiang" decoding="async">
+                    <br><span class="is-size-6">Yu<br>Xiang<sup>1</sup></span></a>
+                </div></div></div>
+              </div>
+            </div>
+
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block affil-inline">
+                <span class="eq-contri"><sup>*</sup>&nbsp;Equal contribution</span>&nbsp;&nbsp;
+                <sup>1</sup><a class="href-link" target="_blank" href="https://utdallas.edu">UT Dallas</a>&nbsp;&nbsp;
+                <sup>2</sup><a class="href-link" target="_blank" href="https://www.ufl.edu">University of Florida</a>&nbsp;&nbsp;
+                <sup>3</sup><a class="href-link" target="_blank" href="https://www.iiit.ac.in">IIIT Hyderabad</a>&nbsp;&nbsp;
+                <sup>4</sup><a class="href-link" target="_blank" href="https://www.utexas.edu">UT Austin</a>
+              </span>
+            </div>
+
+            <p id="accepted-conference" class="venue-line">
+              <b>Under Review</b>
+            </p>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+
+                <!-- TODO: swap href once the arXiv posting is live -->
+                <span class="link-block">
+                  <a target="_blank" href="https://github.com/IRVLUTD/RPX"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX"
+                    class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon">&#129303;</span><span>Dataset</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#video" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fas fa-video"></i></span><span>Video</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="#citation" class="external-link button is-normal is-rounded royal-theme-btn">
+                    <span class="icon"><i class="fas fa-quote-right"></i></span><span>Citation</span>
+                  </a>
+                </span>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a id="main" tabindex="-1"></a>
+
+  <!-- Teaser — Fig. 1 of the paper. clap-page.js makes any .paper-fig img
+       click-to-enlarge via the lightbox. -->
+  <section class="section" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+    <div class="container is-max-desktop">
+      <figure class="paper-fig">
+        <img src="./assets/images/rpx-hero.webp"
+             alt="RPX overview. (a) Today each perception task is benchmarked on its own data with its own metric. (b) RPX evaluates six tasks on the same real scenes, captured before (Clutter), during (Interaction) and after (Clean) manipulation, plus an egocentric view. (c) One pipeline and one diagnostic for all tasks. (d) Multi-object scenes by difficulty and phase. (e) Each object also captured alone in 360 degrees. (f) Sensors and annotation modalities."
+             decoding="async">
+        </figure>
+      <p class="fig-caption centered"><b><span class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></span> at a glance.</b>
+          One benchmark, six tasks, the same scenes captured in every phase of a manipulation —
+          with a single diagnostic pair (&Phi; phase robustness, &#119973; worst-phase quality) for all of them.</p>
+    </div>
+  </section>
+
+  <!-- TL;DR first — the headline idea above the fold -->
+  <section class="section" style="padding-top: 0.5rem; padding-bottom: 0.5rem;">
+    <div class="container is-max-desktop">
+      <div class="tldr tldr-rpx">
+        <div class="tldr-head">
+          <span class="tldr-label">TL;DR</span>
+          <span class="tldr-lede">Robots <b>change the scenes they perceive</b> — and the models they run are picked on benchmarks of <b>frozen</b> ones. We measured what that costs.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section TOC (narrow screens; sidebar handles wide) -->
+  <div class="container is-max-desktop">
+    <nav class="page-nav" aria-label="Sections">
+      <a href="#abstract">Abstract</a>
+      <a href="#protocol">Protocol</a>
+      <a href="#tasks">Tasks</a>
+      <a href="#metrics">Metrics</a>
+      <a href="#results">Findings</a>
+      <a href="#resources">Code &amp; Data</a>
+      <a href="#citation">BibTeX</a>
+    </nav>
+  </div>
+
+  <!-- Supplementary video -->
+  <section class="section" id="video" style="padding-top: 0.5rem; padding-bottom: 1rem;">
+    <div class="container is-max-desktop">
+      <div class="clap-player" data-clap-player>
+        <span class="cp-label"><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;Supplementary&nbsp;Video</span>
+        <div class="cp-stage">
+          <video class="cp-video" playsinline preload="metadata" poster="./assets/images/video-poster.webp">
+            <source src="./assets/videos/supplementary.mp4" type="video/mp4">
+            <track kind="captions" src="./assets/videos/supplementary.en.vtt" srclang="en" label="English" default>
+            Your browser does not support the video tag.
+          </video>
+          <button class="cp-center-play" type="button" aria-label="Play video">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="cp-controls" role="toolbar" aria-label="Video controls">
+          <button class="cp-btn cp-play" type="button" aria-label="Play / Pause (Space)">
+            <i class="fas fa-play" aria-hidden="true"></i>
+          </button>
+          <button class="cp-btn cp-back" type="button" aria-label="Back 10 seconds">
+            <i class="fas fa-backward" aria-hidden="true"></i><span class="cp-sm">10</span>
+          </button>
+          <button class="cp-btn cp-fwd" type="button" aria-label="Forward 10 seconds">
+            <span class="cp-sm">10</span><i class="fas fa-forward" aria-hidden="true"></i>
+          </button>
+          <div class="cp-scrub">
+            <input class="cp-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek">
+          </div>
+          <span class="cp-time" aria-live="off"><span class="cp-cur">0:00</span>&nbsp;/&nbsp;<span class="cp-dur">0:00</span></span>
+          <div class="cp-volume">
+            <button class="cp-btn cp-mute" type="button" aria-label="Mute / Unmute (M)">
+              <i class="fas fa-volume-up" aria-hidden="true"></i>
+            </button>
+            <input class="cp-vol" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume">
+          </div>
+          <button class="cp-btn cp-fs" type="button" aria-label="Fullscreen (F)">
+            <i class="fas fa-expand" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3 royal-theme has-text-centered">Abstract</h2>
+          <div class="title-line"></div>
+          <div class="content has-text-justified">
+            <p>
+              Robots change the scenes they perceive. A hand enters the frame, objects move, and the scene at
+              the end differs from the start. Yet the perception models on these robots are chosen from
+              benchmarks of frozen scenes. This paper asks how much that mismatch matters.
+            </p>
+            <p>
+              We introduce <b class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></b>,
+              a benchmark of 100 real scenes with 70 everyday objects, recorded with robot-grade sensors
+              <em>before</em>, <em>during</em>, and <em>after</em> manipulation — 125K annotated frames. We
+              evaluate <b>49 pretrained models</b> zero-shot on <b>six tasks</b>: image depth, video depth,
+              multi-object tracking, relative camera pose, and two forms of visual question answering.
+            </p>
+            <p>
+              Two numbers summarize each model: phase robustness <b>&Phi;</b> from a repeated-measures MANOVA
+              and worst-phase quality <b>&#119973;<sub>min</sub></b>. The results are not subtle. Every depth and
+              tracking model and 20 of 24 VLM evaluations change significantly across phases
+              (<em>p</em>&lt;0.001); near-range video-depth error grows <b>2&ndash;4&times;</b> while the robot
+              acts, tracker identity switches grow <b>5&ndash;11&times;</b>, and the best in-context grounding
+              reaches only <b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.23</b>. Relative pose alone holds steady
+              (&Phi;&nbsp;&ge;&nbsp;0.86).
+            </p>
+            <p>
+              Rankings also change from task to task. The model that tops a static leaderboard is not the one
+              that keeps working once the robot moves.
+              <b class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></b>
+              tells them apart — and, because every failure is localized to a specific phase and scene, gives
+              model developers the diagnostic structure to see <b>where</b> a model breaks, not just <b>that</b> it does.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Three-Phase Protocol -->
+  <section class="section" id="protocol">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Three-Phase Protocol</h2>
+      <div class="title-line"></div>
+      <p class="results-sub">Observe · Act · Verify — every scene captured in all three states.</p>
+
+      <div class="pipeline">
+        <div class="step">
+          <div class="num">Phase 1</div>
+          <h4>Clutter</h4>
+          <p>Static, pre-interaction. The scene is arranged; the robot observes and plans.</p>
+        </div>
+        <div class="step">
+          <div class="num">Phase 2</div>
+          <h4>Interaction</h4>
+          <p>Dynamic, mid-manipulation. Hands enter, objects move, occlusions change.</p>
+        </div>
+        <div class="step">
+          <div class="num">Phase 3</div>
+          <h4>Clean</h4>
+          <p>Static, post-interaction. New arrangement; the robot re-perceives to verify.</p>
+        </div>
+      </div>
+
+      <p class="section-lede">
+        A fourth <b>Ego</b> stream records the head-mounted egocentric view throughout Interaction,
+        concurrent with the exocentric camera — the same moment from two viewpoints.
+      </p>
+
+      <figure class="paper-fig">
+        <img src="./assets/images/rig-three-panel.webp"
+             alt="Capture setup. (a) Hand-carried rig: RealSense D435 and T265 on a 3D mount with a camera clamp, tethered to a laptop. (b) The T265-to-D435 transform and the 180-degree flip between them. (c) The same scene shot in Clutter, Interaction and Clean, with a head-mounted GoPro recording the egocentric view."
+             decoding="async">
+        </figure>
+      <p class="fig-caption centered"><b>Capture setup.</b> A hand-carried D435&nbsp;+&nbsp;T265 rig with a head-mounted GoPro for the ego stream —
+          robot-grade sensors, not internet imagery.</p>
+    </div>
+  </section>
+
+  <!-- Six Tasks -->
+  <section class="section" id="tasks">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Six Tasks</h2>
+      <div class="title-line"></div>
+      <p class="results-sub">Same scenes · same objects · same three-phase structure.</p>
+
+      <div class="pipeline">
+        <div class="step">
+          <div class="num">T1 · 10 models</div>
+          <h4>Image Depth</h4>
+          <p>Single-frame metric and relative depth from RGB.</p>
+        </div>
+        <div class="step">
+          <div class="num">T2 · 10 models</div>
+          <h4>Video Depth</h4>
+          <p>Temporal depth estimation from video clips with consistency metrics.</p>
+        </div>
+        <div class="step">
+          <div class="num">T3 · 11 models</div>
+          <h4>Tracking</h4>
+          <p>Multi-object tracking with mask and text initialization.</p>
+        </div>
+        <div class="step">
+          <div class="num">T4 · 10 models</div>
+          <h4>Relative Pose</h4>
+          <p>Camera pose estimation from image pairs (Clutter &amp; Clean).</p>
+        </div>
+        <div class="step">
+          <div class="num">T5 · 12 models</div>
+          <h4>Regular VQA</h4>
+          <p>Text-prompted visual grounding — localize objects by attributes.</p>
+        </div>
+        <div class="step">
+          <div class="num">T6 · 12 models</div>
+          <h4>In-Context VQA</h4>
+          <p>Visual grounding from a reference image — no text identity cues.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How the two numbers are computed -->
+  <section class="section" id="metrics">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Two Numbers per Model</h2>
+      <div class="title-line"></div>
+      <p class="results-sub">Every task, every model, reduced to the same pair — so they can be compared at all.</p>
+
+      <figure class="paper-fig">
+        <img src="./assets/images/metric-pipeline.webp"
+             alt="Evaluation pipeline. (a) The metric tensor over scenes, phases and metrics. (b) Difficulty between scenes, split easy/medium/hard. (c) Phase within scene, across Clutter, Interaction, Clean and the optional Ego view. (d) Repeated-measures MANOVA with Wilks lambda and pairwise T-squared tests. (e) Phase robustness Phi per transition, per tier and ego-versus-exo. (f) Worst-phase quality: desirability, JEDI, then the worst-phase minimum."
+             decoding="async">
+        </figure>
+      <p class="fig-caption centered"><b>Evaluation pipeline.</b> Each model's per-scene, per-phase metrics form one tensor.
+          A repeated-measures MANOVA turns it into <b>&Phi;</b> — how little the model moves across phases —
+          while a desirability aggregation gives <b>&#119973;<sub>min</sub></b>, how good it still is in its worst phase.</p>
+    </div>
+  </section>
+
+  <!-- Key Findings -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Key Findings</h2>
+      <div class="title-line"></div>
+      <p class="results-sub">Perception degrades where the robot acts — and the degradation is measurable.</p>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>Interaction is the principal stress</div>
+        <div class="content">
+          <p>
+            Clutter&nbsp;&rarr;&nbsp;Interaction is the hardest transition for <b>15 of 20</b> depth models.
+            Tracker identity switches multiply <b>5&ndash;11&times;</b> during Interaction, and near-range
+            video-depth error grows <b>2&ndash;4&times;</b>. Relative pose is the lone exception
+            (&Phi;&nbsp;&ge;&nbsp;0.86).
+          </p>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>In-context VQA exposes a bottleneck</div>
+        <div class="content">
+          <p>
+            Regular grounding reaches <b>59% Acc@0.5</b>; in-context grounding drops to <b>21%</b>. Binding
+            attributes from a reference image to the right instance is far harder than localizing a named
+            object.
+          </p>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>&Phi; against &#119973;<sub>min</sub>, all 49 models</div>
+        <figure class="paper-fig paper-fig-narrow">
+          <img src="./assets/images/phi_vs_jmin_scatter.webp"
+               alt="Scatter of phase robustness Phi against worst-phase quality J-min for all 49 model evaluations, coloured by task. A golden zone in the top right marks Phi above 0.86 and J-min above 0.75; relative-pose models cluster high on Phi but low on J-min, tracking models reach high J-min, and in-context VQA sits at the left edge."
+               decoding="async">
+          </figure>
+      <p class="fig-caption centered"><b>&Phi; vs. &#119973;<sub>min</sub>.</b> The <em>golden zone</em> — robust <em>and</em> good — is nearly empty.
+            Relative pose sits high on &Phi; but far left on quality; in-context VQA is pinned to the left edge.</p>
+      </div>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>Robustness &ne; quality</div>
+        <div class="content">
+          <p>
+            Florence&nbsp;2 reaches <b>&Phi;&nbsp;=&nbsp;0.94&ndash;0.98</b> without ever leaving the quality
+            floor. A high &Phi; can simply mean uniformly bad. Read <b>&#119973;<sub>min</sub></b> first, then
+            screen with &Phi;.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Code & Data -->
+  <section class="section" id="resources">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Code &amp; Data</h2>
+      <div class="title-line"></div>
+      <div class="resource-grid">
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon"><i class="fab fa-github" aria-hidden="true"></i></span>Code</header>
+          <a class="rc-chip" target="_blank" href="https://github.com/IRVLUTD/RPX">
+            <span class="rc-name">IRVLUTD/RPX</span>
+            <span class="rc-sub">Benchmark toolkit — capture, annotation &amp; evaluation harness</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://pypi.org/project/rpx-benchmark/">
+            <span class="rc-name">rpx-benchmark</span>
+            <span class="rc-sub">pip install 'rpx-benchmark[hub,schemas]' · Python 3.10&ndash;3.12</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://irvlutd.github.io/RPX/toolkit-docs/">
+            <span class="rc-name">Toolkit docs</span>
+            <span class="rc-sub">API reference and evaluation walkthrough</span>
+          </a>
+        </section>
+
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon">&#129303;</span>Data</header>
+          <a class="rc-chip" target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX">
+            <span class="rc-name">IRVLUTD/RPX</span>
+            <span class="rc-sub">Hugging Face dataset — 100 scenes · 70 objects · 125K annotated frames</span>
+          </a>
+          <a class="rc-chip" target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX#dataset-card">
+            <span class="rc-name">Dataset card</span>
+            <span class="rc-sub">Splits, schema, licensing and intended use</span>
+          </a>
+        </section>
+
+        <section class="resource-col">
+          <header class="rc-head"><span class="rc-icon"><i class="ai ai-arxiv" aria-hidden="true"></i></span>Paper</header>
+          <!-- TODO: replace with the arXiv abs/pdf links once posted -->
+          <span class="rc-chip is-pending" aria-disabled="true">
+            <span class="rc-name">Paper + Supplementary</span>
+            <span class="rc-sub">8-page paper + 33-page appendix — under review</span>
+          </span>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <!-- BibTeX -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">BibTeX</h2>
+      <div class="title-line"></div>
+      <p class="section-lede">Coming soon.</p>
+      <div class="bib-pending">
+        <span class="bib-pending-icon"><i class="fas fa-quote-right" aria-hidden="true"></i></span>
+        <p class="bib-pending-title">BibTeX coming soon</p>
+        <p class="bib-pending-sub">
+          The citation will be posted here once the paper is public.
+          In the meantime, please get in touch via <a class="href-link" href="#contact">Contact</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container is-max-desktop has-text-centered">
+      <h2 class="title is-3 royal-theme has-text-centered">Contact</h2>
+      <div class="title-line"></div>
+      <p class="section-lede contact-line">
+        Send any comments or questions to
+        Jishnu <span class="contact-sep">|</span>
+        Itay <span class="contact-sep">|</span>
+        Narendhiran
+      </p>
+      <p class="contact-emails">
+        <a class="href-link" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
+        <span class="contact-sep">&middot;</span>
+        <a class="href-link" href="mailto:itay.kadosh@utdallas.edu">itay.kadosh@utdallas.edu</a>
+        <span class="contact-sep">&middot;</span>
+        <a class="href-link" href="mailto:narendhiran.v@research.iiit.ac.in">narendhiran.v@research.iiit.ac.in</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Acknowledgements
+       TODO: fill in the funders, then uncomment. Skeleton matches iTeach/HRT1.
+  <section class="section" id="acknowledgements">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 royal-theme has-text-centered">Acknowledgements</h2>
+      <div class="title-line"></div>
+      <p class="ack-eyebrow">Supported by</p>
+      <div class="ack-grid">
+        <div class="ack-card">
+          <div class="ack-org">NSF</div>
+          <div class="ack-prog">National Science Foundation</div>
+          <div class="ack-id">Grant&nbsp;No.&nbsp;XXXXXXX</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <footer class="site-footer">
+    <div class="container is-max-desktop">
+      <div class="footer-rule"></div>
+      <div class="footer-row">
+        <span class="footer-brand"><span class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></span></span>
+        <span class="footer-sep">·</span>
+        <span id="website-template-credits" class="footer-meta">
+          Last updated <span id="last-updated"></span>
+        </span>
+        <span class="footer-sep">·</span>
+        <span class="footer-meta">Template inspired by <a class="href-link" target="_blank" href="https://irvlutd.github.io/FewSOL"><span class="small-caps">FewSOL</span></a></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<!-- IRVL shared scripts (same as iTeach / HRT1) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./assets/js/fontawesome.all.min.js"></script>
+<script src="./assets/js/bulma-carousel.min.js"></script>
+<script src="./assets/js/bulma-slider.min.js"></script>
+<script src="../assets/scripts/script.js"></script>
+<script src="../assets/scripts/few-shot-research/script.js"></script>
+<script src="../assets/scripts/clap-page.js" defer></script>
+
+</html>

@@ -1,0 +1,123 @@
+WEBVTT
+
+00:00:00.700 --> 00:00:05.050
+RPX tests robot perception as the same physical scene changes.
+
+00:00:06.050 --> 00:00:13.530
+Modular pipelines, foundation models, and agentic systems all depend on perception.
+
+00:00:13.800 --> 00:00:19.520
+Perception guides planning and control. But
+each action changes what the robot sees next.
+
+00:00:19.820 --> 00:00:25.080
+Separate benchmarks make it difficult to compare
+perception backbones across changes in the same scene.
+
+00:00:25.120 --> 00:00:31.380
+Perception should stay accurate as scenes change.
+RPX measures both quality and phase robustness.
+
+00:00:31.750 --> 00:00:36.990
+Our handheld rig records color, depth, stereo views, and camera poses.
+
+00:00:37.250 --> 00:00:44.180
+A person manipulates the objects. We capture Clutter,
+Interaction, Clean, and simultaneous egocentric view.
+
+00:00:44.550 --> 00:00:50.100
+One protocol spans a hundred multi-object
+scenes, seventy daily objects, and twenty settings.
+
+00:00:50.300 --> 00:00:55.840
+Multiple views and sensing modalities show how
+those same scenes change through manipulation.
+
+00:00:56.060 --> 00:01:01.980
+The settings vary in surfaces, lighting, and
+background, across indoor and outdoor spaces.
+
+00:01:02.180 --> 00:01:07.730
+Each daily object also has its own single-object
+scene, recorded from multiple viewpoints.
+
+00:01:08.080 --> 00:01:11.250
+Each multi-object scene has all four captures.
+
+00:01:11.270 --> 00:01:14.510
+Single-object scenes provide isolated references.
+
+00:01:14.530 --> 00:01:19.090
+Ego shares images, masks, and questionnaires without depth.
+
+00:01:19.350 --> 00:01:22.330
+These paired measurements support multiple tasks.
+
+00:01:22.350 --> 00:01:27.110
+Ego contributes to tracking and both question-answering tasks.
+
+00:01:27.380 --> 00:01:31.480
+Object questions describe use, color, and material.
+
+00:01:31.500 --> 00:01:34.050
+Reference images support in-context grounding.
+
+00:01:34.250 --> 00:01:40.380
+Six tasks span image and video depth, tracking, relative pose, and question answering.
+
+00:01:40.600 --> 00:01:45.690
+Stable can still mean wrong. A strong average can hide a weak phase.
+
+00:01:46.180 --> 00:01:50.670
+For each model: scenes, phases, and task metrics.
+
+00:01:50.690 --> 00:01:53.940
+Phase and difficulty slices feed our two scores.
+
+00:01:54.180 --> 00:01:59.700
+Phi compares phases across matched scenes.
+Higher Phi means a smaller phase effect.
+
+00:02:00.000 --> 00:02:05.390
+JEDI combines normalized metrics, then reports quality in the model's weakest phase.
+
+00:02:05.680 --> 00:02:12.080
+Models that land in the golden region are likely high
+quality, along with having strong phase robustness.
+
+00:02:12.300 --> 00:02:18.350
+These two video-depth models share the same
+average quality, but their phase profiles differ.
+
+00:02:18.450 --> 00:02:24.110
+Interaction is DA3's weakest phase. Worst-phase
+quality reveals what the average hides.
+
+00:02:24.600 --> 00:02:30.570
+Across forty-nine pretrained models tested zero-shot,
+depth and tracking show strong phase effects.
+
+00:02:30.670 --> 00:02:34.970
+Relative pose changes less, comparing Clutter and Clean performance.
+
+00:02:35.070 --> 00:02:39.960
+Question-answering quality is low, and visual context changes the model rankings.
+
+00:02:40.060 --> 00:02:43.980
+None of the sixty-five evaluations reaches this golden region.
+
+00:02:44.180 --> 00:02:48.280
+Bring your own model. Adapters handle its inputs and outputs.
+
+00:02:48.380 --> 00:02:52.800
+The RPX Toolkit is designed to grow with new tasks and metrics.
+
+00:02:53.160 --> 00:02:55.840
+Scan to see the code that made it all work.
+
+00:02:55.920 --> 00:02:58.360
+The full dataset follows upon acceptance.
+
+00:02:58.400 --> 00:02:59.900
+Thank you very much for watching!
+

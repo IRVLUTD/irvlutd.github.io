@@ -1,0 +1,300 @@
+/* ============================================================================
+   RPX Project Page — brand layer
+   ----------------------------------------------------------------------------
+   Layered on ../assets/css/clap-theme.css (the shared CLAP design system used
+   by iTeach, HRT1 and FewSOL). Everything structural — hero, tldr, stats,
+   pipeline, result blocks, resource grid, bibtex, footer, progress sidebar —
+   comes from there. This file carries only what is specific to RPX:
+
+     01  The R·P·X wordmark triad
+     02  Author meta line (matches HRT1's local index.css)
+     03  Pending resource chip (a chip with no link yet)
+   ============================================================================ */
+
+
+/* ── 01  Wordmark ───────────────────────────────────────────────────────────
+   The three letters keep their own hues instead of inheriting the gold accent,
+   so the mark reads the same inside a heading, inside prose and in the footer.
+   :where() keeps specificity at zero-plus-the-class, letting clap's own
+   heading colours win everywhere except these three spans.                    */
+/* The paper defines the triad as rpxR #4F46E5, rpxP #DB2777, rpxX #C2410C —
+   values chosen against white paper, where they score 5.98 / 4.37 / 4.92 on
+   contrast. On the near-black page they fall to 3.08 / 4.21 / 3.73, and the R
+   in particular went muddy. So: the paper's exact hexes in light mode, and
+   lifted tints of the same hues in dark, all at or above 4.5:1. */
+.rpx-r { color: #7b83f7 !important; font-weight: 700; }   /* 5.92 on #0a0e14 */
+.rpx-p { color: #ec4899 !important; font-weight: 700; }   /* 5.48 */
+.rpx-x { color: #ea580c !important; font-weight: 700; }   /* 5.43 */
+
+.rpx-wordmark {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+@media (prefers-color-scheme: light) {
+  .rpx-r { color: #4F46E5 !important; }                   /* paper rpxR */
+  .rpx-p { color: #DB2777 !important; }                   /* paper rpxP */
+  .rpx-x { color: #C2410C !important; }                   /* paper rpxX */
+}
+
+
+/* ── 02  Author meta line ───────────────────────────────────────────────── */
+.author-meta-info { padding-top: 10px; }
+
+.eq-contri { color: var(--accent-primary); }
+
+
+/* ── 03  Pending resource chip ──────────────────────────────────────────────
+   A .rc-chip rendered as a <span> because the artefact is not public yet.
+   Same box as its linked siblings, minus the hover affordance, so the grid
+   keeps its rhythm without promising a click that does nothing.               */
+.rc-chip.is-pending {
+  opacity: 0.6;
+  cursor: default;
+}
+.rc-chip.is-pending:hover {
+  border-color: var(--glass-border);
+  background: rgba(255, 255, 255, 0.02);
+  transform: none;
+}
+.rc-chip.is-pending:hover .rc-name { color: var(--text-main) !important; }
+
+
+/* ── 04  Author row (nine portraits) ────────────────────────────────────────
+   clap-theme pins #author-content.columns to flex-wrap: nowrap with a 3.5rem
+   gap, which fits HRT1's six portraits in the 960px container (940px) but not
+   RPX's nine (~1438px). Allow wrapping and tighten the gap so the row breaks
+   into a balanced 5 + 4 rather than overflowing.                              */
+.publication-authors #author-content.columns {
+  flex-wrap: nowrap !important;
+  justify-content: center !important;
+  gap: 0 1rem;
+  max-width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* All nine on one row: 9 x 88px + 8 x 16px = 920px, inside the 960px
+   is-max-desktop container. Columns are fixed-width rather than sized to the
+   name, so the row cannot be pushed wide by "Narendhiran Vijayakumar". */
+.publication-authors #author-content > .column {
+  flex: 0 0 88px !important;
+  width: 88px;
+  max-width: 88px;
+}
+/* 78px keeps nine portraits on one line with room to breathe, and leaves the
+   title as the hero's focal point. */
+.author-image {
+  width: 78px !important;
+  height: 78px !important;
+  max-width: 78px;
+}
+/* Names wrap under an 88px column, so tighten them to stay legible. */
+.publication-authors #author-content .is-size-6 {
+  font-size: 0.78rem !important;
+  line-height: 1.25;
+}
+
+/* Between the tablet breakpoint and the desktop container width there is not
+   enough room for nine across; fall back to a wrapped grid. */
+@media (max-width: 1023px) {
+  .publication-authors #author-content.columns {
+    flex-wrap: wrap !important;
+    gap: 1.25rem 1.5rem;
+    max-width: 560px;
+  }
+}
+.publication-authors #author-content .is-size-6 {
+  display: block;
+  line-height: 1.3;
+  margin-top: 0.35rem;
+}
+
+
+/* ── 05  Wordmark eyebrow ───────────────────────────────────────────────────
+   The paper title carries no project name, so the RPX mark sits above it in
+   clap's .eyebrow pill. Letter-spacing is dropped because the pill's 0.2em
+   tracking pulls the three-letter mark apart.                                 */
+.eyebrow.rpx-eyebrow {
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 1.1rem;
+}
+
+/* Below Bulma's tablet breakpoint .columns stops being a flex container, so
+   the nine cards stacked one per row — a very long scroll before the abstract.
+   Keep it flexing and shrink the cards so they land 3 x 3. */
+@media (max-width: 768px) {
+  .publication-authors #author-content.columns {
+    display: flex !important;
+    gap: 1.1rem 1.25rem;
+    max-width: 340px;
+  }
+  .publication-authors #author-content > .column {
+    flex: 0 0 84px !important;
+    width: 84px;
+    max-width: 84px;
+  }
+  .author-image {
+    width: 74px !important;
+    height: 74px !important;
+    max-width: 74px;
+  }
+  .publication-authors #author-content .is-size-6 { font-size: 0.8rem !important; }
+}
+
+
+/* ── 06  Title on two lines ─────────────────────────────────────────────────
+   The paper title is long: at clap's 41.6px the second line needs 1114px but
+   the is-max-desktop container is 960px, so it spilled onto a third line
+   ("the Wild" alone). Scaling the type to ~34px brings that line to ~921px —
+   a comfortable fit — and keeps the explicit <br> after the colon as the only
+   break. Below the desktop container width it wraps freely, as it should.    */
+@media (min-width: 1024px) {
+  #project-name.publication-title {
+    font-size: 2.15rem !important;
+    line-height: 1.22;
+  }
+}
+
+
+/* ── 07  Figures ────────────────────────────────────────────────────────────
+   The Phi-vs-J-min scatter is nearly square and rendered at 1000px; letting it
+   run the full container width blows it up past its natural size and dwarfs
+   the finding it belongs to. Cap it and centre it.                            */
+.paper-fig.paper-fig-narrow {
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ── 08  Contact ────────────────────────────────────────────────────────────
+   Three addresses plus the sentence ran as one long line. Split: the prompt on
+   its own line, the addresses on the next, monospaced so they read as data.   */
+.contact-emails {
+  margin-top: 0.55rem;
+  font-family: var(--mono);
+  font-size: 0.86rem;
+  line-height: 1.9;
+}
+.contact-emails .contact-sep { color: var(--text-faint); margin: 0 0.5rem; }
+@media (max-width: 640px) {
+  .contact-emails a { display: block; }
+  .contact-emails .contact-sep { display: none; }
+}
+
+
+/* ── 09  BibTeX placeholder ─────────────────────────────────────────────────
+   Stands in for clap's .bib-container until the paper is public. Same left
+   accent rule and glass panel as the real block, so the section keeps its
+   shape, minus the copy button (there is nothing to copy yet).                */
+.bib-pending {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--glass-border);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 0 14px 14px 0;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.bib-pending-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.8rem;
+  border: 1px solid rgba(212, 160, 58, 0.3);
+  background: rgba(212, 160, 58, 0.1);
+  border-radius: 10px;
+  color: var(--accent-primary);
+}
+.bib-pending-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.35rem;
+}
+.bib-pending-sub {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+
+/* ============================================================================
+   10  Polish
+   ============================================================================ */
+
+/* ── Figure plates ──────────────────────────────────────────────────────────
+   Every RPX figure is a vector diagram on white. Bled to the frame edge they
+   read as bare slabs punched out of the dark page. Mounting them on a white
+   mat with the frame's own radius makes the white deliberate, and a warm ring
+   ties them back to the gold accent instead of ending on a hard edge.        */
+.paper-fig {
+  background: #fff;
+  padding: 0.85rem;
+  border-color: rgba(212, 160, 58, 0.22);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.45);
+}
+.paper-fig img { border-radius: 8px; }
+.paper-fig:hover {
+  border-color: rgba(212, 160, 58, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 22px 52px rgba(0, 0, 0, 0.55);
+}
+.fig-caption {
+  max-width: 760px;
+  margin: 0.85rem auto 0;
+}
+
+/* ── Finding cards ──────────────────────────────────────────────────────────
+   .result-block is only a hairline rule and prose, so next to the Protocol and
+   Tasks cards the findings visually dissolved. Give them the same glass panel
+   the rest of the page uses.                                                  */
+#results .result-block {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-top: 1px solid var(--glass-border);
+  border-left: 3px solid var(--accent-primary);
+  border-radius: 0 14px 14px 0;
+  padding: 1.25rem 1.4rem;
+  margin: 1rem 0;
+  transition: border-color 0.25s, transform 0.25s, background 0.25s;
+}
+#results .result-block:hover {
+  border-color: var(--glass-border-strong);
+  border-left-color: var(--accent-primary);
+  background: var(--glass-bg-strong);
+  transform: translateY(-2px);
+}
+#results .result-block:first-of-type { margin-top: 1rem; padding-top: 1.25rem; }
+#results .result-eyebrow { margin-bottom: 0.7rem; }
+#results .result-block .content p:last-child { margin-bottom: 0; }
+/* The scatter is a figure, not prose — let it keep a plain surround. */
+#results .result-block:has(.paper-fig) {
+  background: transparent;
+  border-color: transparent;
+  border-left-color: rgba(212, 160, 58, 0.35);
+}
+
+/* ── Lift the dim tier ──────────────────────────────────────────────────────
+   --text-dim at 0.9rem over the near-black background is the weakest type on
+   the page; the section ledes and captions were the parts that read as faded. */
+.results-sub { color: var(--text-soft); }
+.fig-caption { color: var(--text-soft); }
+.section-lede { color: var(--text-soft); }
+
+/* clap sets .fig-caption b to weight 500 in --text-soft, which is now the
+   caption's own colour — the lead-in stopped reading as a lead-in. */
+.fig-caption b {
+  color: var(--accent-primary) !important;
+  font-weight: 600 !important;
+}
