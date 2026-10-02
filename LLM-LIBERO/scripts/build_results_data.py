@@ -34,7 +34,7 @@ def match_key(row, effort_field='effort'):
 def compact_calls(calls):
     fields = (
         'call', 'input_tokens', 'cached_tokens', 'output_tokens', 'reasoning_tokens',
-        'estimated_usd', 'latency_s', 'http_status', 'usage_unknown',
+        'estimated_usd', 'latency_s', 'http_status', 'usage_unknown', 'step', 'video_time_s',
     )
     compact = []
     for call in calls or []:
@@ -46,6 +46,17 @@ def compact_calls(calls):
                 tools.append(name)
         if tools:
             item['tools'] = tools
+        first_tool = next((tool for tool in call.get('tools') or [] if isinstance(tool, dict)), None)
+        arguments = first_tool.get('arguments') if first_tool else None
+        targets = arguments.get('targets') if isinstance(arguments, dict) else None
+        if isinstance(targets, dict) and all(targets.get(axis) is not None for axis in ('x', 'y', 'z')):
+            item['target_xyz'] = [targets['x'], targets['y'], targets['z']]
+        observed = call.get('observed_xyz')
+        if isinstance(observed, list) and len(observed) >= 3:
+            item['observed_xyz'] = observed[:3]
+        note = arguments.get('note') if isinstance(arguments, dict) else None
+        if note:
+            item['plan_note'] = str(note)[:360]
         compact.append(item)
     return compact
 

@@ -8,18 +8,23 @@
   const num = value => value == null ? '—' : Number(value).toLocaleString();
   const taskLabel = id => `Task ${Number(id) + 1}`;
 
-  function googleDriveEmbedUrl(value) {
+  function googleDriveFileId(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
     try {
       const url = new URL(value);
       if (url.hostname !== 'drive.google.com') return null;
       const match = url.pathname.match(/^\/file\/d\/([A-Za-z0-9_-]+)/);
       const id = match?.[1] || url.searchParams.get('id');
-      return id && /^[A-Za-z0-9_-]+$/.test(id) ? `https://drive.google.com/file/d/${id}/preview` : null;
+      return id && /^[A-Za-z0-9_-]+$/.test(id) ? id : null;
     } catch {
       return null;
     }
   }
+
+  const googleDriveEmbedUrl = value => {
+    const id = googleDriveFileId(value);
+    return id ? `https://drive.google.com/file/d/${id}/preview` : null;
+  };
 
   function setOptions(id, values, allLabel, format = value => value) {
     $(id).innerHTML = `<option value="">${esc(allLabel)}</option>` + values.map(value => `<option value="${esc(value)}">${esc(format(value))}</option>`).join('');
@@ -137,20 +142,21 @@
     return `<div class="empty-state"><strong>${esc(title)}</strong><span>${esc(message)}</span></div>`;
   }
 
-  function showMedia(row) {
+  function showMedia(row, spatial) {
     const slot = $('rollout-media');
     slot.innerHTML = empty('Video unavailable', 'No playable rollout video was included for this episode.');
     if (!row?.video) return;
-    const drive = googleDriveEmbedUrl(row.video);
-    if (drive) {
+    const drivePreview = googleDriveEmbedUrl(row.video);
+    if (drivePreview) {
       const frame = document.createElement('iframe');
-      frame.src = drive;
+      frame.src = drivePreview;
       frame.title = `${taskLabel(row.task_id)} · state ${row.init_state}`;
       frame.loading = 'lazy';
       frame.allow = 'autoplay; fullscreen';
       frame.allowFullscreen = true;
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
       slot.replaceChildren(frame);
+      spatial?.bindVideo(null);
       return;
     }
     try {
@@ -158,8 +164,9 @@
       if (!['http:','https:'].includes(url.protocol)) return;
       const video = document.createElement('video');
       video.controls = true; video.preload = 'metadata'; video.playsInline = true; video.src = url.href;
-      video.addEventListener('error', () => { slot.innerHTML = empty('Video unavailable', 'The selected video could not be loaded.'); });
+      video.addEventListener('error', () => { slot.innerHTML = empty('Video unavailable', 'The selected video could not be loaded.'); }, {once:true});
       slot.replaceChildren(video);
+      spatial?.bindVideo(video);
     } catch {}
   }
 
@@ -183,16 +190,84 @@
     );
   }
 
-  function drawTrajectory(points) {
+  function drawTrajectory(points, calls = []) {
     if (!points.length) {
       $('trajectory').innerHTML = empty('No action path in this export', 'The commanded end-effector path will appear when trajectory data is supplied.');
-      return;
+      return null;
     }
-    const coordinates = points.map(point => [point[1],point[2]]);
-    const xs = coordinates.map(point => point[0]), ys = coordinates.map(point => point[1]);
-    const xmin=Math.min(...xs), xmax=Math.max(...xs), ymin=Math.min(...ys), ymax=Math.max(...ys);
-    const sx=x=>25+(x-xmin)/Math.max(.001,xmax-xmin)*600, sy=y=>145-(y-ymin)/Math.max(.001,ymax-ymin)*120;
-    $('trajectory').innerHTML = `<svg viewBox="0 0 650 170" role="img" aria-label="Commanded end-effector x-y path"><polyline fill="none" stroke="#365bc5" stroke-width="2" points="${coordinates.map(point=>`${sx(point[0])},${sy(point[1])}`).join(' ')}"/><circle cx="${sx(xs[0])}" cy="${sy(ys[0])}" r="4" fill="#087f75"/><circle cx="${sx(xs.at(-1))}" cy="${sy(ys.at(-1))}" r="4" fill="#b45432"/><text x="15" y="165">Start (teal) · End (orange) · x/y meters</text></svg>`;
+    const host = $('trajectory');
+    host.innerHTML = '<div class="trajectory-stage"><canvas aria-label="Interactive 3D robot trajectory"></canvas><div class="trajectory-legend"><span><i class="gripper-dot"></i>Robot gripper</span><span><i class="target-dot"></i>Planned object target</span></div></div><div class="trajectory-controls"><button type="button" class="subtle-button trajectory-play">Play 3D timeline</button><label class="trajectory-scrubber">Rollout progress<input type="range" min="0" max="1000" value="0" aria-label="Trajectory progress"></label></div><div class="trajectory-readout" aria-live="polite"></div><p class="footnote">Drag the scene to rotate it. The orange marker is the commanded target recorded in the tool call; a separate ground-truth object pose is not included in the export. If the Drive player is shown, start its video and the 3D timeline together.</p>';
+    const canvas = host.querySelector('canvas');
+    const context = canvas.getContext('2d');
+    const slider = host.querySelector('input');
+    const playButton = host.querySelector('.trajectory-play');
+    const readout = host.querySelector('.trajectory-readout');
+    const path = points.map(point => [Number(point[1]), Number(point[2]), Number(point[3])]);
+    const spatialCalls = calls.filter(call => Array.isArray(call.target_xyz) || Array.isArray(call.observed_xyz));
+    const cloud = path.concat(spatialCalls.flatMap(call => [call.target_xyz,call.observed_xyz].filter(Array.isArray)));
+    const center = [0,1,2].map(axis => (Math.min(...cloud.map(point=>Number(point[axis]))) + Math.max(...cloud.map(point=>Number(point[axis])))) / 2);
+    const span = Math.max(.08, ...[0,1,2].map(axis => Math.max(...cloud.map(point=>Number(point[axis]))) - Math.min(...cloud.map(point=>Number(point[axis])))));
+    const timelineDuration = Math.max(1, ...spatialCalls.map(call=>Number(call.video_time_s)||0));
+    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0;
+
+    function activeCall() {
+      if (!spatialCalls.length) return null;
+      if (videoDuration > 0 && spatialCalls.some(call => call.video_time_s != null)) {
+        return spatialCalls.reduce((active, call) => Number(call.video_time_s) <= videoTime ? call : active, spatialCalls[0]);
+      }
+      return spatialCalls[Math.min(spatialCalls.length - 1, Math.floor(progress * spatialCalls.length))];
+    }
+
+    function render() {
+      const ratio = devicePixelRatio || 1;
+      const width = Math.max(320, canvas.clientWidth), height = canvas.clientHeight || 340;
+      if (canvas.width !== Math.round(width*ratio) || canvas.height !== Math.round(height*ratio)) {
+        canvas.width=Math.round(width*ratio); canvas.height=Math.round(height*ratio);
+      }
+      context.setTransform(ratio,0,0,ratio,0,0);
+      context.clearRect(0,0,width,height);
+      const scale = Math.min(width,height) * .67 / span;
+      const project = point => {
+        const x=point[0]-center[0], y=point[1]-center[1], z=point[2]-center[2];
+        const rx=Math.cos(yaw)*x-Math.sin(yaw)*y, ry=Math.sin(yaw)*x+Math.cos(yaw)*y;
+        return [width*.5+rx*scale,height*.55-(Math.cos(pitch)*z-Math.sin(pitch)*ry)*scale];
+      };
+      const origin = project(center);
+      context.lineWidth=1; context.font='11px Noto Sans, sans-serif';
+      [['x',[span*.34,0,0],'#ff8e82'],['y',[0,span*.34,0],'#78d7ad'],['z',[0,0,span*.34],'#79c4ff']].forEach(([label,delta,color])=>{
+        const end=project(center.map((value,index)=>value+delta[index])); context.strokeStyle=color; context.beginPath(); context.moveTo(...origin); context.lineTo(...end); context.stroke(); context.fillStyle=color; context.fillText(label,end[0]+4,end[1]-4);
+      });
+      const currentIndex=Math.min(path.length-1,Math.round(progress*(path.length-1)));
+      const drawPath=(from,to,color,widthValue)=>{ context.strokeStyle=color; context.lineWidth=widthValue; context.beginPath(); for(let index=from;index<=to;index++){ const point=project(path[index]); index===from?context.moveTo(...point):context.lineTo(...point); } context.stroke(); };
+      if(currentIndex<path.length-1) drawPath(currentIndex,path.length-1,'rgba(126,157,184,.28)',1.5);
+      drawPath(0,currentIndex,'#79c4ff',3);
+      const call=activeCall();
+      const robot=project(path[currentIndex]);
+      context.fillStyle='#79c4ff'; context.shadowColor='#79c4ff'; context.shadowBlur=14; context.beginPath(); context.arc(robot[0],robot[1],6,0,Math.PI*2); context.fill(); context.shadowBlur=0;
+      context.fillStyle='#edf5ff'; context.fillText('Robot gripper',robot[0]+10,robot[1]-9);
+      if(call?.target_xyz){ const target=project(call.target_xyz); context.fillStyle='#ffb071'; context.shadowColor='#ffb071'; context.shadowBlur=14; context.beginPath(); context.moveTo(target[0],target[1]-7); context.lineTo(target[0]+7,target[1]); context.lineTo(target[0],target[1]+7); context.lineTo(target[0]-7,target[1]); context.closePath(); context.fill(); context.shadowBlur=0; context.fillStyle='#ffe2be'; context.fillText('Planned object target',target[0]+10,target[1]-9); context.setLineDash([5,5]); context.strokeStyle='rgba(255,176,113,.65)'; context.beginPath(); context.moveTo(...robot); context.lineTo(...target); context.stroke(); context.setLineDash([]); }
+      const callLabel=call ? `Plan ${call.call ?? '—'}${call.tools?.length ? ` · ${call.tools.join(', ')}` : ''}` : 'Execution path';
+      const timing=videoDuration ? ` · ${videoTime.toFixed(1)} / ${videoDuration.toFixed(1)} s` : ` · ${Math.round(progress*100)}%`;
+      readout.textContent=`${callLabel}${timing}${call?.plan_note ? ` — ${call.plan_note}` : ''}`;
+    }
+
+    const controller = {
+      bindVideo(nextVideo) {
+        video = nextVideo;
+        if (!video) { videoDuration=0; playButton.textContent='Play 3D timeline'; render(); return; }
+        const update=()=>{ videoDuration=Number.isFinite(video.duration)?video.duration:0; videoTime=video.currentTime||0; progress=videoDuration?videoTime/videoDuration:progress; slider.value=String(Math.round(progress*1000)); playButton.textContent=video.paused?'Play synchronized video':'Pause synchronized video'; render(); };
+        video.addEventListener('loadedmetadata',update); video.addEventListener('timeupdate',update); video.addEventListener('durationchange',update); update();
+      }
+    };
+    function stopAnimation(){ if(animation) cancelAnimationFrame(animation); animation=null; previousFrame=0; playButton.textContent=video?'Play synchronized video':'Play 3D timeline'; }
+    function animate(timestamp){ if(!previousFrame) previousFrame=timestamp; videoTime+=Math.min(.1,(timestamp-previousFrame)/1000); previousFrame=timestamp; progress=Math.min(1,videoTime/timelineDuration); slider.value=String(Math.round(progress*1000)); render(); if(progress>=1) stopAnimation(); else animation=requestAnimationFrame(animate); }
+    playButton.addEventListener('click',()=>{ if(video){ video.paused?video.play():video.pause(); return; } if(animation){stopAnimation();return;} if(progress>=1){progress=0;videoTime=0;} playButton.textContent='Pause 3D timeline'; animation=requestAnimationFrame(animate); });
+    slider.addEventListener('input',()=>{ stopAnimation(); progress=Number(slider.value)/1000; if(video&&Number.isFinite(video.duration)) video.currentTime=progress*video.duration; else { videoTime=progress*timelineDuration; render(); } });
+    canvas.addEventListener('pointerdown',event=>{ dragging=true; last=[event.clientX,event.clientY]; canvas.setPointerCapture(event.pointerId); });
+    canvas.addEventListener('pointermove',event=>{ if(!dragging)return; yaw+=(event.clientX-last[0])*.009; pitch=Math.max(-1.2,Math.min(1.2,pitch+(event.clientY-last[1])*.009)); last=[event.clientX,event.clientY]; render(); });
+    canvas.addEventListener('pointerup',()=>{ dragging=false; });
+    new ResizeObserver(render).observe(canvas); render();
+    return controller;
   }
 
   function inspect(row) {
@@ -216,9 +291,9 @@
       ['API calls', num(row.api_attempts)],
       ['Estimated cost', usd(row.estimated_usd)]
     ].map(([label,value]) => `<div class="rollout-stat"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('');
-    showMedia(row);
     drawCalls(row.calls || []);
-    drawTrajectory(row.trajectory || []);
+    const spatial = drawTrajectory(row.trajectory || [], row.calls || []);
+    showMedia(row, spatial);
     $('conversation').textContent = (row.conversation || []).length ? row.conversation.map(message => `${String(message.role || '').toUpperCase()}\n${message.text || ''}`).join('\n\n') : 'No conversation or tool-feedback data was included in this export.';
     $('protocol').textContent = row.protocol ? JSON.stringify(row.protocol,null,2) : 'No protocol data was included in this export.';
   }
