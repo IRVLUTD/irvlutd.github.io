@@ -88,6 +88,7 @@
   }
 
   let chosen = null;
+  let spatialController = null;
 
   function draw() {
     const rows = filtered().sort((a,b) => a.task_id-b.task_id || a.init_state-b.init_state || String(a.model).localeCompare(String(b.model)) || String(a.effort).localeCompare(String(b.effort)));
@@ -208,7 +209,7 @@
     const center = [0,1,2].map(axis => (Math.min(...cloud.map(point=>Number(point[axis]))) + Math.max(...cloud.map(point=>Number(point[axis])))) / 2);
     const span = Math.max(.08, ...[0,1,2].map(axis => Math.max(...cloud.map(point=>Number(point[axis]))) - Math.min(...cloud.map(point=>Number(point[axis])))));
     const timelineDuration = Math.max(1, ...spatialCalls.map(call=>Number(call.video_time_s)||0));
-    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0;
+    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0, spinAnimation = null, previousSpin = 0, destroyed = false;
 
     function activeCall() {
       if (!spatialCalls.length) return null;
@@ -219,6 +220,7 @@
     }
 
     function render() {
+      canvas.dataset.viewAngle=yaw.toFixed(3);
       const ratio = devicePixelRatio || 1;
       const width = Math.max(320, canvas.clientWidth), height = canvas.clientHeight || 340;
       if (canvas.width !== Math.round(width*ratio) || canvas.height !== Math.round(height*ratio)) {
@@ -251,22 +253,31 @@
       readout.textContent=`${callLabel}${timing}${call?.plan_note ? ` — ${call.plan_note}` : ''}`;
     }
 
+    const observer = new ResizeObserver(render);
     const controller = {
       bindVideo(nextVideo) {
         video = nextVideo;
         if (!video) { videoDuration=0; playButton.textContent='Play 3D timeline'; render(); return; }
         const update=()=>{ videoDuration=Number.isFinite(video.duration)?video.duration:0; videoTime=video.currentTime||0; progress=videoDuration?videoTime/videoDuration:progress; slider.value=String(Math.round(progress*1000)); playButton.textContent=video.paused?'Play synchronized video':'Pause synchronized video'; render(); };
         video.addEventListener('loadedmetadata',update); video.addEventListener('timeupdate',update); video.addEventListener('durationchange',update); update();
+      },
+      destroy() {
+        destroyed=true; stopAnimation();
+        if(spinAnimation) cancelAnimationFrame(spinAnimation);
+        observer.disconnect();
       }
     };
     function stopAnimation(){ if(animation) cancelAnimationFrame(animation); animation=null; previousFrame=0; playButton.textContent=video?'Play synchronized video':'Play 3D timeline'; }
     function animate(timestamp){ if(!previousFrame) previousFrame=timestamp; videoTime+=Math.min(.1,(timestamp-previousFrame)/1000); previousFrame=timestamp; progress=Math.min(1,videoTime/timelineDuration); slider.value=String(Math.round(progress*1000)); render(); if(progress>=1) stopAnimation(); else animation=requestAnimationFrame(animate); }
+    function spin(timestamp){ if(destroyed)return; if(!dragging&&previousSpin){ yaw+=(timestamp-previousSpin)*.00007; render(); } previousSpin=timestamp; spinAnimation=requestAnimationFrame(spin); }
     playButton.addEventListener('click',()=>{ if(video){ video.paused?video.play():video.pause(); return; } if(animation){stopAnimation();return;} if(progress>=1){progress=0;videoTime=0;} playButton.textContent='Pause 3D timeline'; animation=requestAnimationFrame(animate); });
     slider.addEventListener('input',()=>{ stopAnimation(); progress=Number(slider.value)/1000; if(video&&Number.isFinite(video.duration)) video.currentTime=progress*video.duration; else { videoTime=progress*timelineDuration; render(); } });
-    canvas.addEventListener('pointerdown',event=>{ dragging=true; last=[event.clientX,event.clientY]; canvas.setPointerCapture(event.pointerId); });
+    canvas.addEventListener('pointerdown',event=>{ dragging=true; previousSpin=0; last=[event.clientX,event.clientY]; canvas.setPointerCapture(event.pointerId); });
     canvas.addEventListener('pointermove',event=>{ if(!dragging)return; yaw+=(event.clientX-last[0])*.009; pitch=Math.max(-1.2,Math.min(1.2,pitch+(event.clientY-last[1])*.009)); last=[event.clientX,event.clientY]; render(); });
-    canvas.addEventListener('pointerup',()=>{ dragging=false; });
-    new ResizeObserver(render).observe(canvas); render();
+    canvas.addEventListener('pointerup',()=>{ dragging=false; previousSpin=0; });
+    canvas.addEventListener('pointercancel',()=>{ dragging=false; previousSpin=0; });
+    observer.observe(canvas); render();
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) spinAnimation=requestAnimationFrame(spin);
     return controller;
   }
 
@@ -274,6 +285,7 @@
     chosen = row;
     document.querySelectorAll('tr.pick').forEach(element => element.setAttribute('aria-selected', String(row && Number(element.dataset.index) === episodes.indexOf(row))));
     if (!row) {
+      spatialController?.destroy(); spatialController=null;
       $('selected-rollout').textContent = 'No rollout matches these filters';
       $('episode-meta').textContent = '';
       $('rollout-stats').innerHTML = '';
@@ -292,8 +304,9 @@
       ['Estimated cost', usd(row.estimated_usd)]
     ].map(([label,value]) => `<div class="rollout-stat"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('');
     drawCalls(row.calls || []);
-    const spatial = drawTrajectory(row.trajectory || [], row.calls || []);
-    showMedia(row, spatial);
+    spatialController?.destroy();
+    spatialController = drawTrajectory(row.trajectory || [], row.calls || []);
+    showMedia(row, spatialController);
     $('conversation').textContent = (row.conversation || []).length ? row.conversation.map(message => `${String(message.role || '').toUpperCase()}\n${message.text || ''}`).join('\n\n') : 'No conversation or tool-feedback data was included in this export.';
     $('protocol').textContent = row.protocol ? JSON.stringify(row.protocol,null,2) : 'No protocol data was included in this export.';
   }
