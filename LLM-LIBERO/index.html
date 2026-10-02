@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description" content="LLM-LIBERO project website">
+  <meta id="meta-author" name="author" content="May Espinola, Qifan Zhang, Yu Xiang">
+  <meta id="meta-keywords" name="keywords" content="LLM, LIBERO, reasoning, robot manipulation, evaluation">
+  <title id="title" project-name="LLM-LIBERO">LLM-LIBERO</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/results.css?v=5">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title">LLM-LIBERO</h1>
+
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered">
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://goldpig888.github.io/">
+                    <img class="display-image author-image author-image-may center"
+                         src="./assets/images/may_espinola.JPG" alt="May Espinola">
+                    <br><span class="is-size-6">May Espinola</span>
+                  </a>
+                </div>
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://qfantastic.github.io/">
+                    <img class="display-image author-image center"
+                         src="./assets/images/qifan_zhang.jpeg" alt="Qifan Zhang">
+                    <br><span class="is-size-6">Qifan Zhang</span>
+                  </a>
+                </div>
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://yuxng.github.io/">
+                    <img class="display-image author-image center"
+                         src="../assets/images/authors/yu_xiang.webp" alt="Yu Xiang">
+                    <br><span class="is-size-6">Yu Xiang</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>            
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <button type="button" class="button is-normal is-rounded is-dark" disabled>
+                    <span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span>
+                    <span>Code (coming soon)</span>
+                  </button>
+                </span>
+                <span class="link-block">
+                  <button type="button" class="button is-normal is-rounded is-dark" disabled>
+                    <span class="icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></span>
+                    <span>Report (coming soon)</span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="results">
+    <nav class="results-nav" aria-label="Results sections">
+      <a href="#overview">Overview</a><a href="#states">Individual states</a><a href="#aggregates">Aggregates</a><a href="#inspector">Rollout inspector</a><a href="#details">Details</a>
+    </nav>
+    <section id="overview" class="results-section">
+      <div class="eyebrow">LIBERO-10 / PAID API EXPERIMENTS</div>
+      <h2>Model rollout results</h2>
+      <p class="section-intro">Official success uses the simulator predicate from the <a href="https://libero-project.github.io/main.html" target="_blank" rel="noopener noreferrer">LIBERO benchmark</a>. Reviewed success is recorded separately when available, and stopped or incomplete episodes remain distinct from ordinary failures.</p>
+      <div class="notice" id="data-status"><strong>Loading experiment data.</strong></div>
+      <div class="summary-cards" id="cards"></div>
+      <div class="dashboard-toolbar" aria-label="Results filters">
+        <label>Model<select id="model-filter"></select></label>
+        <label>Task number<select id="task-filter"></select></label>
+        <label>Reasoning<select id="effort-filter"></select></label>
+        <label>Initial state<select id="state-filter"></select></label>
+        <button id="clear-filters" type="button" class="subtle-button">Clear filters</button>
+        <button id="download-csv" type="button" class="download-button">Download CSV</button>
+        <button id="download-json" type="button" class="download-button">Download JSON</button>
+      </div>
+    </section>
+    <section id="states" class="results-section">
+      <div class="eyebrow">01 / EPISODE INDEX</div><h2>Individual states</h2>
+      <p>Reviewed outcomes appear beside the official simulator status when annotations exist. Select any row to open its evidence below.</p>
+      <p id="state-count" class="muted" aria-live="polite"></p>
+      <div class="table-scroll state-table" id="episodes"></div>
+    </section>
+    <section id="aggregates" class="results-section">
+      <div class="eyebrow">02 / AGGREGATE RESULTS</div><h2>Success, costs, and calls</h2>
+      <div class="dashboard-grid">
+        <article class="dashboard-panel"><h3>Success by task</h3><div id="task-stats" class="table-scroll"></div></article>
+        <article class="dashboard-panel"><h3>Model × reasoning</h3><div id="model-stats" class="table-scroll"></div></article>
+      </div>
+    </section>
+    <section id="inspector" class="results-section inspector-section">
+      <div class="inspector-heading"><div><div class="eyebrow">03 / ROLLOUT EVIDENCE</div><h2>Rollout inspector</h2><p id="selected-rollout">Select a rollout</p></div></div>
+      <p id="episode-meta" class="muted"></p>
+      <div class="rollout-stats" id="rollout-stats"></div>
+      <div class="inspector-grid">
+        <div>
+          <div class="video-slot" id="rollout-media"></div>
+          <p class="footnote">Agent view and wrist view are shown in the saved rollout when available.</p>
+          <h3>Commanded end-effector path</h3><div id="trajectory" class="chart-surface"></div>
+        </div>
+        <div>
+          <h3>API calls and token use</h3><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div>
+        </div>
+      </div>
+      <details><summary>Conversation and tool feedback</summary><pre id="conversation"></pre></details>
+      <details><summary>Protocol for this episode</summary><pre id="protocol"></pre></details>
+    </section>
+    <section id="details" class="results-section">
+      <div class="eyebrow">04 / INTERPRETATION</div><h2>Experiment details</h2>
+      <p>Success rates include all attempted episodes, including runs stopped by a call or dollar cap. Pending episodes are excluded. Early stops and errors remain visible as separate statuses. Costs are usage-based estimates; provider billing is authoritative.</p>
+      <div class="notice neutral"><strong>Current coverage.</strong> The results export contains episode outcomes, simulator steps, API calls, token usage, latency, and cost. Google Drive videos are linked where available. Trajectories and conversations will appear in the inspector when those fields are added to the export.</div>
+    </section>
+    <section class="results-section contact" id="contact"><h2>Contact</h2><p>Send any comments or questions to May Espinola | Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a> | <a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/results-data.js?v=2"></script>
+  <script src="./assets/js/results.js?v=2"></script>
+</body>
+</html>
