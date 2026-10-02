@@ -92,7 +92,7 @@
     <section id="overview" class="results-section">
       <div class="eyebrow">LIBERO-10 / PAID API EXPERIMENTS</div>
       <h2>Model rollout results</h2>
-      <p class="section-intro">Official success uses the simulator predicate from the <a href="https://libero-project.github.io/main.html" target="_blank" rel="noopener noreferrer">LIBERO benchmark</a>. Reviewed success is recorded separately when available, and stopped or incomplete episodes remain distinct from ordinary failures.</p>
+      <p class="section-intro">Success uses the simulator predicate from the <a href="https://libero-project.github.io/main.html" target="_blank" rel="noopener noreferrer">LIBERO benchmark</a>. Stopped or incomplete episodes remain distinct from ordinary failures.</p>
       <div class="notice" id="data-status"><strong>Loading experiment data.</strong></div>
       <div class="summary-cards" id="cards"></div>
       <div class="dashboard-toolbar" aria-label="Results filters">
@@ -107,7 +107,7 @@
     </section>
     <section id="states" class="results-section">
       <div class="eyebrow">01 / EPISODE INDEX</div><h2>Individual states</h2>
-      <p>Reviewed outcomes appear beside the official simulator status when annotations exist. Select any row to open its evidence below.</p>
+      <p>Select any row to inspect its outcome, rollout evidence, and execution statistics.</p>
       <p id="state-count" class="muted" aria-live="polite"></p>
       <div class="table-scroll state-table" id="episodes"></div>
     </section>
@@ -145,6 +145,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=2"></script>
-  <script src="./assets/js/results.js?v=2"></script>
+  <script src="./assets/js/results.js?v=3"></script>
 </body>
 </html>

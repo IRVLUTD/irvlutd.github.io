@@ -55,10 +55,6 @@
     return `<tr>${values.map(value => `<td>${esc(value)}</td>`).join('')}</tr>`;
   }
 
-  function reviewedStatus(row) {
-    return row.status + (row.reviewed_success === true ? ' (reviewed success)' : row.reviewed_success === false ? ' (reviewed failure)' : '');
-  }
-
   function aggregate(rows, key) {
     const groups = new Map();
     rows.forEach(row => {
@@ -117,14 +113,14 @@
     );
     $('state-count').textContent = `${rows.length} state rollout${rows.length === 1 ? '' : 's'} shown. Select a row to inspect its evidence.`;
     $('episodes').innerHTML = table(
-      ['Model','Reasoning','Task','State','Status','Official success','Reviewed success','Steps','Calls','Cost','Budget charge'],
+      ['Model','Reasoning','Task','State','Status','Success','Steps','Calls','Cost','Budget charge'],
       rows.map(row => {
         const index = episodes.indexOf(row);
         const statusClass = row.success === true ? 'status-success' : attempted(row) ? 'status-failure' : '';
         return `<tr class="pick" tabindex="0" role="button" data-index="${index}" aria-selected="${row === chosen}">` +
           `<td>${esc(row.model)}</td><td>${esc(row.effort)}</td><td>${esc(taskLabel(row.task_id))}</td><td>${esc(row.init_state)}</td>` +
-          `<td class="${statusClass}">${esc(reviewedStatus(row))}</td><td>${row.success === true ? 'Yes' : attempted(row) ? 'No' : 'Pending'}</td>` +
-          `<td>${row.reviewed_success === true ? 'Yes' : row.reviewed_success === false ? 'No' : '—'}</td><td>${esc(num(row.steps))}</td>` +
+          `<td class="${statusClass}">${esc(row.status)}</td><td>${row.success === true ? 'Yes' : attempted(row) ? 'No' : 'Pending'}</td>` +
+          `<td>${esc(num(row.steps))}</td>` +
           `<td>${esc(num(row.api_attempts))}</td><td>${esc(usd(row.estimated_usd))}</td><td>${esc(usd(row.budget_charge_usd))}</td></tr>`;
       }),
       'Individual experiment states'
@@ -215,8 +211,7 @@
     $('selected-rollout').textContent = `${row.model} / ${row.effort} · ${taskLabel(row.task_id)} · state ${row.init_state}`;
     $('episode-meta').textContent = `${row.instruction || row.task_name || ''} · ${row.status || 'status unavailable'}${row.stop_detail ? ` · ${row.stop_detail}` : ''}${row.review_note ? ` · Review: ${row.review_note}` : ''}`;
     $('rollout-stats').innerHTML = [
-      ['Official outcome', row.success === true ? 'Success' : attempted(row) ? row.status : 'Pending'],
-      ['Reviewed success', row.reviewed_success === true ? 'Yes' : row.reviewed_success === false ? 'No' : '—'],
+      ['Outcome', row.success === true ? 'Success' : attempted(row) ? row.status : 'Pending'],
       ['Simulator steps', num(row.steps)],
       ['API calls', num(row.api_attempts)],
       ['Estimated cost', usd(row.estimated_usd)]
