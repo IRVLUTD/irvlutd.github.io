@@ -131,7 +131,8 @@ def main() -> None:
     token = None if isinstance(credentials.get("installed"), dict) else access_token(credentials)
     payload = download(args.file_id, token)
     results = validate_results(payload)
-    write_atomic(args.output, payload)
+    compact = json.dumps(results, separators=(",", ":"), ensure_ascii=False).encode()
+    write_atomic(args.output, compact)
     print(f"Wrote {len(results['episodes'])} episodes to {args.output}")
 
 
