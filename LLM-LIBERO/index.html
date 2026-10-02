@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=7">
+  <link rel="stylesheet" href="./assets/css/results.css?v=9">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -127,9 +127,10 @@
           <div class="video-slot" id="rollout-media"></div>
           <p class="footnote">Agent view and wrist view are shown in the saved rollout when available.</p>
           <h3>3D spatial plan</h3><div id="trajectory" class="chart-surface"></div>
+          <details class="reasoning-timeline"><summary>View full reasoning timeline <span id="reasoning-count"></span></summary><div id="reasoning-timeline"></div></details>
         </div>
         <div>
-          <h3>API calls and token use</h3><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div>
+          <details class="api-details"><summary>API calls and token use</summary><div class="api-details-content"><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div></div></details>
         </div>
       </div>
       <details><summary>Conversation and tool feedback</summary><pre id="conversation"></pre></details>
@@ -145,6 +146,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=4"></script>
-  <script src="./assets/js/results.js?v=11"></script>
+  <script src="./assets/js/results.js?v=13"></script>
 </body>
 </html>

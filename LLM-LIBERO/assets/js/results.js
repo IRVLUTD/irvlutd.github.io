@@ -191,13 +191,37 @@
     );
   }
 
+  function formatTimestamp(value) {
+    const seconds = Math.max(0, Number(value) || 0);
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes}:${String((seconds % 60).toFixed(1)).padStart(4,'0')}`;
+  }
+
+  function drawReasoning(calls) {
+    const entries = calls.filter(call => call.plan_note).sort((a,b) => (Number(a.video_time_s)||0)-(Number(b.video_time_s)||0));
+    $('reasoning-count').textContent = entries.length ? `(${entries.length} steps)` : '';
+    if (!entries.length) {
+      $('reasoning-timeline').innerHTML = empty('No reasoning timeline', 'This rollout does not include timestamped planning notes.');
+      return;
+    }
+    $('reasoning-timeline').innerHTML = entries.map(call => {
+      const time = Number(call.video_time_s) || 0;
+      const target = Array.isArray(call.target_xyz) ? `Target: ${call.target_xyz.map(value=>Number(value).toFixed(3)).join(', ')} m` : '';
+      return `<article class="reasoning-step"><header><button type="button" class="reasoning-time" data-time="${time}">${esc(formatTimestamp(time))}</button><strong>Plan ${esc(call.call ?? '—')}</strong><span>${esc((call.tools || []).join(', ') || 'observation')}</span></header><p>${esc(call.plan_note)}</p>${target ? `<small>${esc(target)}</small>` : ''}</article>`;
+    }).join('');
+    $('reasoning-timeline').querySelectorAll('.reasoning-time').forEach(button => button.addEventListener('click', () => {
+      spatialController?.seekTime(Number(button.dataset.time) || 0);
+      $('trajectory').scrollIntoView({behavior:'smooth',block:'center'});
+    }));
+  }
+
   function drawTrajectory(points, calls = []) {
     if (!points.length) {
       $('trajectory').innerHTML = empty('No action path in this export', 'The commanded end-effector path will appear when trajectory data is supplied.');
       return null;
     }
     const host = $('trajectory');
-    host.innerHTML = '<div class="trajectory-stage"><canvas aria-label="Interactive 3D robot trajectory"></canvas><div class="trajectory-legend"><span><i class="gripper-dot"></i>Robot gripper</span><span><i class="target-dot"></i>Planned object target</span></div></div><div class="trajectory-controls"><button type="button" class="subtle-button trajectory-play">Play 3D timeline</button><label class="trajectory-scrubber">Rollout progress<input type="range" min="0" max="1000" value="0" aria-label="Trajectory progress"></label></div><div class="trajectory-readout" aria-live="polite"></div><p class="footnote">Drag the scene to rotate it. The orange marker is the commanded target recorded in the tool call; a separate ground-truth object pose is not included in the export. If the Drive player is shown, start its video and the 3D timeline together.</p>';
+    host.innerHTML = '<div class="trajectory-stage"><canvas aria-label="Interactive 3D robot trajectory"></canvas><div class="trajectory-legend"><span><i class="gripper-dot"></i>Robot gripper</span><span><i class="target-dot"></i>Planned object target</span></div></div><div class="trajectory-controls"><button type="button" class="subtle-button trajectory-play">Play 3D timeline</button><label class="trajectory-scrubber">Rollout progress<input type="range" min="0" max="1000" value="0" aria-label="Trajectory progress"></label></div><div class="trajectory-readout" aria-live="polite"></div>';
     const canvas = host.querySelector('canvas');
     const context = canvas.getContext('2d');
     const slider = host.querySelector('input');
@@ -261,6 +285,15 @@
         const update=()=>{ videoDuration=Number.isFinite(video.duration)?video.duration:0; videoTime=video.currentTime||0; progress=videoDuration?videoTime/videoDuration:progress; slider.value=String(Math.round(progress*1000)); playButton.textContent=video.paused?'Play synchronized video':'Pause synchronized video'; render(); };
         video.addEventListener('loadedmetadata',update); video.addEventListener('timeupdate',update); video.addEventListener('durationchange',update); update();
       },
+      seekTime(seconds) {
+        stopAnimation();
+        if(video&&Number.isFinite(video.duration)) {
+          video.currentTime=Math.max(0,Math.min(video.duration,seconds));
+        } else {
+          videoTime=Math.max(0,Math.min(timelineDuration,seconds)); progress=videoTime/timelineDuration;
+          slider.value=String(Math.round(progress*1000)); render();
+        }
+      },
       destroy() {
         destroyed=true; stopAnimation();
         if(spinAnimation) cancelAnimationFrame(spinAnimation);
@@ -290,7 +323,7 @@
       $('episode-meta').textContent = '';
       $('rollout-stats').innerHTML = '';
       $('rollout-media').innerHTML = empty('No rollout selected','Adjust the filters to find an episode.');
-      drawCalls([]); drawTrajectory([]);
+      drawCalls([]); drawTrajectory([]); drawReasoning([]);
       $('conversation').textContent = 'No conversation data available.';
       $('protocol').textContent = 'No protocol data available.';
       return;
@@ -306,6 +339,7 @@
     drawCalls(row.calls || []);
     spatialController?.destroy();
     spatialController = drawTrajectory(row.trajectory || [], row.calls || []);
+    drawReasoning(row.calls || []);
     showMedia(row, spatialController);
     $('conversation').textContent = (row.conversation || []).length ? row.conversation.map(message => `${String(message.role || '').toUpperCase()}\n${message.text || ''}`).join('\n\n') : 'No conversation or tool-feedback data was included in this export.';
     $('protocol').textContent = row.protocol ? JSON.stringify(row.protocol,null,2) : 'No protocol data was included in this export.';
