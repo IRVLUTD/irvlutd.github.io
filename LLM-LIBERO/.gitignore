@@ -2,4 +2,5 @@
 token.json
 token*.json
 client_secret*.json
+tests/credentials.json
 __pycache__/

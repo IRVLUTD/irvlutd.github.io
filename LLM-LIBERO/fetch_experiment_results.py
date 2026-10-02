@@ -19,6 +19,7 @@ from pathlib import Path
 
 
 DRIVE_API = "https://www.googleapis.com/drive/v3/files/{file_id}?alt=media"
+PUBLIC_DOWNLOAD = "https://drive.usercontent.google.com/download?id={file_id}&export=download&confirm=t"
 TOKEN_ENDPOINT = "https://oauth2.googleapis.com/token"
 FILE_ID_PATTERN = re.compile(r"^[A-Za-z0-9_-]+$")
 
@@ -74,13 +75,14 @@ def access_token(credentials: dict) -> str:
     return token.strip()
 
 
-def download(file_id: str, token: str) -> bytes:
+def download(file_id: str, token: str | None = None) -> bytes:
     if not FILE_ID_PATTERN.fullmatch(file_id):
         raise SystemExit("Google Drive file ID contains invalid characters.")
-    request = urllib.request.Request(
-        DRIVE_API.format(file_id=file_id),
-        headers={"Authorization": f"Bearer {token}", "Accept": "application/json"},
-    )
+    url = DRIVE_API.format(file_id=file_id) if token else PUBLIC_DOWNLOAD.format(file_id=file_id)
+    headers = {"Accept": "application/json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    request = urllib.request.Request(url, headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=120) as response:
             return response.read()
@@ -126,7 +128,8 @@ def main() -> None:
     args = parser.parse_args()
 
     credentials = read_token_file(args.token)
-    payload = download(args.file_id, access_token(credentials))
+    token = None if isinstance(credentials.get("installed"), dict) else access_token(credentials)
+    payload = download(args.file_id, token)
     results = validate_results(payload)
     write_atomic(args.output, payload)
     print(f"Wrote {len(results['episodes'])} episodes to {args.output}")

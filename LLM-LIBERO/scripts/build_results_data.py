@@ -10,7 +10,7 @@ from pathlib import Path
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-DEFAULT_RESULTS = PROJECT / 'tests' / 'experiments_results.json'
+DEFAULT_RESULTS = PROJECT.parent / 'public' / 'data' / 'experiment_results.json'
 DEFAULT_VIDEOS = PROJECT / 'tests' / 'drive_videos.json'
 DEFAULT_OUTPUT = PROJECT / 'assets' / 'js' / 'results-data.js'
 COLORS = ['#79c4ff', '#70dab5', '#c39bff', '#ffb071']
