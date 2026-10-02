@@ -221,19 +221,21 @@
       return null;
     }
     const host = $('trajectory');
-    host.innerHTML = '<div class="trajectory-stage"><canvas aria-label="Interactive 3D robot trajectory"></canvas><div class="trajectory-legend"><span><i class="gripper-dot"></i>Robot gripper</span><span><i class="target-dot"></i>Planned object target</span></div></div><div class="trajectory-controls"><button type="button" class="subtle-button trajectory-play">Play 3D timeline</button><label class="trajectory-scrubber">Rollout progress<input type="range" min="0" max="1000" value="0" aria-label="Trajectory progress"></label></div><div class="trajectory-readout" aria-live="polite"></div>';
+    host.innerHTML = '<div class="trajectory-view-switch" role="group" aria-label="Position marker"><span>Position marker</span><div><button type="button" data-marker="gripper" aria-pressed="false">Gripper</button><button type="button" data-marker="eef" aria-pressed="true">End effector</button></div></div><div class="trajectory-stage"><canvas aria-label="Interactive 3D end-effector trajectory"></canvas><div class="trajectory-legend"><span><i class="position-dot"></i><b>End effector</b></span><span><i class="target-dot"></i>Planned object target</span></div></div><div class="trajectory-controls"><button type="button" class="subtle-button trajectory-play">Play 3D timeline</button><label class="trajectory-scrubber">Rollout progress<input type="range" min="0" max="1000" value="0" aria-label="Trajectory progress"></label></div><div class="trajectory-readout" aria-live="polite"></div>';
     const canvas = host.querySelector('canvas');
     const context = canvas.getContext('2d');
     const slider = host.querySelector('input');
     const playButton = host.querySelector('.trajectory-play');
     const readout = host.querySelector('.trajectory-readout');
+    const markerButtons = [...host.querySelectorAll('[data-marker]')];
+    const markerLegend = host.querySelector('.trajectory-legend b');
     const path = points.map(point => [Number(point[1]), Number(point[2]), Number(point[3])]);
     const spatialCalls = calls.filter(call => Array.isArray(call.target_xyz) || Array.isArray(call.observed_xyz));
     const cloud = path.concat(spatialCalls.flatMap(call => [call.target_xyz,call.observed_xyz].filter(Array.isArray)));
     const center = [0,1,2].map(axis => (Math.min(...cloud.map(point=>Number(point[axis]))) + Math.max(...cloud.map(point=>Number(point[axis])))) / 2);
     const span = Math.max(.08, ...[0,1,2].map(axis => Math.max(...cloud.map(point=>Number(point[axis]))) - Math.min(...cloud.map(point=>Number(point[axis])))));
     const timelineDuration = Math.max(1, ...spatialCalls.map(call=>Number(call.video_time_s)||0));
-    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0, spinAnimation = null, previousSpin = 0, destroyed = false;
+    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0, spinAnimation = null, previousSpin = 0, destroyed = false, markerMode = 'eef';
 
     function activeCall() {
       if (!spatialCalls.length) return null;
@@ -268,10 +270,12 @@
       if(currentIndex<path.length-1) drawPath(currentIndex,path.length-1,'rgba(126,157,184,.28)',1.5);
       drawPath(0,currentIndex,'#79c4ff',3);
       const call=activeCall();
-      const robot=project(path[currentIndex]);
-      context.fillStyle='#79c4ff'; context.shadowColor='#79c4ff'; context.shadowBlur=14; context.beginPath(); context.arc(robot[0],robot[1],6,0,Math.PI*2); context.fill(); context.shadowBlur=0;
-      context.fillStyle='#edf5ff'; context.fillText('Robot gripper',robot[0]+10,robot[1]-9);
-      if(call?.target_xyz){ const target=project(call.target_xyz); context.fillStyle='#ffb071'; context.shadowColor='#ffb071'; context.shadowBlur=14; context.beginPath(); context.moveTo(target[0],target[1]-7); context.lineTo(target[0]+7,target[1]); context.lineTo(target[0],target[1]+7); context.lineTo(target[0]-7,target[1]); context.closePath(); context.fill(); context.shadowBlur=0; context.fillStyle='#ffe2be'; context.fillText('Planned object target',target[0]+10,target[1]-9); context.setLineDash([5,5]); context.strokeStyle='rgba(255,176,113,.65)'; context.beginPath(); context.moveTo(...robot); context.lineTo(...target); context.stroke(); context.setLineDash([]); }
+      const markerPosition=markerMode==='eef'&&Array.isArray(call?.observed_xyz)?call.observed_xyz:path[currentIndex];
+      const marker=project(markerPosition);
+      const markerLabel=markerMode==='eef'?'End effector':'Gripper';
+      context.fillStyle='#79c4ff'; context.shadowColor='#79c4ff'; context.shadowBlur=14; context.beginPath(); context.arc(marker[0],marker[1],6,0,Math.PI*2); context.fill(); context.shadowBlur=0;
+      context.fillStyle='#edf5ff'; context.fillText(markerLabel,marker[0]+10,marker[1]-9);
+      if(call?.target_xyz){ const target=project(call.target_xyz); context.fillStyle='#ffb071'; context.shadowColor='#ffb071'; context.shadowBlur=14; context.beginPath(); context.moveTo(target[0],target[1]-7); context.lineTo(target[0]+7,target[1]); context.lineTo(target[0],target[1]+7); context.lineTo(target[0]-7,target[1]); context.closePath(); context.fill(); context.shadowBlur=0; context.fillStyle='#ffe2be'; context.fillText('Planned object target',target[0]+10,target[1]-9); context.setLineDash([5,5]); context.strokeStyle='rgba(255,176,113,.65)'; context.beginPath(); context.moveTo(...marker); context.lineTo(...target); context.stroke(); context.setLineDash([]); }
       const callLabel=call ? `Plan ${call.call ?? '—'}${call.tools?.length ? ` · ${call.tools.join(', ')}` : ''}` : 'Execution path';
       const timing=videoDuration ? ` · ${videoTime.toFixed(1)} / ${videoDuration.toFixed(1)} s` : ` · ${Math.round(progress*100)}%`;
       readout.textContent=`${callLabel}${timing}${call?.plan_note ? ` — ${call.plan_note}` : ''}`;
@@ -304,6 +308,7 @@
     function animate(timestamp){ if(!previousFrame) previousFrame=timestamp; videoTime+=Math.min(.1,(timestamp-previousFrame)/1000); previousFrame=timestamp; progress=Math.min(1,videoTime/timelineDuration); slider.value=String(Math.round(progress*1000)); render(); if(progress>=1) stopAnimation(); else animation=requestAnimationFrame(animate); }
     function spin(timestamp){ if(destroyed)return; if(!dragging&&previousSpin){ yaw+=(timestamp-previousSpin)*.00007; render(); } previousSpin=timestamp; spinAnimation=requestAnimationFrame(spin); }
     playButton.addEventListener('click',()=>{ if(video){ video.paused?video.play():video.pause(); return; } if(animation){stopAnimation();return;} if(progress>=1){progress=0;videoTime=0;} playButton.textContent='Pause 3D timeline'; animation=requestAnimationFrame(animate); });
+    markerButtons.forEach(button=>button.addEventListener('click',()=>{ markerMode=button.dataset.marker; markerButtons.forEach(option=>option.setAttribute('aria-pressed',String(option===button))); const label=markerMode==='eef'?'End effector':'Gripper'; markerLegend.textContent=label; canvas.setAttribute('aria-label',`Interactive 3D ${label.toLowerCase()} trajectory`); render(); }));
     slider.addEventListener('input',()=>{ stopAnimation(); progress=Number(slider.value)/1000; if(video&&Number.isFinite(video.duration)) video.currentTime=progress*video.duration; else { videoTime=progress*timelineDuration; render(); } });
     canvas.addEventListener('pointerdown',event=>{ dragging=true; previousSpin=0; last=[event.clientX,event.clientY]; canvas.setPointerCapture(event.pointerId); });
     canvas.addEventListener('pointermove',event=>{ if(!dragging)return; yaw+=(event.clientX-last[0])*.009; pitch=Math.max(-1.2,Math.min(1.2,pitch+(event.clientY-last[1])*.009)); last=[event.clientX,event.clientY]; render(); });
