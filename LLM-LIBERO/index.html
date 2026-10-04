@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=9">
+  <link rel="stylesheet" href="./assets/css/results.css?v=10">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -61,7 +61,7 @@
 
             <div class="is-size-6 publication-authors author-meta-info">
               <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            </div>            
+            </div>
 
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -123,14 +123,15 @@
       <p id="episode-meta" class="muted"></p>
       <div class="rollout-stats" id="rollout-stats"></div>
       <div class="inspector-grid">
-        <div>
+        <div class="inspector-column">
+          <h3>Rollout video</h3>
           <div class="video-slot" id="rollout-media"></div>
           <p class="footnote">Agent view and wrist view are shown in the saved rollout when available.</p>
+          <details class="api-details"><summary>API calls and token use</summary><div class="api-details-content"><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div></div></details>
+        </div>
+        <div class="inspector-column spatial-column">
           <h3>3D spatial plan</h3><div id="trajectory" class="chart-surface"></div>
           <details class="reasoning-timeline"><summary>View full reasoning timeline <span id="reasoning-count"></span></summary><div id="reasoning-timeline"></div></details>
-        </div>
-        <div>
-          <details class="api-details"><summary>API calls and token use</summary><div class="api-details-content"><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div></div></details>
         </div>
       </div>
       <details><summary>Conversation and tool feedback</summary><pre id="conversation"></pre></details>
@@ -146,6 +147,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=8"></script>
-  <script src="./assets/js/results.js?v=15"></script>
+  <script src="./assets/js/results.js?v=16"></script>
 </body>
 </html>

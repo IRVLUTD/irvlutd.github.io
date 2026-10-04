@@ -152,11 +152,12 @@
       const frame = document.createElement('iframe');
       frame.src = drivePreview;
       frame.title = `${taskLabel(row.task_id)} · state ${row.init_state}`;
-      frame.loading = 'lazy';
-      frame.allow = 'autoplay; fullscreen';
-      frame.allowFullscreen = true;
+      frame.loading = 'lazy'; frame.allow = 'autoplay; fullscreen'; frame.allowFullscreen = true;
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
-      slot.replaceChildren(frame);
+      const sourceRow = document.createElement('div');
+      sourceRow.className = 'video-source-row';
+      sourceRow.innerHTML = `<span>Google Drive video</span><a href="${esc(row.video)}" target="_blank" rel="noopener noreferrer">Open in Drive</a>`;
+      slot.replaceChildren(frame, sourceRow);
       spatial?.bindVideo(null);
       return;
     }
@@ -235,7 +236,7 @@
     const center = [0,1,2].map(axis => (Math.min(...cloud.map(point=>Number(point[axis]))) + Math.max(...cloud.map(point=>Number(point[axis])))) / 2);
     const span = Math.max(.08, ...[0,1,2].map(axis => Math.max(...cloud.map(point=>Number(point[axis]))) - Math.min(...cloud.map(point=>Number(point[axis])))));
     const timelineDuration = Math.max(1, ...spatialCalls.map(call=>Number(call.video_time_s)||0));
-    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, previousFrame = 0, spinAnimation = null, previousSpin = 0, destroyed = false, markerMode = 'eef';
+    let progress = 0, videoTime = 0, videoDuration = 0, yaw = -.72, pitch = .52, video = null, dragging = false, last = null, animation = null, videoAnimation = null, previousFrame = 0, spinAnimation = null, previousSpin = 0, destroyed = false, markerMode = 'eef';
 
     function activeCall() {
       if (!spatialCalls.length) return null;
@@ -282,12 +283,35 @@
     }
 
     const observer = new ResizeObserver(render);
+    const updateFromVideo = () => {
+      if (!video) return;
+      videoDuration=Number.isFinite(video.duration)?video.duration:0;
+      videoTime=video.currentTime||0;
+      progress=videoDuration?videoTime/videoDuration:progress;
+      slider.value=String(Math.round(progress*1000));
+      playButton.textContent=video.paused?'Play video + 3D':'Pause video + 3D';
+      render();
+    };
+    const stopVideoAnimation = () => { if(videoAnimation) cancelAnimationFrame(videoAnimation); videoAnimation=null; };
+    const syncVideoFrame = () => {
+      updateFromVideo();
+      if(video && !video.paused && !video.ended) videoAnimation=requestAnimationFrame(syncVideoFrame);
+      else videoAnimation=null;
+    };
     const controller = {
       bindVideo(nextVideo) {
+        stopVideoAnimation();
         video = nextVideo;
         if (!video) { videoDuration=0; playButton.textContent='Play 3D timeline'; render(); return; }
-        const update=()=>{ videoDuration=Number.isFinite(video.duration)?video.duration:0; videoTime=video.currentTime||0; progress=videoDuration?videoTime/videoDuration:progress; slider.value=String(Math.round(progress*1000)); playButton.textContent=video.paused?'Play synchronized video':'Pause synchronized video'; render(); };
-        video.addEventListener('loadedmetadata',update); video.addEventListener('timeupdate',update); video.addEventListener('durationchange',update); update();
+        video.addEventListener('loadedmetadata',updateFromVideo);
+        video.addEventListener('timeupdate',updateFromVideo);
+        video.addEventListener('durationchange',updateFromVideo);
+        video.addEventListener('seeking',updateFromVideo);
+        video.addEventListener('seeked',updateFromVideo);
+        video.addEventListener('play',()=>{ stopVideoAnimation(); videoAnimation=requestAnimationFrame(syncVideoFrame); updateFromVideo(); });
+        video.addEventListener('pause',()=>{ stopVideoAnimation(); updateFromVideo(); });
+        video.addEventListener('ended',()=>{ stopVideoAnimation(); updateFromVideo(); });
+        updateFromVideo();
       },
       seekTime(seconds) {
         stopAnimation();
@@ -299,12 +323,12 @@
         }
       },
       destroy() {
-        destroyed=true; stopAnimation();
+        destroyed=true; stopAnimation(); stopVideoAnimation();
         if(spinAnimation) cancelAnimationFrame(spinAnimation);
         observer.disconnect();
       }
     };
-    function stopAnimation(){ if(animation) cancelAnimationFrame(animation); animation=null; previousFrame=0; playButton.textContent=video?'Play synchronized video':'Play 3D timeline'; }
+    function stopAnimation(){ if(animation) cancelAnimationFrame(animation); animation=null; previousFrame=0; playButton.textContent=video?(video.paused?'Play video + 3D':'Pause video + 3D'):'Play 3D timeline'; }
     function animate(timestamp){ if(!previousFrame) previousFrame=timestamp; videoTime+=Math.min(.1,(timestamp-previousFrame)/1000); previousFrame=timestamp; progress=Math.min(1,videoTime/timelineDuration); slider.value=String(Math.round(progress*1000)); render(); if(progress>=1) stopAnimation(); else animation=requestAnimationFrame(animate); }
     function spin(timestamp){ if(destroyed)return; if(!dragging&&previousSpin){ yaw+=(timestamp-previousSpin)*.00007; render(); } previousSpin=timestamp; spinAnimation=requestAnimationFrame(spin); }
     playButton.addEventListener('click',()=>{ if(video){ video.paused?video.play():video.pause(); return; } if(animation){stopAnimation();return;} if(progress>=1){progress=0;videoTime=0;} playButton.textContent='Pause 3D timeline'; animation=requestAnimationFrame(animate); });
