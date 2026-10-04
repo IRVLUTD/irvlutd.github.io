@@ -135,7 +135,11 @@ def build(results_index, video_index):
         state = row.get('init_state')
         episode = row.get('episode')
         key = video_row.get('key') or episode_key(row)
-        video = video_row.get('preview_url') or video_row.get('view_url')
+        exported_video = row.get('video') if isinstance(row.get('video'), dict) else {}
+        video = (
+            video_row.get('preview_url') or video_row.get('view_url')
+            or exported_video.get('preview_url') or exported_video.get('view_url')
+        )
         task_name = video_row.get('task_name')
         instruction = video_row.get('instruction')
         rollouts.append({

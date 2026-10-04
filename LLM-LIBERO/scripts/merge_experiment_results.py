@@ -98,13 +98,9 @@ def main():
     update_by_key = {episode_key(row): row for row in update.get("episodes", [])}
     base_by_key = {episode_key(row): row for row in base.get("episodes", [])}
 
-    missing = sorted(set(update_by_key) - set(base_by_key))
-    if missing:
-        raise ValueError(f"Update contains {len(missing)} episodes absent from the base index")
-
     if args.latest_only:
         episodes = [
-            merge_episode(base_by_key[episode_key(row)], row)
+            merge_episode(base_by_key.get(episode_key(row), {}), row)
             for row in update.get("episodes", [])
         ]
         preserved = [
@@ -131,12 +127,14 @@ def main():
         json.dumps(merged, separators=(",", ":"), ensure_ascii=False) + "\n"
     )
     changed_runs = sum(
-        base_by_key[key].get("run") != row.get("run")
+        key in base_by_key and base_by_key[key].get("run") != row.get("run")
         for key, row in update_by_key.items()
     )
+    added = len(set(update_by_key) - set(base_by_key))
     print(
         f"Merged {len(update_by_key)} episodes into {len(episodes)} total; "
-        f"{changed_runs} replacement runs; {merged['totals']['attempted']} attempted; "
+        f"{added} new episodes; {changed_runs} replacement runs; "
+        f"{merged['totals']['attempted']} attempted; "
         f"{merged['totals']['successes']} successes."
     )
 
