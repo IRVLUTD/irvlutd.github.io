@@ -6,7 +6,8 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   const usd = value => value == null ? '—' : `$${Number(value).toFixed(3)}`;
   const num = value => value == null ? '—' : Number(value).toLocaleString();
-  const taskLabel = id => `Task ${Number(id) + 1}`;
+  const taskLabel = id => `Task ${String(Number(id) + 1).padStart(2,'0')}`;
+  const rateColor = value => `hsl(${Math.round(4 + 136 * Math.max(0, Math.min(100, Number(value) || 0)) / 100)} 72% 56%)`;
 
   function googleDriveFileId(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
@@ -60,7 +61,7 @@
     return `<tr>${values.map(value => `<td>${esc(value)}</td>`).join('')}</tr>`;
   }
 
-  function aggregate(rows, key) {
+  function aggregateGroups(rows, key) {
     const groups = new Map();
     rows.forEach(row => {
       const name = key(row);
@@ -76,7 +77,11 @@
       if (row.api_attempts != null) { group.calls += Number(row.api_attempts) || 0; group.callsKnown = true; }
       groups.set(name, group);
     });
-    return [...groups].sort((a,b) => String(a[0]).localeCompare(String(b[0]), undefined, {numeric:true})).map(([name, group]) => cells([
+    return [...groups].sort((a,b) => String(a[0]).localeCompare(String(b[0]), undefined, {numeric:true}));
+  }
+
+  function aggregate(rows, key) {
+    return aggregateGroups(rows, key).map(([name, group]) => cells([
       name,
       `${group.success} / ${group.attempted}`,
       group.attempted ? `${(100 * group.success / group.attempted).toFixed(1)}%` : '—',
@@ -87,25 +92,94 @@
     ]));
   }
 
+  function aggregateChart(rows, key, colorMode) {
+    const entries = aggregateGroups(rows, key).map(([label, group]) => ({
+      label,
+      value:group.attempted ? 100 * group.success / group.attempted : 0,
+      attempted:group.attempted,
+      success:group.success
+    }));
+    if (!entries.length) return '<div class="aggregate-chart-empty">No matching data</div>';
+    const width = 920;
+    const height = 430;
+    const margin = {top:30,right:18,bottom:118,left:58};
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+    const band = chartWidth / entries.length;
+    const barWidth = Math.min(62, band * .64);
+    const ticks = [0,25,50,75,100];
+    const grids = ticks.map(tick => {
+      const y = margin.top + chartHeight * (1 - tick / 100);
+      return `<g class="aggregate-axis-tick"><line x1="${margin.left}" y1="${y}" x2="${width-margin.right}" y2="${y}"></line><text x="${margin.left-12}" y="${y+4}" text-anchor="end">${tick}%</text></g>`;
+    }).join('');
+    const bars = entries.map((entry,index) => {
+      const x = margin.left + band * index + (band - barWidth) / 2;
+      const barHeight = chartHeight * entry.value / 100;
+      const y = margin.top + chartHeight - barHeight;
+      const color = rateColor(entry.value);
+      const value = entry.attempted ? `${entry.value.toFixed(1)}%` : '—';
+      return `<g class="aggregate-bar"><title>${esc(`${entry.label}: ${entry.success} / ${entry.attempted} (${value})`)}</title><rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" height="${barHeight.toFixed(1)}" rx="6" fill="${color}"></rect><text class="aggregate-bar-value" x="${(x+barWidth/2).toFixed(1)}" y="${Math.max(18,y-9).toFixed(1)}" text-anchor="middle">${esc(value)}</text><text class="aggregate-bar-label" transform="translate(${(x+barWidth/2).toFixed(1)} ${height-margin.bottom+22}) rotate(-34)" text-anchor="end">${esc(entry.label)}</text></g>`;
+    }).join('');
+    const gradientId = `rate-gradient-${colorMode}`;
+    return `<svg class="aggregate-chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Success rate comparison"><defs><linearGradient id="${gradientId}" x1="0" x2="1"><stop offset="0" stop-color="${rateColor(0)}"></stop><stop offset=".5" stop-color="${rateColor(50)}"></stop><stop offset="1" stop-color="${rateColor(100)}"></stop></linearGradient></defs><g class="aggregate-rate-legend"><text x="710" y="15">Lower</text><rect x="752" y="7" width="105" height="9" rx="4.5" fill="url(#${gradientId})"></rect><text x="866" y="15">Higher</text></g><g>${grids}<line class="aggregate-axis" x1="${margin.left}" y1="${margin.top+chartHeight}" x2="${width-margin.right}" y2="${margin.top+chartHeight}"></line>${bars}<text class="aggregate-axis-title" transform="translate(17 ${margin.top+chartHeight/2}) rotate(-90)" text-anchor="middle">Success rate</text></g></svg>`;
+  }
+
+  function miniBarChart(entries, maximum, format) {
+    if (!entries.length) return '<span class="mini-chart-empty">No matching data</span>';
+    const scale = Math.max(1, maximum);
+    return `<span class="mini-chart">${entries.map(entry => {
+      const width = Math.max(0, Math.min(100, 100 * entry.value / scale));
+      const color = entry.color ? `;background:${esc(entry.color)}` : '';
+      return `<span class="mini-chart-row"><span class="mini-chart-label" title="${esc(entry.label)}">${esc(entry.label)}</span><span class="mini-chart-track"><i style="width:${width.toFixed(1)}%${color}"></i></span><strong>${esc(format(entry))}</strong></span>`;
+    }).join('')}</span>`;
+  }
+
+  function chartCard(chartTitle, chart, chartType) {
+    return `<article class="summary-card metric-chart-card" data-chart="${esc(chartType)}"><h3 class="metric-chart-title">${esc(chartTitle)}</h3>${chart}</article>`;
+  }
+
   let chosen = null;
   let spatialController = null;
 
   function draw() {
     const rows = filtered().sort((a,b) => a.task_id-b.task_id || a.init_state-b.init_state || String(a.model).localeCompare(String(b.model)) || String(a.effort).localeCompare(String(b.effort)));
-    const done = rows.filter(attempted);
-    const successes = done.filter(row => row.success === true).length;
-    const stateZero = done.filter(row => row.init_state === 0);
-    const stateZeroSuccess = stateZero.filter(row => row.success === true).length;
-    const stopped = done.filter(row => !['success','failure'].includes(row.status)).length;
-    const costRows = rows.filter(row => row.estimated_usd != null);
-    const cost = costRows.reduce((sum,row) => sum + (Number(row.estimated_usd) || 0), 0);
+    ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => $(id).classList.toggle('has-selection', Boolean($(id).value)));
+    const selectedModel = $('model-filter').value;
+    const selectedTask = $('task-filter').value;
+    const selectedEffort = $('effort-filter').value;
+    const selectedState = $('state-filter').value;
+    const selection = [
+      selectedModel || 'All models',
+      selectedTask ? taskLabel(Number(selectedTask)) : 'All tasks',
+      selectedEffort ? `${selectedEffort} reasoning` : 'All reasoning',
+      selectedState ? `State ${selectedState}` : 'All states'
+    ].join(' · ');
 
-    $('cards').innerHTML = [
-      ['Success / attempted', `${successes} / ${done.length}`],
-      ['State 0 first pass', `${stateZeroSuccess} / ${stateZero.length}`],
-      ['Stopped early', stopped],
-      ['Measured API cost', costRows.length ? usd(cost) : '—']
-    ].map(([label,value]) => `<article class="summary-card"><small>${esc(label)}</small><strong>${esc(value)}</strong></article>`).join('');
+    $('task-stats-selection').textContent = selection;
+    $('task-chart-selection').textContent = selection;
+    $('model-stats-selection').textContent = selection;
+    $('model-chart-selection').textContent = selection;
+    $('state-stats-selection').textContent = selection;
+
+    const modelSummaries = [...new Set(rows.map(row => row.model).filter(Boolean))].sort().map(model => {
+      const modelRows = rows.filter(row => row.model === model);
+      const attemptedRows = modelRows.filter(attempted);
+      const pricedRows = modelRows.filter(row => row.estimated_usd != null);
+      return {
+        label:model,
+        rate:attemptedRows.length ? 100 * attemptedRows.filter(row => row.success === true).length / attemptedRows.length : 0,
+        attempted:attemptedRows.length,
+        cost:pricedRows.reduce((sum,row) => sum + (Number(row.estimated_usd) || 0), 0),
+        costKnown:pricedRows.length > 0
+      };
+    });
+    const successChart = miniBarChart(modelSummaries.map(item => ({label:item.label,value:item.rate,attempted:item.attempted,color:rateColor(item.rate)})), 100, item => item.attempted ? `${item.value.toFixed(0)}%` : '—');
+    const costEntries = modelSummaries.map(item => ({label:item.label,value:item.cost,costKnown:item.costKnown}));
+    const costChart = miniBarChart(costEntries, Math.max(0, ...costEntries.map(item => item.value)), item => item.costKnown ? usd(item.value) : '—');
+
+    $('cards').innerHTML =
+      chartCard('Success rate by model', successChart, 'success') +
+      chartCard('Measured cost by model', costChart, 'cost');
 
     $('task-stats').innerHTML = table(
       ['Task','Success / attempted','Rate','Stopped early','Pending','Cost','Calls'],
@@ -117,7 +191,9 @@
       aggregate(rows, row => `${row.model} / ${row.effort}`),
       'Success and cost grouped by model and reasoning'
     );
-    $('state-count').textContent = `${rows.length} state rollout${rows.length === 1 ? '' : 's'} shown. Select a row to inspect its evidence.`;
+    $('task-stats-chart').innerHTML = aggregateChart(rows, row => taskLabel(row.task_id), 'task');
+    $('model-stats-chart').innerHTML = aggregateChart(rows, row => `${row.model} / ${row.effort}`, 'model');
+    $('state-count').textContent = `${rows.length} rollout${rows.length === 1 ? '' : 's'} shown.`;
     $('episodes').innerHTML = table(
       ['Model','Reasoning','Task','State','Status','Success','Steps','Calls','Cost','Budget charge'],
       rows.map(row => {
@@ -353,8 +429,6 @@
       $('rollout-stats').innerHTML = '';
       $('rollout-media').innerHTML = empty('No rollout selected','Adjust the filters to find an episode.');
       drawCalls([]); drawTrajectory([]); drawReasoning([]);
-      $('conversation').textContent = 'No conversation data available.';
-      $('protocol').textContent = 'No protocol data available.';
       return;
     }
     $('selected-rollout').textContent = `${row.model} / ${row.effort} · ${taskLabel(row.task_id)} · state ${row.init_state}`;
@@ -370,8 +444,6 @@
     spatialController = drawTrajectory(row.trajectory || [], row.calls || []);
     drawReasoning(row.calls || []);
     showMedia(row, spatialController);
-    $('conversation').textContent = (row.conversation || []).length ? row.conversation.map(message => `${String(message.role || '').toUpperCase()}\n${message.text || ''}`).join('\n\n') : 'No conversation or tool-feedback data was included in this export.';
-    $('protocol').textContent = row.protocol ? JSON.stringify(row.protocol,null,2) : 'No protocol data was included in this export.';
   }
 
   function csvCell(value) {
@@ -398,12 +470,17 @@
     ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => { $(id).value=''; });
     chosen=null; draw();
   });
+  document.querySelectorAll('.aggregate-view-toggle').forEach(button => button.addEventListener('click', () => {
+    const card = button.closest('.aggregate-flip-card');
+    const flipped = card.classList.toggle('is-flipped');
+    const front = card.querySelector('.aggregate-front');
+    const back = card.querySelector('.aggregate-back');
+    front.setAttribute('aria-hidden', String(flipped));
+    back.setAttribute('aria-hidden', String(!flipped));
+    front.querySelector('.aggregate-view-toggle').tabIndex = flipped ? -1 : 0;
+    back.querySelector('.aggregate-view-toggle').tabIndex = flipped ? 0 : -1;
+  }));
 
-  const measuredModels = [...new Set(episodes.map(row=>row.model))];
-  const measuredEfforts = [...new Set(episodes.map(row=>row.effort))];
-  $('data-status').innerHTML = episodes.length
-    ? `<strong>Partial results available.</strong> ${episodes.length} indexed rollouts across ${tasks.length} tasks for ${measuredModels.map(esc).join(', ')} at ${measuredEfforts.map(esc).join(' and ')} reasoning.`
-    : '<strong>No experiment episodes are indexed yet.</strong>';
   draw();
 
   if (typeof module !== 'undefined' && module.exports) module.exports = {googleDriveEmbedUrl, attempted};
