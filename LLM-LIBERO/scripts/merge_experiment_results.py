@@ -80,6 +80,17 @@ def main():
     parser.add_argument("update", type=Path, help="Newer full or partial results export")
     parser.add_argument("--base", type=Path, default=DEFAULT_BASE)
     parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--latest-only",
+        action="store_true",
+        help="Keep only identities present in the newer export",
+    )
+    parser.add_argument(
+        "--preserve-model",
+        action="append",
+        default=[],
+        help="With --latest-only, retain this model's base rows unchanged",
+    )
     args = parser.parse_args()
 
     base = json.loads(args.base.read_text())
@@ -91,11 +102,23 @@ def main():
     if missing:
         raise ValueError(f"Update contains {len(missing)} episodes absent from the base index")
 
-    episodes = [
-        merge_episode(row, update_by_key[episode_key(row)])
-        if episode_key(row) in update_by_key else row
-        for row in base.get("episodes", [])
-    ]
+    if args.latest_only:
+        episodes = [
+            merge_episode(base_by_key[episode_key(row)], row)
+            for row in update.get("episodes", [])
+        ]
+        preserved = [
+            row for row in base.get("episodes", [])
+            if row.get("model") in args.preserve_model
+            and episode_key(row) not in update_by_key
+        ]
+        episodes.extend(preserved)
+    else:
+        episodes = [
+            merge_episode(row, update_by_key[episode_key(row)])
+            if episode_key(row) in update_by_key else row
+            for row in base.get("episodes", [])
+        ]
     merged = dict(base)
     merged["version"] = max(base.get("version", 0), update.get("version", 0))
     merged["created_at"] = max(base.get("created_at", ""), update.get("created_at", ""))
