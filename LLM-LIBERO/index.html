@@ -114,7 +114,7 @@
               <div id="model-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard</h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">Ranked by success rate · 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard</h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
               <div id="model-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -161,7 +161,7 @@
     <section id="details" class="results-section">
       <div class="eyebrow">04 / INTERPRETATION</div><h2>Experiment details</h2>
       <ol class="experiment-details-list">
-        <li><strong>Success rate:</strong> LIBERO-confirmed successes ÷ completed episodes.</li>
+        <li><strong>Success rate:</strong> LIBERO-confirmed successes ÷ 100 planned episodes per model and reasoning configuration; stopped, incomplete, error, and missing episodes count as failures.</li>
         <li><strong>Episode limits:</strong> 80 model calls, 900 simulator steps (45 seconds at 20 Hz).</li>
         <li><strong>Reported metrics:</strong> outcome, simulator steps, API calls, token usage, API latency, and cost per episode.</li>
         <li><strong>Observation history:</strong> two most recent observations, each with agent-view and wrist-camera images.</li>
@@ -173,6 +173,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=8"></script>
-  <script src="./assets/js/results.js?v=31"></script>
+  <script src="./assets/js/results.js?v=32"></script>
 </body>
 </html>
