@@ -99,16 +99,18 @@ button,select,summary { cursor:pointer; }
 .aggregate-flip-card.is-flipped .aggregate-back { pointer-events:auto; }
 .aggregate-view-toggle { flex:0 0 auto; min-height:32px; padding:6px 10px; border:1px solid #5c92ba; border-radius:7px; background:#112a3e; color:var(--accent); font:700 11px 'Noto Sans',sans-serif; }
 .aggregate-view-toggle:hover { border-color:var(--accent-strong); background:#1c3b54; color:var(--ink); }
-.aggregate-chart { min-height:430px; padding:4px 0 0; }
+.aggregate-chart { padding:4px 0 0; }
 .aggregate-chart-svg { display:block; width:100%; height:auto; overflow:visible; }
 .aggregate-axis-tick line { stroke:#29445b; stroke-width:1; }
 .aggregate-axis-tick text,.aggregate-axis-title { fill:var(--muted); font:11px 'Noto Sans',sans-serif; }
-.aggregate-rate-legend text { fill:var(--muted); font:10px 'Noto Sans',sans-serif; }
-.aggregate-axis { stroke:#52718b; stroke-width:1.5; }
-.aggregate-bar rect { opacity:.9; transition:opacity .18s ease,filter .18s ease; }
-.aggregate-bar:hover rect { opacity:1; filter:brightness(1.14); }
-.aggregate-bar-value { fill:var(--ink); font:700 11px 'Noto Sans',sans-serif; }
-.aggregate-bar-label { fill:var(--muted); font:600 10px 'Noto Sans',sans-serif; }
+.chart-method { margin:5px 0 0!important; color:var(--muted); font-size:11px; line-height:1.4!important; }
+.comparison-label,.reasoning-axis-label,.model-legend text { fill:var(--ink); font:600 11px 'Noto Sans',sans-serif; }
+.comparison-value { fill:var(--muted); font:600 10px 'Noto Sans',sans-serif; }
+.confidence-interval { stroke-width:4; stroke-linecap:round; }
+.confidence-cap { stroke-width:1.5; }
+.model-series-line { stroke-width:3; stroke-linecap:round; opacity:.75; }
+.task-estimate circle,.reasoning-estimate circle { stroke:#08121d; stroke-width:2; transition:r .16s ease,filter .16s ease; }
+.task-estimate:hover circle,.reasoning-estimate:hover circle { r:9px; filter:brightness(1.15); }
 .aggregate-chart-empty { display:grid; min-height:360px; place-items:center; color:var(--muted); font-size:13px; }
 .table-panel-header { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; margin:0 0 16px; }
 .table-panel-header h3 { margin:0; }

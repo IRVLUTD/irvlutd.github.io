@@ -26,6 +26,22 @@ def episode_key(row):
     return tuple(row.get(field) for field in ("model", "effort", "task_id", "init_state"))
 
 
+def index_updates(rows):
+    """Keep one newest useful row per rollout identity.
+
+    Completed reruns supersede pending placeholders. For rows at the same
+    completion level, the later export entry wins.
+    """
+    indexed = {}
+    for row in rows:
+        key = episode_key(row)
+        previous = indexed.get(key)
+        if previous and previous.get("success") is not None and row.get("success") is None:
+            continue
+        indexed[key] = row
+    return indexed
+
+
 def merge_calls(base_calls, update_calls):
     base_by_call = {call.get("call"): call for call in base_calls or []}
     merged = []
@@ -95,7 +111,7 @@ def main():
 
     base = json.loads(args.base.read_text())
     update = json.loads(args.update.read_text())
-    update_by_key = {episode_key(row): row for row in update.get("episodes", [])}
+    update_by_key = index_updates(update.get("episodes", []))
     base_by_key = {episode_key(row): row for row in base.get("episodes", [])}
 
     if args.latest_only:
@@ -115,6 +131,10 @@ def main():
             if episode_key(row) in update_by_key else row
             for row in base.get("episodes", [])
         ]
+        episodes.extend(
+            row for key, row in update_by_key.items()
+            if key not in base_by_key
+        )
     merged = dict(base)
     merged["version"] = max(base.get("version", 0), update.get("version", 0))
     merged["created_at"] = max(base.get("created_at", ""), update.get("created_at", ""))

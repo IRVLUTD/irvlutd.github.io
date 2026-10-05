@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=28">
+  <link rel="stylesheet" href="./assets/css/results.css?v=29">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -114,7 +114,7 @@
               <div id="model-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Model × reasoning</h3><p id="model-chart-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+              <header class="table-panel-header"><div><h3>Reasoning scaling by model</h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">Success rate and 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
               <div id="model-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -126,7 +126,7 @@
               <div id="task-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Success by task</h3><p id="task-chart-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+              <header class="table-panel-header"><div><h3>Task success rates</h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
               <div id="task-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -173,6 +173,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=8"></script>
-  <script src="./assets/js/results.js?v=29"></script>
+  <script src="./assets/js/results.js?v=30"></script>
 </body>
 </html>

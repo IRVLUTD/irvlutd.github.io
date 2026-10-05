@@ -35,6 +35,7 @@
   const tasks = [...new Set(episodes.map(row => row.task_id).filter(value => value != null))].sort((a,b) => a-b);
   const efforts = [...new Set(episodes.map(row => row.effort).filter(Boolean))];
   const states = [...new Set(episodes.map(row => row.init_state).filter(value => value != null))].sort((a,b) => a-b);
+  const modelColorMap = new Map((data.models || []).map(model => [model.name, model.color]));
   setOptions('model-filter', models, 'All models');
   setOptions('task-filter', tasks, 'All tasks', taskLabel);
   setOptions('effort-filter', efforts, 'All reasoning');
@@ -42,6 +43,10 @@
 
   function attempted(row) {
     return ['success','failure','incomplete_budget','api_error_usage_unknown','error','usage_unknown'].includes(row.status);
+  }
+
+  function completed(row) {
+    return ['success','failure'].includes(row.status);
   }
 
   function filtered() {
@@ -65,11 +70,12 @@
     const groups = new Map();
     rows.forEach(row => {
       const name = key(row);
-      const group = groups.get(name) || {attempted:0,success:0,stopped:0,pending:0,cost:0,costKnown:false,calls:0,callsKnown:false};
-      if (attempted(row)) {
-        group.attempted += 1;
+      const group = groups.get(name) || {completed:0,success:0,stopped:0,pending:0,cost:0,costKnown:false,calls:0,callsKnown:false};
+      if (completed(row)) {
+        group.completed += 1;
         if (row.success === true) group.success += 1;
-        if (!['success','failure'].includes(row.status)) group.stopped += 1;
+      } else if (attempted(row)) {
+        group.stopped += 1;
       } else {
         group.pending += 1;
       }
@@ -83,8 +89,8 @@
   function aggregate(rows, key) {
     return aggregateGroups(rows, key).map(([name, group]) => cells([
       name,
-      `${group.success} / ${group.attempted}`,
-      group.attempted ? `${(100 * group.success / group.attempted).toFixed(1)}%` : '—',
+      `${group.success} / ${group.completed}`,
+      group.completed ? `${(100 * group.success / group.completed).toFixed(1)}%` : '—',
       group.stopped,
       group.pending,
       group.costKnown ? usd(group.cost) : '—',
@@ -92,36 +98,79 @@
     ]));
   }
 
-  function aggregateChart(rows, key, colorMode) {
-    const entries = aggregateGroups(rows, key).map(([label, group]) => ({
-      label,
-      value:group.attempted ? 100 * group.success / group.attempted : 0,
-      attempted:group.attempted,
-      success:group.success
-    }));
+  function wilson(success, total) {
+    if (!total) return [0,0];
+    const z = 1.96;
+    const p = success / total;
+    const denominator = 1 + z * z / total;
+    const center = (p + z * z / (2 * total)) / denominator;
+    const spread = z * Math.sqrt((p * (1-p) + z * z / (4 * total)) / total) / denominator;
+    return [Math.max(0,center-spread), Math.min(1,center+spread)];
+  }
+
+  function taskComparisonChart(rows) {
+    const entries = aggregateGroups(rows, row => taskLabel(row.task_id)).map(([label,group]) => {
+      const rate = group.completed ? 100 * group.success / group.completed : 0;
+      const [low,high] = wilson(group.success, group.completed);
+      return {label,group,rate,low:100*low,high:100*high};
+    });
     if (!entries.length) return '<div class="aggregate-chart-empty">No matching data</div>';
     const width = 920;
-    const height = 430;
-    const margin = {top:30,right:18,bottom:118,left:58};
-    const chartWidth = width - margin.left - margin.right;
-    const chartHeight = height - margin.top - margin.bottom;
-    const band = chartWidth / entries.length;
-    const barWidth = Math.min(62, band * .64);
+    const rowHeight = 42;
+    const margin = {top:32,right:145,bottom:48,left:105};
+    const chartWidth = width-margin.left-margin.right;
+    const height = margin.top+entries.length*rowHeight+margin.bottom;
+    const x = value => margin.left+chartWidth*Math.max(0,Math.min(100,value))/100;
     const ticks = [0,25,50,75,100];
-    const grids = ticks.map(tick => {
-      const y = margin.top + chartHeight * (1 - tick / 100);
-      return `<g class="aggregate-axis-tick"><line x1="${margin.left}" y1="${y}" x2="${width-margin.right}" y2="${y}"></line><text x="${margin.left-12}" y="${y+4}" text-anchor="end">${tick}%</text></g>`;
+    const grid = ticks.map(tick => `<g class="aggregate-axis-tick"><line x1="${x(tick)}" y1="${margin.top-10}" x2="${x(tick)}" y2="${height-margin.bottom}"></line><text x="${x(tick)}" y="${height-18}" text-anchor="middle">${tick}%</text></g>`).join('');
+    const marks = entries.map((entry,index) => {
+      const y = margin.top+index*rowHeight+rowHeight/2;
+      const color = rateColor(entry.rate);
+      const rate = entry.group.completed ? `${entry.rate.toFixed(1)}%` : '—';
+      return `<g class="task-estimate"><title>${esc(`${entry.label}: ${entry.group.success}/${entry.group.completed}; 95% CI ${entry.low.toFixed(1)}–${entry.high.toFixed(1)}%`)}</title><text class="comparison-label" x="${margin.left-14}" y="${y+4}" text-anchor="end">${esc(entry.label)}</text><line class="confidence-interval" x1="${x(entry.low)}" y1="${y}" x2="${x(entry.high)}" y2="${y}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.low)}" y1="${y-6}" x2="${x(entry.low)}" y2="${y+6}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.high)}" y1="${y-6}" x2="${x(entry.high)}" y2="${y+6}" stroke="${color}"></line><circle cx="${x(entry.rate)}" cy="${y}" r="7" fill="${color}"></circle><text class="comparison-value" x="${width-margin.right+18}" y="${y+4}">${esc(`${rate}  (${entry.group.success}/${entry.group.completed})`)}</text></g>`;
     }).join('');
-    const bars = entries.map((entry,index) => {
-      const x = margin.left + band * index + (band - barWidth) / 2;
-      const barHeight = chartHeight * entry.value / 100;
-      const y = margin.top + chartHeight - barHeight;
-      const color = rateColor(entry.value);
-      const value = entry.attempted ? `${entry.value.toFixed(1)}%` : '—';
-      return `<g class="aggregate-bar"><title>${esc(`${entry.label}: ${entry.success} / ${entry.attempted} (${value})`)}</title><rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" height="${barHeight.toFixed(1)}" rx="6" fill="${color}"></rect><text class="aggregate-bar-value" x="${(x+barWidth/2).toFixed(1)}" y="${Math.max(18,y-9).toFixed(1)}" text-anchor="middle">${esc(value)}</text><text class="aggregate-bar-label" transform="translate(${(x+barWidth/2).toFixed(1)} ${height-margin.bottom+22}) rotate(-34)" text-anchor="end">${esc(entry.label)}</text></g>`;
+    return `<svg class="aggregate-chart-svg task-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Task success rates with 95 percent confidence intervals">${grid}${marks}<text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-2}" text-anchor="middle">LIBERO-confirmed success rate</text></svg>`;
+  }
+
+  function modelReasoningChart(rows) {
+    const separator = '\u241f';
+    const groups = new Map(aggregateGroups(rows, row => `${row.model}${separator}${row.effort}`));
+    const modelNames = [...new Set(rows.map(row => row.model).filter(Boolean))].sort();
+    if (!modelNames.length) return '<div class="aggregate-chart-empty">No matching data</div>';
+    const effortOrder = ['low','medium','high'];
+    const fallbackColors = ['#79c4ff','#70dab5','#c39bff','#ffb071'];
+    const width = 920;
+    const height = 440;
+    const margin = {top:80,right:34,bottom:58,left:62};
+    const chartWidth = width-margin.left-margin.right;
+    const chartHeight = height-margin.top-margin.bottom;
+    const x = effort => margin.left+chartWidth*(effortOrder.indexOf(effort)+.5)/effortOrder.length;
+    const y = value => margin.top+chartHeight*(1-Math.max(0,Math.min(100,value))/100);
+    const grid = [0,25,50,75,100].map(tick => `<g class="aggregate-axis-tick"><line x1="${margin.left}" y1="${y(tick)}" x2="${width-margin.right}" y2="${y(tick)}"></line><text x="${margin.left-12}" y="${y(tick)+4}" text-anchor="end">${tick}%</text></g>`).join('');
+    const xLabels = effortOrder.map(effort => `<text class="reasoning-axis-label" x="${x(effort)}" y="${height-26}" text-anchor="middle">${effort[0].toUpperCase()+effort.slice(1)}</text>`).join('');
+    const series = modelNames.map((model,index) => {
+      const color = modelColorMap.get(model) || fallbackColors[index%fallbackColors.length];
+      const points = effortOrder.map(effort => {
+        const group = groups.get(`${model}${separator}${effort}`);
+        if (!group || !group.completed) return null;
+        const rate = 100*group.success/group.completed;
+        const [low,high] = wilson(group.success,group.completed);
+        return {effort,group,rate,low:100*low,high:100*high};
+      }).filter(Boolean);
+      const segments = points.slice(1).map((point,pointIndex) => {
+        const previous = points[pointIndex];
+        return effortOrder.indexOf(point.effort)-effortOrder.indexOf(previous.effort) === 1 ? `<line class="model-series-line" x1="${x(previous.effort)}" y1="${y(previous.rate)}" x2="${x(point.effort)}" y2="${y(point.rate)}" stroke="${color}"></line>` : '';
+      }).join('');
+      const marks = points.map(point => `<g class="reasoning-estimate"><title>${esc(`${model}, ${point.effort}: ${point.group.success}/${point.group.completed}; 95% CI ${point.low.toFixed(1)}–${point.high.toFixed(1)}%`)}</title><line class="confidence-interval" x1="${x(point.effort)}" y1="${y(point.high)}" x2="${x(point.effort)}" y2="${y(point.low)}" stroke="${color}"></line><line class="confidence-cap" x1="${x(point.effort)-7}" y1="${y(point.high)}" x2="${x(point.effort)+7}" y2="${y(point.high)}" stroke="${color}"></line><line class="confidence-cap" x1="${x(point.effort)-7}" y1="${y(point.low)}" x2="${x(point.effort)+7}" y2="${y(point.low)}" stroke="${color}"></line><circle cx="${x(point.effort)}" cy="${y(point.rate)}" r="7" fill="${color}"></circle><text class="comparison-value" x="${x(point.effort)+11}" y="${y(point.rate)-10}">${point.rate.toFixed(1)}% · n=${point.group.completed}</text></g>`).join('');
+      return segments+marks;
     }).join('');
-    const gradientId = `rate-gradient-${colorMode}`;
-    return `<svg class="aggregate-chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Success rate comparison"><defs><linearGradient id="${gradientId}" x1="0" x2="1"><stop offset="0" stop-color="${rateColor(0)}"></stop><stop offset=".5" stop-color="${rateColor(50)}"></stop><stop offset="1" stop-color="${rateColor(100)}"></stop></linearGradient></defs><g class="aggregate-rate-legend"><text x="710" y="15">Lower</text><rect x="752" y="7" width="105" height="9" rx="4.5" fill="url(#${gradientId})"></rect><text x="866" y="15">Higher</text></g><g>${grids}<line class="aggregate-axis" x1="${margin.left}" y1="${margin.top+chartHeight}" x2="${width-margin.right}" y2="${margin.top+chartHeight}"></line>${bars}<text class="aggregate-axis-title" transform="translate(17 ${margin.top+chartHeight/2}) rotate(-90)" text-anchor="middle">Success rate</text></g></svg>`;
+    const legend = modelNames.map((model,index) => {
+      const color = modelColorMap.get(model) || fallbackColors[index%fallbackColors.length];
+      const legendWidth = Math.min(270,chartWidth/modelNames.length);
+      const lx = margin.left+index*legendWidth;
+      return `<g class="model-legend"><circle cx="${lx+6}" cy="28" r="5" fill="${color}"></circle><text x="${lx+18}" y="32">${esc(model)}</text></g>`;
+    }).join('');
+    return `<svg class="aggregate-chart-svg reasoning-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Model success rates by reasoning level with 95 percent confidence intervals">${legend}${grid}${series}${xLabels}<text class="aggregate-axis-title" transform="translate(18 ${margin.top+chartHeight/2}) rotate(-90)" text-anchor="middle">LIBERO-confirmed success rate</text><text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-3}" text-anchor="middle">Reasoning level</text></svg>`;
   }
 
   function miniBarChart(entries, maximum, format) {
@@ -163,17 +212,17 @@
 
     const modelSummaries = [...new Set(rows.map(row => row.model).filter(Boolean))].sort().map(model => {
       const modelRows = rows.filter(row => row.model === model);
-      const attemptedRows = modelRows.filter(attempted);
+      const completedRows = modelRows.filter(completed);
       const pricedRows = modelRows.filter(row => row.estimated_usd != null);
       return {
         label:model,
-        rate:attemptedRows.length ? 100 * attemptedRows.filter(row => row.success === true).length / attemptedRows.length : 0,
-        attempted:attemptedRows.length,
+        rate:completedRows.length ? 100 * completedRows.filter(row => row.success === true).length / completedRows.length : 0,
+        completed:completedRows.length,
         cost:pricedRows.reduce((sum,row) => sum + (Number(row.estimated_usd) || 0), 0),
         costKnown:pricedRows.length > 0
       };
     });
-    const successChart = miniBarChart(modelSummaries.map(item => ({label:item.label,value:item.rate,attempted:item.attempted,color:rateColor(item.rate)})), 100, item => item.attempted ? `${item.value.toFixed(0)}%` : '—');
+    const successChart = miniBarChart(modelSummaries.map(item => ({label:item.label,value:item.rate,completed:item.completed,color:rateColor(item.rate)})), 100, item => item.completed ? `${item.value.toFixed(0)}%` : '—');
     const costEntries = modelSummaries.map(item => ({label:item.label,value:item.cost,costKnown:item.costKnown}));
     const costChart = miniBarChart(costEntries, Math.max(0, ...costEntries.map(item => item.value)), item => item.costKnown ? usd(item.value) : '—');
 
@@ -182,17 +231,17 @@
       chartCard('Measured cost by model', costChart, 'cost');
 
     $('task-stats').innerHTML = table(
-      ['Task','Success / attempted','Rate','Stopped early','Pending','Cost','Calls'],
+      ['Task','Success / completed','Rate','Stopped early','Pending','Cost','Calls'],
       aggregate(rows, row => taskLabel(row.task_id)),
       'Success and cost grouped by task'
     );
     $('model-stats').innerHTML = table(
-      ['Model / reasoning','Success / attempted','Rate','Stopped early','Pending','Cost','Calls'],
+      ['Model / reasoning','Success / completed','Rate','Stopped early','Pending','Cost','Calls'],
       aggregate(rows, row => `${row.model} / ${row.effort}`),
       'Success and cost grouped by model and reasoning'
     );
-    $('task-stats-chart').innerHTML = aggregateChart(rows, row => taskLabel(row.task_id), 'task');
-    $('model-stats-chart').innerHTML = aggregateChart(rows, row => `${row.model} / ${row.effort}`, 'model');
+    $('task-stats-chart').innerHTML = taskComparisonChart(rows);
+    $('model-stats-chart').innerHTML = modelReasoningChart(rows);
     $('state-count').textContent = `${rows.length} rollout${rows.length === 1 ? '' : 's'} shown.`;
     $('episodes').innerHTML = table(
       ['Model','Reasoning','Task','State','Status','Success','Steps','Calls','Cost','Budget charge'],
