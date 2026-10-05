@@ -105,6 +105,7 @@ button,select,summary { cursor:pointer; }
 .aggregate-axis-tick text,.aggregate-axis-title { fill:var(--muted); font:11px 'Noto Sans',sans-serif; }
 .chart-method { margin:5px 0 0!important; color:var(--muted); font-size:11px; line-height:1.4!important; }
 .comparison-label,.reasoning-axis-label,.model-legend text { fill:var(--ink); font:600 11px 'Noto Sans',sans-serif; }
+.leaderboard-rank { fill:var(--accent); font:700 11px 'Noto Sans',sans-serif; }
 .comparison-value { fill:var(--muted); font:600 10px 'Noto Sans',sans-serif; }
 .confidence-interval { stroke-width:4; stroke-linecap:round; }
 .confidence-cap { stroke-width:1.5; }
