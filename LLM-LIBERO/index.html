@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=29">
+  <link rel="stylesheet" href="./assets/css/results.css?v=55">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -90,7 +90,8 @@
       <a href="#overview">Overview</a><a href="#aggregates">Aggregates</a><a href="#states">Individual states</a><a href="#inspector">Rollout inspector</a><a href="#details">Details</a>
     </nav>
     <section id="overview" class="results-section">
-      <p class="section-intro">Run frontier LLMs (GPT, Claude, Gemini, and other OpenAI-compatible models) as closed-loop control policies on the <a href="https://libero-project.github.io/" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
+      <p class="section-intro">Run frontier LLMs (GPT, Claude, and other OpenAI-compatible models) as closed-loop control policies on the <a href="https://libero-project.github.io/" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
+      <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-05">October 5, 2026</time></p>
       <h2>Model rollout results</h2>
       <div class="summary-cards" id="cards"></div>
       <p class="filter-instruction">Change the selection below to view aggregate results.</p>
@@ -107,26 +108,26 @@
     <section id="aggregates" class="results-section">
       <div class="eyebrow">01 / AGGREGATE RESULTS</div><h2>Success, costs, and calls</h2>
       <div class="dashboard-grid">
-        <article class="aggregate-flip-card">
+        <article class="aggregate-flip-card" id="model-reasoning-results" data-graph-anchor="model-reasoning-graph">
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
               <header class="table-panel-header"><div><h3>Model × reasoning leaderboard</h3><p id="model-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></header>
               <div id="model-stats" class="table-scroll"></div>
             </section>
-            <section class="dashboard-panel aggregate-face aggregate-back" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard</h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+            <section class="dashboard-panel aggregate-face aggregate-back" id="model-reasoning-graph" aria-hidden="true">
+              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard <a class="chart-permalink" href="#model-reasoning-graph" aria-label="Link to model and reasoning graph" title="Link to this graph">#</a></h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
               <div id="model-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
         </article>
-        <article class="aggregate-flip-card">
+        <article class="aggregate-flip-card" id="task-success-results" data-graph-anchor="task-success-graph">
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
               <header class="table-panel-header"><div><h3>Success by task</h3><p id="task-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></header>
               <div id="task-stats" class="table-scroll"></div>
             </section>
-            <section class="dashboard-panel aggregate-face aggregate-back" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Task success rates</h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+            <section class="dashboard-panel aggregate-face aggregate-back" id="task-success-graph" aria-hidden="true">
+              <header class="table-panel-header"><div><h3>Task success rates <a class="chart-permalink" href="#task-success-graph" aria-label="Link to task success graph" title="Link to this graph">#</a></h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
               <div id="task-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -142,21 +143,34 @@
       </article>
     </section>
     <section id="inspector" class="results-section inspector-section">
-      <div class="inspector-heading"><div><div class="eyebrow">03 / ROLLOUT EVIDENCE</div><h2>Rollout inspector</h2><p id="selected-rollout">Select a rollout</p></div></div>
-      <p id="episode-meta" class="muted"></p>
-      <div class="rollout-stats" id="rollout-stats"></div>
+      <div class="inspector-summary-block">
+        <div class="inspector-heading"><div><div class="eyebrow">03 / ROLLOUT EVIDENCE</div><h2>Rollout inspector</h2><p id="selected-rollout">Select a rollout</p></div></div>
+        <p id="episode-meta" class="muted"></p>
+        <div class="rollout-stats" id="rollout-stats"></div>
+      </div>
       <div class="inspector-grid">
         <div class="inspector-column">
           <h3>Rollout video</h3>
           <div class="video-slot" id="rollout-media"></div>
           <p class="footnote">Agent view and wrist view are shown in the saved rollout when available.</p>
-          <details class="api-details"><summary>API calls and token use</summary><div class="api-details-content"><div id="token-plot" class="chart-surface"></div><div class="table-scroll" id="calls"></div></div></details>
         </div>
         <div class="inspector-column spatial-column">
           <h3>3D spatial plan</h3><div id="trajectory" class="chart-surface"></div>
           <details class="reasoning-timeline"><summary>View full reasoning timeline <span id="reasoning-count"></span></summary><div id="reasoning-timeline"></div></details>
         </div>
       </div>
+      <article class="aggregate-flip-card api-flip-card" id="api-call-results" data-graph-anchor="api-cost-graph">
+        <div class="aggregate-flip-inner">
+          <section class="dashboard-panel aggregate-face aggregate-front">
+            <header class="table-panel-header"><div><h3>API calls and token use</h3><p id="api-table-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View cost graph</button></header>
+            <div class="table-scroll api-call-table" id="calls"></div>
+          </section>
+          <section class="dashboard-panel aggregate-face aggregate-back" id="api-cost-graph" aria-hidden="true">
+            <header class="table-panel-header"><div><h3>Cost by API call <a class="chart-permalink" href="#api-cost-graph" aria-label="Link to API cost graph" title="Link to this graph">#</a></h3><p id="api-chart-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View call table</button></header>
+            <div id="token-plot" class="chart-surface api-cost-chart"></div>
+          </section>
+        </div>
+      </article>
     </section>
     <section id="details" class="results-section">
       <div class="eyebrow">04 / INTERPRETATION</div><h2>Experiment details</h2>
@@ -172,7 +186,7 @@
   </main>
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
-  <script src="./assets/js/results-data.js?v=8"></script>
-  <script src="./assets/js/results.js?v=32"></script>
+  <script src="./assets/js/results-data.js?v=9"></script>
+  <script src="./assets/js/results.js?v=43"></script>
 </body>
 </html>

@@ -7,7 +7,23 @@
   const usd = value => value == null ? '—' : `$${Number(value).toFixed(3)}`;
   const num = value => value == null ? '—' : Number(value).toLocaleString();
   const taskLabel = id => `Task ${String(Number(id) + 1).padStart(2,'0')}`;
-  const rateColor = value => `hsl(${Math.round(4 + 136 * Math.max(0, Math.min(100, Number(value) || 0)) / 100)} 72% 56%)`;
+  const rateColor = value => {
+    const rate = Math.max(0, Math.min(100, Number(value) || 0));
+    if (rate < 20) return '#ff7f73';
+    if (rate < 40) return '#ffad66';
+    if (rate < 60) return '#e9d85c';
+    if (rate < 80) return '#82d88f';
+    return '#4ee0a3';
+  };
+  const MODEL_LABELS = {
+    'Claude-Opus-5-5':'Claude Opus 5.5',
+    'GPT-6-Astra':'GPT-6 Astra',
+    'GPT-6.1-Sol':'GPT-6.1 Sol',
+    'GPT-6-Sol':'GPT-6 Sol',
+    'GPT-6-Luna':'GPT-6 Luna'
+  };
+  const modelLabel = value => MODEL_LABELS[value] || String(value || '');
+  const reasoningLabel = value => ({low:'Low',medium:'Medium',high:'High'}[String(value || '').toLowerCase()] || String(value || ''));
 
   function googleDriveFileId(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
@@ -36,10 +52,17 @@
   const efforts = [...new Set(episodes.map(row => row.effort).filter(Boolean))];
   const states = [...new Set(episodes.map(row => row.init_state).filter(value => value != null))].sort((a,b) => a-b);
   const modelColorMap = new Map((data.models || []).map(model => [model.name, model.color]));
-  setOptions('model-filter', models, 'All models');
+  setOptions('model-filter', models, 'All models', modelLabel);
   setOptions('task-filter', tasks, 'All tasks', taskLabel);
-  setOptions('effort-filter', efforts, 'All reasoning');
+  setOptions('effort-filter', efforts, 'All reasoning', reasoningLabel);
   setOptions('state-filter', states, 'All states', value => `State ${value}`);
+  if (data.meta?.createdAt && $('data-updated')) {
+    const updated = new Date(data.meta.createdAt);
+    if (!Number.isNaN(updated.getTime())) {
+      $('data-updated').dateTime = updated.toISOString().slice(0,10);
+      $('data-updated').textContent = new Intl.DateTimeFormat('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(updated);
+    }
+  }
 
   function attempted(row) {
     return ['success','failure','incomplete_budget','api_error_usage_unknown','error','usage_unknown'].includes(row.status);
@@ -118,8 +141,8 @@
   function modelLeaderboard(rows) {
     return rankedModelReasoning(rows).map((entry,index) => cells([
       index+1,
-      entry.model,
-      entry.effort,
+      modelLabel(entry.model),
+      reasoningLabel(entry.effort),
       `${entry.group.success} / ${entry.planned}`,
       `${entry.rate.toFixed(1)}%`,
       entry.planned-entry.group.success,
@@ -154,14 +177,14 @@
     const height = margin.top+entries.length*rowHeight+margin.bottom;
     const x = value => margin.left+chartWidth*Math.max(0,Math.min(100,value))/100;
     const ticks = [0,25,50,75,100];
-    const grid = ticks.map(tick => `<g class="aggregate-axis-tick"><line x1="${x(tick)}" y1="${margin.top-10}" x2="${x(tick)}" y2="${height-margin.bottom}"></line><text x="${x(tick)}" y="${height-18}" text-anchor="middle">${tick}%</text></g>`).join('');
+    const grid = ticks.map(tick => `<g class="aggregate-axis-tick${tick === 50 ? ' aggregate-axis-midpoint' : ''}"><line x1="${x(tick)}" y1="${margin.top-10}" x2="${x(tick)}" y2="${height-margin.bottom}"></line><text x="${x(tick)}" y="${height-18}" text-anchor="middle">${tick}%</text></g>`).join('');
     const marks = entries.map((entry,index) => {
       const y = margin.top+index*rowHeight+rowHeight/2;
       const color = rateColor(entry.rate);
       const rate = entry.attempted ? `${entry.rate.toFixed(1)}%` : '—';
       return `<g class="task-estimate"><title>${esc(`${entry.label}: ${entry.group.success}/${entry.attempted}; 95% CI ${entry.low.toFixed(1)}–${entry.high.toFixed(1)}%`)}</title><text class="comparison-label" x="${margin.left-14}" y="${y+4}" text-anchor="end">${esc(entry.label)}</text><line class="confidence-interval" x1="${x(entry.low)}" y1="${y}" x2="${x(entry.high)}" y2="${y}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.low)}" y1="${y-6}" x2="${x(entry.low)}" y2="${y+6}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.high)}" y1="${y-6}" x2="${x(entry.high)}" y2="${y+6}" stroke="${color}"></line><circle cx="${x(entry.rate)}" cy="${y}" r="7" fill="${color}"></circle><text class="comparison-value" x="${width-margin.right+18}" y="${y+4}">${esc(`${rate}  (${entry.group.success}/${entry.attempted})`)}</text></g>`;
     }).join('');
-    return `<svg class="aggregate-chart-svg task-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Task success rates with 95 percent confidence intervals">${grid}${marks}<text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-2}" text-anchor="middle">LIBERO-confirmed success rate</text></svg>`;
+    return `<svg class="aggregate-chart-svg task-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Task success rates with 95 percent confidence intervals"><rect class="aggregate-plot-background" x="${margin.left}" y="${margin.top-10}" width="${chartWidth}" height="${height-margin.bottom-margin.top+10}"></rect>${grid}${marks}<text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-2}" text-anchor="middle">LIBERO-confirmed success rate</text></svg>`;
   }
 
   function modelReasoningChart(rows) {
@@ -175,34 +198,64 @@
     const chartWidth = width-margin.left-margin.right;
     const height = margin.top+entries.length*rowHeight+margin.bottom;
     const x = value => margin.left+chartWidth*Math.max(0,Math.min(100,value))/100;
-    const grid = [0,25,50,75,100].map(tick => `<g class="aggregate-axis-tick"><line x1="${x(tick)}" y1="${margin.top-10}" x2="${x(tick)}" y2="${height-margin.bottom}"></line><text x="${x(tick)}" y="${height-18}" text-anchor="middle">${tick}%</text></g>`).join('');
+    const grid = [0,25,50,75,100].map(tick => `<g class="aggregate-axis-tick${tick === 50 ? ' aggregate-axis-midpoint' : ''}"><line x1="${x(tick)}" y1="${margin.top-10}" x2="${x(tick)}" y2="${height-margin.bottom}"></line><text x="${x(tick)}" y="${height-18}" text-anchor="middle">${tick}%</text></g>`).join('');
     const marks = entries.map((entry,index) => {
       const y = margin.top+index*rowHeight+rowHeight/2;
       const modelIndex = modelNames.indexOf(entry.model);
       const color = modelColorMap.get(entry.model) || fallbackColors[modelIndex%fallbackColors.length];
       const rate = `${entry.rate.toFixed(1)}%`;
-      const label = `${entry.model} · ${entry.effort}`;
+      const label = `${modelLabel(entry.model)} · ${reasoningLabel(entry.effort)}`;
       return `<g class="reasoning-estimate"><title>${esc(`#${index+1} ${label}: ${entry.group.success}/${entry.planned}; 95% CI ${entry.low.toFixed(1)}–${entry.high.toFixed(1)}%`)}</title><text class="leaderboard-rank" x="20" y="${y+4}">#${index+1}</text><text class="comparison-label" x="${margin.left-14}" y="${y+4}" text-anchor="end">${esc(label)}</text><line class="confidence-interval" x1="${x(entry.low)}" y1="${y}" x2="${x(entry.high)}" y2="${y}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.low)}" y1="${y-6}" x2="${x(entry.low)}" y2="${y+6}" stroke="${color}"></line><line class="confidence-cap" x1="${x(entry.high)}" y1="${y-6}" x2="${x(entry.high)}" y2="${y+6}" stroke="${color}"></line><circle cx="${x(entry.rate)}" cy="${y}" r="7" fill="${color}"></circle><text class="comparison-value" x="${width-margin.right+18}" y="${y+4}">${esc(`${rate}  (${entry.group.success}/${entry.planned})`)}</text></g>`;
     }).join('');
-    return `<svg class="aggregate-chart-svg reasoning-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Model and reasoning configurations ranked by success rate with 95 percent confidence intervals">${grid}${marks}<text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-2}" text-anchor="middle">LIBERO-confirmed success rate</text></svg>`;
+    return `<svg class="aggregate-chart-svg reasoning-comparison-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Model and reasoning configurations ranked by success rate with 95 percent confidence intervals"><rect class="aggregate-plot-background" x="${margin.left}" y="${margin.top-10}" width="${chartWidth}" height="${height-margin.bottom-margin.top+10}"></rect>${grid}${marks}<text class="aggregate-axis-title" x="${margin.left+chartWidth/2}" y="${height-2}" text-anchor="middle">LIBERO-confirmed success rate</text></svg>`;
   }
 
   function miniBarChart(entries, maximum, format) {
     if (!entries.length) return '<span class="mini-chart-empty">No matching data</span>';
     const scale = Math.max(1, maximum);
-    return `<span class="mini-chart">${entries.map(entry => {
+    return `<span class="mini-chart">${entries.map((entry,index) => {
       const width = Math.max(0, Math.min(100, 100 * entry.value / scale));
       const color = entry.color ? `;background:${esc(entry.color)}` : '';
-      return `<span class="mini-chart-row"><span class="mini-chart-label" title="${esc(entry.label)}">${esc(entry.label)}</span><span class="mini-chart-track"><i style="width:${width.toFixed(1)}%${color}"></i></span><strong>${esc(format(entry))}</strong></span>`;
+      return `<span class="mini-chart-row"><span class="mini-chart-rank">${index+1}</span><span class="mini-chart-label" title="${esc(entry.label)}">${esc(entry.label)}</span><span class="mini-chart-track"><i style="width:${width.toFixed(1)}%${color}"></i></span><strong>${esc(format(entry))}</strong></span>`;
     }).join('')}</span>`;
   }
 
   function chartCard(chartTitle, chart, chartType) {
-    return `<article class="summary-card metric-chart-card" data-chart="${esc(chartType)}"><h3 class="metric-chart-title">${esc(chartTitle)}</h3>${chart}</article>`;
+    const scale = chartType === 'success' ? '<div class="mini-chart-scale" aria-hidden="true"><span><i>0%</i><i>50%</i><i>100%</i></span></div>' : '';
+    const note = chartType === 'success' ? 'Higher is better' : 'Total measured spend';
+    return `<article class="summary-card metric-chart-card" data-chart="${esc(chartType)}"><header class="metric-chart-heading"><h3 class="metric-chart-title">${esc(chartTitle)}</h3><span>${esc(note)}</span></header>${scale}${chart}</article>`;
   }
 
   let chosen = null;
   let spatialController = null;
+  let urlStateEnabled = Boolean(location.search);
+
+  function optionValue(id, value) {
+    return [...$(id).options].some(option => option.value === value) ? value : '';
+  }
+
+  function applyUrlState() {
+    const params = new URLSearchParams(location.search);
+    $('model-filter').value = optionValue('model-filter', params.get('model') || '');
+    $('task-filter').value = optionValue('task-filter', params.get('task') || '');
+    $('effort-filter').value = optionValue('effort-filter', params.get('reasoning') || '');
+    $('state-filter').value = optionValue('state-filter', params.get('state') || '');
+    chosen = episodes.find(row => row.id && row.id === params.get('rollout')) || null;
+  }
+
+  function syncUrlState() {
+    if (!urlStateEnabled) return;
+    const url = new URL(location.href);
+    const values = {
+      model:$('model-filter').value,
+      task:$('task-filter').value,
+      reasoning:$('effort-filter').value,
+      state:$('state-filter').value,
+      rollout:chosen?.id || ''
+    };
+    Object.entries(values).forEach(([key,value]) => value ? url.searchParams.set(key,value) : url.searchParams.delete(key));
+    history.replaceState(null,'',`${url.pathname}${url.search}${url.hash}`);
+  }
 
   function draw() {
     const rows = filtered().sort((a,b) => a.task_id-b.task_id || a.init_state-b.init_state || String(a.model).localeCompare(String(b.model)) || String(a.effort).localeCompare(String(b.effort)));
@@ -212,9 +265,9 @@
     const selectedEffort = $('effort-filter').value;
     const selectedState = $('state-filter').value;
     const selection = [
-      selectedModel || 'All models',
+      selectedModel ? modelLabel(selectedModel) : 'All models',
       selectedTask ? taskLabel(Number(selectedTask)) : 'All tasks',
-      selectedEffort ? `${selectedEffort} reasoning` : 'All reasoning',
+      selectedEffort ? `${reasoningLabel(selectedEffort)} reasoning` : 'All reasoning',
       selectedState ? `State ${selectedState}` : 'All states'
     ].join(' · ');
 
@@ -230,15 +283,21 @@
       const planned = new Set(modelRows.map(row => row.effort).filter(Boolean)).size * 100;
       const pricedRows = modelRows.filter(row => row.estimated_usd != null);
       return {
-        label:model,
+        label:modelLabel(model),
+        successes,
         rate:planned ? 100 * successes / planned : 0,
         completed:planned,
         cost:pricedRows.reduce((sum,row) => sum + (Number(row.estimated_usd) || 0), 0),
         costKnown:pricedRows.length > 0
       };
     });
-    const successChart = miniBarChart(modelSummaries.map(item => ({label:item.label,value:item.rate,completed:item.completed,color:rateColor(item.rate)})), 100, item => item.completed ? `${item.value.toFixed(0)}%` : '—');
-    const costEntries = modelSummaries.map(item => ({label:item.label,value:item.cost,costKnown:item.costKnown}));
+    const successEntries = modelSummaries
+      .map(item => ({label:item.label,value:item.rate,successes:item.successes,completed:item.completed,color:rateColor(item.rate)}))
+      .sort((a,b) => b.value-a.value || a.label.localeCompare(b.label));
+    const successChart = miniBarChart(successEntries, 100, item => item.completed ? `${item.value.toFixed(0)}% · ${item.successes}/${item.completed}` : '—');
+    const costEntries = modelSummaries
+      .map(item => ({label:item.label,value:item.cost,costKnown:item.costKnown}))
+      .sort((a,b) => b.value-a.value || a.label.localeCompare(b.label));
     const costChart = miniBarChart(costEntries, Math.max(0, ...costEntries.map(item => item.value)), item => item.costKnown ? usd(item.value) : '—');
 
     $('cards').innerHTML =
@@ -264,7 +323,7 @@
         const index = episodes.indexOf(row);
         const statusClass = row.success === true ? 'status-success' : attempted(row) ? 'status-failure' : '';
         return `<tr class="pick" tabindex="0" role="button" data-index="${index}" aria-selected="${row === chosen}">` +
-          `<td>${esc(row.model)}</td><td>${esc(row.effort)}</td><td>${esc(taskLabel(row.task_id))}</td><td>${esc(row.init_state)}</td>` +
+          `<td>${esc(modelLabel(row.model))}</td><td>${esc(reasoningLabel(row.effort))}</td><td>${esc(taskLabel(row.task_id))}</td><td>${esc(row.init_state)}</td>` +
           `<td class="${statusClass}">${esc(row.status)}</td><td>${row.success === true ? 'Yes' : attempted(row) ? 'No' : 'Pending'}</td>` +
           `<td>${esc(num(row.steps))}</td>` +
           `<td>${esc(num(row.api_attempts))}</td><td>${esc(usd(row.estimated_usd))}</td><td>${esc(usd(row.budget_charge_usd))}</td></tr>`;
@@ -272,7 +331,7 @@
       'Individual experiment states'
     );
     document.querySelectorAll('tr.pick').forEach(row => {
-      const select = () => { inspect(episodes[Number(row.dataset.index)]); $('inspector').scrollIntoView({behavior:'smooth',block:'start'}); };
+      const select = () => { urlStateEnabled=true; inspect(episodes[Number(row.dataset.index)]); $('inspector').scrollIntoView({behavior:'smooth',block:'start'}); };
       row.addEventListener('click', select);
       row.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(); } });
     });
@@ -318,16 +377,16 @@
       $('calls').innerHTML = '';
       return;
     }
-    const maximum = Math.max(1, ...calls.map(call => Number(call.output_tokens) || 0));
-    $('token-plot').innerHTML = `<svg viewBox="0 0 700 130" role="img" aria-label="Output tokens by API call">${calls.map((call,index) => {
+    const maximum = Math.max(.001, ...calls.map(call => Number(call.estimated_usd) || 0));
+    $('token-plot').innerHTML = `<svg viewBox="0 0 700 130" role="img" aria-label="Estimated cost by API call">${calls.map((call,index) => {
       const width = Math.max(2, 650 / Math.max(1,calls.length) - 2);
-      const height = (Number(call.output_tokens) || 0) / maximum * 85;
+      const height = (Number(call.estimated_usd) || 0) / maximum * 85;
       const x = 25 + index * 650 / Math.max(1,calls.length);
-      return `<rect x="${x}" y="${105-height}" width="${width}" height="${height}" fill="#365bc5"><title>Call ${esc(call.call)}: ${esc(num(call.output_tokens))} output tokens</title></rect>`;
+      return `<rect x="${x}" y="${105-height}" width="${width}" height="${height}" fill="#6f94ad"><title>Call ${esc(call.call)}: ${esc(usd(call.estimated_usd))}</title></rect>`;
     }).join('')}<text x="25" y="125">Call 1</text><text x="610" y="125">Call ${calls.length}</text></svg>`;
     $('calls').innerHTML = table(
-      ['Call','Input','Cached','Output','Reasoning','Cost','Latency','Tools','Status'],
-      calls.map(call => cells([call.call,num(call.input_tokens),num(call.cached_tokens),num(call.output_tokens),num(call.reasoning_tokens),usd(call.estimated_usd),call.latency_s == null ? '—' : `${Number(call.latency_s).toFixed(1)} s`,(call.tools || []).join(', '),call.truncated ? 'Truncated' : call.usage_unknown ? 'Usage unknown' : call.http_status ?? '—'])),
+      ['Call','Input','Cached','Output','Reasoning','Cost','Latency','Tools'],
+      calls.map(call => cells([call.call,num(call.input_tokens),num(call.cached_tokens),num(call.output_tokens),num(call.reasoning_tokens),usd(call.estimated_usd),call.latency_s == null ? '—' : `${Number(call.latency_s).toFixed(1)} s`,(call.tools || []).join(', ')])),
       'API calls and token usage'
     );
   }
@@ -492,22 +551,31 @@
       $('episode-meta').textContent = '';
       $('rollout-stats').innerHTML = '';
       $('rollout-media').innerHTML = empty('No rollout selected','Adjust the filters to find an episode.');
+      $('api-table-selection').textContent = 'No rollout selected';
+      $('api-chart-selection').textContent = 'No rollout selected';
       drawCalls([]); drawTrajectory([]); drawReasoning([]);
+      syncUrlState();
       return;
     }
-    $('selected-rollout').textContent = `${row.model} / ${row.effort} · ${taskLabel(row.task_id)} · state ${row.init_state}`;
-    $('episode-meta').textContent = `${row.instruction || row.task_name || ''} · ${row.status || 'status unavailable'}${row.stop_detail ? ` · ${row.stop_detail}` : ''}${row.review_note ? ` · Review: ${row.review_note}` : ''}`;
+    $('selected-rollout').textContent = `${modelLabel(row.model)} / ${reasoningLabel(row.effort)} · ${taskLabel(row.task_id)} · state ${row.init_state}`;
+    const episodeSelection = `${modelLabel(row.model)} · ${reasoningLabel(row.effort)} · ${taskLabel(row.task_id)} · State ${row.init_state}`;
+    $('api-table-selection').textContent = episodeSelection;
+    $('api-chart-selection').textContent = episodeSelection;
+    $('episode-meta').textContent = [row.instruction || row.task_name,row.stop_detail,row.review_note ? `Review: ${row.review_note}` : ''].filter(Boolean).join(' · ');
+    const outcome = row.success === true ? 'Success' : attempted(row) ? 'Failure' : 'Pending';
+    const outcomeClass = row.success === true ? 'status-success' : attempted(row) ? 'status-failure' : '';
     $('rollout-stats').innerHTML = [
-      ['Outcome', row.success === true ? 'Success' : attempted(row) ? row.status : 'Pending'],
-      ['Simulator steps', num(row.steps)],
-      ['API calls', num(row.api_attempts)],
-      ['Estimated cost', usd(row.estimated_usd)]
-    ].map(([label,value]) => `<div class="rollout-stat"><small>${esc(label)}</small><strong>${esc(value)}</strong></div>`).join('');
+      ['Outcome', outcome, outcomeClass],
+      ['Steps', num(row.steps), ''],
+      ['Calls', num(row.api_attempts), ''],
+      ['Cost', usd(row.estimated_usd), '']
+    ].map(([label,value,className]) => `<div class="rollout-stat"><small>${esc(label)}</small><strong class="${esc(className)}">${esc(value)}</strong></div>`).join('');
     drawCalls(row.calls || []);
     spatialController?.destroy();
     spatialController = drawTrajectory(row.trajectory || [], row.calls || []);
     drawReasoning(row.calls || []);
     showMedia(row, spatialController);
+    syncUrlState();
   }
 
   function csvCell(value) {
@@ -529,22 +597,49 @@
     const content=[fields.map(csvCell).join(','),...filtered().map(row=>fields.map(field=>csvCell(row[field])).join(','))].join('\n');
     downloadFile('llm-libero-episodes.csv','text/csv;charset=utf-8',content);
   });
-  ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => $(id).addEventListener('change', draw));
+  ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => $(id).addEventListener('change', () => { urlStateEnabled=true; draw(); }));
   $('clear-filters').addEventListener('click', () => {
     ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => { $(id).value=''; });
-    chosen=null; draw();
+    urlStateEnabled=true; chosen=null; draw();
   });
-  document.querySelectorAll('.aggregate-view-toggle').forEach(button => button.addEventListener('click', () => {
-    const card = button.closest('.aggregate-flip-card');
-    const flipped = card.classList.toggle('is-flipped');
+  function setAggregateView(card, flipped) {
     const front = card.querySelector('.aggregate-front');
     const back = card.querySelector('.aggregate-back');
+    card.classList.toggle('is-flipped', flipped);
     front.setAttribute('aria-hidden', String(flipped));
     back.setAttribute('aria-hidden', String(!flipped));
     front.querySelector('.aggregate-view-toggle').tabIndex = flipped ? -1 : 0;
     back.querySelector('.aggregate-view-toggle').tabIndex = flipped ? 0 : -1;
-  }));
+  }
 
+  function setGraphHash(id) {
+    const url = new URL(location.href);
+    url.hash = id;
+    history.replaceState(null,'',`${url.pathname}${url.search}${url.hash}`);
+  }
+
+  function applyGraphHash() {
+    const anchor = location.hash.slice(1);
+    document.querySelectorAll('.aggregate-flip-card').forEach(card => {
+      if (anchor === card.dataset.graphAnchor) {
+        setAggregateView(card,true);
+        card.closest('details')?.setAttribute('open','');
+      }
+      else if (anchor === card.id) setAggregateView(card,false);
+    });
+  }
+
+  document.querySelectorAll('.aggregate-view-toggle').forEach(button => button.addEventListener('click', () => {
+    const card = button.closest('.aggregate-flip-card');
+    const flipped = !card.classList.contains('is-flipped');
+    setAggregateView(card,flipped);
+    setGraphHash(flipped ? card.dataset.graphAnchor : card.id);
+  }));
+  window.addEventListener('hashchange', applyGraphHash);
+
+  window.addEventListener('popstate', () => { urlStateEnabled=Boolean(location.search); applyUrlState(); draw(); });
+  applyUrlState();
+  applyGraphHash();
   draw();
 
   if (typeof module !== 'undefined' && module.exports) module.exports = {googleDriveEmbedUrl, attempted};
