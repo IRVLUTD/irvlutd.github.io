@@ -24,6 +24,7 @@
   };
   const modelLabel = value => MODEL_LABELS[value] || String(value || '');
   const reasoningLabel = value => ({low:'Low',medium:'Medium',high:'High'}[String(value || '').toLowerCase()] || String(value || ''));
+  const statusLabel = row => row?.status === 'incomplete_budget' ? 'Call limit reached' : String(row?.status || 'Pending').replaceAll('_',' ');
 
   function googleDriveFileId(value) {
     if (typeof value !== 'string' || !value.trim()) return null;
@@ -342,7 +343,7 @@
         const statusClass = row.success === true ? 'status-success' : attempted(row) ? 'status-failure' : '';
         return `<tr class="pick" tabindex="0" role="button" data-index="${index}" aria-selected="${row === chosen}">` +
           `<td>${esc(modelLabel(row.model))}</td><td>${esc(reasoningLabel(row.effort))}</td><td>${esc(taskLabel(row.task_id))}</td><td>${esc(row.init_state)}</td>` +
-          `<td class="${statusClass}">${esc(row.status)}</td><td>${row.success === true ? 'Yes' : attempted(row) ? 'No' : 'Pending'}</td>` +
+          `<td class="${statusClass}">${esc(statusLabel(row))}</td><td>${row.success === true ? 'Yes' : attempted(row) ? 'No' : 'Pending'}</td>` +
           `<td>${esc(num(row.steps))}</td>` +
           `<td>${esc(num(row.api_attempts))}</td><td>${esc(usd(row.estimated_usd))}</td><td>${esc(usd(row.budget_charge_usd))}</td></tr>`;
       }),
