@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=55">
+  <link rel="stylesheet" href="./assets/css/results.css?v=56">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -94,16 +94,6 @@
       <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-07">October 7, 2026</time></p>
       <h2>Model rollout results</h2>
       <div class="summary-cards" id="cards"></div>
-      <p class="filter-instruction">Change the selection below to view aggregate results.</p>
-      <div class="dashboard-toolbar" aria-label="Results filters">
-        <label>Model<select id="model-filter"></select></label>
-        <label>Task number<select id="task-filter"></select></label>
-        <label>Reasoning<select id="effort-filter"></select></label>
-        <label>Initial state<select id="state-filter"></select></label>
-        <button id="clear-filters" type="button" class="subtle-button">Clear filters</button>
-        <button id="download-csv" type="button" class="download-button">Download CSV</button>
-        <button id="download-json" type="button" class="download-button">Download JSON</button>
-      </div>
     </section>
     <section id="aggregates" class="results-section">
       <div class="eyebrow">01 / AGGREGATE RESULTS</div><h2>Success, costs, and calls</h2>
@@ -111,7 +101,18 @@
         <article class="aggregate-flip-card" id="model-reasoning-results" data-graph-anchor="model-reasoning-graph">
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
-              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard</h3><p id="model-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></header>
+              <header class="table-panel-header table-panel-header-filtered">
+                <div class="table-panel-heading-row"><div><h3>Model × reasoning leaderboard</h3><p id="model-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></div>
+                <div class="dashboard-toolbar table-toolbar" id="results-filters" aria-label="Leaderboard filters">
+                  <label>Model<select id="model-filter"></select></label>
+                  <label>Task<select id="task-filter"></select></label>
+                  <label>Reasoning<select id="effort-filter"></select></label>
+                  <label>State<select id="state-filter"></select></label>
+                  <button id="clear-filters" type="button" class="subtle-button">Clear</button>
+                  <button id="download-csv" type="button" class="download-button">CSV</button>
+                  <button id="download-json" type="button" class="download-button">JSON</button>
+                </div>
+              </header>
               <div id="model-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" id="model-reasoning-graph" aria-hidden="true">
@@ -123,7 +124,10 @@
         <article class="aggregate-flip-card" id="task-success-results" data-graph-anchor="task-success-graph">
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
-              <header class="table-panel-header"><div><h3>Success by task</h3><p id="task-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></header>
+              <header class="table-panel-header table-panel-header-filtered">
+                <div class="table-panel-heading-row"><div><h3>Success by task</h3><p id="task-stats-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View graph</button></div>
+                <div class="dashboard-toolbar table-toolbar" data-filter-copy aria-label="Task results filters"></div>
+              </header>
               <div id="task-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" id="task-success-graph" aria-hidden="true">
@@ -138,7 +142,10 @@
       <div class="eyebrow">02 / EPISODE INDEX</div><h2>Individual states</h2>
       <p>Click a row to inspect its rollout and details.</p>
       <article class="state-table-panel">
-        <header class="table-panel-header state-table-header"><div><h3>Rollouts</h3><p id="state-stats-selection" class="table-selection"></p></div><p id="state-count" class="muted" aria-live="polite"></p></header>
+        <header class="table-panel-header table-panel-header-filtered state-table-header">
+          <div class="table-panel-heading-row"><div><h3>Rollouts</h3><p id="state-stats-selection" class="table-selection"></p></div><p id="state-count" class="muted" aria-live="polite"></p></div>
+          <div class="dashboard-toolbar table-toolbar" data-filter-copy aria-label="Rollout filters"></div>
+        </header>
         <div class="table-scroll state-table" id="episodes"></div>
       </article>
     </section>
@@ -187,6 +194,6 @@
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=11"></script>
-  <script src="./assets/js/results.js?v=43"></script>
+  <script src="./assets/js/results.js?v=44"></script>
 </body>
 </html>

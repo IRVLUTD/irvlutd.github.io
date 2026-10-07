@@ -56,6 +56,24 @@
   setOptions('task-filter', tasks, 'All tasks', taskLabel);
   setOptions('effort-filter', efforts, 'All reasoning', reasoningLabel);
   setOptions('state-filter', states, 'All states', value => `State ${value}`);
+  document.querySelectorAll('[data-filter-copy]').forEach(host => {
+    host.innerHTML = $('results-filters').innerHTML;
+    host.querySelectorAll('[id]').forEach(element => {
+      element.dataset.sourceId = element.id;
+      element.removeAttribute('id');
+    });
+  });
+
+  function syncFilterCopies() {
+    ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => {
+      const value = $(id).value;
+      $(id).classList.toggle('has-selection', Boolean(value));
+      document.querySelectorAll(`[data-source-id="${id}"]`).forEach(select => {
+        select.value = value;
+        select.classList.toggle('has-selection', Boolean(value));
+      });
+    });
+  }
   if (data.meta?.createdAt && $('data-updated')) {
     const updated = new Date(data.meta.createdAt);
     if (!Number.isNaN(updated.getTime())) {
@@ -259,7 +277,7 @@
 
   function draw() {
     const rows = filtered().sort((a,b) => a.task_id-b.task_id || a.init_state-b.init_state || String(a.model).localeCompare(String(b.model)) || String(a.effort).localeCompare(String(b.effort)));
-    ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => $(id).classList.toggle('has-selection', Boolean($(id).value)));
+    syncFilterCopies();
     const selectedModel = $('model-filter').value;
     const selectedTask = $('task-filter').value;
     const selectedEffort = $('effort-filter').value;
@@ -601,6 +619,19 @@
   $('clear-filters').addEventListener('click', () => {
     ['model-filter','task-filter','effort-filter','state-filter'].forEach(id => { $(id).value=''; });
     urlStateEnabled=true; chosen=null; draw();
+  });
+  document.querySelectorAll('[data-filter-copy]').forEach(toolbar => {
+    toolbar.addEventListener('change', event => {
+      const sourceId = event.target.dataset.sourceId;
+      if (!sourceId || !$(sourceId)) return;
+      $(sourceId).value = event.target.value;
+      urlStateEnabled=true;
+      draw();
+    });
+    toolbar.addEventListener('click', event => {
+      const button = event.target.closest('button[data-source-id]');
+      if (button && $(button.dataset.sourceId)) $(button.dataset.sourceId).click();
+    });
   });
   function setAggregateView(card, flipped) {
     const front = card.querySelector('.aggregate-front');
