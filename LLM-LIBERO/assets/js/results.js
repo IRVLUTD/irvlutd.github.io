@@ -289,11 +289,11 @@
       selectedState ? `State ${selectedState}` : 'All states'
     ].join(' · ');
 
-    $('task-stats-selection').textContent = selection;
+    if ($('task-stats-selection')) $('task-stats-selection').textContent = selection;
     $('task-chart-selection').textContent = selection;
-    $('model-stats-selection').textContent = selection;
+    if ($('model-stats-selection')) $('model-stats-selection').textContent = selection;
     $('model-chart-selection').textContent = selection;
-    $('state-stats-selection').textContent = selection;
+    if ($('state-stats-selection')) $('state-stats-selection').textContent = selection;
 
     const modelSummaries = [...new Set(rows.map(row => row.model).filter(Boolean))].sort().map(model => {
       const modelRows = rows.filter(row => row.model === model);
