@@ -13,7 +13,14 @@ PROJECT = Path(__file__).resolve().parents[1]
 DEFAULT_RESULTS = PROJECT.parent / 'public' / 'data' / 'experiment_results.json'
 DEFAULT_VIDEOS = PROJECT / 'tests' / 'drive_videos.json'
 DEFAULT_OUTPUT = PROJECT / 'assets' / 'js' / 'results-data.js'
-COLORS = ['#79c4ff', '#70dab5', '#c39bff', '#ffb071']
+COLORS = ['#79c4ff', '#70dab5', '#c39bff', '#ffb071', '#ff78b7']
+MODEL_COLORS = {
+    'anthropic/claude-opus-5-5': '#79c4ff',
+    'openai/gpt-6-astra': '#70dab5',
+    'openai/gpt-6-luna': '#c39bff',
+    'openai/gpt-6.1-sol': '#ffb071',
+    'openai/gpt-6-sol': '#ff78b7',
+}
 LEVELS = [('low', 'Low'), ('medium', 'Medium'), ('high', 'High')]
 
 
@@ -82,12 +89,9 @@ def build(results_index, video_index):
     videos = video_index.get('videos', [])
     video_by_episode = {match_key(row, 'reasoning'): row for row in videos}
     raw_models = sorted({row['model'] for row in source_episodes})
-    if len(raw_models) > 4:
-        raise ValueError(f'Expected at most four models, found {len(raw_models)}')
-
     model_ids = {raw: f'model-{chr(97 + i)}' for i, raw in enumerate(raw_models)}
     models = [
-        {'id': model_ids[raw], 'name': model_name(raw), 'color': COLORS[i], 'source': raw}
+        {'id': model_ids[raw], 'name': model_name(raw), 'color': MODEL_COLORS.get(raw, COLORS[i % len(COLORS)]), 'source': raw}
         for i, raw in enumerate(raw_models)
     ]
     for i in range(len(models), 4):
