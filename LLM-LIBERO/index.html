@@ -4,16 +4,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta id="meta-desc" name="description" content="LLM-LIBERO project website">
+  <meta id="meta-desc" name="description" content="From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks">
   <meta id="meta-author" name="author" content="May Espinola, Qifan Zhang, Yu Xiang">
   <meta id="meta-keywords" name="keywords" content="LLM, LIBERO, reasoning, robot manipulation, evaluation">
-  <title id="title" project-name="LLM-LIBERO">LLM-LIBERO</title>
+  <title id="title" project-name="From Reasoning to Action">From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=56">
+  <link rel="stylesheet" href="./assets/css/results.css?v=75">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -31,7 +33,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 id="project-name" class="title is-2 publication-title">LLM-LIBERO</h1>
+            <h1 id="project-name" class="title is-2 publication-title"><span class="publication-title-main">From Reasoning to Action<span class="sr-only">:</span></span> <span class="publication-title-sub">Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</span></h1>
 
             <div class="is-size-5 publication-authors">
               <div id="author-content" class="columns is-centered">
@@ -60,16 +62,16 @@
             </div>
 
             <div class="is-size-6 publication-authors author-meta-info">
-              <span class="author-block"> <a target="_blank" href="https://labs.utdallas.edu/irvl">Intelligent Robotics and Vision Lab at the University of Texas at Dallas</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+              <span class="author-block"><a class="lab-affiliation" target="_blank" rel="noopener noreferrer" href="https://labs.utdallas.edu/irvl"><img class="lab-logo" src="./assets/images/irvl-logo.png" alt="Intelligent Robotics and Vision Lab logo"><span>Intelligent Robotics and Vision Lab<br>University of Texas at Dallas</span></a></span>
             </div>
 
             <div class="column has-text-centered">
               <div class="publication-links">
                 <span class="link-block">
-                  <button type="button" class="button is-normal is-rounded is-dark" disabled>
+                  <a class="button is-normal is-rounded is-dark" href="https://github.com/IRVLUTD/LLM_LIBERO" target="_blank" rel="noopener noreferrer">
                     <span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span>
-                    <span>Code (coming soon)</span>
-                  </button>
+                    <span>Code</span>
+                  </a>
                 </span>
                 <span class="link-block">
                   <button type="button" class="button is-normal is-rounded is-dark" disabled>
@@ -87,13 +89,30 @@
 
   <main id="results">
     <nav class="results-nav" aria-label="Results sections">
-      <a href="#overview">Overview</a><a href="#aggregates">Aggregates</a><a href="#states">Individual states</a><a href="#inspector">Rollout inspector</a><a href="#details">Details</a>
+      <a href="#overview">Overview</a><a href="#protocol">Protocol</a><a href="#aggregates">Aggregates</a><a href="#states">Individual states</a><a href="#inspector">Rollout inspector</a>
     </nav>
     <section id="overview" class="results-section">
       <p class="section-intro">Run frontier LLMs (GPT, Claude, and other OpenAI-compatible models) as closed-loop control policies on the <a href="https://libero-project.github.io/" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
       <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-10">October 10, 2026</time></p>
       <h2>Model rollout results</h2>
       <div class="summary-cards" id="cards"></div>
+    </section>
+    <section id="protocol" class="results-section">
+      <div class="eyebrow">00 / PROTOCOL</div><h2>How the evaluation works</h2>
+      <div class="protocol-layout">
+        <ol class="protocol-steps">
+          <li><strong>Observe</strong>Agent-view and wrist-camera images from the two most recent observations, plus the robot state.</li>
+          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Max 3,072 output tokens per call, incl. reasoning</span></li>
+          <li><strong>Act</strong>An adapter turns the target pose into controller steps.<span class="step-meta">Limit: 80 calls or 900 sim steps (45 s at 20 Hz)</span></li>
+          <li><strong>Score</strong>LIBERO's checker confirms success. Rate = successes ÷ 100 planned episodes; stopped, incomplete, errored, or missing runs count as failures.<span class="step-meta">Logged per episode: outcome, steps, calls, tokens, latency, cost</span></li>
+        </ol>
+        <figure class="protocol-figure">
+          <a href="./assets/images/cartoon_figure.png" target="_blank" rel="noopener noreferrer" aria-label="Open the closed-loop evaluation protocol figure at full resolution">
+            <img src="./assets/images/cartoon_figure.png" alt="Closed-loop LIBERO evaluation flowchart showing observations and robot state entering a multimodal LLM, tool-call outputs driving robot actions, and LIBERO evaluating success or failure.">
+          </a>
+          <figcaption>Closed-loop evaluation protocol <span>Click to view full resolution</span></figcaption>
+        </figure>
+      </div>
     </section>
     <section id="aggregates" class="results-section">
       <div class="eyebrow">01 / AGGREGATE RESULTS</div><h2>Success, costs, and calls</h2>
@@ -102,7 +121,7 @@
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
               <header class="table-panel-header table-panel-header-filtered">
-                <div class="table-panel-heading-row"><h3>Model × reasoning leaderboard</h3><button type="button" class="aggregate-view-toggle">View graph</button></div>
+                <div class="table-panel-heading-row"><h3>Model × reasoning leaderboard</h3><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></div>
                 <div class="dashboard-toolbar table-toolbar" id="results-filters" aria-label="Leaderboard filters">
                   <label>Model<select id="model-filter"></select></label>
                   <label>Task<select id="task-filter"></select></label>
@@ -116,7 +135,7 @@
               <div id="model-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" id="model-reasoning-graph" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard <a class="chart-permalink" href="#model-reasoning-graph" aria-label="Link to model and reasoning graph" title="Link to this graph">#</a></h3><p id="model-chart-selection" class="table-selection"></p><p class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard <a class="chart-permalink" href="#model-reasoning-graph" aria-label="Link to model and reasoning graph" title="Link to this graph">#</a></h3><p id="model-chart-selection" class="table-selection"></p><p id="model-chart-method" class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
               <div id="model-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -125,13 +144,13 @@
           <div class="aggregate-flip-inner">
             <section class="dashboard-panel aggregate-face aggregate-front">
               <header class="table-panel-header table-panel-header-filtered">
-                <div class="table-panel-heading-row"><h3>Success by task</h3><button type="button" class="aggregate-view-toggle">View graph</button></div>
+                <div class="table-panel-heading-row"><h3>Success by task</h3><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></div>
                 <div class="dashboard-toolbar table-toolbar" data-filter-copy aria-label="Task results filters"></div>
               </header>
               <div id="task-stats" class="table-scroll"></div>
             </section>
             <section class="dashboard-panel aggregate-face aggregate-back" id="task-success-graph" aria-hidden="true">
-              <header class="table-panel-header"><div><h3>Task success rates <a class="chart-permalink" href="#task-success-graph" aria-label="Link to task success graph" title="Link to this graph">#</a></h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View table</button></header>
+              <header class="table-panel-header"><div><h3>Task success rates <a class="chart-permalink" href="#task-success-graph" aria-label="Link to task success graph" title="Link to this graph">#</a></h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
               <div id="task-stats-chart" class="aggregate-chart"></div>
             </section>
           </div>
@@ -169,31 +188,21 @@
       <article class="aggregate-flip-card api-flip-card" id="api-call-results" data-graph-anchor="api-cost-graph">
         <div class="aggregate-flip-inner">
           <section class="dashboard-panel aggregate-face aggregate-front">
-            <header class="table-panel-header"><div><h3>API calls and token use</h3><p id="api-table-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle">View cost graph</button></header>
+            <header class="table-panel-header"><div><h3>API calls and token use</h3><p id="api-table-selection" class="table-selection"></p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
             <div class="table-scroll api-call-table" id="calls"></div>
           </section>
           <section class="dashboard-panel aggregate-face aggregate-back" id="api-cost-graph" aria-hidden="true">
-            <header class="table-panel-header"><div><h3>Cost by API call <a class="chart-permalink" href="#api-cost-graph" aria-label="Link to API cost graph" title="Link to this graph">#</a></h3><p id="api-chart-selection" class="table-selection"></p></div><button type="button" class="aggregate-view-toggle" tabindex="-1">View call table</button></header>
+            <header class="table-panel-header"><div><h3>Cost by API call <a class="chart-permalink" href="#api-cost-graph" aria-label="Link to API cost graph" title="Link to this graph">#</a></h3><p id="api-chart-selection" class="table-selection"></p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
             <div id="token-plot" class="chart-surface api-cost-chart"></div>
           </section>
         </div>
       </article>
-    </section>
-    <section id="details" class="results-section">
-      <div class="eyebrow">04 / INTERPRETATION</div><h2>Experiment details</h2>
-      <ol class="experiment-details-list">
-        <li><strong>Success rate:</strong> LIBERO-confirmed successes ÷ 100 planned episodes per model and reasoning configuration; stopped, incomplete, error, and missing episodes count as failures.</li>
-        <li><strong>Episode limits:</strong> 80 model calls, 900 simulator steps (45 seconds at 20 Hz).</li>
-        <li><strong>Reported metrics:</strong> outcome, simulator steps, API calls, token usage, API latency, and cost per episode.</li>
-        <li><strong>Observation history:</strong> two most recent observations, each with agent-view and wrist-camera images.</li>
-        <li><strong>Output limit:</strong> 3,072 tokens per call, including reasoning.</li>
-      </ol>
     </section>
     <section class="results-section contact" id="contact"><h2>Contact</h2><p>Send any comments or questions to May Espinola | Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a> | <a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
   </main>
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=14"></script>
-  <script src="./assets/js/results.js?v=46"></script>
+  <script src="./assets/js/results.js?v=56"></script>
 </body>
 </html>
