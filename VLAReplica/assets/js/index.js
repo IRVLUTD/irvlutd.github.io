@@ -18,11 +18,14 @@ function renderVideoLink(datasetKey, method) {
         return '—';
     }
 
-    return `
-        <a class="icon scene-video-link" href="./scene-videos/${datasetKey}-${method.slug}.html" aria-label="Open videos for ${method.label.replace(/<[^>]+>/g, '')}">
-            <i class="fas fa-link"></i>
+    const pageKey = `${datasetKey}-${method.slug}`;
+    const runs = video_links?.[pageKey]?.runs || [];
+
+    return runs.map((run) => `
+        <a class="scene-video-link" href="${run.href}" aria-label="Open ${run.label} videos for ${method.label.replace(/<[^>]+>/g, '')}">
+            ${run.label}
         </a>
-    `;
+    `).join(' ');
 }
 
 function renderLeaderboard(datasetKey, sortKey = 'average') {

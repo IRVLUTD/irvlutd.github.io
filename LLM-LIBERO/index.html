@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta id="meta-desc" name="description" content="From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks">
+  <meta id="meta-author" name="author" content="May Espinola, Qifan Zhang, Yu Xiang">
+  <meta id="meta-keywords" name="keywords" content="LLM, LIBERO, reasoning, robot manipulation, evaluation">
+  <title id="title" project-name="From Reasoning to Action">From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/bulma.min.css">
+  <link rel="stylesheet" href="../assets/css/index.css">
+  <link rel="stylesheet" href="./assets/css/results.css?v=75">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RR17MKXYJG');
+  </script>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body pad-zero">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 id="project-name" class="title is-2 publication-title"><span class="publication-title-main">From Reasoning to Action<span class="sr-only">:</span></span> <span class="publication-title-sub">Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</span></h1>
+
+            <div class="is-size-5 publication-authors">
+              <div id="author-content" class="columns is-centered">
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://goldpig888.github.io/">
+                    <img class="display-image author-image author-image-may center"
+                         src="./assets/images/may_espinola_web.JPG" alt="May Espinola">
+                    <br><span class="is-size-6">May Espinola</span>
+                  </a>
+                </div>
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://qfantastic.github.io/">
+                    <img class="display-image author-image center"
+                         src="./assets/images/qifan_zhang.jpeg" alt="Qifan Zhang">
+                    <br><span class="is-size-6">Qifan Zhang</span>
+                  </a>
+                </div>
+                <div class="column is-narrow">
+                  <a target="_blank" rel="noopener noreferrer" href="https://yuxng.github.io/">
+                    <img class="display-image author-image center"
+                         src="../assets/images/authors/yu_xiang.webp" alt="Yu Xiang">
+                    <br><span class="is-size-6">Yu Xiang</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="is-size-6 publication-authors author-meta-info">
+              <span class="author-block"><a class="lab-affiliation" target="_blank" rel="noopener noreferrer" href="https://labs.utdallas.edu/irvl"><img class="lab-logo" src="./assets/images/irvl-logo.png" alt="Intelligent Robotics and Vision Lab logo"><span>Intelligent Robotics and Vision Lab<br>University of Texas at Dallas</span></a></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a class="button is-normal is-rounded is-dark" href="https://github.com/IRVLUTD/LLM_LIBERO" target="_blank" rel="noopener noreferrer">
+                    <span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <button type="button" class="button is-normal is-rounded is-dark" disabled>
+                    <span class="icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></span>
+                    <span>Report (coming soon)</span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="results">
+    <nav class="results-nav" aria-label="Results sections">
+      <a href="#overview">Overview</a><a href="#protocol">Protocol</a><a href="#aggregates">Aggregates</a><a href="#states">Individual states</a><a href="#inspector">Rollout inspector</a>
+    </nav>
+    <section id="overview" class="results-section">
+      <p class="section-intro">Run frontier LLMs (GPT, Claude, and other OpenAI-compatible models) as closed-loop control policies on the <a href="https://libero-project.github.io/" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
+      <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-10">October 10, 2026</time></p>
+      <h2>Model rollout results</h2>
+      <div class="summary-cards" id="cards"></div>
+    </section>
+    <section id="protocol" class="results-section">
+      <div class="eyebrow">00 / PROTOCOL</div><h2>How the evaluation works</h2>
+      <div class="protocol-layout">
+        <ol class="protocol-steps">
+          <li><strong>Observe</strong>Agent-view and wrist-camera images from the two most recent observations, plus the robot state.</li>
+          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Max 3,072 output tokens per call, incl. reasoning</span></li>
+          <li><strong>Act</strong>An adapter turns the target pose into controller steps.<span class="step-meta">Limit: 80 calls or 900 sim steps (45 s at 20 Hz)</span></li>
+          <li><strong>Score</strong>LIBERO's checker confirms success. Rate = successes ÷ 100 planned episodes; stopped, incomplete, errored, or missing runs count as failures.<span class="step-meta">Logged per episode: outcome, steps, calls, tokens, latency, cost</span></li>
+        </ol>
+        <figure class="protocol-figure">
+          <a href="./assets/images/cartoon_figure.png" target="_blank" rel="noopener noreferrer" aria-label="Open the closed-loop evaluation protocol figure at full resolution">
+            <img src="./assets/images/cartoon_figure.png" alt="Closed-loop LIBERO evaluation flowchart showing observations and robot state entering a multimodal LLM, tool-call outputs driving robot actions, and LIBERO evaluating success or failure.">
+          </a>
+          <figcaption>Closed-loop evaluation protocol <span>Click to view full resolution</span></figcaption>
+        </figure>
+      </div>
+    </section>
+    <section id="aggregates" class="results-section">
+      <div class="eyebrow">01 / AGGREGATE RESULTS</div><h2>Success, costs, and calls</h2>
+      <div class="dashboard-grid">
+        <article class="aggregate-flip-card" id="model-reasoning-results" data-graph-anchor="model-reasoning-graph">
+          <div class="aggregate-flip-inner">
+            <section class="dashboard-panel aggregate-face aggregate-front">
+              <header class="table-panel-header table-panel-header-filtered">
+                <div class="table-panel-heading-row"><h3>Model × reasoning leaderboard</h3><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></div>
+                <div class="dashboard-toolbar table-toolbar" id="results-filters" aria-label="Leaderboard filters">
+                  <label>Model<select id="model-filter"></select></label>
+                  <label>Task<select id="task-filter"></select></label>
+                  <label>Reasoning<select id="effort-filter"></select></label>
+                  <label>State<select id="state-filter"></select></label>
+                  <button id="clear-filters" type="button" class="subtle-button">Clear</button>
+                  <button id="download-csv" type="button" class="download-button">CSV</button>
+                  <button id="download-json" type="button" class="download-button">JSON</button>
+                </div>
+              </header>
+              <div id="model-stats" class="table-scroll"></div>
+            </section>
+            <section class="dashboard-panel aggregate-face aggregate-back" id="model-reasoning-graph" aria-hidden="true">
+              <header class="table-panel-header"><div><h3>Model × reasoning leaderboard <a class="chart-permalink" href="#model-reasoning-graph" aria-label="Link to model and reasoning graph" title="Link to this graph">#</a></h3><p id="model-chart-selection" class="table-selection"></p><p id="model-chart-method" class="chart-method">100 planned episodes per configuration · 95% Wilson interval</p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
+              <div id="model-stats-chart" class="aggregate-chart"></div>
+            </section>
+          </div>
+        </article>
+        <article class="aggregate-flip-card" id="task-success-results" data-graph-anchor="task-success-graph">
+          <div class="aggregate-flip-inner">
+            <section class="dashboard-panel aggregate-face aggregate-front">
+              <header class="table-panel-header table-panel-header-filtered">
+                <div class="table-panel-heading-row"><h3>Success by task</h3><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></div>
+                <div class="dashboard-toolbar table-toolbar" data-filter-copy aria-label="Task results filters"></div>
+              </header>
+              <div id="task-stats" class="table-scroll"></div>
+            </section>
+            <section class="dashboard-panel aggregate-face aggregate-back" id="task-success-graph" aria-hidden="true">
+              <header class="table-panel-header"><div><h3>Task success rates <a class="chart-permalink" href="#task-success-graph" aria-label="Link to task success graph" title="Link to this graph">#</a></h3><p id="task-chart-selection" class="table-selection"></p><p class="chart-method">Point estimate and 95% Wilson interval</p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
+              <div id="task-stats-chart" class="aggregate-chart"></div>
+            </section>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section id="states" class="results-section">
+      <div class="eyebrow">02 / EPISODE INDEX</div><h2>Individual states</h2>
+      <p>Click a row to inspect its rollout and details.</p>
+      <article class="state-table-panel">
+        <header class="table-panel-header table-panel-header-filtered state-table-header">
+          <div class="table-panel-heading-row"><h3>Rollouts</h3><p id="state-count" class="muted" aria-live="polite"></p></div>
+          <div class="dashboard-toolbar table-toolbar" data-filter-copy aria-label="Rollout filters"></div>
+        </header>
+        <div class="table-scroll state-table" id="episodes"></div>
+      </article>
+    </section>
+    <section id="inspector" class="results-section inspector-section">
+      <div class="inspector-summary-block">
+        <div class="inspector-heading"><div><div class="eyebrow">03 / ROLLOUT EVIDENCE</div><h2>Rollout inspector</h2><p id="selected-rollout">Select a rollout</p></div></div>
+        <p id="episode-meta" class="muted"></p>
+        <div class="rollout-stats" id="rollout-stats"></div>
+      </div>
+      <div class="inspector-grid">
+        <div class="inspector-column">
+          <h3>Rollout video</h3>
+          <div class="video-slot" id="rollout-media"></div>
+          <p class="footnote">Agent view and wrist view are shown in the saved rollout when available.</p>
+        </div>
+        <div class="inspector-column spatial-column">
+          <h3>3D spatial plan</h3><div id="trajectory" class="chart-surface"></div>
+          <details class="reasoning-timeline"><summary>View full reasoning timeline <span id="reasoning-count"></span></summary><div id="reasoning-timeline"></div></details>
+        </div>
+      </div>
+      <article class="aggregate-flip-card api-flip-card" id="api-call-results" data-graph-anchor="api-cost-graph">
+        <div class="aggregate-flip-inner">
+          <section class="dashboard-panel aggregate-face aggregate-front">
+            <header class="table-panel-header"><div><h3>API calls and token use</h3><p id="api-table-selection" class="table-selection"></p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="true"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="false"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
+            <div class="table-scroll api-call-table" id="calls"></div>
+          </section>
+          <section class="dashboard-panel aggregate-face aggregate-back" id="api-cost-graph" aria-hidden="true">
+            <header class="table-panel-header"><div><h3>Cost by API call <a class="chart-permalink" href="#api-cost-graph" aria-label="Link to API cost graph" title="Link to this graph">#</a></h3><p id="api-chart-selection" class="table-selection"></p></div><div class="view-switch" role="group" aria-label="Choose view"><button type="button" class="aggregate-view-toggle" data-view="table" aria-pressed="false" tabindex="-1"><i class="fas fa-table" aria-hidden="true"></i>Table</button><button type="button" class="aggregate-view-toggle" data-view="graph" aria-pressed="true" tabindex="-1"><i class="fas fa-chart-bar" aria-hidden="true"></i>Graph</button></div></header>
+            <div id="token-plot" class="chart-surface api-cost-chart"></div>
+          </section>
+        </div>
+      </article>
+    </section>
+    <section class="results-section contact" id="contact"><h2>Contact</h2><p>Send any comments or questions to May Espinola | Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a> | <a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
+  <script defer src="./assets/js/fontawesome.all.min.js"></script>
+  <script src="./assets/js/results-data.js?v=14"></script>
+  <script src="./assets/js/results.js?v=56"></script>
+</body>
+</html>
