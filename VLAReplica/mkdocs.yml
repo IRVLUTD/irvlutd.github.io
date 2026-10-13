@@ -1,0 +1,30 @@
+site_name: VLA-REPLICA Setup Guide
+repo_url: https://github.com/IRVLUTD/VLAReplica
+theme:
+  name: readthedocs
+extra_css:
+  - css/custom.css
+nav:
+  - Setup Guide:
+      - Overview & prerequisites: index.md
+      - Bill of materials: bill-of-materials.md
+      - Hardware assembly: hardware-assembly.md
+      - Software installation: software-installation.md
+      - System Calibration: system-calibration.md
+      - Running evaluations: running-evaluations.md
+      - Task reference: task-reference.md
+      - Troubleshooting & checklists: troubleshooting.md
+site_url: https://irvlutd.github.io/VLAReplica/setup-docs/
+
+docs_dir: setup-docs-src
+# Output the built site into `VLAReplica/setup-docs` so GitHub Pages serves it
+# at `https://irvlutd.github.io/VLAReplica/setup-docs/`.
+site_dir: setup-docs
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

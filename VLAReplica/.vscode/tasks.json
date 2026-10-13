@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MkDocs: serve setup docs",
+      "type": "shell",
+      "command": "/Users/alexhuang/Documents/Docs/UTD/IRVL/VLAReplica/irvlutd.github.io/.venv/bin/mkdocs",
+      "args": ["serve", "-f", "/Users/alexhuang/Documents/Docs/UTD/IRVL/VLAReplica/irvlutd.github.io/VLAReplica/mkdocs.yml", "-a", "127.0.0.1:8000"],
+      "isBackground": true,
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+/* Widen the Read the Docs content area so wider tables fit without horizontal scrolling. */
+.wy-nav-content {
+  max-width: 1400px;
+}
+
+.rst-content .wy-table-responsive {
+  margin-bottom: 1.25rem;
+  overflow: visible;
+}
+
+.rst-content table.docutils,
+.rst-content table.docutils th,
+.rst-content table.docutils td {
+  white-space: normal;
+}
+
+.rst-content table.docutils td,
+.rst-content table.docutils th {
+  vertical-align: top;
+}
+
+.rst-content code,
+.rst-content pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+}

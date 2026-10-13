@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://irvlutd.github.io/VLAReplica/setup-docs/" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Overview & prerequisites - VLA-REPLICA Setup Guide</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overview \u0026 prerequisites";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = "/VLAReplica/setup-docs/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> VLA-REPLICA Setup Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Setup Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Overview & prerequisites</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#start-here">Start here</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#overview-prerequisites">Overview &amp; prerequisites</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#what-is-covered">What is covered</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-notes">Quick notes</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="bill-of-materials/">Bill of materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="hardware-assembly/">Hardware assembly</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="software-installation/">Software installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="system-calibration/">System Calibration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="running-evaluations/">Running evaluations</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="task-reference/">Task reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="troubleshooting/">Troubleshooting & checklists</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">VLA-REPLICA Setup Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Setup Guide</li>
+      <li class="breadcrumb-item active">Overview & prerequisites</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/IRVLUTD/VLAReplica/edit/master/docs/index.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="vla-replica-setup-guide">VLA-REPLICA Setup Guide</h1>
+<p><a href="../index.html">Back to project page</a></p>
+<h2 id="start-here">Start here</h2>
+<p>This documentation is organized into separate pages so the setup flow is easier to follow:</p>
+<ul>
+<li><a href="bill-of-materials/">Bill of materials</a></li>
+<li><a href="hardware-assembly/">Hardware assembly</a></li>
+<li><a href="software-installation/">Software installation</a></li>
+<li><a href="calibration.md">System Calibration</a></li>
+<li><a href="running-evaluations/">Running evaluations</a></li>
+<li><a href="task-reference/">Task reference</a></li>
+<li><a href="troubleshooting/">Troubleshooting &amp; checklists</a></li>
+</ul>
+<h2 id="overview-prerequisites">Overview &amp; prerequisites</h2>
+<p>VLA-REPLICA is a low-cost, reproducible real-world benchmark for evaluating vision-language-action
+policies on tabletop manipulation tasks. It uses an SO-101 follower arm, a top RealSense camera,
+and a wrist RGB camera inside a standardized light box setup.</p>
+<ul>
+<li>Estimated setup time: about 1 hour for the core software + calibration workflow.</li>
+<li>Required background: none; the guide is written for non-experts.</li>
+<li>System requirements: Our system utilizes an i9-10900X, 64GB RAM, and Nvidia A5000 (24GB VRAM). At least 24GB VRAM is recommended for real-time VLA inference, especially with pi0/pi0.5.</li>
+</ul>
+<figure style="text-align: center; margin: 20px auto;">
+  <img src="images/app/overview.png" width="600" alt="System overview diagram">
+  <figcaption style=" color: #555; margin-top: 8px;">
+    Benchmark environment. Physical workspace showing the SO-101 follower arm, 32×32 in light box, LED panel, white background sheet, and AprilTag.
+  </figcaption>
+</figure>
+
+<h2 id="what-is-covered">What is covered</h2>
+<p>This guide covers the full workflow from hardware assembly through policy evaluation:</p>
+<ol>
+<li>Gather the hardware and printed parts.</li>
+<li>Assemble the cameras, light box, and SO-101 platform.</li>
+<li>Install software and find device indices.</li>
+<li>Calibrate the arm and cameras.</li>
+<li>Run benchmark evaluations and compare results.</li>
+</ol>
+<h2 id="quick-notes">Quick notes</h2>
+<ul>
+<li>Keep lighting, camera angles, and the background sheet consistent.</li>
+<li>Follow the calibration targets exactly before evaluating policies.</li>
+<li>Use the task reference and troubleshooting pages when setting up scenes.</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="bill-of-materials/" class="btn btn-neutral float-right" title="Bill of materials">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IRVLUTD/VLAReplica" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="bill-of-materials/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

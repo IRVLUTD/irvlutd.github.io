@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Wiring - MultiAxisGantrySystem</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Wiring";
+        var mkdocs_page_input_path = "hardware/wiring.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> MultiAxisGantrySystem
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Hardware</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../materials/">Materials</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Wiring</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#1-power-supply-wiring">1. Power Supply wiring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-limit-switch-wiring">2. Limit Switch wiring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-pneumatic-valve-wiring">3. Pneumatic Valve wiring</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-communication-connections">4. Communication Connections</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#communication-between-drivers-daisy-chaining">Communication between drivers (daisy chaining)</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#pclaptop-interface-communication-with-drivers-via-arduino">PC/Laptop interface communication with drivers via arduino</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#arduino-mega-to-max485-to-driver">Arduino Mega to MAX485 to Driver</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Software</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/applications/">Applications</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/parameters_and_configuration/">Parameters and Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/register_mapping_and_control/">Register Mapping and Control</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/code_files_and_API/">Code Files and API</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/operation_and_interface/">Operation and Interface</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../software/troubleshooting/">Troubleshooting</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">MultiAxisGantrySystem</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Hardware</li>
+      <li class="breadcrumb-item active">Wiring</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h1 id="wiring">Wiring</h1>
+<p>The wiring consists of 4 main stages:</p>
+<ol>
+<li>Power Supply wiring</li>
+<li>Limit Switch wiring</li>
+<li>Nozzle valve wiring</li>
+<li>Communication Connections<ol>
+<li>Drivers interconnection (daisy chaining)</li>
+<li>PC/Laptop interface communication with drivers via arduino</li>
+</ol>
+</li>
+</ol>
+<h2 id="1-power-supply-wiring">1. Power Supply wiring</h2>
+<p>The power supply is connected each of the drivers. The power supply is rated for <strong>0-24VDC</strong> and <strong>20A</strong> output.</p>
+<p><img alt="Power Supply Wiring" src="../../images/power.jpg"></p>
+<h2 id="2-limit-switch-wiring">2. Limit Switch wiring</h2>
+<p>Each axis has two limit switches, one for the negative direction and one for the positive direction. The negative limit switch is connected to the <strong>DI6</strong> terminal of the driver and the positive limit switch is connected to the <strong>DI7</strong> terminal of the driver. Negative limit switch is the one that gets closed when the axis is homed. </p>
+<p><img alt="Limit Switch Wiring" src="../../images/limits.jpg">  </p>
+<h2 id="3-pneumatic-valve-wiring">3. Pneumatic Valve wiring</h2>
+<p>The pneumatic valve is connected to the <strong>DO1</strong> terminal of the driver connected to <strong>Motor C (ID 3)</strong>. The valve is activated when the axis reaches the target position. Make sure to connect the common port of the output <strong>COMO</strong> of the driver to common port of the input <strong>COMI</strong> of the driver.</p>
+<p><img alt="Pneumatic Valve Wiring" src="../../images/valve.jpg">  </p>
+<h2 id="4-communication-connections">4. Communication Connections</h2>
+<p>Establishing communication takes place in two stages:</p>
+<ul>
+<li>Establishing communication between the drivers (daisy chaining).</li>
+<li>Establishing communication between PC/Laptop and Arduino to a driver.</li>
+</ul>
+<h4 id="communication-between-drivers-daisy-chaining">Communication between drivers (daisy chaining)</h4>
+<p>To ensure commands from arduino are received by all three drivers, we need to connect them in a daisy chain fashion. The terminal resistance of the last driver should set to <strong>ON</strong> and the terminal resistance of the rest of the drivers should be set to <strong>OFF</strong>.</p>
+<p><img alt="Communication Connection" src="../../images/communication.jpg"></p>
+<h4 id="pclaptop-interface-communication-with-drivers-via-arduino">PC/Laptop interface communication with drivers via arduino</h4>
+<p>Arduino is connected to the Laptop/PC through a serial connection. It communicates with all three drivers through a single MAX485 RS485 transceiver module. The output from MAX485 module is connected to the RS485 A(+), B(-) terminals of the first driver. The other drivers are connected in daisy chain fashion. The arduino is powered by the USB port of the laptop. It can also be powered by an external power supply of 5V.</p>
+<p><img alt="Communication Connection" src="../../images/overall_connection.png"></p>
+<h5 id="arduino-mega-to-max485-to-driver">Arduino Mega to MAX485 to Driver</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Arduino Mega Pin</th>
+<th style="text-align: left;">MAX485 Pin</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>TX1</strong> (Pin 18)</td>
+<td style="text-align: left;">DI</td>
+<td style="text-align: left;">Transmit data</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RX1</strong> (Pin 19)</td>
+<td style="text-align: left;">RO</td>
+<td style="text-align: left;">Receive data</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Digital 2</strong></td>
+<td style="text-align: left;">DE + RE</td>
+<td style="text-align: left;">Direction control (tied together)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">MAX485 Terminal</th>
+<th style="text-align: left;">Driver Terminal</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>A (+)</strong></td>
+<td style="text-align: left;">RS485-A (+)</td>
+<td style="text-align: left;">Non-inverting</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>B (−)</strong></td>
+<td style="text-align: left;">RS485-B (−)</td>
+<td style="text-align: left;">Inverting</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="arduino to max485 to driver" src="../../images/arduino_to_driver.png"></p>
+<blockquote>
+<p>ℹ️ If the communication with the driver is not established, interchange the A and B wires and try again.</p>
+</blockquote></div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../materials/" class="btn btn-neutral float-left" title="Materials"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../software/applications/" class="btn btn-neutral float-right" title="Applications">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../materials/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../software/applications/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

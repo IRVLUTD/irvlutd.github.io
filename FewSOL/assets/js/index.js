@@ -19,15 +19,26 @@ $(ann_id).html(_html(annotations['rgb-d']));
 
 let current_ann_ele = default_id
 
+/* Smooth CSS-transition crossfade with a subtle upward slide.
+   Uses the `.is-switching` class (styles in clap-theme.css) instead of
+   jQuery animations — renders on the compositor, so it's buttery. */
 $('.annotations').click(function(){
-    let timer = 1250;
-    let curr_id = $(this).attr('id');
-    if(curr_id != current_ann_ele){
-        $('.annotations').css(init_css);
-        $(`#${curr_id}`).css(in_effect_css);
-        $(ann_id).fadeOut(timer, function() {
-            $(this).html(_html(annotations[curr_id])).fadeIn(timer);
-            current_ann_ele = curr_id;
+    const curr_id = $(this).attr('id');
+    if (curr_id === current_ann_ele) return;
+
+    $('.annotations').css(init_css);
+    $(`#${curr_id}`).css(in_effect_css);
+
+    const $pane = $(ann_id);
+    $pane.addClass('is-switching');          // fade + slide out
+    setTimeout(function () {
+        $pane.html(_html(annotations[curr_id]));
+        // Next frame: remove the class so it fades + slides back in.
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                $pane.removeClass('is-switching');
+            });
         });
-    }
+        current_ann_ele = curr_id;
+    }, 300);                                  // matches the CSS transition duration
 });

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://irvlutd.github.io/VLAReplica/setup-docs/running-evaluations/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Running evaluations - VLA-REPLICA Setup Guide</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../css/custom.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Running evaluations";
+        var mkdocs_page_input_path = "running-evaluations.md";
+        var mkdocs_page_url = "/VLAReplica/setup-docs/running-evaluations/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> VLA-REPLICA Setup Guide
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Setup Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="..">Overview & prerequisites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../bill-of-materials/">Bill of materials</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../hardware-assembly/">Hardware assembly</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../software-installation/">Software installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../system-calibration/">System Calibration</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Running evaluations</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#evaluation-script">Evaluation script</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#evaluation-process">Evaluation process</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#id-versus-ood-evaluation">ID versus OOD evaluation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#list-of-tasks-success-criterion">List of Tasks &amp; Success Criterion</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../task-reference/">Task reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../troubleshooting/">Troubleshooting & checklists</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">VLA-REPLICA Setup Guide</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Setup Guide</li>
+      <li class="breadcrumb-item active">Running evaluations</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/IRVLUTD/VLAReplica/edit/master/docs/running-evaluations.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="running-evaluations">Running evaluations</h1>
+<p><a href="../index.html">Back to project page</a></p>
+<h2 id="evaluation-script">Evaluation script</h2>
+<p>Use the evaluation script <code>benchmark.py</code> to run a policy across predefined ID or OOD tasks, with predefined reference images. Refer to the table below for all CLI flags.</p>
+<p>Currently, the script supports the following models: <code>{act,smolvla,dit,xvla,pi0,pi05}</code>. Support for other VLA models will arrive soon. Feel free to modify the script to implement other VLA models of your liking.</p>
+<p>Inside your virtual environment, run:</p>
+<pre><code>python benchmark.py \
+  --policy-type pi0 \
+  --policy-path lerobot/pi0_base \
+  --policy-from-hub \
+  --run-all-tasks \
+  --task-subset ID \
+  --iterations 5 \
+  --eval-follower-calib-dirs calibration/robots/so101_follower \
+  --eval-follower-ports /dev/ttyACM1 \
+  --eval-follower-ids so101_follower_arm \
+  --eval-top-indexes 4 \
+  --eval-wrist-indexes 14 \
+  --reset-mode fixed \
+  --reset-action-file arm_reset.json
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>--policy-type &lt;model&gt;</code></td>
+<td style="text-align: left;">Selects the policy family to evaluate. Currently supported models: <code>{act,smolvla,dit,xvla,pi0,pi05}</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--policy-path &lt;path&gt;</code></td>
+<td style="text-align: left;">Hugging Face repo ID or local path for the policy checkpoint.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--policy-from-hub</code></td>
+<td style="text-align: left;">If <code>--policy-path</code> directs to a Hugging Face repo ID, include this flag. Loads policy from Hugging Face Hub instead of local directory.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--run-all-tasks</code></td>
+<td style="text-align: left;">Runs evaluation across all 10 VLA-REPLICA tasks from task config, instead of single task.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--task-subset &lt;ID or OOD&gt;</code></td>
+<td style="text-align: left;">When using <code>--run-all-tasks</code>, restricts evaluation to ID or OOD task subset.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--iterations &lt;number&gt;</code></td>
+<td style="text-align: left;">Number of evaluation iterations per task (we used 5 in the paper).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--eval-follower-calib-dirs &lt;path&gt;</code></td>
+<td style="text-align: left;">Follower calibration directory. (default: <code>calibration/robots/so101_follower</code>).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--eval-follower-ports &lt;serial port&gt;</code></td>
+<td style="text-align: left;">Serial port for the follower robot (e.g. <code>dev/ttyACM1</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--eval-follower-ids &lt;id&gt;</code></td>
+<td style="text-align: left;">Robot ID for the follower arm. (default: <code>so101_follower_arm</code>)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--eval-top-indexes &lt;index&gt;</code></td>
+<td style="text-align: left;">Top-camera index for the active arm.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--eval-wrist-indexes &lt;index&gt;</code></td>
+<td style="text-align: left;">Wrist-camera index for the active arm.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--reset-mode fixed</code></td>
+<td style="text-align: left;">Uses a fixed reset action instead of teleoperated leader reset (we enabled this for the paper).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>--reset-action-file &lt;path&gt;</code></td>
+<td style="text-align: left;">JSON file containing the normalized reset action vector required when <code>--reset-mode fixed</code> is used. (default: <code>arm_reset.json</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evaluation-process">Evaluation process</h2>
+<ol>
+<li>
+<p>After the script loads the corresponding policy and connects successfully to the followers, the follower arm will move to a consistent start position (predetermined in <code>arm_reset.json</code>). An openCV GUI will pop up, overlaying the live video feed from the top camera with the proper test scene (i.e. predefined object placements) for that task. </p>
+</li>
+<li>
+<p>Grab the corresponding objects needed for that scene (i.e. red plate and bread A for the first task) and then move the objects to their reference image positions so that the live camera and overlay image are identical to each other. </p>
+<ul>
+<li><figure style="text-align: center; margin: 20px auto">
+<img src="../images/app/benchmark_gui.png" width=1000 style="height: auto; border-radius: 4px" alt="System overview diagram">
+<figcaption style=" color: #555; margin-top: 8px;">
+  benchmark.py live video evaluation GUI. The user is currently setting up the scene for the "Put bread on plate" task.
+</figcaption>
+  </figure></li>
+</ul>
+</li>
+<li>
+<p>When the live video feed and overlay image match almost exactly, press <code>Enter</code> on the keyboard to start policy inference.</p>
+<ul>
+<li>During policy evaluations for the VLA-REPLICA paper, each policy is given 90 seconds to complete the task before the iteration ends.  </li>
+<li>If the policy completes the task before 90 seconds, press <code>right arrow (➜)</code> to skip to the setup phase of the next iteration. The SO-101 arm will reset back to the start position.</li>
+</ul>
+</li>
+<li>Log success and/or failure behavior for each iteration corresponding to that specific task. The full list of tasks and criteron are listed below.</li>
+</ol>
+<h2 id="id-versus-ood-evaluation">ID versus OOD evaluation</h2>
+<ul>
+<li>ID tasks use scene layouts close to the training distribution to see how well the model learns.<ul>
+<li>There are 10 ID tasks total, with 5 variants each, for a total of <strong>50 ID iterations</strong>.</li>
+</ul>
+</li>
+<li>OOD tasks test new colors, counts, or objects to test how well the model generalizes generalization.<ul>
+<li>There are 8 ID tasks total, with 5 variants each, for a total of <strong>40 ID iterations</strong>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="list-of-tasks-success-criterion">List of Tasks &amp; Success Criterion</h2>
+<p>The full list of tasks is located under <a href="../task-reference">Task Reference</a></p>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Goal</th>
+<th>Success condition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Put bread on plate</td>
+<td>Place the correct bread on the correct colored plate</td>
+<td>Bread is resting on the target plate and the arm returns home</td>
+</tr>
+<tr>
+<td>Put bowl on coaster</td>
+<td>Place the correct bowl on the correct coaster</td>
+<td>Correct bowl is on correct coaster and the arm returns home</td>
+</tr>
+<tr>
+<td>Stack blocks</td>
+<td>Stack the target block on the target block</td>
+<td>Top block remains in contact for more than 2 seconds</td>
+</tr>
+<tr>
+<td>Fold towel</td>
+<td>Fold the towel in half</td>
+<td>Edges are lifted and folded by more than 50%</td>
+</tr>
+<tr>
+<td>Open oven</td>
+<td>Open the oven door</td>
+<td>Door stays open for 2+ seconds</td>
+</tr>
+<tr>
+<td>Clean whiteboard</td>
+<td>Wipe the board with the eraser</td>
+<td>Eraser wipes 2+ times and is placed next to the board</td>
+</tr>
+<tr>
+<td>Pour pepper</td>
+<td>Pour the required number of shakes</td>
+<td>Correct number of shakes poured and object returned</td>
+</tr>
+<tr>
+<td>Lift bowl</td>
+<td>Lift the correct bowl the required number of times</td>
+<td>Correct lifting count is completed</td>
+</tr>
+<tr>
+<td>Press button</td>
+<td>Press the button the required number of times</td>
+<td>Correct number of presses completed</td>
+</tr>
+<tr>
+<td>Collect blocks</td>
+<td>Put all blocks into the correct box</td>
+<td>All blocks are in the target box and the arm returns home</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next Step: Task Reference ➜</strong></p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../system-calibration/" class="btn btn-neutral float-left" title="System Calibration"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../task-reference/" class="btn btn-neutral float-right" title="Task reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/IRVLUTD/VLAReplica" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../system-calibration/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../task-reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../javascripts/mathjax.js"></script>
+      <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
