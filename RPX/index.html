@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta id="meta-desc" name="description"
-    content="RPX is a benchmark of 100 real scenes with 70 everyday objects, recorded before, during, and after manipulation. 49 pretrained models evaluated zero-shot on 6 tasks reveal that manipulation breaks perception: depth error grows 2-4x, tracker identity switches multiply 5-11x, and the best in-context grounding reaches only 23%.">
+    content="RPX is a benchmark of 100 real scenes with 70 everyday objects, recorded before, during, and after manipulation. 49 pretrained models and 65 zero-shot evaluations across 6 tasks reveal that manipulation breaks perception: near-range video-depth error grows 2.0-4.4x, every tracker falls to a phase robustness of 0.21-0.55 through Interaction, and the best in-context grounding reaches only 21.5% Acc@0.5.">
   <meta id="meta-author" name="author"
     content="Jishnu Jaykumar P, Itay Kadosh, Narendhiran Vijayakumar, Srinanditha Kamath, Sai Haneesh Allu, Govind Tyagi Rangappa, Animesh Maheshwari, Jikai Wang, Yu Xiang">
   <meta id="meta-keywords" name="keywords"
@@ -58,15 +58,15 @@
   <meta property="og:locale"      content="en_US">
   <meta property="og:site_name"   content="RPX — IRVL · UT Dallas">
   <meta property="og:title"       content="RPX — Same Scene, Different Story — Evaluating Robot Perception Across Scene Phases">
-  <meta property="og:description" content="49 models, 6 tasks, 100 scenes before/during/after manipulation. Depth error grows 2-4x, tracker ID switches multiply 5-11x.">
+  <meta property="og:description" content="49 models, 6 tasks, 100 scenes before/during/after manipulation. Near-range video-depth error grows 2.0-4.4x, and no evaluation is both phase-robust and accurate.">
   <meta property="og:url"         content="https://irvlutd.github.io/RPX/">
   <meta property="og:type"        content="article">
   <meta property="og:image"       content="https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg">
   <meta property="og:image:secure_url" content="https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg">
   <meta property="og:image:width"  content="1200">
-  <meta property="og:image:height" content="670">
+  <meta property="og:image:height" content="696">
   <meta property="og:image:alt"   content="RPX overview: one benchmark per task today vs. RPX's unified benchmark — six tasks, 49 models, scenes captured in Clutter, Interaction, Clean and Ego views.">
-  <meta property="og:video"       content="https://irvlutd.github.io/RPX/assets/videos/supplementary.mp4">
+  <meta property="og:video"       content="https://irvlutd.github.io/RPX/assets/videos/showcase.mp4">
   <meta property="og:video:type"  content="video/mp4">
   <meta property="article:author"  content="Jishnu Jaykumar P">
   <meta property="article:section" content="Robotics">
@@ -96,8 +96,8 @@
     "datePublished": "2026",
     "dateModified":  "2026",
     "inLanguage":    "en",
-    "abstract": "RPX measures what happens to perception when a robot changes the scene. 49 models evaluated zero-shot on 6 tasks across 100 scenes captured before, during, and after manipulation.",
-    "description": "A manipulation-aware perception benchmark: 100 scenes, 70 objects, 125K annotated frames, three capture phases, 49 pretrained models, six tasks.",
+    "abstract": "RPX measures what happens to perception when a robot changes the scene. 49 models, 65 zero-shot evaluations on 6 tasks across 100 scenes captured before, during, and after manipulation.",
+    "description": "A manipulation-aware perception benchmark: 100 scenes, 70 objects, ~133K annotated frames, three capture phases, 49 pretrained models, six tasks, 65 zero-shot evaluations.",
     "keywords": "embodied perception; foundation models for robotics; scene-state robustness; manipulation-aware evaluation",
     "author": [
       {"@type": "Person", "name": "Jishnu Jaykumar P", "url": "https://jishnujayakumar.github.io", "affiliation": {"@type": "Organization", "name": "The University of Texas at Dallas"}},
@@ -122,7 +122,7 @@
       "@type": "ImageObject",
       "url":   "https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg",
       "width": 1200,
-      "height": 670
+      "height": 696
     },
     "sameAs": [
       "https://github.com/IRVLUTD/RPX",
@@ -153,7 +153,7 @@
     "@type": "Dataset",
     "@id": "https://irvlutd.github.io/RPX/#dataset",
     "name": "RPX",
-    "description": "100 real scenes with 70 everyday objects captured on robot-grade sensors before (Clutter), during (Interaction) and after (Clean) manipulation, plus a concurrent egocentric stream. 125K annotated frames.",
+    "description": "100 real scenes with 70 everyday objects captured on robot-grade sensors before (Clutter), during (Interaction) and after (Clean) manipulation, plus a concurrent egocentric stream. ~133K annotated frames.",
     "url": "https://huggingface.co/datasets/IRVLUTD/RPX",
     "sameAs": "https://huggingface.co/datasets/IRVLUTD/RPX",
     "license": "https://opensource.org/licenses/MIT",
@@ -171,13 +171,13 @@
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "@id": "https://irvlutd.github.io/RPX/#supplementary-video",
-    "name": "RPX — Supplementary Video",
-    "description": "Walkthrough of the RPX benchmark: the three-phase capture protocol, the six tasks, and the phase-robustness diagnostics.",
-    "thumbnailUrl": "https://irvlutd.github.io/RPX/assets/images/rpx-hero-social.jpg",
+    "@id": "https://irvlutd.github.io/RPX/#dataset-showcase",
+    "name": "RPX — Dataset Showcase",
+    "description": "A silent tour of the RPX dataset: the same objects and scenes captured before, during and after manipulation, across environments, viewpoints and lighting.",
+    "thumbnailUrl": "https://irvlutd.github.io/RPX/assets/images/video-poster.webp",
     "uploadDate": "2026",
-    "duration": "PT3M0S",
-    "contentUrl": "https://irvlutd.github.io/RPX/assets/videos/supplementary.mp4",
+    "duration": "PT2M45S",
+    "contentUrl": "https://irvlutd.github.io/RPX/assets/videos/showcase.mp4",
     "publisher": {"@type": "Organization", "name": "Intelligent Robotics and Vision Lab, UT Dallas"},
     "inLanguage": "en"
   }
@@ -219,7 +219,11 @@
   <link rel="stylesheet" href="../assets/css/jp-royal-theme.css">
   <link rel="stylesheet" href="../assets/css/clap-theme.css">
   <link rel="stylesheet" href="./assets/css/rpx-theme.css">
-  <link rel="icon" href="#">
+  <!-- Tab icon: the RPX mark. SVG where supported, 32px PNG for the rest,
+       and an opaque tile for iOS, which ignores alpha on touch icons. -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/rpx-mark.svg">
+  <link rel="alternate icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/apple-touch-icon.png">
 </head>
 
 <body>
@@ -373,7 +377,7 @@
               <span class="author-block affil-inline">
                 <span class="eq-contri"><sup>*</sup>&nbsp;Equal contribution</span>&nbsp;&nbsp;
                 <sup>1</sup><a class="href-link" target="_blank" href="https://utdallas.edu">UT Dallas</a>&nbsp;&nbsp;
-                <sup>2</sup><a class="href-link" target="_blank" href="https://www.ufl.edu">University of Florida</a>&nbsp;&nbsp;
+                <sup>2</sup><a class="href-link" target="_blank" href="https://www.ufl.edu">UF</a>&nbsp;&nbsp;
                 <sup>3</sup><a class="href-link" target="_blank" href="https://www.iiit.ac.in">IIIT Hyderabad</a>&nbsp;&nbsp;
                 <sup>4</sup><a class="href-link" target="_blank" href="https://www.utexas.edu">UT Austin</a>
               </span>
@@ -383,20 +387,47 @@
               <b>Under Review</b>
             </p>
 
+            <!-- Mirrors the "Ready to use" strip at the foot of Fig. 1. In the paper
+                 those four regions are real hyperlinks (figures/hero/hero_links.tex);
+                 here the figure is a flat image, so the links live under the venue. -->
+            <div class="ready-rail">
+              <div class="ready-rail-head"><span>Ready to use</span></div>
+              <div class="ready-strip">
+                <a class="rs-link" target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX">
+                  <span class="rs-head"><span class="rs-ico">&#129303;</span>Dataset</span>
+                  <span class="rs-target">hf.co/datasets/IRVLUTD/RPX</span>
+                </a>
+                <a class="rs-link" target="_blank" href="https://pypi.org/project/rpx-benchmark/">
+                  <span class="rs-head"><span class="rs-ico"><img class="rs-img" src="./assets/images/icon-python.svg" alt="" aria-hidden="true"></span>Toolkit</span>
+                  <span class="rs-target">pip install rpx-benchmark</span>
+                </a>
+                <a class="rs-link" target="_blank" href="https://irvlutd.github.io/RPX/toolkit-docs/">
+                  <span class="rs-head"><span class="rs-ico"><img class="rs-img" src="./assets/images/rpx-mark.svg" alt="" aria-hidden="true"></span>Docs</span>
+                  <span class="rs-target">irvlutd.github.io/RPX/toolkit-docs</span>
+                </a>
+                <a class="rs-link" target="_blank" href="https://hub.docker.com/r/irvlutd/rpx">
+                  <span class="rs-head"><span class="rs-ico"><img class="rs-img" src="./assets/images/icon-docker.svg" alt="" aria-hidden="true"></span>Docker</span>
+                  <span class="rs-target">hub.docker.com/r/irvlutd/rpx</span>
+                </a>
+              </div>
+            </div>
+
             <div class="column has-text-centered">
               <div class="publication-links">
 
-                <!-- TODO: swap href once the arXiv posting is live -->
+                <!-- arXiv submission is on hold; swap the href for the abs page and
+                     drop is-pending-btn once the posting is announced. Dataset lives
+                     in the Ready-to-use rail above, so it is not repeated here. -->
+                <span class="link-block">
+                  <a href="#"
+                    class="external-link button is-normal is-rounded royal-theme-btn is-pending-btn">
+                    <span class="icon"><i class="ai ai-arxiv" aria-hidden="true"></i></span><span>arXiv &middot; coming soon</span>
+                  </a>
+                </span>
                 <span class="link-block">
                   <a target="_blank" href="https://github.com/IRVLUTD/RPX"
                     class="external-link button is-normal is-rounded royal-theme-btn">
                     <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX"
-                    class="external-link button is-normal is-rounded royal-theme-btn">
-                    <span class="icon">&#129303;</span><span>Dataset</span>
                   </a>
                 </span>
                 <span class="link-block">
@@ -426,7 +457,7 @@
     <div class="container is-max-desktop">
       <figure class="paper-fig">
         <img src="./assets/images/rpx-hero.webp"
-             alt="RPX overview. (a) Today each perception task is benchmarked on its own data with its own metric. (b) RPX evaluates six tasks on the same real scenes, captured before (Clutter), during (Interaction) and after (Clean) manipulation, plus an egocentric view. (c) One pipeline and one diagnostic for all tasks. (d) Multi-object scenes by difficulty and phase. (e) Each object also captured alone in 360 degrees. (f) Sensors and annotation modalities."
+             alt="RPX overview. A header strip gives the headline counts: 100 real scenes, three phases plus an ego view, 70 daily objects, six tasks, 49 models evaluated zero-shot and about 133K annotated frames. Left: today each perception task is benchmarked on its own data with its own metric. Centre: RPX captures every real scene four times — Clutter, Interaction, Clean and an egocentric view — before, during and after manipulation. Right: six tasks scored the same way, with two diagnostics, phase robustness Phi and worst-phase quality J-min. Below: multi-object scenes by difficulty and phase, each object also captured alone in 360 degrees, and the sensor and annotation modalities. A footer strip links the Hugging Face dataset, the pip toolkit, the docs and the Docker image."
              decoding="async">
         </figure>
       <p class="fig-caption centered"><b><span class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></span> at a glance.</b>
@@ -441,7 +472,7 @@
       <div class="tldr tldr-rpx">
         <div class="tldr-head">
           <span class="tldr-label">TL;DR</span>
-          <span class="tldr-lede">Robots <b>change the scenes they perceive</b> — and the models they run are picked on benchmarks of <b>frozen</b> ones. We measured what that costs.</span>
+          <span class="tldr-lede">Task-specific leaderboards evaluate perception models on different data, leaving roboticists without a shared basis for choosing one as manipulation changes the scene. RPX captures 100 real scenes before, during and after manipulation in four modalities &mdash; RGB-D, 6-DoF camera pose, a concurrent egocentric view, and instance masks, tracklets and object attributes. Six tasks and 49 models are reported here; the toolkit registers ten tasks, and further tasks, metrics and models can be added as needed. Across 65 zero-shot evaluations, none clears the thresholds for both worst-phase quality and phase robustness.</span>
         </div>
       </div>
     </div>
@@ -460,15 +491,14 @@
     </nav>
   </div>
 
-  <!-- Supplementary video -->
+  <!-- Dataset showcase video (silent) -->
   <section class="section" id="video" style="padding-top: 0.5rem; padding-bottom: 1rem;">
     <div class="container is-max-desktop">
       <div class="clap-player" data-clap-player>
-        <span class="cp-label"><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;Supplementary&nbsp;Video</span>
+        <span class="cp-label"><i class="fas fa-play-circle" aria-hidden="true"></i>&nbsp;Dataset&nbsp;Showcase</span>
         <div class="cp-stage">
           <video class="cp-video" playsinline preload="metadata" poster="./assets/images/video-poster.webp">
-            <source src="./assets/videos/supplementary.mp4" type="video/mp4">
-            <track kind="captions" src="./assets/videos/supplementary.en.vtt" srclang="en" label="English" default>
+            <source src="./assets/videos/showcase.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
           <button class="cp-center-play" type="button" aria-label="Play video">
@@ -519,18 +549,19 @@
             <p>
               We introduce <b class="rpx-wordmark"><span class="rpx-r">R</span><span class="rpx-p">P</span><span class="rpx-x">X</span></b>,
               a benchmark of 100 real scenes with 70 everyday objects, recorded with robot-grade sensors
-              <em>before</em>, <em>during</em>, and <em>after</em> manipulation — 125K annotated frames. We
-              evaluate <b>49 pretrained models</b> zero-shot on <b>six tasks</b>: image depth, video depth,
+              <em>before</em>, <em>during</em>, and <em>after</em> manipulation — ∼133K annotated frames. We
+              evaluate <b>49 pretrained models</b> zero-shot on <b>six tasks</b> (<b>65 evaluations</b>): image depth, video depth,
               multi-object tracking, relative camera pose, and two forms of visual question answering.
             </p>
-            <p>
+          <p>
               Two numbers summarize each model: phase robustness <b>&Phi;</b> from a repeated-measures MANOVA
               and worst-phase quality <b>&#119973;<sub>min</sub></b>. The results are not subtle. Every depth and
               tracking model and 20 of 24 VLM evaluations change significantly across phases
-              (<em>p</em>&lt;0.001); near-range video-depth error grows <b>2&ndash;4&times;</b> while the robot
-              acts, tracker identity switches grow <b>5&ndash;11&times;</b>, and the best in-context grounding
-              reaches only <b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.23</b>. Relative pose alone holds steady
-              (&Phi;&nbsp;&ge;&nbsp;0.86).
+              (<em>p</em>&lt;0.001); near-range video-depth error grows <b>2.0&ndash;4.4&times;</b> while the robot
+              acts, every tracker falls to <b>&Phi;&nbsp;=&nbsp;0.21&ndash;0.55</b> on transitions through
+              Interaction, and the best in-context grounding reaches only
+              <b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.23</b>. Relative pose alone holds steady
+              (&Phi;&nbsp;=&nbsp;0.86&ndash;0.97) &mdash; and it is the one task Interaction is not evaluated on.
             </p>
             <p>
               Rankings also change from task to task. The model that tops a static leaderboard is not the one
@@ -582,6 +613,41 @@
         </figure>
       <p class="fig-caption centered"><b>Capture setup.</b> A hand-carried D435&nbsp;+&nbsp;T265 rig with a head-mounted GoPro for the ego stream —
           robot-grade sensors, not internet imagery.</p>
+
+      <h3 class="title is-5 royal-theme has-text-centered modality-title">Four Modalities per Scene</h3>
+      <p class="section-lede">
+        Every exocentric frame carries colour, metric depth and a 6-DoF camera pose; the egocentric stream
+        adds a second viewpoint of the same moment. Annotations are shared across both.
+      </p>
+
+      <div class="pipeline modality-pipeline">
+        <div class="step">
+          <div class="num">D435 &middot; 640&times;480</div>
+          <h4>RGB-D</h4>
+          <p>Colour and metric depth. The depth sensor is also the ground truth both depth tasks are scored against.</p>
+        </div>
+        <div class="step">
+          <div class="num">T265 &middot; 2&times;848&times;800</div>
+          <h4>Fisheye stereo &amp; 6-DoF pose</h4>
+          <p>Visual-inertial odometry. The calibrated T265&rarr;D435 extrinsic gives every D435 frame a metric camera pose.</p>
+        </div>
+        <div class="step">
+          <div class="num">GoPro &middot; 1920&times;1080</div>
+          <h4>Egocentric RGB</h4>
+          <p>Head-mounted, recorded throughout Interaction at <b>6.75&times;</b> the exocentric resolution. RGB only.</p>
+        </div>
+        <div class="step">
+          <div class="num">Annotations</div>
+          <h4>Masks, tracklets &amp; attributes</h4>
+          <p>Instance masks and tracks for both viewpoints, plus a per-object attribute questionnaire that drives the VQA tasks.</p>
+        </div>
+      </div>
+
+      <p class="fig-caption centered">
+        The <b>multi-object stream</b> holds &sim;98K frames &mdash; 100 scenes &times; 3 phases at &sim;250 D435 frames each, plus the ego stream.
+        The <b>single-object stream</b> adds &sim;35K: each of the 70 objects alone in RGB-D, pose and calibrated stereo, which supply the
+        reference images for in-context grounding.
+      </p>
     </div>
   </section>
 
@@ -624,6 +690,20 @@
           <p>Visual grounding from a reference image — no text identity cues.</p>
         </div>
       </div>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>Extensible by design</div>
+        <div class="content">
+          <p>
+            These six are what the paper reports, not what the benchmark is limited to. The
+            <a class="href-link" target="_blank" href="https://pypi.org/project/rpx-benchmark/">toolkit</a>
+            registers <b>ten tasks</b> &mdash; object segmentation, object detection, open-vocabulary
+            detection, sparse depth and keypoint matching among them &mdash; each declaring a primary metric
+            that drives the phase score. Adapter interfaces cover custom-model integration, so further
+            tasks, metrics and models can be added as the benchmark grows.
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -656,10 +736,13 @@
         <div class="result-eyebrow"><span class="rb-dot"></span>Interaction is the principal stress</div>
         <div class="content">
           <p>
-            Clutter&nbsp;&rarr;&nbsp;Interaction is the hardest transition for <b>15 of 20</b> depth models.
-            Tracker identity switches multiply <b>5&ndash;11&times;</b> during Interaction, and near-range
-            video-depth error grows <b>2&ndash;4&times;</b>. Relative pose is the lone exception
-            (&Phi;&nbsp;&ge;&nbsp;0.86).
+            Clutter&nbsp;&rarr;&nbsp;Interaction is the hardest transition for <b>15 of 20</b> depth models,
+            and near-range <em>video</em>-depth error at 0.3&ndash;1.0&nbsp;m &mdash; the range a robot
+            grasps in &mdash; grows <b>2.0&ndash;4.4&times;</b> during Interaction across all ten models. Every tracker is phase-sensitive
+            (&Phi;&nbsp;&le;&nbsp;0.75): transitions through Interaction fall to
+            <b>&Phi;&nbsp;=&nbsp;0.21&ndash;0.55</b>, while Clutter&nbsp;&harr;&nbsp;Clean stays at
+            0.73&ndash;0.98. Relative pose is the lone exception (&Phi;&nbsp;=&nbsp;0.86&ndash;0.97, no
+            difficulty tier significant) &mdash; but it is also the one task Interaction is not evaluated on.
           </p>
         </div>
       </div>
@@ -668,22 +751,25 @@
         <div class="result-eyebrow"><span class="rb-dot"></span>In-context VQA exposes a bottleneck</div>
         <div class="content">
           <p>
-            Regular grounding reaches <b>59% Acc@0.5</b>; in-context grounding drops to <b>21%</b>. Binding
-            attributes from a reference image to the right instance is far harder than localizing a named
-            object.
+            <b>Seven of twelve</b> VLMs return a syntactically valid box on &ge;&nbsp;90% of in-context
+            questions &mdash; yet the best accuracy is <b>21.5% Acc@0.5</b>, against <b>59.3%</b> for the same
+            questions asked in text. Returning a valid box does not ensure correct localization; the gap
+            suggests difficulty matching a reference image to the target instance, though this evaluation
+            does not isolate the underlying cause.
           </p>
         </div>
       </div>
 
       <div class="result-block">
-        <div class="result-eyebrow"><span class="rb-dot"></span>&Phi; against &#119973;<sub>min</sub>, all 49 models</div>
+        <div class="result-eyebrow"><span class="rb-dot"></span>&Phi; against &#119973;<sub>min</sub>, all 65 evaluations</div>
         <figure class="paper-fig paper-fig-narrow">
           <img src="./assets/images/phi_vs_jmin_scatter.webp"
-               alt="Scatter of phase robustness Phi against worst-phase quality J-min for all 49 model evaluations, coloured by task. A golden zone in the top right marks Phi above 0.86 and J-min above 0.75; relative-pose models cluster high on Phi but low on J-min, tracking models reach high J-min, and in-context VQA sits at the left edge."
+               alt="Scatter of phase robustness Phi against worst-phase quality J-min for all 65 zero-shot evaluations, grouped into per-task confidence ellipses. A golden zone in the top right marks Phi at or above 0.86 and J-min at or above 0.75, and it contains 0 of the 65 evaluations; relative-pose models cluster high on Phi but low on J-min, tracking models reach high J-min at low Phi, and in-context VQA clusters at the low-quality end."
                decoding="async">
           </figure>
-      <p class="fig-caption centered"><b>&Phi; vs. &#119973;<sub>min</sub>.</b> The <em>golden zone</em> — robust <em>and</em> good — is nearly empty.
-            Relative pose sits high on &Phi; but far left on quality; in-context VQA is pinned to the left edge.</p>
+      <p class="fig-caption centered"><b>&Phi; vs. &#119973;<sub>min</sub>.</b> Each point is one of the 65 zero-shot evaluations, ringed by task.
+            Relative pose scores high on &Phi; but low on &#119973;<sub>min</sub>; tracking reaches high &#119973;<sub>min</sub> at low &Phi;;
+            in-context VQA clusters at the low-quality end. The thresholds are the ones chosen for the diagnostics.</p>
       </div>
 
       <div class="result-block">
@@ -691,8 +777,26 @@
         <div class="content">
           <p>
             Florence&nbsp;2 reaches <b>&Phi;&nbsp;=&nbsp;0.94&ndash;0.98</b> without ever leaving the quality
-            floor. A high &Phi; can simply mean uniformly bad. Read <b>&#119973;<sub>min</sub></b> first, then
-            screen with &Phi;.
+            floor (<b>&#119973;<sub>min</sub>&nbsp;&le;&nbsp;0.14</b>). VGGT makes the opposite trade &mdash;
+            better quality (<b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.70</b>) but phase-sensitive
+            (&Phi;&nbsp;=&nbsp;0.77). A high &Phi; can simply mean uniformly bad. Read
+            <b>&#119973;<sub>min</sub></b> first, then screen with &Phi;.
+          </p>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <div class="result-eyebrow"><span class="rb-dot"></span>The prompt is part of the model</div>
+        <div class="content">
+          <p>
+            SAM&nbsp;3.1 given box prompts is the <em>most</em> phase-sensitive tracker
+            (&Phi;&nbsp;=&nbsp;0.50) at solid quality (<b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.87</b>);
+            the same model given only a text label falls to
+            <b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.72</b>. Text-prompted GSAM2 trades the other way &mdash;
+            the steadiest tracker (&Phi;&nbsp;=&nbsp;0.75) at lower quality
+            (<b>&#119973;<sub>min</sub>&nbsp;=&nbsp;0.79</b>). Swapping a VQA prompt
+            from text to a reference image reshuffles the ranking behind Qwen3-VL&nbsp;8B. A score is only
+            interpretable alongside the prompting protocol that produced it.
           </p>
         </div>
       </div>
@@ -726,7 +830,7 @@
           <header class="rc-head"><span class="rc-icon">&#129303;</span>Data</header>
           <a class="rc-chip" target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX">
             <span class="rc-name">IRVLUTD/RPX</span>
-            <span class="rc-sub">Hugging Face dataset — 100 scenes · 70 objects · 125K annotated frames</span>
+            <span class="rc-sub">Hugging Face dataset — 100 scenes · 70 objects · ∼133K annotated frames</span>
           </a>
           <a class="rc-chip" target="_blank" href="https://huggingface.co/datasets/IRVLUTD/RPX#dataset-card">
             <span class="rc-name">Dataset card</span>
@@ -734,14 +838,9 @@
           </a>
         </section>
 
-        <section class="resource-col">
-          <header class="rc-head"><span class="rc-icon"><i class="ai ai-arxiv" aria-hidden="true"></i></span>Paper</header>
-          <!-- TODO: replace with the arXiv abs/pdf links once posted -->
-          <span class="rc-chip is-pending" aria-disabled="true">
-            <span class="rc-name">Paper + Supplementary</span>
-            <span class="rc-sub">8-page paper + 33-page appendix — under review</span>
-          </span>
-        </section>
+        <!-- Paper column held back: the arXiv submission is on hold. Restore a
+             resource-col here (arXiv abs + PDF) once the posting is announced,
+             alongside the real BibTeX in #citation. -->
       </div>
     </div>
   </section>
@@ -770,9 +869,9 @@
       <div class="title-line"></div>
       <p class="section-lede contact-line">
         Send any comments or questions to
-        Jishnu <span class="contact-sep">|</span>
+        <span class="contact-names">Jishnu <span class="contact-sep">|</span>
         Itay <span class="contact-sep">|</span>
-        Narendhiran
+        Narendhiran</span>
       </p>
       <p class="contact-emails">
         <a class="href-link" href="mailto:jishnu.p@utdallas.edu">jishnu.p@utdallas.edu</a>
