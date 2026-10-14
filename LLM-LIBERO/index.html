@@ -103,7 +103,7 @@
       <div class="protocol-layout">
         <ol class="protocol-steps">
           <li><strong>Observe</strong>Agent-view and wrist-camera images from the two most recent observations, plus the robot state.</li>
-          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Max 3,072 output tokens per call, incl. reasoning</span></li>
+          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Output limit per call, including reasoning: 3,072 tokens for Low and Medium; 8,192 for High. GPT-6 Luna High used 3,072.</span></li>
           <li><strong>Act</strong>An adapter turns the target pose into controller steps.<span class="step-meta">Limit: 80 calls or 900 sim steps (45 s at 20 Hz)</span></li>
           <li><strong>Score</strong>LIBERO's checker confirms success. Rate = successes ÷ 100 planned episodes; stopped, incomplete, errored, or missing runs count as failures.<span class="step-meta">Logged per episode: outcome, steps, calls, tokens, latency, cost</span></li>
         </ol>
