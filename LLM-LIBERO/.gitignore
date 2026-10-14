@@ -1,0 +1,6 @@
+# OAuth credentials must remain outside version control.
+token.json
+token*.json
+client_secret*.json
+tests/credentials.json
+__pycache__/
