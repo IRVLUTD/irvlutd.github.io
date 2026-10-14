@@ -8,6 +8,7 @@
   const num = value => value == null ? '—' : Number(value).toLocaleString();
   const taskLabel = id => `Task ${String(Number(id) + 1).padStart(2,'0')}`;
   const MODEL_LABELS = {
+    'Claude-Opus-5':'Claude Opus 5',
     'Claude-Opus-5-5':'Claude Opus 5.5',
     'GPT-6-Astra':'GPT-6 Astra',
     'GPT-6.1-Sol':'GPT-6.1 Sol',
@@ -18,9 +19,10 @@
   // Validated categorical order (colorblind-safe on the dark chart surface); shapes are the secondary encoding.
   const MODEL_STYLES = [
     ['Claude-Opus-5-5',{color:'#3987e5',shape:'circle'}],
+    ['Claude-Opus-5',{color:'#7a74df',shape:'cross'}],
     ['GPT-6.1-Sol',{color:'#d95926',shape:'square'}],
     ['GPT-6-Astra',{color:'#199e70',shape:'triangle'}],
-    ['GPT-6-Luna',{color:'#9085e9',shape:'diamond'}]
+    ['GPT-6-Luna',{color:'#e56b9f',shape:'diamond'}]
   ];
   const MODEL_ORDER = MODEL_STYLES.map(([name]) => name);
   const MODEL_STYLE_MAP = new Map(MODEL_STYLES);
@@ -35,6 +37,7 @@
     if (shape === 'square') return `<rect x="${cx-r*.9}" y="${cy-r*.9}" width="${r*1.8}" height="${r*1.8}" rx="1.5" ${paint}></rect>`;
     if (shape === 'triangle') return `<path d="M${cx} ${cy-r*1.15}L${cx+r*1.1} ${cy+r*.8}L${cx-r*1.1} ${cy+r*.8}Z" ${paint}></path>`;
     if (shape === 'diamond') return `<path d="M${cx} ${cy-r*1.2}L${cx+r*1.2} ${cy}L${cx} ${cy+r*1.2}L${cx-r*1.2} ${cy}Z" ${paint}></path>`;
+    if (shape === 'cross') return `<path d="M${cx-r*.35} ${cy-r}H${cx+r*.35}V${cy-r*.35}H${cx+r}V${cy+r*.35}H${cx+r*.35}V${cy+r}H${cx-r*.35}V${cy+r*.35}H${cx-r}V${cy-r*.35}H${cx-r*.35}Z" ${paint}></path>`;
     return `<circle cx="${cx}" cy="${cy}" r="${r}" ${paint}></circle>`;
   }
   const EFFORT_ORDER = ['low','medium','high'];
@@ -354,6 +357,62 @@
     return `<article class="summary-card metric-chart-card" data-chart="${esc(chartType)}"><header class="metric-chart-heading"><h3 class="metric-chart-title">${esc(chartTitle)}</h3><span>${esc(note)}</span></header>${scale}${chart}</article>`;
   }
 
+  function reasoningMarker(effort, cx, cy, r, color) {
+    const common = `fill="#0d1b28" stroke="${color}" stroke-width="2.3"`;
+    if (effort === 'medium') return `<path d="M${cx} ${cy-r}L${cx+r} ${cy}L${cx} ${cy+r}L${cx-r} ${cy}Z" ${common}></path>`;
+    if (effort === 'high') return `<path d="M${cx} ${cy-r*1.05}L${cx+r*1.05} ${cy+r*.88}L${cx-r*1.05} ${cy+r*.88}Z" ${common}></path>`;
+    return `<circle cx="${cx}" cy="${cy}" r="${r}" ${common}></circle>`;
+  }
+
+  function costPerformanceChart(rows) {
+    const separator = '\u241f';
+    const points = aggregateGroups(rows, row => `${row.model}${separator}${row.effort}`).map(([key,group]) => {
+      const [model,effort] = key.split(separator);
+      const modelRows = rows.filter(row => row.model === model && row.effort === effort);
+      const priced = modelRows.filter(row => row.estimated_usd != null);
+      const meanCost = priced.length ? priced.reduce((sum,row) => sum + (Number(row.estimated_usd) || 0),0) / priced.length : null;
+      const planned = modelRows.length;
+      return {model,effort,planned,successes:group.success,rate:planned ? 100*group.success/planned : 0,meanCost,priced:priced.length};
+    }).filter(point => point.meanCost != null);
+    if (!points.length) return '<span class="mini-chart-empty">No measured cost data</span>';
+
+    const width = 620, height = 340;
+    const margin = {top:18,right:24,bottom:52,left:58};
+    const plotWidth = width-margin.left-margin.right;
+    const plotHeight = height-margin.top-margin.bottom;
+    const maxCost = Math.max(...points.map(point => point.meanCost));
+    const xMax = Math.max(1,Math.ceil(maxCost));
+    const maxRate = Math.max(...points.map(point => point.rate));
+    const yMax = Math.min(100,Math.max(50,Math.ceil(maxRate/10)*10));
+    const x = value => margin.left + plotWidth*value/xMax;
+    const y = value => margin.top + plotHeight*(1-value/yMax);
+    const xTicks = Array.from({length:5},(_,index) => xMax*index/4);
+    const yTicks = Array.from({length:5},(_,index) => yMax*index/4);
+    const grid = [
+      ...xTicks.map(value => `<g class="cost-performance-grid"><line x1="${x(value)}" y1="${margin.top}" x2="${x(value)}" y2="${height-margin.bottom}"></line><text x="${x(value)}" y="${height-margin.bottom+18}" text-anchor="middle">$${value.toFixed(value < 1 ? 2 : 1).replace(/\.0$/,'')}</text></g>`),
+      ...yTicks.map(value => `<g class="cost-performance-grid"><line x1="${margin.left}" y1="${y(value)}" x2="${width-margin.right}" y2="${y(value)}"></line><text x="${margin.left-9}" y="${y(value)+4}" text-anchor="end">${value.toFixed(0)}%</text></g>`)
+    ].join('');
+    const modelGroups = new Map();
+    points.forEach(point => {
+      const list = modelGroups.get(point.model) || [];
+      list.push(point);
+      modelGroups.set(point.model,list);
+    });
+    const series = [...modelGroups].sort(([a],[b]) => byModelOrder(a,b)).map(([model,modelPoints]) => {
+      const style = modelStyle(model);
+      modelPoints.sort((a,b) => byEffortOrder(a.effort,b.effort));
+      const line = modelPoints.length > 1 ? `<path class="cost-performance-line" d="${modelPoints.map((point,index) => `${index ? 'L' : 'M'}${x(point.meanCost)} ${y(point.rate)}`).join('')}" stroke="${style.color}"></path>` : '';
+      const marks = modelPoints.map(point => {
+        const tip = `${modelLabel(model)} · ${reasoningLabel(point.effort)}\nSuccess: ${point.successes}/${point.planned} (${point.rate.toFixed(1)}%)\nMean cost: ${usd(point.meanCost)} per attempt`;
+        return `<g class="cost-performance-point" data-tip="${esc(tip)}">${reasoningMarker(point.effort,x(point.meanCost),y(point.rate),7.5,style.color)}<text x="${x(point.meanCost)}" y="${y(point.rate)-13}" text-anchor="middle">${esc(reasoningLabel(point.effort))}</text><circle class="chart-hit" cx="${x(point.meanCost)}" cy="${y(point.rate)}" r="15"></circle></g>`;
+      }).join('');
+      return line+marks;
+    }).join('');
+    const modelLegend = [...modelGroups.keys()].sort(byModelOrder).map(model => `<span><i style="--series:${modelStyle(model).color}"></i>${esc(modelLabel(model))}</span>`).join('');
+    const reasoningLegend = EFFORT_ORDER.map(effort => `<span><svg viewBox="0 0 14 14" aria-hidden="true">${reasoningMarker(effort,7,7,4,'#9eb2c4')}</svg>${reasoningLabel(effort)}</span>`).join('');
+    return `<div class="cost-performance-legend"><div>${modelLegend}</div><div>${reasoningLegend}</div></div><svg class="cost-performance-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Mean API cost per attempt versus success rate for every model and reasoning level">${grid}<line class="cost-performance-axis" x1="${margin.left}" y1="${height-margin.bottom}" x2="${width-margin.right}" y2="${height-margin.bottom}"></line><line class="cost-performance-axis" x1="${margin.left}" y1="${margin.top}" x2="${margin.left}" y2="${height-margin.bottom}"></line>${series}<text class="cost-performance-axis-title" x="${margin.left+plotWidth/2}" y="${height-4}" text-anchor="middle">Mean API cost per attempt</text><text class="cost-performance-axis-title" x="13" y="${margin.top+plotHeight/2}" text-anchor="middle" transform="rotate(-90 13 ${margin.top+plotHeight/2})">Success rate</text></svg>`;
+  }
+
   let chosen = null;
   let spatialController = null;
   let urlStateEnabled = Boolean(location.search);
@@ -407,8 +466,9 @@
     $('model-chart-method').textContent = `${plannedCounts.length === 1 ? `${plannedCounts[0]} planned episode${plannedCounts[0] === 1 ? '' : 's'}` : 'Planned episodes'} per configuration · 95% Wilson interval`;
     if ($('state-stats-selection')) $('state-stats-selection').textContent = selection;
 
-    const modelSummaries = [...new Set(rows.map(row => row.model).filter(Boolean))].sort().map(model => {
-      const modelRows = rows.filter(row => row.model === model);
+    const summaryRows = episodes;
+    const modelSummaries = [...new Set(summaryRows.map(row => row.model).filter(Boolean))].sort().map(model => {
+      const modelRows = summaryRows.filter(row => row.model === model);
       const successes = modelRows.filter(row => row.success === true).length;
       const planned = modelRows.length;
       const pricedRows = modelRows.filter(row => row.estimated_usd != null);
@@ -433,7 +493,8 @@
 
     $('cards').innerHTML =
       chartCard('Success rate by model', successChart, 'success') +
-      chartCard('Measured cost by model', costChart, 'cost');
+      chartCard('Measured cost by model', costChart, 'cost') +
+      `<article class="summary-card metric-chart-card cost-performance-card" data-chart="efficiency"><header class="metric-chart-heading"><h3 class="metric-chart-title">Cost vs. success by reasoning</h3><span>All data</span></header>${costPerformanceChart(summaryRows)}</article>`;
 
     const taskEntries = aggregateGroups(rows, row => taskLabel(row.task_id)).map(([name,group]) => ({name,group,attempted:group.completed+group.stopped,rate:group.completed+group.stopped ? 100*group.success/(group.completed+group.stopped) : null}));
     const sortedTaskEntries = sortedForTable(taskEntries,'task',{

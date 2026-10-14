@@ -15,6 +15,7 @@ DEFAULT_VIDEOS = PROJECT / 'tests' / 'drive_videos.json'
 DEFAULT_OUTPUT = PROJECT / 'assets' / 'js' / 'results-data.js'
 COLORS = ['#79c4ff', '#70dab5', '#c39bff', '#ffb071', '#ff78b7']
 MODEL_COLORS = {
+    'anthropic/claude-opus-5': '#7a74df',
     'anthropic/claude-opus-5-5': '#79c4ff',
     'openai/gpt-6-astra': '#70dab5',
     'openai/gpt-6-luna': '#c39bff',
