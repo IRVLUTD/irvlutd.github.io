@@ -1,0 +1,77 @@
+% ===========================================================================
+% RESULTS -- drop in after the setup section, before Discussion/Conclusion.
+% Figures: fig4_models.pdf, fig5_tasks.pdf (in figures/).
+% ===========================================================================
+
+\section{Results}
+\label{sec:results}
+The fifteen complete configurations comprise 1,500 episodes, of which 285
+(19.0\%) satisfy LIBERO's success predicate. The campaign consumed 83{,}153
+model calls, 915{,}160 scored simulator steps, and 190.0 hours of API latency,
+at a settled cost of \$3{,}655. Because every configuration covers the same ten
+tasks $\times$ ten initial states, every comparison below is matched on task and
+initial state by construction.
+
+\subsection{Success by model and reasoning effort}
+Figure~\ref{fig:models} gives the per-configuration success rate with its 95\%
+Wilson interval.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig4_models.pdf}
+\caption{Success rate for each model at each requested reasoning effort, over
+100 episodes per configuration. Points are the observed rate and bars the 95\%
+Wilson interval. Requested effort raises success for Astra, Sol, and Opus~5.5;
+Opus~5 changes from 10\% to 12\% to 6\%. GPT-6 Luna records no success in 300
+episodes.}
+\label{fig:models}
+\end{figure}
+
+\placeholder{Three paragraphs to write here:}
+\placeholder{(i) effort is monotone for Astra $0.28\to0.38\to0.44$, Sol
+$0.24\to0.30\to0.33$, and Opus~5.5 $0.09\to0.18\to0.33$, while Opus~5 changes
+$0.10\to0.12\to0.06$.}
+\placeholder{(ii) accuracy and cost are close to independent --- Sol and
+Opus~5.5 both reach 0.33 at high effort, at \$4.96 and \$5.46 per success
+respectively, against \$94.57 for Opus~5 at high effort.}
+\placeholder{(iii) Luna fails completely, and differently by effort: at low
+effort it averages 8.5 calls and 137 steps and stops of its own accord, while
+at medium and high it averages 67.5 and 74.0 calls and reaches the 80-call
+allowance in 23\% and 45\% of episodes.}
+
+\subsection{Success by task}
+Figure~\ref{fig:tasks} pools the fifteen configurations to 150 episodes per
+task.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig5_tasks.pdf}
+\caption{Success rate by task, pooled over the fifteen complete
+configurations. The three basket-packing tasks and the stove task carry nearly
+all successes; three tasks are solved by no configuration at any effort
+setting.}
+\label{fig:tasks}
+\end{figure}
+
+\placeholder{One paragraph: the distribution is bimodal, and a task at 0/150
+across five models and three effort levels makes an environment-side cause ---
+an unreachable pose, an occluded target, or a predicate the achieved state does
+not satisfy --- as plausible as a policy-side one. Inspect the rollouts for
+tasks 4, 6 and 9 and say which the videos support.}
+
+\subsection{Inference cost}
+\placeholder{Table or short paragraph: calls per episode, tokens, latency, and
+dollars per success per configuration. The headline is a factor-of-twenty
+spread in cost per success across configurations of comparable accuracy.}
+
+\subsection{How episodes end}
+Of the 1,500 episodes, 285 (19.0\%) end in success, 1,115 (74.3\%) in an
+unsuccessful terminal state, 93 (6.2\%) on a budget or limit stop, and 7
+(0.5\%) on an API error. The limit stops are concentrated: 68 of the 93 belong
+to GPT-6 Luna at medium and high effort. Episodes that stop on a limit or an
+error are counted as failures in every rate above; none is silently dropped.
+
+\placeholder{AUTHOR CHECK: the legacy \texttt{incomplete\_budget} label merges
+the call limit and the dollar cap. Separate the 91 using the recorded call
+count and settled cost --- ``the allowance bound the episode'' and ``spending
+did'' have different implications.}
