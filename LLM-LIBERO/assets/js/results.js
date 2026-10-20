@@ -22,7 +22,8 @@
     ['Claude-Opus-5',{color:'#7a74df',shape:'cross'}],
     ['GPT-6.1-Sol',{color:'#d95926',shape:'square'}],
     ['GPT-6-Astra',{color:'#199e70',shape:'triangle'}],
-    ['GPT-6-Luna',{color:'#e56b9f',shape:'diamond'}]
+    ['GPT-6-Luna',{color:'#e56b9f',shape:'diamond'}],
+    ['Gemini-4-Argon',{color:'#f7c948',shape:'circle'}]
   ];
   const MODEL_ORDER = MODEL_STYLES.map(([name]) => name);
   const MODEL_STYLE_MAP = new Map(MODEL_STYLES);
