@@ -13,7 +13,8 @@
     'GPT-6-Astra':'GPT-6 Astra',
     'GPT-6.1-Sol':'GPT-6.1 Sol',
     'GPT-6-Sol':'GPT-6 Sol',
-    'GPT-6-Luna':'GPT-6 Luna'
+    'GPT-6-Luna':'GPT-6 Luna',
+    'Gemini-4-Argon':'Gemini 4 Argon'
   };
   const modelLabel = value => MODEL_LABELS[value] || String(value || '');
   // Validated categorical order (colorblind-safe on the dark chart surface); shapes are the secondary encoding.
@@ -23,7 +24,7 @@
     ['GPT-6.1-Sol',{color:'#d95926',shape:'square'}],
     ['GPT-6-Astra',{color:'#199e70',shape:'triangle'}],
     ['GPT-6-Luna',{color:'#e56b9f',shape:'diamond'}],
-    ['Gemini-4-Argon',{color:'#f7c948',shape:'circle'}]
+    ['Gemini-4-Argon',{color:'#f7c948',shape:'hexagon'}]
   ];
   const MODEL_ORDER = MODEL_STYLES.map(([name]) => name);
   const MODEL_STYLE_MAP = new Map(MODEL_STYLES);
@@ -38,6 +39,7 @@
     if (shape === 'square') return `<rect x="${cx-r*.9}" y="${cy-r*.9}" width="${r*1.8}" height="${r*1.8}" rx="1.5" ${paint}></rect>`;
     if (shape === 'triangle') return `<path d="M${cx} ${cy-r*1.15}L${cx+r*1.1} ${cy+r*.8}L${cx-r*1.1} ${cy+r*.8}Z" ${paint}></path>`;
     if (shape === 'diamond') return `<path d="M${cx} ${cy-r*1.2}L${cx+r*1.2} ${cy}L${cx} ${cy+r*1.2}L${cx-r*1.2} ${cy}Z" ${paint}></path>`;
+    if (shape === 'hexagon') return `<path d="M${cx-r} ${cy-r*.58}L${cx} ${cy-r*1.15}L${cx+r} ${cy-r*.58}L${cx+r} ${cy+r*.58}L${cx} ${cy+r*1.15}L${cx-r} ${cy+r*.58}Z" ${paint}></path>`;
     if (shape === 'cross') return `<path d="M${cx-r*.35} ${cy-r}H${cx+r*.35}V${cy-r*.35}H${cx+r}V${cy+r*.35}H${cx+r*.35}V${cy+r}H${cx-r*.35}V${cy+r*.35}H${cx-r}V${cy-r*.35}H${cx-r*.35}Z" ${paint}></path>`;
     return `<circle cx="${cx}" cy="${cy}" r="${r}" ${paint}></circle>`;
   }
@@ -52,7 +54,16 @@
     return `<div class="chart-legend">${items}${extra}</div>`;
   }
   const reasoningLabel = value => ({low:'Low',medium:'Medium',high:'High'}[String(value || '').toLowerCase()] || String(value || ''));
-  const statusLabel = row => row?.status === 'incomplete_budget' ? 'Call limit reached' : String(row?.status || 'Pending').replaceAll('_',' ');
+  const statusLabel = row => {
+    if (row?.status !== 'incomplete_budget') return String(row?.status || 'Pending').replaceAll('_',' ');
+    if (Number(row.api_attempts) >= 80) return 'Call limit reached';
+    if (row.stop_detail === 'budget_reservation_limit') return 'Budget limit reached';
+    if (String(row.stop_detail || '').startsWith('replay_request_mismatch')) return 'Replay error';
+    if (row.outcome_category === 'infrastructure_error') return 'Infrastructure error';
+    if (Number(row.steps) >= 900) return 'Simulator step limit reached';
+    if (row.framework_status === 'error') return 'Execution error';
+    return 'Stopped early';
+  };
 
   function googleDriveFileId(value) {
     if (typeof value !== 'string' || !value.trim()) return null;

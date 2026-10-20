@@ -66,6 +66,9 @@ def compact_calls(calls):
         note = arguments.get('note') if isinstance(arguments, dict) else None
         if note:
             item['plan_note'] = str(note)[:360]
+        hindsight = call.get('hindsight')
+        if hindsight not in (None, ''):
+            item['hindsight'] = hindsight
         compact.append(item)
     return compact
 
@@ -191,10 +194,12 @@ def build(results_index, video_index):
             'metrics': row.get('metrics') or {},
             'stop_detail': row.get('stop_detail'),
             'framework_status': row.get('framework_status'),
+            'outcome_category': row.get('outcome_category'),
             'video': video,
             'calls': compact_calls(row.get('calls')),
             'trajectory': compact_trajectory(row.get('trajectory')),
             'conversation': row.get('conversation') or [],
+            'hindsight': row.get('hindsight'),
             'protocol': row.get('protocol') or {
                 'model': row['model'],
                 'reasoning_effort': row['effort'],
