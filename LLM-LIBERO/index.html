@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=80">
+  <link rel="stylesheet" href="./assets/css/results.css?v=81">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -31,6 +31,7 @@
   <section class="hero">
     <div class="hero-body pad-zero">
       <div class="container is-max-desktop">
+        <a class="citation-jump" href="#citation"><i class="fas fa-quote-right" aria-hidden="true"></i><span>Cite</span></a>
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 id="project-name" class="title is-2 publication-title"><span class="publication-title-main">From Reasoning to Action<span class="sr-only">:</span></span> <span class="publication-title-sub">Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</span></h1>
@@ -199,11 +200,43 @@
         </div>
       </article>
     </section>
-    <section class="results-section contact" id="contact"><h2>Contact</h2><p>Send any comments or questions to May Espinola | Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a> | <a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+    <div class="footer-info-grid">
+      <section class="results-section footer-info-card citation-section" id="citation">
+        <div class="citation-heading"><div><span>Citation</span><h2>Cite this work</h2></div><button type="button" class="citation-copy" aria-describedby="citation-copy-status"><i class="fas fa-copy" aria-hidden="true"></i>Copy BibTeX</button></div>
+        <pre id="project-bibtex" class="citation-code"><code>@misc{espinola2026reasoningaction,
+  title = {From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks},
+  author = {Espinola, May and Zhang, Qifan and Xiang, Yu},
+  year = {2026},
+  url = {https://irvlutd.github.io/LLM-LIBERO/}
+}</code></pre>
+        <span id="citation-copy-status" class="sr-only" aria-live="polite"></span>
+      </section>
+      <section class="results-section footer-info-card contact" id="contact"><div class="eyebrow">Contact</div><h2>Questions or comments?</h2><p>Contact May Espinola or Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a><br><a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+    </div>
   </main>
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
   <script src="./assets/js/results-data.js?v=16"></script>
   <script src="./assets/js/results.js?v=61"></script>
+  <script>
+    document.querySelector('.citation-copy')?.addEventListener('click', async event => {
+      const button = event.currentTarget;
+      const citation = document.querySelector('#project-bibtex code')?.textContent || '';
+      const status = document.getElementById('citation-copy-status');
+      try {
+        await navigator.clipboard.writeText(citation);
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>Copied';
+        if (status) status.textContent = 'BibTeX citation copied to clipboard.';
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(document.getElementById('project-bibtex'));
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        if (status) status.textContent = 'BibTeX citation selected. Press Control or Command C to copy.';
+      }
+      window.setTimeout(() => { button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>Copy'; }, 1800);
+    });
+  </script>
 </body>
 </html>
