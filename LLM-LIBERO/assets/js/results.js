@@ -54,15 +54,16 @@
     return `<div class="chart-legend">${items}${extra}</div>`;
   }
   const reasoningLabel = value => ({low:'Low',medium:'Medium',high:'High'}[String(value || '').toLowerCase()] || String(value || ''));
+  const limitReached = row => Number(row?.api_attempts) >= 80 || row?.stop_detail === 'budget_reservation_limit';
   const statusLabel = row => {
+    if (Number(row?.api_attempts) >= 80) return 'Call limit reached';
+    if (row?.stop_detail === 'budget_reservation_limit') return 'Budget limit reached';
     if (row?.status !== 'incomplete_budget') return String(row?.status || 'Pending').replaceAll('_',' ');
-    if (Number(row.api_attempts) >= 80) return 'Call limit reached';
-    if (row.stop_detail === 'budget_reservation_limit') return 'Budget limit reached';
     if (String(row.stop_detail || '').startsWith('replay_request_mismatch')) return 'Replay error';
     if (row.outcome_category === 'infrastructure_error') return 'Infrastructure error';
     if (Number(row.steps) >= 900) return 'Simulator step limit reached';
     if (row.framework_status === 'error') return 'Execution error';
-    return 'Stopped early';
+    return 'Limit reached';
   };
 
   function googleDriveFileId(value) {
@@ -91,7 +92,7 @@
   const tasks = [...new Set(episodes.map(row => row.task_id).filter(value => value != null))].sort((a,b) => a-b);
   const efforts = [...new Set(episodes.map(row => row.effort).filter(Boolean))];
   const states = [...new Set(episodes.map(row => row.init_state).filter(value => value != null))].sort((a,b) => a-b);
-  const chartSort = {success:'desc',cost:'desc',model:'desc',task:'desc'};
+  const chartSort = {success:'desc',cost:'desc',model:'desc'};
   const tableSort = {
     model:{key:'rate',direction:'desc'},
     task:{key:null,direction:'desc'},
@@ -182,7 +183,7 @@
     const groups = new Map();
     rows.forEach(row => {
       const name = key(row);
-      const group = groups.get(name) || {completed:0,success:0,stopped:0,pending:0,cost:0,costKnown:false,calls:0,callsKnown:false};
+      const group = groups.get(name) || {completed:0,success:0,stopped:0,limit:0,pending:0,cost:0,costKnown:false,calls:0,callsKnown:false};
       if (completed(row)) {
         group.completed += 1;
         if (row.success === true) group.success += 1;
@@ -191,6 +192,7 @@
       } else {
         group.pending += 1;
       }
+      if (limitReached(row)) group.limit += 1;
       if (row.estimated_usd != null) { group.cost += Number(row.estimated_usd) || 0; group.costKnown = true; }
       if (row.api_attempts != null) { group.calls += Number(row.api_attempts) || 0; group.callsKnown = true; }
       groups.set(name, group);
@@ -203,7 +205,7 @@
       name,
       `${group.success} / ${group.completed + group.stopped}`,
       group.completed + group.stopped ? `${(100 * group.success / (group.completed + group.stopped)).toFixed(1)}%` : '—',
-      group.stopped,
+      group.limit,
       group.pending,
       group.costKnown ? usd(group.cost) : '—',
       group.callsKnown ? group.calls : '—'
@@ -233,7 +235,7 @@
       success:entry => entry.group.success,
       rate:entry => entry.rate,
       failures:entry => entry.planned-entry.group.success,
-      stopped:entry => entry.group.stopped,
+      limit:entry => entry.group.limit,
       cost:entry => entry.group.costKnown ? entry.group.cost : null,
       calls:entry => entry.group.callsKnown ? entry.group.calls : null
     });
@@ -244,7 +246,7 @@
       `${entry.group.success} / ${entry.planned}`,
       `${entry.rate.toFixed(1)}%`,
       entry.planned-entry.group.success,
-      entry.group.stopped,
+      entry.group.limit,
       entry.group.costKnown ? usd(entry.group.cost) : '—',
       entry.group.callsKnown ? entry.group.calls : '—'
     ]));
@@ -286,7 +288,14 @@
         return {key,success,attempted:splitRows.length,rate:splitRows.length ? 100 * success / splitRows.length : 0};
       }).filter(item => item.attempted);
       return {taskId,label:taskLabel(taskId),description:taskDescription(taskId),group,attempted:runs,rate,low:100*low,high:100*high,splits};
-    }).sort((a,b) => (chartSort.task === 'asc' ? a.rate-b.rate : b.rate-a.rate) || a.taskId-b.taskId);
+    }).sort((a,b) => {
+      const taskSort = tableSort.task;
+      if (taskSort.key === 'rate') {
+        const direction = taskSort.direction === 'asc' ? 1 : -1;
+        return direction * (a.rate-b.rate) || a.taskId-b.taskId;
+      }
+      return a.taskId-b.taskId;
+    });
     if (!entries.length) return '<div class="aggregate-chart-empty">No matching data</div>';
     const width = 920;
     const rowHeight = 54;
@@ -340,7 +349,7 @@
         `#${entry.rank} ${label}`,
         `Success: ${entry.rate.toFixed(1)}% (${entry.group.success}/${entry.planned})`,
         `95% CI: ${entry.low.toFixed(1)}–${entry.high.toFixed(1)}%`,
-        `Stopped early: ${entry.group.stopped}`,
+        `Limit reached: ${entry.group.limit}`,
         entry.group.costKnown ? `Cost: ${usd(entry.group.cost)}` : ''
       ].filter(Boolean).join('\n');
       return `<g class="chart-row reasoning-estimate" data-tip="${esc(tip)}"><rect class="chart-hit" x="0" y="${top}" width="${width}" height="${rowHeight}"></rect>` +
@@ -512,19 +521,19 @@
     const sortedTaskEntries = sortedForTable(taskEntries,'task',{
       success:entry => entry.group.success,
       rate:entry => entry.rate,
-      stopped:entry => entry.group.stopped,
+      limit:entry => entry.group.limit,
       pending:entry => entry.group.pending,
       cost:entry => entry.group.costKnown ? entry.group.cost : null,
       calls:entry => entry.group.callsKnown ? entry.group.calls : null
     });
     $('task-stats').innerHTML = table(
-      ['Task',{label:'Success / attempted',sortKey:'success'},{label:'Rate',sortKey:'rate'},{label:'Stopped early',sortKey:'stopped'},{label:'Pending',sortKey:'pending'},{label:'Cost',sortKey:'cost'},{label:'Calls',sortKey:'calls'}],
-      sortedTaskEntries.map(({name,group,attempted,rate}) => cells([name,`${group.success} / ${attempted}`,rate == null ? '—' : `${rate.toFixed(1)}%`,group.stopped,group.pending,group.costKnown ? usd(group.cost) : '—',group.callsKnown ? group.calls : '—'])),
+      ['Task',{label:'Success / attempted',sortKey:'success'},{label:'Rate',sortKey:'rate'},{label:'Limit reached',sortKey:'limit'},{label:'Pending',sortKey:'pending'},{label:'Cost',sortKey:'cost'},{label:'Calls',sortKey:'calls'}],
+      sortedTaskEntries.map(({name,group,attempted,rate}) => cells([name,`${group.success} / ${attempted}`,rate == null ? '—' : `${rate.toFixed(1)}%`,group.limit,group.pending,group.costKnown ? usd(group.cost) : '—',group.callsKnown ? group.calls : '—'])),
       'Success and cost grouped by task',
       'task'
     );
     $('model-stats').innerHTML = table(
-      ['Rank','Model','Reasoning',{label:'Success / planned',sortKey:'success'},{label:'Rate',sortKey:'rate'},{label:'Failures',sortKey:'failures'},{label:'Stopped early',sortKey:'stopped'},{label:'Cost',sortKey:'cost'},{label:'Calls',sortKey:'calls'}],
+      ['Rank','Model','Reasoning',{label:'Success / planned',sortKey:'success'},{label:'Rate',sortKey:'rate'},{label:'Failures',sortKey:'failures'},{label:'Limit reached',sortKey:'limit'},{label:'Cost',sortKey:'cost'},{label:'Calls',sortKey:'calls'}],
       modelLeaderboard(rows),
       'Model and reasoning leaderboard ordered by success rate',
       'model'

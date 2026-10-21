@@ -67,6 +67,8 @@ def compact_calls(calls):
         if note:
             item['plan_note'] = str(note)[:360]
         hindsight = call.get('hindsight')
+        if hindsight in (None, '') and isinstance(arguments, dict):
+            hindsight = arguments.get('hindsight')
         if hindsight not in (None, ''):
             item['hindsight'] = hindsight
         compact.append(item)
