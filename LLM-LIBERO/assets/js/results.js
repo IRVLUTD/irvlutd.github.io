@@ -12,13 +12,14 @@
     'Claude-Opus-5-5':'Claude Opus 5.5',
     'GPT-6-Astra':'GPT-6 Astra',
     'GPT-6.1-Sol':'GPT-6.1 Sol',
-    'GPT-6-Sol':'GPT-6 Sol',
+    'Claude-Fable-5-2':'Claude Fable 5.2',
     'GPT-6-Luna':'GPT-6 Luna',
     'Gemini-4-Argon':'Gemini 4 Argon'
   };
   const modelLabel = value => MODEL_LABELS[value] || String(value || '');
   // Validated categorical order (colorblind-safe on the dark chart surface); shapes are the secondary encoding.
   const MODEL_STYLES = [
+    ['Claude-Fable-5-2',{color:'#60cfd0',shape:'diamond'}],
     ['Claude-Opus-5-5',{color:'#3987e5',shape:'circle'}],
     ['Claude-Opus-5',{color:'#7a74df',shape:'cross'}],
     ['GPT-6.1-Sol',{color:'#d95926',shape:'square'}],
