@@ -12,7 +12,7 @@
     'Claude-Opus-5-5':'Claude Opus 5.5',
     'GPT-6-Astra':'GPT-6 Astra',
     'GPT-6.1-Sol':'GPT-6.1 Sol',
-    'Claude-Fable-5-2':'Updated Fable 5.2',
+    'Claude-Fable-5-2':'Claude Fable 5.2',
     'GPT-6-Luna':'GPT-6 Luna',
     'Gemini-4-Argon':'Gemini 4 Argon'
   };
