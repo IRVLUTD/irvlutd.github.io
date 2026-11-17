@@ -1,0 +1,613 @@
+\documentclass[11pt]{article}
+\usepackage{irvlreport}
+
+% --- packages the body needs -----------------------------------------------
+\usepackage{amsmath}      % equation, \text{...} inside math
+\usepackage{booktabs}     % \toprule \midrule \bottomrule
+\usepackage{graphicx}     % \includegraphics
+\usepackage{url}          % \url{} inside the .bib entries
+\usepackage{listings}     % \lstinputlisting for the appendix
+\usepackage{natbib}       % \citep and \citet
+
+\graphicspath{{figures/}{./}}
+\bibliographystyle{plainnat}
+
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible}
+
+% --- local macro used throughout the draft ---------------------------------
+% Marks a value still to be verified. Delete the definition and every call
+% before submission.
+\newcommand{\placeholder}[1]{\textbf{[#1]}}
+
+\irvlsettitle{From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks}
+\irvlsetshorttitle{LIBERO-10 Benchmark}
+\irvlsetauthors{May Espinola\textsuperscript{*}, Qifan Zhang\textsuperscript{*}, Yu Xiang\\[3pt]
+\normalsize\textsuperscript{*}Equal contribution}
+\irvlsetdate{October 2026}
+\irvlsetversion{Version 1.0}
+\irvlsetlogo{irvl-logo.png}
+% Optional: \irvlsetreportid{IRVL-TR-2026-01}
+\irvlsetprojecturl{https://irvlutd.github.io/LLM-LIBERO/}
+\irvlsetcodeurl{https://github.com/IRVLUTD/LLM_LIBERO}
+
+\begin{document}
+\irvlmaketitle
+\begin{irvlabstract}
+Multimodal language models can interpret visual observations and use tool calls, which makes it possible to evaluate them as robot controllers without training a task-specific policy. Such an agent also declares its own completion, so an evaluation must score the resulting environment state rather than the agent's report. We study this setting on the ten simulated manipulation tasks of LIBERO-10 under a single manipulation framework shared by every API-served model we test. Each agent receives a natural-language goal, two RGB camera views, and robot proprioception, and controls a Franka Panda arm through absolute end-effector pose commands. The protocol holds the observation interface, manipulation prompt, simulator horizon, and model-call allowance fixed while varying the model and reasoning effort. We derive the per-episode allowance of 80 model calls from the call usage of successful pilot trajectories with a factor-of-two margin. There are fifteen configurations total: GPT-6.1 Sol, GPT-6 Astra, GPT-6 Luna, Claude Opus 5, and Claude Opus 5.5, crossed with three requested reasoning levels (low, medium, high). For every episode we record LIBERO's own success predicate, the termination category, model calls and simulator steps consumed, input, cached, output and reasoning tokens, API latency, and estimated cost, both per call and in aggregate. Per-episode records and rollout videos are browsable at the project site.
+\end{irvlabstract}
+
+% ===========================================================================
+\section{Introduction}
+% ===========================================================================
+Language-guided manipulation requires identifying objects, planning motions,
+and checking whether an action produced the intended physical outcome. An
+API-served multimodal language model can attempt all three by alternating
+visual observations with robot-control tool calls. Producing a plausible plan
+or declaring completion, however, establishes nothing about the resulting
+physical state. An evaluation of these models as controllers must therefore
+score the environment rather than the agent's report, and must account for the
+inference resources the attempt consumed.
+
+We investigate how model identity and requested reasoning effort affect
+manipulation under a common closed-loop interface. The protocol has three
+fixed points: every configuration sees one observation and action interface,
+success is the simulator's own predicate rather than the agent's report, and
+each episode runs under a declared allowance of model calls whose cost is
+accounted for and reported. We use LIBERO-10, drawn from the LIBERO
+benchmark~\citep{liu2023libero}, and connect the simulator to the upstream
+Inspect Robots agent~\citep{inspectrobots} through a custom embodiment
+adapter. The agent selects pose targets directly; no task-specific policy is
+trained. Our study concerns zero-shot execution under general robot
+instructions, not lifelong policy learning.
+
+Three recent studies evaluate this same generation of API-served models as
+embodied controllers, and together they locate our design.
+\citet{galbot2026astra} evaluate GPT-6 Astra across six embodiment domains and
+report a gap between competent task-level decisions and reliable physical
+control: in their \emph{Direct} configuration, where the model emits control
+targets itself, Astra reaches 26\% on the 50-instance RoboDojo split against
+48\% when it instead reviews and corrects a learned policy's proposals.
+\citet{roboicl2026} hold that model fixed and change only its context, raising
+the RoboDojo progress score from 33.68 to 50.64 by writing demonstrations in
+the same observation--action--receipt--observation grammar as the agent's own
+interaction history. \citet{vlmagents2026} likewise keep the model fixed and
+vary the family of demonstration supplied through a context compiler.
+
+Our protocol is deliberately the \emph{Direct}, zero-shot, single-interface
+corner of that space: one frozen model, no learned policy in the loop, no
+demonstrations, and one observation and action interface shared across every
+configuration. This is the weakest configuration surveyed above, and we choose
+it for two reasons. It isolates what the model contributes on its own, and it
+establishes the no-demonstration reference point that context-engineering
+results are measured against but, on LIBERO, do not yet report. Each of those
+studies also evaluates a single model, so holding the interface constant across
+models is what makes the complementary comparison possible here.
+
+The study asks three questions: whether these models can complete multi-stage
+manipulation from RGB and proprioception; how reasoning effort affects success
+and inference cost; and which observable failures limit execution. The
+contribution of this report is a documented protocol with its design rationale,
+and an auditable record of observations, tool calls, simulator actions, and API
+usage.
+
+% ===========================================================================
+\section{LLM-based Manipulation Framework}
+\label{sec:method}
+% ===========================================================================
+At decision step $k$ the model receives the task instruction, the current
+observation, and the retained conversation history, and returns exactly one
+tool call. For a motion call, the framework interpolates the requested target
+into low-level actions, executes them, and returns a new observation. One model
+call therefore advances many simulator control steps, and the model must
+inspect the next observation to judge whether the target was reached and
+whether a grasp or placement succeeded. Figure~\ref{fig:interface} shows one
+such step.
+
+\begin{figure}[t]
+\centering
+% \graphicspath already points at figures/ -- a path prefix here will break
+% the build from any other directory.
+\includegraphics[width=\textwidth]{LIBERO_Framework.pdf}
+\caption{\textbf{Overview of the LLM-based manipulation framework in LIBERO.}
+A multimodal LLM uses previous and current images, robot state, and prompt context to select \texttt{move\_to}, \texttt{done}, or \texttt{give\_up}.
+The adapter converts \texttt{move\_to} targets into control actions, and updated observations inform the next decision.
+Interaction ends upon \texttt{done}, \texttt{give\_up}, or a call/step limit.
+LIBERO's success checker independently determines task success.}
+\label{fig:interface}
+\end{figure}
+
+\subsection{Observations}
+Each observation contains an external agentview image and a wrist-camera image,
+both $256\times256$ RGB. Proprioception comprises world-frame end-effector
+position, a six-dimensional orientation representation, the current gripper
+command, and measured finger joint positions.
+
+Four choices here are deliberate, and each would be a confound if left
+unstated. First, we supply two views rather than one: the agentview camera
+alone leaves the gripper's relation to a target ambiguous at contact, which is
+where LIBERO-10's multi-stage tasks are decided, and the wrist view is what
+makes a pre-grasp alignment checkable from the observation itself. Second,
+orientation is the first two columns of a rotation matrix rather than a
+quaternion or Euler angles. This representation is continuous and free of the
+sign ambiguity and convention choices that make quaternions and Euler triples
+easy to emit in an inconsistent frame, and the third column is recoverable by
+cross product. Third, we report the gripper \emph{command} and the measured
+finger joint positions separately, and the prompt states that they differ,
+because a closed command with the fingers still at their commanded width is the
+signature of a failed grasp --- the single most consequential distinction the
+agent has to make, and one the command alone cannot express. Fourth, the model
+receives no privileged object coordinates, so observed pose errors are
+perception-and-reasoning errors under this interface rather than arithmetic on
+ground truth.
+
+Image context retains the two most recent observations, at most four camera
+images, while earlier text and tool history remain available. This limit bounds
+per-request image cost, which otherwise grows linearly in retained frames
+across an 80-call episode, and it fixes the visual history every configuration
+sees. It also makes the interface memoryless in images beyond one step, so a
+task whose later stages depend on a visual fact established early must be
+solved through the retained text history. Comparable recent work sits at the
+other end of that tradeoff, with image budgets near 48 per
+request~\citep{roboicl2026,vlmagents2026}; we state our limit rather than treat
+it as an incidental setting.
+
+\subsection{Tools and motion execution}
+The agent has three tools: \texttt{move\_to}, \texttt{done}, and
+\texttt{give\_up}. A \texttt{move\_to} call specifies an absolute world-frame
+position, optional orientation entries, and an optional gripper command;
+omitted dimensions retain their current values. Each motion carries a short
+\texttt{note} describing the current observation and the reason for the action.
+Notes are recorded for inspection and are never a success criterion.
+
+The action vector is $(x,y,z,r_{00},r_{10},r_{20},r_{01},r_{11},r_{21},g)$.
+Translation targets are bounded by $x,y\in[-0.6,0.6]$\,m and
+$z\in[0.42,1.6]$\,m; orientation entries lie in $[-1,1]$ and $g\in[0,1]$. The
+framework checks bounds and per-step action changes. Per-step limits are
+0.01\,m per translation coordinate, 0.05 per orientation entry, and 0.1 for the
+gripper command. The adapter orthonormalizes the orientation columns before
+converting to the simulator representation. The gripper is an open/close
+actuator and does not accept a partial opening. Low-level control runs at
+20\,Hz.
+
+We expose \emph{absolute} pose targets with framework-side interpolation rather
+than per-step deltas for two reasons. An absolute target is independently
+checkable: the agent can compare the commanded pose against the proprioception
+it receives next and detect a shortfall, which a sequence of deltas does not
+afford unless the agent integrates its own history. And interpolation moves
+responsibility for smoothness and rate limiting off the model, so a failure is
+attributable to target selection rather than to an inability to emit a
+well-conditioned trajectory at 20\,Hz. The cost is that one model call advances
+many control steps, which makes the call allowance and the simulator horizon
+separate resources that must both be reported; \citet{galbot2026astra} adopt
+the same separation, distinguishing control steps, action segments, and model
+requests. The per-step limits are the simulator-side rate limits that make
+interpolation physical, bounding how far a single accepted target can move the
+arm per control step.
+
+\subsection{Prompt design}
+Every configuration uses one prompt structure. The system message describes the
+tool-control loop, requires exactly one tool call per turn, requests an
+explanatory note for each motion, and states the 80-call allowance. Embodiment
+notes describe coordinates, orientation, gripper semantics, the available
+observations, and general manipulation guidance: maintain clearance,
+distinguish distractors, verify a grasp with a short lift, check the result of
+each motion, and change strategy after repeated failures. The user message
+supplies the native task instruction as \texttt{Goal: <instruction>}.
+
+The zero-shot condition supplies no demonstrations, no demonstration-derived
+task notes, and no learnings carried from earlier episodes. Each episode starts
+a fresh policy instance. The terminal tools request a retrospective
+observation, which is logged but never passed to a later episode. Zero-shot
+here means execution without task demonstrations or task-specific training, not
+execution without general manipulation guidance; the guidance is part of the
+interface and is held constant, so it cannot explain a difference between
+configurations. Appendix~\ref{app:prompt} reproduces the archived system
+prompt.
+
+% ===========================================================================
+\section{Experimental Setup}
+\label{sec:experiments}
+% ===========================================================================
+
+\subsection{Tasks and initialization}
+The evaluation covers all ten native LIBERO-10 tasks, indexed 0--9 and listed
+in Appendix~\ref{app:tasks}; they include multi-object placement, stove
+interaction, drawer closure, and microwave placement and closure. Each task
+provides 50 saved initial states, and the full batches use states 0--9, giving
+100 episodes per model--effort configuration.
+
+The ten-states-per-task design trades repetitions for initial-state coverage.
+Variation across initial states is a property of the benchmark that we want
+represented in the estimate; variation across repeated calls on the same state
+is provider sampling noise. Spending a task's episode allowance on ten distinct
+states rather than on repetitions of fewer states therefore targets the
+variance component that generalizes. The cost is that each (task, state) cell
+is observed once per configuration, so cell-level outcomes carry no
+within-cell variance estimate, and we quote uncertainty only at the task and
+configuration level.
+
+For state index $i$, the simulator loads the native saved state with
+environment seed $142+i$. Ten neutral steps with an open-gripper command settle
+the scene before the scored step counter is reset. The evaluation-framework
+seed is $42+e$, where $e$ is the episode index within a task batch.
+Simulator seeds do not make remote model generation deterministic, so repeated
+episodes on one state are not expected to be identical. Runs proceed
+sequentially in configuration blocks rather than in randomized or
+counterbalanced order, so a provider-side change over the campaign period would
+not be distributed evenly across configurations; run timestamps are archived so
+that this can be checked.
+
+\subsection{Configuration coverage}
+\label{sec:coverage}
+The campaign is a full factorial of five models crossed with three requested
+reasoning levels, giving the fifteen configurations of
+Table~\ref{tab:coverage}. Each runs the same ten tasks from the same ten saved
+initial states, so every configuration contributes 100 episodes and every
+comparison is matched on task and initial state. All fifteen are complete.
+
+\begin{table}[h]
+\centering
+\caption{Configuration matrix and coverage. $T$ is the number of LIBERO-10
+tasks evaluated and $S$ the number of saved initial states per task; episodes
+$=T\times S$. Effort labels are defined per model family in
+Section~\ref{sec:models}.}
+\label{tab:coverage}
+\small
+\begin{tabular}{llccrl}
+\toprule
+Model & Effort & $T$ & $S$ & Episodes & Status \\
+\midrule
+GPT-6.1 Sol     & low    & 10 & 10 & 100 & complete \\
+GPT-6.1 Sol     & medium & 10 & 10 & 100 & complete \\
+GPT-6.1 Sol     & high   & 10 & 10 & 100 & complete \\
+GPT-6 Astra     & low    & 10 & 10 & 100 & complete \\
+GPT-6 Astra     & medium & 10 & 10 & 100 & complete \\
+GPT-6 Astra     & high   & 10 & 10 & 100 & complete \\
+GPT-6 Luna      & low    & 10 & 10 & 100 & complete \\
+GPT-6 Luna      & medium & 10 & 10 & 100 & complete \\
+GPT-6 Luna      & high   & 10 & 10 & 100 & complete \\
+\midrule
+Claude Opus 5   & low    & 10 & 10 & 100 & complete \\
+Claude Opus 5   & medium & 10 & 10 & 100 & complete \\
+Claude Opus 5   & high   & 10 & 10 & 100 & complete \\
+Claude Opus 5.5 & low    & 10 & 10 & 100 & complete \\
+Claude Opus 5.5 & medium & 10 & 10 & 100 & complete \\
+Claude Opus 5.5 & high   & 10 & 10 & 100 & complete \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All fifteen comparisons draw on the full $10\times10$ grid, so model identity
+and effort are crossed rather than confounded. Per-episode
+records, rollout videos, and the live state of the matrix are published at the
+project site.
+
+\subsection{Models and inference settings}
+\label{sec:models}
+The campaign covers GPT-6.1 Sol, GPT-6 Astra, and GPT-6 Luna --- API
+identifiers \texttt{openai/gpt-6.1-sol}, \texttt{openai/gpt-6-astra}, and
+\texttt{openai/gpt-6-luna} --- together with Claude Opus 5 and Claude Opus 5.5
+\placeholder{(API identifiers)}. Model names and effort settings are those
+recorded in the archived requests, so a provider-side change to a model behind
+a stable identifier would appear as unexplained variation across run
+timestamps rather than as a change of configuration.
+
+We vary model identity and effort and hold everything else fixed because these
+are the two factors a practitioner can change without re-engineering the robot
+stack, and because the studies closest to
+ours~\citep{galbot2026astra,roboicl2026,vlmagents2026} each hold the model
+fixed and vary the context instead. The complementary design --- one interface,
+several models --- is what lets us ask whether an observed limitation belongs
+to a particular model or to the interface we have given all of them.
+
+\paragraph{Effort is not a cross-provider scalar.}
+Within the GPT-6 family, \texttt{low}, \texttt{medium}, and \texttt{high} are
+values of a single provider-exposed effort parameter, so the ordering is
+meaningful within a model and the setting is identical across models of that
+family. This does not extend across providers. The Claude arms expose
+deliberation as a \emph{thinking-token budget} rather than an ordinal level, so
+\texttt{low}, \texttt{medium}, and \texttt{high} there denote
+\placeholder{thinking budgets of $B_{\text{low}}$, $B_{\text{medium}}$, and
+$B_{\text{high}}$ tokens}, chosen by us rather than named by the provider. The
+same budgets are used for both Claude generations, so effort is comparable
+between them but not between the Claude and GPT-6 families. We therefore treat
+effort as a within-family factor, and we do not read an effort difference
+across families as a difference in the same underlying variable.
+
+\paragraph{Request settings.}
+Requests use the Responses interface with \texttt{service\_tier=default} and
+\texttt{store=false}. Temperature is not set explicitly. The output ceiling is
+\placeholder{3{,}072} tokens per response including reasoning tokens, set above
+the longest response seen in pilot inspection while remaining low enough that
+one pathological generation cannot consume an episode's allowance;
+truncations are recorded separately so the ceiling's effect stays visible
+rather than being absorbed into the failure count. Prompt wording, camera
+resolution, image history, tools, and control limits are common to all
+configurations. Historical prompt variants are identified by their saved
+prompt hashes.
+
+\subsection{Choosing the model-call allowance}
+\label{sec:callbudget}
+The allowance must satisfy two competing requirements. It must not truncate
+episodes that would otherwise succeed, or the measured success rate becomes a
+function of the allowance rather than of the policy. And it must bound
+per-episode inference, since cost and latency scale with calls and the campaign
+is large. We therefore set the allowance from the observed call usage of
+\emph{successful} trajectories and applied a fixed margin of two.
+
+Let $\mathcal{S}_{\mathrm{pilot}}$ be the set of successful pilot episodes and
+$C_j$ the number of logical model calls episode $j$ consumed through
+termination. The design statistic is the mean call usage of successful
+trajectories,
+\begin{equation}
+\bar C_{\mathrm{success}}
+=\frac{1}{|\mathcal{S}_{\mathrm{pilot}}|}
+\sum_{j\in\mathcal{S}_{\mathrm{pilot}}}C_j ,
+\label{eq:cbar}
+\end{equation}
+and the allowance is
+\begin{equation}
+C_{\max}=\big\lceil\,2\,\bar C_{\mathrm{success}}\,\big\rceil_{10}=80\ \text{calls},
+\label{eq:budget}
+\end{equation}
+rounded to the nearest ten. Doubling is a deliberate margin rather than a tuned
+threshold. A successful trajectory spends its calls on a nominal path through
+the task; an episode that recovers from a dropped grasp, re-approaches a
+misaligned target, or disambiguates a distractor must re-traverse part of that
+path, so the recoverable cases we most want to leave room for are exactly those
+whose usage lies above the successful mean. A factor of two admits one full
+additional traversal. We make no claim that 80 is optimal. It is an operating
+point fixed before the campaign and held constant across every configuration,
+which is the property that matters for comparability. Fixing an explicit
+per-episode decision budget and reporting it as a protocol parameter is
+standard in this line of work; \citet{galbot2026astra}, for instance, allow a
+120-decision budget for in-hand manipulation and 250 model calls for a
+30-second locomotion run.
+
+\paragraph{Ex-post validation.}
+Because the allowance was fixed in advance, its adequacy is testable against
+the completed runs. Over 1,500 episodes containing 285 environment-verified
+successes, successful episodes used a mean of 45.5 calls (median 44, 95th
+percentile 69), and the maximum over all 285 was 79. No successful episode
+reached the allowance. Ninety-nine episodes did reach it, and every one of them
+was a failure. The cap therefore truncated no trajectory that the environment
+predicate would have scored as a success, and the realized margin,
+$C_{\max}/\bar C_{\mathrm{success}}=80/45.5\approx1.76$, is close to the factor
+of two the design assumed.
+
+\paragraph{Where the margin is thin.}
+The margin is not uniform across models. Successful GPT-6 episodes sit well
+inside it: Astra averages 42.2 calls (95th percentile 62, maximum 74) and Sol
+43.4 (65, 69). The Claude arms spend more per success --- Opus~5 averages 47.4
+calls (70, 77) and Opus~5.5 averages 53.1 (77, 79) --- so for Opus~5.5 the
+allowance is close to binding, and applying Eq.~\eqref{eq:budget} to that model
+alone would have given a cap near 110 rather than 80. This is a limitation of
+one shared allowance set from a pilot that did not include every model, and the
+Opus~5.5 success rates should be read as lower bounds.
+
+\paragraph{What remains to be documented.}
+\placeholder{The pilot sample size $|\mathcal{S}_{\mathrm{pilot}}|$, the pilot
+value of $\bar C_{\mathrm{success}}$, and the pilot call-count spread must be
+inserted here from the preliminary logs.} Eq.~\eqref{eq:cbar} must be computed
+from the preliminary runs that informed the decision, not from the benchmark
+outcomes above; the ex-post figures validate a prior choice and would be
+circular if presented as its justification.
+
+\subsection{Episode limits and financial accounting}
+Each episode permits at most 80 logical model calls and 900 scored simulator
+steps. At 20\,Hz the latter is 45\,s of nominal simulated time, excluding
+settling and API waiting. The two are separate limits, since one tool motion
+can consume several control steps, and the output-token ceiling supplies a
+third inference constraint.
+
+The limits bind different resources and follow different reasoning. The call
+allowance bounds inference, as derived in Section~\ref{sec:callbudget}. The
+900-step horizon bounds simulated execution and is set so that it is not the
+binding constraint on a nominally executed episode: at the 0.01\,m per-step
+translation limit, 900 steps permit roughly 9\,m of commanded end-effector
+travel, an order of magnitude more than these tasks require, so an episode that
+exhausts the horizon has been executing unproductive motion rather than running
+out of room. As in \citet{galbot2026astra}, simulation is paused during
+inference, so the horizon measures robot motion and excludes decision latency;
+latency is reported separately.
+
+Financial allowances are spending backstops, not an experimental factor. The
+call allowance is the controlled inference resource because it is the quantity
+comparable across providers: a matched dollar cap would grant a cheaper model
+more decisions than an expensive one and convert a price difference into an
+apparent capability difference. \placeholder{State the final per-episode dollar
+allowance used for each model family.} The transport reserves estimated input
+cost and the full output allowance before dispatch, then settles against
+returned usage. Costs are estimated from archived token rates and cache usage
+rather than reconciled against provider invoices. The campaign is consequently
+\emph{not} an equal-dollar-budget comparison, and per-episode cost differences
+reflect provider token rates and realized call counts rather than an imposed
+budget.
+
+\subsection{Success, termination, and recovery}
+Success is LIBERO's native predicate evaluated at the end of the episode.
+Calling \texttt{done}, or receiving a successful framework execution status,
+does not count as task success. For task $t$ and initial state $i$, let
+$s_{t,i}\in\{0,1\}$ denote the predicate. With $K$ evaluated states per task,
+the balanced task-averaged success rate is
+\begin{equation}
+\mathrm{SR}=\frac{1}{10}\sum_{t=0}^{9}\frac{1}{K}\sum_{i=0}^{K-1}s_{t,i}.
+\label{eq:sr}
+\end{equation}
+Because every configuration covers the same $10\times10$ grid, this balanced
+rate equals the unweighted mean over its 100 episodes.
+
+Episode records distinguish successful completion, unsuccessful termination,
+simulator-horizon exhaustion, call-limit exhaustion, financial stops, API
+errors, and interruptions. Some legacy labels merge the call and financial
+limits into one category; where they do, we recover the distinction from the
+recorded call count and settled cost. Missing and interrupted outcomes are
+shown explicitly rather than silently scored as success or failure.
+
+\placeholder{AUTHOR CHECK --- measurement gap.} The termination categories do
+not currently separate a model-initiated stop --- a \texttt{give\_up} call, or
+a \texttt{done} call on an incomplete task --- from an episode that ended in
+the wrong physical state after the agent kept acting. These are different
+failure modes: the first is a termination-criterion failure, the second a
+control failure, and distinguishing them is necessary for the failure analysis
+in Section~\ref{sec:results}. We therefore record the terminal tool call and
+its step index as a separate field.
+
+Recovery attempts are archived separately, in fresh output directories, so that
+the original attempt is preserved and a partially sent request is never
+continued. Replacement outcomes follow the recorded recovery history, and the
+analysis does not select the best outcome among retries. Changes to a financial
+cap are documented because they change the protocol. Cost is reported twice:
+for the retained outcomes, and summed across all attempts.
+
+\subsection{Measurements and reproducibility}
+Besides success we record logical model calls, simulator steps, input and
+output tokens, cached input, reasoning tokens where available, API latency,
+estimated cost, output truncations, and termination category, per call and
+aggregated per episode. Transcripts and videos support inspection of object
+identification, grasp acquisition and retention, collision or displacement,
+placement, and premature declarations of completion. Explanatory notes are
+treated as agent reports and checked against the observed trajectory rather
+than taken as evidence about it.
+
+Per-run metadata records configuration settings, task and state indices, seeds,
+repository revisions, selected source hashes, package versions, prompts, and
+cost assumptions. The representative setup uses \texttt{hf-libero 0.1.4},
+\texttt{robosuite 1.4.0}, \texttt{MuJoCo 3.8.1}, and
+\texttt{inspect-robots-agent 0.26.0}~\citep{inspectrobots}; the pinned
+Inspect Robots revision is
+\texttt{4d35fe4b81a643c0e61e8d287810b3c26f9d386a}. Saved requests, responses,
+tool schemas, action trajectories, and videos provide an audit trail for both
+the effective settings and the physical execution. The same records back the
+interactive tables and rollout inspector on the project site.
+
+% ===========================================================================
+\section{Results}
+\label{sec:results}
+% ===========================================================================
+The fifteen complete configurations comprise 1,500 episodes, of which 285
+(19.0\%) satisfy LIBERO's success predicate. The campaign consumed 83{,}153
+model calls, 915{,}160 scored simulator steps, and 190.0 hours of API latency,
+at a settled cost of \$3{,}655. Because every configuration covers the same
+ten tasks $\times$ ten initial states, the balanced rate of
+Eq.~\eqref{eq:sr} equals the unweighted mean, and every comparison below is
+matched on task and initial state.
+
+\subsection{Success by model and reasoning effort}
+\label{sec:res:models}
+\placeholder{FIGURE: success rate by model and effort, with 95\% Wilson
+intervals.}
+
+\placeholder{Paragraph 1 --- effort is monotone for Astra
+$0.28\to0.38\to0.44$, Sol $0.24\to0.30\to0.33$, and Opus~5.5
+$0.09\to0.18\to0.33$. Opus~5 instead changes $0.10\to0.12\to0.06$.
+Astra at high effort is the best configuration at $0.44$ [0.35, 0.54].}
+
+\placeholder{Paragraph 2 --- one model fails completely: GPT-6 Luna records no
+success in 300 episodes (95\% upper bound 0.04), and its behaviour differs by
+effort --- 8.5 calls and 137 steps at low effort, against 67.5 and 74.0 calls
+at medium and high, where it reaches the 80-call allowance in 23\% and 45\% of
+episodes.}
+
+\subsection{Success by task}
+\label{sec:res:tasks}
+\placeholder{FIGURE: success rate by task, pooled over the fifteen complete
+configurations, 150 episodes per task.}
+
+\placeholder{Paragraph --- the distribution is bimodal. Three basket tasks and
+the stove task carry nearly all successes (0.29--0.52); three tasks are 0/150
+across five models and three effort levels, which makes an environment-side
+cause --- an unreachable pose, an occluded target, or a predicate the achieved
+state does not satisfy --- as plausible as a policy-side one. Inspect the
+rollouts for tasks 4, 6 and 9 and state which the videos support.}
+
+\subsection{Inference cost}
+\label{sec:res:cost}
+\placeholder{TABLE or FIGURE: calls, tokens, latency and dollars per success,
+per configuration.}
+
+\placeholder{Paragraph --- accuracy and cost are close to independent. Sol and
+Opus~5.5 both reach $0.33$ at high effort, at \$4.96 and \$5.46 per success;
+Opus~5 at high effort costs \$94.57 per success. The spread in cost per success
+across configurations that succeed at all is a factor of twenty, against a
+factor of five in success rate.}
+
+\subsection{How episodes end}
+\label{sec:res:termination}
+Of the 1,500 episodes, 285 (19.0\%) end in success, 1,115 (74.3\%) in an
+unsuccessful terminal state, 93 (6.2\%) on a budget or limit stop, and 7
+(0.5\%) on an API error. The limit stops are concentrated: 68 of the 93 belong
+to GPT-6 Luna at medium and high effort, where the agent runs out of calls
+without converging. Episodes that stop on a limit or an error are reported in
+their own categories and counted as failures in every rate above; none is
+silently dropped.
+
+\placeholder{AUTHOR CHECK: the legacy \texttt{incomplete\_budget} label merges
+the call limit and the dollar cap. Separate the 91 using the recorded call
+count and settled cost --- ``the allowance bound the episode'' and ``spending
+did'' have different implications.}
+
+% ===========================================================================
+\section{Conclusion}
+% ===========================================================================
+We have defined and justified a protocol for evaluating API-served multimodal
+language models as closed-loop controllers on LIBERO-10: shared observations
+and tools, environment-defined scoring rather than the agent's own declaration
+of completion, a call allowance derived from the call usage of successful
+trajectories and verified not to truncate successes, and per-episode inference
+and trajectory records.
+
+\placeholder{Close with the findings once Section~\ref{sec:results} is final:
+the best zero-shot success rate, the model-dependent effect of requested effort, the
+separation between accuracy and cost, the tasks no configuration solves, and
+the model that never succeeds.}
+
+Two limits on scope follow from the design. Because the interface is specific
+--- two cameras, proprioception, general manipulation guidance, interpolated
+absolute-pose tools, a 900-step horizon, and an explicit call allowance ---
+success rates here are not comparable to published LIBERO scores obtained
+under other observation or action interfaces, and we do not place them in the
+same table. And because each (task, state) cell is observed once per
+configuration, conclusions hold for the tested model versions under this
+interface; extending them requires more tasks, more configurations, and
+repeated trials per cell.
+
+\section*{Acknowledgments}
+\placeholder{Add acknowledgments for the final version.}
+
+\clearpage
+\appendix
+% ===========================================================================
+\section{Exact System Prompt}
+\label{app:prompt}
+% ===========================================================================
+\IfFileExists{system_prompt.txt}{%
+  \lstinputlisting{system_prompt.txt}%
+}{%
+  \placeholder{Place the archived prompt at system\_prompt.txt next to this
+  file; the listing is omitted while that file is missing.}%
+}
+
+% ===========================================================================
+\section{Task Inventory}
+\label{app:tasks}
+% ===========================================================================
+Tasks are indexed 0--9 in the order listed.
+\begin{enumerate}
+\setcounter{enumi}{-1}
+\item Put both the alphabet soup and the tomato sauce in the basket.
+\item Put both the cream cheese box and the butter in the basket.
+\item Turn on the stove and put the moka pot on it.
+\item Put the black bowl in the bottom drawer of the cabinet and close it.
+\item Put the white mug on the left plate and the yellow and white mug on the right plate.
+\item Pick up the book and place it in the back compartment of the caddy.
+\item Put the white mug on the plate and the chocolate pudding to the right of the plate.
+\item Put both the alphabet soup and the cream cheese box in the basket.
+\item Put both moka pots on the stove.
+\item Put the yellow and white mug in the microwave and close it.
+\end{enumerate}
+
+\clearpage
+\bibliography{experiment_references}
+
+\end{document}

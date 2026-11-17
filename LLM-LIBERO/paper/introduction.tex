@@ -1,0 +1,37 @@
+\section{Introduction}
+
+A multimodal language model can look at a scene, plan a motion, and call a tool
+to execute it. But producing a plausible plan, or declaring the task finished,
+establishes nothing about the resulting physical state. Evaluating these models
+as robot controllers therefore means scoring the environment rather than the
+agent's report, and accounting for the inference the attempt consumed.
+
+We vary two factors and fix everything else: which model drives the robot, and
+how much reasoning it is asked to spend per decision. Reasoning effort is sold
+as a quality dial, but whether it buys physical competence, and at what price,
+is unmeasured. Our protocol fixes the observation interface, the manipulation
+prompt, the simulator horizon, and a per-episode allowance of model calls whose
+cost is recorded; success is LIBERO's own predicate, never the agent's claim.
+We evaluate on LIBERO-10~\citep{liu2023libero} through the Inspect Robots
+agent~\citep{inspectrobots} and a custom embodiment adapter, with the model
+selecting end-effector pose targets directly and no task-specific policy
+trained (Figure~\ref{fig:interface}).
+
+Recent evaluations of this model generation take the opposite cut.
+\citet{galbot2026astra} report a gap between competent task-level decisions and
+reliable control, with GPT-6 Astra at 26\% on RoboDojo when it emits control
+targets itself against 48\% when it corrects a learned policy;
+\citet{roboicl2026} and \citet{vlmagents2026} hold one model fixed and engineer
+its context. None varies the model, and none varies reasoning effort. We take
+the hardest corner --- one frozen model, no learned policy, no demonstrations,
+one shared interface --- because it isolates what a model contributes alone.
+Trained vision-language-action policies exceed 90\% on LIBERO-10, so these
+rates measure a different thing, not a worse attempt at the same one.
+
+Across fifteen configurations --- five models $\times$ three reasoning levels
+--- and 1,500 episodes, we find: the best configuration reaches 44\% and the
+campaign averages 19.0\%; reasoning effort raises success for three models but
+not Claude Opus 5; accuracy and cost are near-independent, with
+two configurations tied at 33\% differing threefold in cost per success; and
+failure is uneven, with one model never succeeding in 300 episodes and three of
+ten tasks solved by no configuration.

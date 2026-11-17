@@ -15,7 +15,7 @@
 
   <link rel="stylesheet" href="./assets/css/bulma.min.css">
   <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="./assets/css/results.css?v=80">
+  <link rel="stylesheet" href="./assets/css/results.css?v=81">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RR17MKXYJG"></script>
   <script>
@@ -31,6 +31,7 @@
   <section class="hero">
     <div class="hero-body pad-zero">
       <div class="container is-max-desktop">
+        <a class="citation-jump" href="#citation"><i class="fas fa-quote-right" aria-hidden="true"></i><span>Cite</span></a>
         <div class="columns is-centered">
           <div class="column has-text-centered">
             <h1 id="project-name" class="title is-2 publication-title"><span class="publication-title-main">From Reasoning to Action<span class="sr-only">:</span></span> <span class="publication-title-sub">Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks</span></h1>
@@ -75,10 +76,16 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <button type="button" class="button is-normal is-rounded is-dark" disabled>
+                  <a class="button is-normal is-rounded is-dark" href="./assets/papers/LLM_LIBERO.pdf" target="_blank" rel="noopener noreferrer">
                     <span class="icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></span>
-                    <span>Report (coming soon)</span>
-                  </button>
+                    <span>Report</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a class="button is-normal is-rounded is-dark" href="https://arxiv.org/abs/2610.30051" target="_blank" rel="noopener noreferrer">
+                    <span class="icon"><i class="fas fa-file-alt" aria-hidden="true"></i></span>
+                    <span>arXiv</span>
+                  </a>
                 </span>
               </div>
             </div>
@@ -93,8 +100,8 @@
       <a href="#overview">Overview</a><a href="#protocol">Protocol</a><a href="#aggregates">Aggregates</a><a href="#states">Individual states</a><a href="#inspector">Rollout inspector</a>
     </nav>
     <section id="overview" class="results-section">
-      <p class="section-intro">Run frontier LLMs (GPT, Claude, and other OpenAI-compatible models) as closed-loop control policies on the <a href="https://libero-project.github.io/" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
-      <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-10">October 10, 2026</time></p>
+      <p class="section-intro">Run frontier LLMs—including GPT, Claude, and Gemini—as closed-loop control policies on the <a href="https://libero-project.github.io/main.html" target="_blank" rel="noopener noreferrer">LIBERO-10</a> manipulation benchmark.</p>
+      <p class="data-stamp"><span>Updated</span><time id="data-updated" datetime="2026-10-15">October 15, 2026</time></p>
       <h2>Model rollout results</h2>
       <div class="summary-cards" id="cards"></div>
     </section>
@@ -103,13 +110,13 @@
       <div class="protocol-layout">
         <ol class="protocol-steps">
           <li><strong>Observe</strong>Agent-view and wrist-camera images from the two most recent observations, plus the robot state.</li>
-          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Max 3,072 output tokens per call, incl. reasoning</span></li>
+          <li><strong>Decide</strong>The LLM calls one tool: <code>move_to</code>, <code>done</code>, or <code>give_up</code>.<span class="step-meta">Output limit per call, including reasoning: 3,072 tokens for Low and Medium; 8,192 for High. GPT-6 Luna High used 3,072.</span></li>
           <li><strong>Act</strong>An adapter turns the target pose into controller steps.<span class="step-meta">Limit: 80 calls or 900 sim steps (45 s at 20 Hz)</span></li>
           <li><strong>Score</strong>LIBERO's checker confirms success. Rate = successes ÷ 100 planned episodes; stopped, incomplete, errored, or missing runs count as failures.<span class="step-meta">Logged per episode: outcome, steps, calls, tokens, latency, cost</span></li>
         </ol>
         <figure class="protocol-figure">
-          <a href="./assets/images/cartoon_figure.png?v=2" target="_blank" rel="noopener noreferrer" aria-label="Open the closed-loop evaluation protocol figure at full resolution">
-            <img src="./assets/images/cartoon_figure.png?v=2" alt="Closed-loop LIBERO evaluation flowchart showing observations and robot state entering a multimodal LLM, tool-call outputs driving robot actions, and LIBERO evaluating success or failure.">
+          <a href="./assets/images/cartoon_figure.png?v=4" target="_blank" rel="noopener noreferrer" aria-label="Open the closed-loop evaluation protocol figure at full resolution">
+            <img src="./assets/images/cartoon_figure.png?v=4" width="3960" height="2440" loading="lazy" decoding="async" alt="Closed-loop LIBERO evaluation flowchart showing observations and robot state entering a multimodal LLM, tool-call outputs driving robot actions, and LIBERO evaluating success or failure.">
           </a>
           <figcaption>Closed-loop evaluation protocol <span>Click to view full resolution</span></figcaption>
         </figure>
@@ -199,11 +206,43 @@
         </div>
       </article>
     </section>
-    <section class="results-section contact" id="contact"><h2>Contact</h2><p>Send any comments or questions to May Espinola | Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a> | <a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+    <div class="footer-info-grid">
+      <section class="results-section footer-info-card citation-section" id="citation">
+        <div class="citation-heading"><div><span>Citation</span><h2>Cite this work</h2></div><button type="button" class="citation-copy" aria-describedby="citation-copy-status"><i class="fas fa-copy" aria-hidden="true"></i>Copy BibTeX</button></div>
+        <pre id="project-bibtex" class="citation-code"><code>@misc{espinola2026reasoningaction,
+  title = {From Reasoning to Action: Benchmarking Frontier AI Models on LIBERO-10 Robot Manipulation Tasks},
+  author = {Espinola, May and Zhang, Qifan and Xiang, Yu},
+  year = {2026},
+  url = {https://irvlutd.github.io/LLM-LIBERO/}
+}</code></pre>
+        <span id="citation-copy-status" class="sr-only" aria-live="polite"></span>
+      </section>
+      <section class="results-section footer-info-card contact" id="contact"><div class="eyebrow">Contact</div><h2>Questions or comments?</h2><p>Contact May Espinola or Qifan Zhang:<br><a href="mailto:may.espinola@utdallas.edu">may.espinola@utdallas.edu</a><br><a href="mailto:Qifan.Zhang@utdallas.edu">Qifan.Zhang@utdallas.edu</a></p></section>
+    </div>
   </main>
   <noscript><p class="notice">Enable JavaScript to filter experiments and inspect rollout evidence.</p></noscript>
   <script defer src="./assets/js/fontawesome.all.min.js"></script>
-  <script src="./assets/js/results-data.js?v=16"></script>
-  <script src="./assets/js/results.js?v=60"></script>
+  <script src="./assets/js/results-data.js?v=21"></script>
+  <script src="./assets/js/results.js?v=65"></script>
+  <script>
+    document.querySelector('.citation-copy')?.addEventListener('click', async event => {
+      const button = event.currentTarget;
+      const citation = document.querySelector('#project-bibtex code')?.textContent || '';
+      const status = document.getElementById('citation-copy-status');
+      try {
+        await navigator.clipboard.writeText(citation);
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>Copied';
+        if (status) status.textContent = 'BibTeX citation copied to clipboard.';
+      } catch {
+        const range = document.createRange();
+        range.selectNodeContents(document.getElementById('project-bibtex'));
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        if (status) status.textContent = 'BibTeX citation selected. Press Control or Command C to copy.';
+      }
+      window.setTimeout(() => { button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>Copy'; }, 1800);
+    });
+  </script>
 </body>
 </html>

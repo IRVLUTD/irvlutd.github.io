@@ -15,6 +15,8 @@ DEFAULT_VIDEOS = PROJECT / 'tests' / 'drive_videos.json'
 DEFAULT_OUTPUT = PROJECT / 'assets' / 'js' / 'results-data.js'
 COLORS = ['#79c4ff', '#70dab5', '#c39bff', '#ffb071', '#ff78b7']
 MODEL_COLORS = {
+    'anthropic/claude-fable-5-2': '#60cfd0',
+    'google/gemini-4-argon': '#f7c948',
     'anthropic/claude-opus-5': '#7a74df',
     'anthropic/claude-opus-5-5': '#79c4ff',
     'openai/gpt-6-astra': '#70dab5',
@@ -65,6 +67,11 @@ def compact_calls(calls):
         note = arguments.get('note') if isinstance(arguments, dict) else None
         if note:
             item['plan_note'] = str(note)[:360]
+        hindsight = call.get('hindsight')
+        if hindsight in (None, '') and isinstance(arguments, dict):
+            hindsight = arguments.get('hindsight')
+        if hindsight not in (None, ''):
+            item['hindsight'] = hindsight
         compact.append(item)
     return compact
 
@@ -141,10 +148,9 @@ def build(results_index, video_index):
         episode = row.get('episode')
         key = video_row.get('key') or episode_key(row)
         exported_video = row.get('video') if isinstance(row.get('video'), dict) else {}
-        video = (
-            video_row.get('preview_url') or video_row.get('view_url')
-            or exported_video.get('preview_url') or exported_video.get('view_url')
-        )
+        video = exported_video.get('preview_url') or exported_video.get('view_url')
+        if not video and not row.get('replaced_results'):
+            video = video_row.get('preview_url') or video_row.get('view_url')
         task_name = video_row.get('task_name')
         instruction = video_row.get('instruction')
         rollouts.append({
@@ -190,10 +196,12 @@ def build(results_index, video_index):
             'metrics': row.get('metrics') or {},
             'stop_detail': row.get('stop_detail'),
             'framework_status': row.get('framework_status'),
+            'outcome_category': row.get('outcome_category'),
             'video': video,
             'calls': compact_calls(row.get('calls')),
             'trajectory': compact_trajectory(row.get('trajectory')),
             'conversation': row.get('conversation') or [],
+            'hindsight': row.get('hindsight'),
             'protocol': row.get('protocol') or {
                 'model': row['model'],
                 'reasoning_effort': row['effort'],
